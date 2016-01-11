@@ -34,7 +34,8 @@ bool MainMenu::init()
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
 
-    // add a "close" icon to exit the progress. it's an autorelease object
+    /*Original close
+	// add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
@@ -47,6 +48,16 @@ bool MainMenu::init()
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
+	*/
+
+	auto Quit = MenuItemImage::create("Quit.png", "Options.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
+	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - Quit->getContentSize().height * 8));
+	auto menu = Menu::create(Quit, NULL);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu, 1);
+
+
 
     /////////////////////////////
     // 3. add your codes below...
@@ -63,6 +74,31 @@ bool MainMenu::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
 
+	//Title sprite
+	auto spriteTitle = Sprite::create("TitleSprite.png");
+	spriteTitle->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteTitle->getContentSize().height));
+	this->addChild(spriteTitle, 1);
+
+	//New Game Sprite
+	auto spriteNewGame = Sprite::create("NewGame.png");
+	spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
+	this->addChild(spriteNewGame, 1);
+
+	//Continue Sprite
+	auto spriteContinue = Sprite::create("Continue.png");
+	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
+	this->addChild(spriteContinue, 1);
+
+	//Options Sprite
+	auto spriteOptions = Sprite::create("Options.png");
+	spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 7));
+	this->addChild(spriteOptions, 1);
+
+	/*Original background
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
 
@@ -71,8 +107,19 @@ bool MainMenu::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+    */
+
+	//Simple background added
+	auto sprite = Sprite::create("Background.png");
+
+	// position the sprite on the center of the screen
+	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+
+	// add the sprite as a child to this layer
+	this->addChild(sprite, 0);
+
     return true;
+
 }
 
 
