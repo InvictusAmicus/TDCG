@@ -54,7 +54,7 @@ bool MainMenu::init()
     this->addChild(menu, 1);
 	*/
 
-	auto Quit = MenuItemImage::create("Quit.png", "Options.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
+	auto Quit = MenuItemImage::create("Quit.png", "QuitClicked.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
 	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - Quit->getContentSize().height * 8));
 	auto menu = Menu::create(Quit, NULL);
@@ -89,7 +89,7 @@ bool MainMenu::init()
 	//spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
 	//	origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
 	//th+is->addChild(spriteNewGame, 1);
-	auto spriteNewGame = MenuItemImage::create("NewGame.png", "Options.png", CC_CALLBACK_1(MainMenu::menuNewGame, this));
+	auto spriteNewGame = MenuItemImage::create("NewGame.png", "NewGameClicked.png", CC_CALLBACK_1(MainMenu::menuNewGame, this));
 	spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
 	auto menuNewGame = Menu::create(spriteNewGame, NULL);
@@ -104,7 +104,7 @@ bool MainMenu::init()
 	//this->addChild(spriteContinue, 1);
 	
 	
-	auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuContinue, this));
+	auto spriteContinue = MenuItemImage::create("Continue.png", "ContinueClicked.png", CC_CALLBACK_1(MainMenu::menuContinue, this));
 	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
 	auto menuContinue = Menu::create(spriteContinue, NULL);
@@ -119,7 +119,7 @@ bool MainMenu::init()
 	//this->addChild(spriteOptions, 1);
 	
 	
-	auto spriteOptions = MenuItemImage::create("Options.png", "Continue.png", CC_CALLBACK_1(MainMenu::menuOptions, this));
+	auto spriteOptions = MenuItemImage::create("Options.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuOptions, this));
 	spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 7));
 	auto menuOptions = Menu::create(spriteOptions, NULL);
