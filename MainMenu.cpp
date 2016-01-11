@@ -1,4 +1,8 @@
 #include "MainMenu.h"
+#include "NewGame.h"
+#include "Options.h"
+#include "Continue.h"
+
 
 USING_NS_CC;
 
@@ -81,22 +85,47 @@ bool MainMenu::init()
 	this->addChild(spriteTitle, 1);
 
 	//New Game Sprite
-	auto spriteNewGame = Sprite::create("NewGame.png");
+	//auto spriteNewGame = Sprite::create("NewGame.png");
+	//spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
+	//	origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
+	//th+is->addChild(spriteNewGame, 1);
+	auto spriteNewGame = MenuItemImage::create("NewGame.png", "Options.png", CC_CALLBACK_1(MainMenu::menuNewGame, this));
 	spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
-	this->addChild(spriteNewGame, 1);
+	auto menuNewGame = Menu::create(spriteNewGame, NULL);
+	menuNewGame->setPosition(Vec2::ZERO);
+	this->addChild(menuNewGame, 1);
+
 
 	//Continue Sprite
-	auto spriteContinue = Sprite::create("Continue.png");
+	//auto spriteContinue = Sprite::create("Continue.png");
+	//spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
+	//	origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
+	//this->addChild(spriteContinue, 1);
+	
+	
+	auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuContinue, this));
 	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
-	this->addChild(spriteContinue, 1);
+	auto menuContinue = Menu::create(spriteContinue, NULL);
+	menuContinue->setPosition(Vec2::ZERO);
+	this->addChild(menuContinue, 1);
+
 
 	//Options Sprite
-	auto spriteOptions = Sprite::create("Options.png");
+	//auto spriteOptions = Sprite::create("Options.png");
+	//spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
+	//	origin.y + visibleSize.height - spriteOptions->getContentSize().height * 7));
+	//this->addChild(spriteOptions, 1);
+	
+	
+	auto spriteOptions = MenuItemImage::create("Options.png", "Continue.png", CC_CALLBACK_1(MainMenu::menuOptions, this));
 	spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 7));
-	this->addChild(spriteOptions, 1);
+	auto menuOptions = Menu::create(spriteOptions, NULL);
+	menuOptions->setPosition(Vec2::ZERO);
+	this->addChild(menuOptions, 1);
+	
 
 	/*Original background
     // add "HelloWorld" splash screen"
@@ -130,4 +159,28 @@ void MainMenu::menuCloseCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void MainMenu::menuNewGame(Ref* pSender)
+{
+	//Director::getInstance()->end();
+	auto NewGameScene = NewGame::createScene();
+	//Director::getInstance()->runWithScene(NewGameScene);
+	Director::getInstance()->pushScene(NewGameScene);
+	//Director::getInstance()->popScene(NewGameScene);
+	//Director::getInstance()->replaceScene(NewGameScene);
+
+
+}
+
+void MainMenu::menuContinue(Ref* pSender)
+{
+	auto ContinueScene = Continue::createScene();
+	Director::getInstance()->pushScene(ContinueScene);
+}
+
+void MainMenu::menuOptions(Ref* pSender)
+{
+	auto OptionsScene = Options::createScene();
+	Director::getInstance()->pushScene(OptionsScene);
 }
