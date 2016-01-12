@@ -103,18 +103,16 @@ bool MainMenu::init()
 	//	origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
 	//this->addChild(spriteContinue, 1);
 	
-<<<<<<< HEAD
 	//CHANGE spriteContinue When MultiPlayerSprites Are made
-	auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
-=======
+	//auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
 	
-	auto spriteContinue = MenuItemImage::create("Continue.png", "ContinueClicked.png", CC_CALLBACK_1(MainMenu::menuContinue, this));
->>>>>>> origin/master
-	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
-	auto menuContinue = Menu::create(spriteContinue, NULL);
-	menuContinue->setPosition(Vec2::ZERO);
-	this->addChild(menuContinue, 1);
+	auto spriteMultiPlayer = MenuItemImage::create("Continue.png", "ContinueClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
+
+	spriteMultiPlayer->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteMultiPlayer->getContentSize().height * 8));
+	auto menuMultiPlayer = Menu::create(spriteMultiPlayer, NULL);
+	menuMultiPlayer->setPosition(Vec2::ZERO);
+	this->addChild(menuMultiPlayer, 1);
 
 
 	//Options Sprite
