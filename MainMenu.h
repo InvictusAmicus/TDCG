@@ -1,9 +1,9 @@
 #ifndef __MAINMENU_H__
-<<<<<<< HEAD
+
 #define __MAINMENU_H_
-=======
+
 #define __MAINMENU_H__
->>>>>>> origin/master
+
 
 #include "cocos2d.h"
 
