@@ -1,6 +1,8 @@
 #ifndef __CHARACTER_H__
 #define __CHARACTER_H__
 
+#include"Card.h"
+
 class Character
 {
 	Character();
