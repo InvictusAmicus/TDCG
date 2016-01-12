@@ -1,25 +1,24 @@
-#include"Options.h"
-#include"MainMenu.h"
+#include"MultiPlayer.h"
 
 USING_NS_CC;
 
-Scene* Options::createScene()
+Scene* MultiPlayer::createScene()
 {
 	// 'scene' is an autorelease object
-	auto OptionsScene = Scene::create();
+	auto MultiPlayerScene = Scene::create();
 
 	// 'layer' is an autorelease object
-	auto layer = Options::create();
+	auto layer = MultiPlayer::create();
 
 	// add layer as a child to scene
-	OptionsScene->addChild(layer);
+	MultiPlayerScene->addChild(layer);
 
 	// return the scene
-	return OptionsScene;
+	return MultiPlayerScene;
 }
 
 // on "init" you need to initialize your instance
-bool Options::init()
+bool MultiPlayer::init()
 {
 	//////////////////////////////
 	// 1. super init first
@@ -31,7 +30,7 @@ bool Options::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
+	auto label = Label::createWithTTF("MultiPlayer", "fonts/Marker Felt.ttf", 24);
 
 	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
@@ -49,20 +48,5 @@ bool Options::init()
 	// add the sprite as a child to this layer
 	this->addChild(sprite, 0);
 
-	auto BackToMain = MenuItemImage::create("Options.png", "Continue.png", CC_CALLBACK_1(Options::menuReturn, this));
-	BackToMain->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - BackToMain->getContentSize().height * 7));
-	auto menuReturn = Menu::create(BackToMain, NULL);
-	menuReturn->setPosition(Vec2::ZERO);
-	this->addChild(menuReturn, 1);
-
-
-
 	return true;
-
-}
-
-void Options::menuReturn(Ref* pSender)
-{
-	Director::getInstance()->popScene();
 }

@@ -1,9 +1,9 @@
-#ifndef __OPTIONS_H__
-#define __OPTIONS__
+#ifndef __MULTIPLAYER_H__
+#define __MULTIPLAYER__
 
 #include "cocos2d.h"
 
-class Options : public cocos2d::Layer
+class MultiPlayer : public cocos2d::Layer
 {
 public:
 	static cocos2d::Scene* createScene();
@@ -11,12 +11,12 @@ public:
 	virtual bool init();
 
 	// a selector callback
-	void menuReturn(cocos2d::Ref* pSender);
+	//void menuCloseCallback(cocos2d::Ref* pSender);
 	//void menuNewGame(cocos2d::Ref* pSender);
 	//void menuContinue(cocos2d::Ref* pSender);
 	//void menuOptions(cocos2d::Ref* pSender);
 	// implement the "static create()" method manually
-	CREATE_FUNC(Options);
+	CREATE_FUNC(MultiPlayer);
 };
 
-#endif // __OPTIONS_H__
+#endif // __MULTIPLAYER_H__

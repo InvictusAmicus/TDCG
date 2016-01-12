@@ -1,7 +1,7 @@
 #include "MainMenu.h"
 #include "NewGame.h"
 #include "Options.h"
-#include "Continue.h"
+#include "MultiPlayer.h"
 
 
 USING_NS_CC;
@@ -103,8 +103,8 @@ bool MainMenu::init()
 	//	origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
 	//this->addChild(spriteContinue, 1);
 	
-	
-	auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuContinue, this));
+	//CHANGE spriteContinue When MultiPlayerSprites Are made
+	auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
 	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
 	auto menuContinue = Menu::create(spriteContinue, NULL);
@@ -173,10 +173,10 @@ void MainMenu::menuNewGame(Ref* pSender)
 
 }
 
-void MainMenu::menuContinue(Ref* pSender)
+void MainMenu::menuMultiPlayer(Ref* pSender)
 {
-	auto ContinueScene = Continue::createScene();
-	Director::getInstance()->pushScene(ContinueScene);
+	auto MultiPlayerScene = MultiPlayer::createScene();
+	Director::getInstance()->pushScene(MultiPlayerScene);
 }
 
 void MainMenu::menuOptions(Ref* pSender)
