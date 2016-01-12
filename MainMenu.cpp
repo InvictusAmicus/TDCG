@@ -1,7 +1,8 @@
+#include "Collection.h"
 #include "MainMenu.h"
+#include "MultiPlayer.h"
 #include "NewGame.h"
 #include "Options.h"
-#include "MultiPlayer.h"
 
 
 USING_NS_CC;
@@ -56,12 +57,18 @@ bool MainMenu::init()
 
 	auto Quit = MenuItemImage::create("Quit.png", "QuitClicked.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
 	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - Quit->getContentSize().height * 8));
+		origin.y + visibleSize.height - Quit->getContentSize().height * 11));
 	auto menu = Menu::create(Quit, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-
+	//
+	auto Cards = MenuItemImage::create("Collection.png", "CollectionClicked.png", CC_CALLBACK_1(MainMenu::menuCollection, this));
+	Cards->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - Cards->getContentSize().height * 8));
+	auto menuCards = Menu::create(Cards, NULL);
+	menuCards->setPosition(Vec2::ZERO);
+	this->addChild(menuCards, 1);
 
     /////////////////////////////
     // 3. add your codes below...
@@ -89,9 +96,9 @@ bool MainMenu::init()
 	//spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
 	//	origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
 	//th+is->addChild(spriteNewGame, 1);
-	auto spriteNewGame = MenuItemImage::create("NewGame.png", "NewGameClicked.png", CC_CALLBACK_1(MainMenu::menuNewGame, this));
+	auto spriteNewGame = MenuItemImage::create("Play.png", "PlayClicked.png", CC_CALLBACK_1(MainMenu::menuNewGame, this));
 	spriteNewGame->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 4));
+		origin.y + visibleSize.height - spriteNewGame->getContentSize().height * 6));
 	auto menuNewGame = Menu::create(spriteNewGame, NULL);
 	menuNewGame->setPosition(Vec2::ZERO);
 	this->addChild(menuNewGame, 1);
@@ -104,15 +111,13 @@ bool MainMenu::init()
 	//this->addChild(spriteContinue, 1);
 	
 	//CHANGE spriteContinue When MultiPlayerSprites Are made
-	//auto spriteContinue = MenuItemImage::create("Continue.png", "Options.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
+	auto spriteContinue = MenuItemImage::create("Multiplayer.png", "MultiplayerClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
 	
-	auto spriteMultiPlayer = MenuItemImage::create("Continue.png", "ContinueClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
-
-	spriteMultiPlayer->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteMultiPlayer->getContentSize().height * 8));
-	auto menuMultiPlayer = Menu::create(spriteMultiPlayer, NULL);
-	menuMultiPlayer->setPosition(Vec2::ZERO);
-	this->addChild(menuMultiPlayer, 1);
+	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 7));
+	auto menuContinue = Menu::create(spriteContinue, NULL);
+	menuContinue->setPosition(Vec2::ZERO);
+	this->addChild(menuContinue, 1);
 
 
 	//Options Sprite
@@ -124,7 +129,7 @@ bool MainMenu::init()
 	
 	auto spriteOptions = MenuItemImage::create("Options.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuOptions, this));
 	spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 7));
+		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 9));
 	auto menuOptions = Menu::create(spriteOptions, NULL);
 	menuOptions->setPosition(Vec2::ZERO);
 	this->addChild(menuOptions, 1);
@@ -180,6 +185,12 @@ void MainMenu::menuMultiPlayer(Ref* pSender)
 {
 	auto MultiPlayerScene = MultiPlayer::createScene();
 	Director::getInstance()->pushScene(MultiPlayerScene);
+}
+
+void MainMenu::menuCollection(Ref* pSender)
+{
+	auto CollectionScene = Collection::createScene();
+	Director::getInstance()->pushScene(CollectionScene);
 }
 
 void MainMenu::menuOptions(Ref* pSender)
