@@ -1,5 +1,6 @@
 #include"Options.h"
 #include"MainMenu.h"
+#include"ui/CocosGUI.h"
 
 USING_NS_CC;
 
@@ -49,14 +50,43 @@ bool Options::init()
 	// add the sprite as a child to this layer
 	this->addChild(sprite, 0);
 
+	
+	auto checkBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
+		"check_box_normal_press.png",
+		"check_box_active.png",
+		"check_box_normal_disable.png",
+		"check_box_active_disable.png");
+	checkBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - checkBox->getContentSize().height * 14));
+	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
+	this->addChild(checkBox,1);
+
+
+	//auto b = cocos2d::ui::CheckBox::create();
+	auto MusicSlider = cocos2d::ui::Slider::create();
+	MusicSlider->loadBarTexture("sliderTrack.png");
+	MusicSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
+	MusicSlider->loadProgressBarTexture("sliderProgress.png");
+	MusicSlider->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - MusicSlider->getContentSize().height * 4));
+	//MusicSlider->addEventListener(CC_CALLBACK_2(UISliderTest::sliderEvent, this));
+	this->addChild(MusicSlider,1);
+	
+	auto SoundEffectSlider = cocos2d::ui::Slider::create();
+	SoundEffectSlider->loadBarTexture("sliderTrack.png");
+	SoundEffectSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
+	SoundEffectSlider->loadProgressBarTexture("sliderProgress.png");
+	SoundEffectSlider->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - MusicSlider->getContentSize().height * 6));
+	//SoundEffectSlider->addEventListener(CC_CALLBACK_2(UISliderTest::sliderEvent, this));
+	this->addChild(SoundEffectSlider,1);
+
 	auto BackToMain = MenuItemImage::create("Options.png", "Continue.png", CC_CALLBACK_1(Options::menuReturn, this));
 	BackToMain->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - BackToMain->getContentSize().height * 7));
 	auto menuReturn = Menu::create(BackToMain, NULL);
 	menuReturn->setPosition(Vec2::ZERO);
 	this->addChild(menuReturn, 1);
-
-
 
 	return true;
 
