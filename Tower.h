@@ -5,7 +5,9 @@
 
 class Tower : public Character
 {
-
+	Tower();
+	~Tower();
+	bool init();
 };
 
 #endif // __TOWER_H__

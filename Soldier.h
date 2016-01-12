@@ -5,7 +5,9 @@
 
 class Soldier : public Character
 {
-
+	Soldier();
+	~Soldier();
+	bool init();
 };
 
 #endif // __SOLDIER_H__
