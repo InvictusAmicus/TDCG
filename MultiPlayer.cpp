@@ -39,6 +39,13 @@ bool MultiPlayer::init()
 	// add the label as a child to this layer
 	this->addChild(label, 1);
 
+	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(MultiPlayer::returnToTitle, this));
+	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
+
+	auto menu = Menu::create(Back, NULL);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu, 1);
+
 	//Simple background added
 	auto sprite = Sprite::create("Background.png");
 
@@ -49,4 +56,9 @@ bool MultiPlayer::init()
 	this->addChild(sprite, 0);
 
 	return true;
+}
+
+void MultiPlayer::returnToTitle(cocos2d::Ref* pSender)
+{
+	Director::getInstance()->popScene();
 }

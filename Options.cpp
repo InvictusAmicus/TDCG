@@ -49,9 +49,8 @@ bool Options::init()
 	// add the sprite as a child to this layer
 	this->addChild(sprite, 0);
 
-	auto BackToMain = MenuItemImage::create("Options.png", "Continue.png", CC_CALLBACK_1(Options::menuReturn, this));
-	BackToMain->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - BackToMain->getContentSize().height * 7));
+	auto BackToMain = MenuItemImage::create("Back.png", "BackClickedd.png", CC_CALLBACK_1(Options::menuReturn, this));
+	BackToMain->setPosition(Vec2(origin.x + visibleSize.width - BackToMain->getContentSize().width, 70));
 	auto menuReturn = Menu::create(BackToMain, NULL);
 	menuReturn->setPosition(Vec2::ZERO);
 	this->addChild(menuReturn, 1);

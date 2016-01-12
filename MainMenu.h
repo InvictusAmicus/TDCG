@@ -1,5 +1,5 @@
 #ifndef __MAINMENU_H__
-#define __MAINMENU__
+#define __MAINMENU_H__
 
 #include "cocos2d.h"
 
@@ -15,6 +15,7 @@ public:
 	void menuNewGame(cocos2d::Ref* pSender);
 	void menuMultiPlayer(cocos2d::Ref* pSender);
 	void menuOptions(cocos2d::Ref* pSender);
+	void menuCollection(cocos2d::Ref* pSender);
     // implement the "static create()" method manually
     CREATE_FUNC(MainMenu);
 };
