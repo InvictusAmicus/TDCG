@@ -1,5 +1,5 @@
 #ifndef __OPTIONS_H__
-#define __OPTIONS__
+#define __OPTIONS_H_
 
 #include "cocos2d.h"
 

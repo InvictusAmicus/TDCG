@@ -1,5 +1,5 @@
 #ifndef __NEWGAME_H__
-#define __NEWGAME__
+#define __NEWGAME_H_
 
 #include "cocos2d.h"
 

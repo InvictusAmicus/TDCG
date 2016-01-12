@@ -1,5 +1,5 @@
 #ifndef __MULTIPLAYER_H__
-#define __MULTIPLAYER__
+#define __MULTIPLAYER_H_
 
 #include "cocos2d.h"
 
