@@ -40,13 +40,17 @@ bool OpeningScreen::init()
 
 	auto containerForSprite1 = Node::create();
 	auto sprite1 = Sprite::create("ArrowSelection.png");
-	sprite1->setPosition(origin + Vec2(visibleSize.width / 2, visibleSize.height / 2) + Vec2(-80, 80));
+	sprite1->setPosition(origin + Vec2((visibleSize.width / 2)+100, (visibleSize.height / 2)-200));
 	containerForSprite1->addChild(sprite1);
 	addChild(containerForSprite1, 10);
 
 	auto sprite2 = Sprite::create("ArrowSelection2.png");
-	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, (visibleSize.height / 2)-200));
 	addChild(sprite2, 20);
+
+	auto sprite3 = Sprite::create("Quit.png");
+	sprite3->setPosition(origin + Vec2((visibleSize.width / 2)-100, (visibleSize.height / 2)-200));
+	addChild(sprite3, 20);
 
 	// Make sprite1 touchable
 	auto listener1 = EventListenerTouchOneByOne::create();
@@ -74,26 +78,31 @@ bool OpeningScreen::init()
 	};
 
 	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
+		
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		log("sprite onTouchesEnded.. ");
-		target->setOpacity(255);
-		if (target == sprite2)
-		{
-			containerForSprite1->setLocalZOrder(100);
+		if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
+			log("sprite onTouchesEnded.. ");
+			target->setOpacity(255);
+			if (target == sprite2)
+			{
+				containerForSprite1->setLocalZOrder(100);
+			}
+			else if (target == sprite1)
+			{
+				containerForSprite1->setLocalZOrder(0);
+			}
 		}
-		else if (target == sprite1)
+		else
 		{
-			containerForSprite1->setLocalZOrder(0);
+			target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
+			target->setOpacity(255);
 		}
 	};
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, sprite1);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), sprite2);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), sprite3);
 
-
-
-
-	
 
 	return true;
 }
