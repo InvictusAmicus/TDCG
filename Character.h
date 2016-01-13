@@ -5,9 +5,13 @@
 
 class Character
 {
-	Character();
-	~Character();
-	bool init();
+private:
+
+public:
+	Character() {};
+	~Character() {};
+	virtual bool init() = 0;
+	virtual void move() = 0;
 };
 
 #endif // __CHARACTER_H__

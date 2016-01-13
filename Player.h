@@ -4,6 +4,8 @@
 class Player // : public User
 {
 private:
+	Card* hand[6];
+	int life;
 
 public:
 	Player();
@@ -11,7 +13,7 @@ public:
 	virtual bool init();
 	
 	//card dependant methods
-	void drawCard(/*Deck*?*/);
+	Card* drawCard(/*Deck*?*/);
 	void playCard(Card* c);
 
 	//end of turn choice methods
@@ -19,7 +21,8 @@ public:
 	void endTurn();
 
 	//other methods if needed
-
+	void setLife(int d);
+	int getLife();
 };
 
 #endif //__Player_H__
