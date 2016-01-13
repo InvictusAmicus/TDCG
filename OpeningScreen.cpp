@@ -38,8 +38,62 @@ bool OpeningScreen::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
-	//Sleep(2);
-	GoToTitle();
+	auto containerForSprite1 = Node::create();
+	auto sprite1 = Sprite::create("ArrowSelection.png");
+	sprite1->setPosition(origin + Vec2(visibleSize.width / 2, visibleSize.height / 2) + Vec2(-80, 80));
+	containerForSprite1->addChild(sprite1);
+	addChild(containerForSprite1, 10);
+
+	auto sprite2 = Sprite::create("ArrowSelection2.png");
+	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	addChild(sprite2, 20);
+
+	// Make sprite1 touchable
+	auto listener1 = EventListenerTouchOneByOne::create();
+	listener1->setSwallowTouches(true);
+
+	listener1->onTouchBegan = [](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+
+		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
+		Size s = target->getContentSize();
+		Rect rect = Rect(0, 0, s.width, s.height);
+
+		if (rect.containsPoint(locationInNode))
+		{
+			log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
+			target->setOpacity(180);
+			return true;
+		}
+		return false;
+	};
+
+	listener1->onTouchMoved = [](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		target->setPosition(target->getPosition() + touch->getDelta());
+	};
+
+	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		log("sprite onTouchesEnded.. ");
+		target->setOpacity(255);
+		if (target == sprite2)
+		{
+			containerForSprite1->setLocalZOrder(100);
+		}
+		else if (target == sprite1)
+		{
+			containerForSprite1->setLocalZOrder(0);
+		}
+	};
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, sprite1);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), sprite2);
+
+
+
+
+	
 
 	return true;
 }

@@ -3,6 +3,11 @@
 
 USING_NS_CC;
 
+enum
+{
+	MoveSprite = 1,
+};
+
 Scene* SinglePlayGame::createScene()
 {
 	// 'scene' is an autorelease object
@@ -54,6 +59,16 @@ bool SinglePlayGame::init()
 	this->addChild(NP, 1);
 
 
+	auto Test = Sprite::create("ArrowSelection.png");
+	Test->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+	this->addChild(Test, 1, MoveSprite);
+
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = CC_CALLBACK_2(SinglePlayGame::onTouchBegan, this);
+	listener->onTouchEnded = CC_CALLBACK_2(SinglePlayGame::onTouchEnded, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+
 	return true;
 
 }
@@ -68,4 +83,21 @@ void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 {
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
+}
+
+
+bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
+{
+	return true;
+}
+
+void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
+{
+		auto location = touch->getLocation();
+
+		auto s = getChildByTag(MoveSprite);
+		s->stopAllActions();
+		s->runAction(MoveTo::create(1, Vec2(location.x, location.y)));
+		float o = location.x - s->getPosition().x;
+		float a = location.y - s->getPosition().y;
 }
