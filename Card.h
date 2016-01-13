@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef _CARD_H_
 #define _CARD_H_
 
