@@ -3,6 +3,9 @@
 
 USING_NS_CC;
 
+float OriginalX;
+float OriginalY;
+
 Scene* OpeningScreen::createScene()
 {
 	// 'scene' is an autorelease object
@@ -39,16 +42,16 @@ bool OpeningScreen::init()
 	this->addChild(sprite, 0);
 
 	auto containerForSprite1 = Node::create();
-	auto sprite1 = Sprite::create("ArrowSelection.png");
+	auto sprite1 = Sprite::create("SampleCard.png");
 	sprite1->setPosition(origin + Vec2((visibleSize.width / 2)+100, (visibleSize.height / 2)-200));
 	containerForSprite1->addChild(sprite1);
 	addChild(containerForSprite1, 10);
 
-	auto sprite2 = Sprite::create("ArrowSelection2.png");
+	auto sprite2 = Sprite::create("SampleCard.png");
 	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, (visibleSize.height / 2)-200));
 	addChild(sprite2, 20);
 
-	auto sprite3 = Sprite::create("Quit.png");
+	auto sprite3 = Sprite::create("SampleCard.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2)-100, (visibleSize.height / 2)-200));
 	addChild(sprite3, 20);
 
@@ -58,11 +61,13 @@ bool OpeningScreen::init()
 
 	listener1->onTouchBegan = [](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-
 		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
 		Size s = target->getContentSize();
 		Rect rect = Rect(0, 0, s.width, s.height);
 
+		OriginalX = target->getPosition().x;
+		OriginalY = target->getPosition().y;
+		
 		if (rect.containsPoint(locationInNode))
 		{
 			log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
@@ -83,6 +88,7 @@ bool OpeningScreen::init()
 		if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
+
 			if (target == sprite2)
 			{
 				containerForSprite1->setLocalZOrder(100);
@@ -94,8 +100,17 @@ bool OpeningScreen::init()
 		}
 		else
 		{
-			target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
+			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
+			target->setPosition(Vec2(OriginalX, OriginalY));
 			target->setOpacity(255);
+			if (target == sprite2)
+			{
+				containerForSprite1->setLocalZOrder(100);
+			}
+			else if (target == sprite1)
+			{
+				containerForSprite1->setLocalZOrder(0);
+			}
 		}
 	};
 
