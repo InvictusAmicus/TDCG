@@ -1,4 +1,5 @@
 #include"MultiPlayer.h"
+#include"GameOverScreen.h"
 
 USING_NS_CC;
 
@@ -17,11 +18,9 @@ Scene* MultiPlayer::createScene()
 	return MultiPlayerScene;
 }
 
-// on "init" you need to initialize your instance
 bool MultiPlayer::init()
 {
-	//////////////////////////////
-	// 1. super init first
+
 	if (!Layer::init())
 	{
 		return false;
@@ -32,27 +31,28 @@ bool MultiPlayer::init()
 
 	auto label = Label::createWithTTF("MultiPlayer", "fonts/Marker Felt.ttf", 24);
 
-	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
 
-	// add the label as a child to this layer
 	this->addChild(label, 1);
 
 	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(MultiPlayer::returnToTitle, this));
 	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
-
 	auto menu = Menu::create(Back, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	//Simple background added
+	auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(MultiPlayer::LastPage, this));
+	LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
+	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
+	auto NP = Menu::create(LastPage, NULL);
+	NP->setPosition(Vec2::ZERO);
+	this->addChild(NP, 1);
+
 	auto sprite = Sprite::create("Background.png");
 
-	// position the sprite on the center of the screen
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-	// add the sprite as a child to this layer
 	this->addChild(sprite, 0);
 
 	return true;
@@ -60,5 +60,11 @@ bool MultiPlayer::init()
 
 void MultiPlayer::returnToTitle(cocos2d::Ref* pSender)
 {
-	Director::getInstance()->popScene();
+	Director::getInstance()->popToRootScene();
+}
+
+void MultiPlayer::LastPage(cocos2d::Ref* pSender)
+{
+	auto GameOverScene = GameOverScreen::createScene();
+	Director::getInstance()->pushScene(GameOverScene);
 }

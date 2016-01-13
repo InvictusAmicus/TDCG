@@ -11,8 +11,8 @@ public:
 	virtual bool init();
 
 	// a selector callback
-	//void menuCloseCallback(cocos2d::Ref* pSender);
-
+	void returnToTitle(cocos2d::Ref* pSender);
+	void LastPage(cocos2d::Ref* pSender);
 	// implement the "static create()" method manually
 	CREATE_FUNC(SinglePlayGame);
 };

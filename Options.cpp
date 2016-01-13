@@ -19,11 +19,9 @@ Scene* Options::createScene()
 	return OptionsScene;
 }
 
-// on "init" you need to initialize your instance
 bool Options::init()
 {
-	//////////////////////////////
-	// 1. super init first
+
 	if (!Layer::init())
 	{
 		return false;
@@ -34,20 +32,12 @@ bool Options::init()
 
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
 
-	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
-
-	// add the label as a child to this layer
 	this->addChild(label, 1);
 
-	//Simple background added
 	auto sprite = Sprite::create("Background.png");
-
-	// position the sprite on the center of the screen
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
-	// add the sprite as a child to this layer
 	this->addChild(sprite, 0);
 
 	
@@ -115,12 +105,6 @@ bool Options::init()
 	SoundEffectLabel->setPosition(Vec2((origin.x + visibleSize.width / 2) - 250,
 		origin.y + visibleSize.height - SoundEffectSlider->getContentSize().height * 6));
 	this->addChild(SoundEffectLabel, 1);
-
-
-	//Original Back to menu
-	//auto BackToMain = MenuItemImage::create("Options.png", "Continue.png", CC_CALLBACK_1(Options::menuReturn, this));
-	//BackToMain->setPosition(Vec2(origin.x + visibleSize.width / 2,
-	//	origin.y + visibleSize.height - BackToMain->getContentSize().height * 7));
 
 	auto BackToMain = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(Options::menuReturn, this));
 	BackToMain->setPosition(Vec2(origin.x + visibleSize.width - BackToMain->getContentSize().width, 70));
