@@ -20,6 +20,7 @@ public:
 	void menuMultiPlayer(cocos2d::Ref* pSender);
 	void menuOptions(cocos2d::Ref* pSender);
 	void menuCollection(cocos2d::Ref* pSender);
+	void menuHowToPlay(cocos2d::Ref* pSender);
     // implement the "static create()" method manually
     CREATE_FUNC(MainMenu);
 };

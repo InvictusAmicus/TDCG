@@ -1,8 +1,9 @@
 #include "Collection.h"
 #include "MainMenu.h"
 #include "MultiPlayer.h"
-#include "NewGame.h"
+#include "SinglePlayGame.h"
 #include "Options.h"
+#include "HowToPlay.h"
 
 
 USING_NS_CC;
@@ -146,6 +147,15 @@ bool MainMenu::init()
     this->addChild(sprite, 0);
     */
 
+	auto spriteHowToPlay = MenuItemImage::create("Options.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
+	spriteHowToPlay->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 10));
+	auto menuHowToPlay = Menu::create(spriteHowToPlay, NULL);
+	menuHowToPlay->setPosition(Vec2::ZERO);
+	this->addChild(menuHowToPlay, 1);
+
+
+
 	//Simple background added
 	auto sprite = Sprite::create("Background.png");
 
@@ -172,7 +182,7 @@ void MainMenu::menuCloseCallback(Ref* pSender)
 void MainMenu::menuNewGame(Ref* pSender)
 {
 	//Director::getInstance()->end();
-	auto NewGameScene = NewGame::createScene();
+	auto NewGameScene = SinglePlayGame::createScene();
 	//Director::getInstance()->runWithScene(NewGameScene);
 	Director::getInstance()->pushScene(NewGameScene);
 	//Director::getInstance()->popScene(NewGameScene);
@@ -197,4 +207,10 @@ void MainMenu::menuOptions(Ref* pSender)
 {
 	auto OptionsScene = Options::createScene();
 	Director::getInstance()->pushScene(OptionsScene);
+}
+
+void MainMenu::menuHowToPlay(Ref* pSender)
+{
+	auto HowToPlayScene = HowToPlay::createScene();
+	Director::getInstance()->pushScene(HowToPlayScene);
 }

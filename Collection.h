@@ -13,11 +13,8 @@ public:
 
 	// a selector callback
 	void returnToTitle(cocos2d::Ref* pSender);
-	//void menuCloseCallback(cocos2d::Ref* pSender);
-	//void menuNewGame(cocos2d::Ref* pSender);
-	//void menuMultiPlayer(cocos2d::Ref* pSender);
-	//void menuOptions(cocos2d::Ref* pSender);
-	// implement the "static create()" method manually
+	void NextPage(cocos2d::Ref* pSender);
+
 	CREATE_FUNC(Collection);
 };
 

@@ -1,24 +1,24 @@
-#include"NewGame.h"
+#include"HowToPlay.h"
 
 USING_NS_CC;
 
-Scene* NewGame::createScene()
+Scene* HowToPlay::createScene()
 {
 	// 'scene' is an autorelease object
-	auto NewGameScene = Scene::create();
+	auto HowToPlayScene = Scene::create();
 
 	// 'layer' is an autorelease object
-	auto layer = NewGame::create();
+	auto layer = HowToPlay::create();
 
 	// add layer as a child to scene
-	NewGameScene->addChild(layer);
+	HowToPlayScene->addChild(layer);
 
 	// return the scene
-	return NewGameScene;
+	return HowToPlayScene;
 }
 
 // on "init" you need to initialize your instance
-bool NewGame::init()
+bool HowToPlay::init()
 {
 	//////////////////////////////
 	// 1. super init first
@@ -29,8 +29,8 @@ bool NewGame::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	
-	auto label = Label::createWithTTF("NewGame", "fonts/Marker Felt.ttf", 24);
+
+	auto label = Label::createWithTTF("How To Play", "fonts/Marker Felt.ttf", 24);
 
 	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
@@ -38,6 +38,13 @@ bool NewGame::init()
 
 	// add the label as a child to this layer
 	this->addChild(label, 1);
+
+	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(HowToPlay::returnToTitle, this));
+	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
+
+	auto menu = Menu::create(Back, NULL);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu, 1);
 
 	//Simple background added
 	auto sprite = Sprite::create("Background.png");
@@ -48,7 +55,10 @@ bool NewGame::init()
 	// add the sprite as a child to this layer
 	this->addChild(sprite, 0);
 
-
 	return true;
+}
 
+void HowToPlay::returnToTitle(cocos2d::Ref* pSender)
+{
+	Director::getInstance()->popScene();
 }

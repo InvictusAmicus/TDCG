@@ -1,9 +1,9 @@
-#ifndef __NEWGAME_H__
-#define __NEWGAME_H_
+#ifndef __SINGLEPLAYGAME_H__
+#define __SINGLEPLAYGAME_H_
 
 #include "cocos2d.h"
 
-class NewGame : public cocos2d::Layer
+class SinglePlayGame : public cocos2d::Layer
 {
 public:
 	static cocos2d::Scene* createScene();
@@ -14,7 +14,7 @@ public:
 	//void menuCloseCallback(cocos2d::Ref* pSender);
 
 	// implement the "static create()" method manually
-	CREATE_FUNC(NewGame);
+	CREATE_FUNC(SinglePlayGame);
 };
 
-#endif // __NEWGAME_H__
+#endif // __SINGLEPLAYGAME_H__

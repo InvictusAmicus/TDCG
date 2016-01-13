@@ -1,16 +1,15 @@
 #include "Collection.h"
 #include "CollectionP2.h"
-#include "MainMenu.h"
 
 USING_NS_CC;
 
-Scene* Collection::createScene()
+Scene* CollectionP2::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
 
 	// 'layer' is an autorelease object
-	auto layer = Collection::create();
+	auto layer = CollectionP2::create();
 
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -20,7 +19,7 @@ Scene* Collection::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool Collection::init()
+bool CollectionP2::init()
 {
 	//////////////////////////////
 	// 1. super init first
@@ -52,15 +51,15 @@ bool Collection::init()
 	this->addChild(menu, 1);
 	*/
 
-	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(Collection::returnToTitle, this));
+	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(CollectionP2::returnToTitle, this));
 	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
-		//origin.y + visibleSize.height - Back->getContentSize().height * 8));
+	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
 	auto menu = Menu::create(Back, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	auto SecondPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(Collection::NextPage, this));
-	SecondPage->setPosition(Vec2(origin.x + visibleSize.width - SecondPage->getContentSize().width, 360));
+	auto SecondPage = MenuItemImage::create("ArrowSelection2.png", "ArrowSelection2.png", CC_CALLBACK_1(CollectionP2::LastPage, this));
+	SecondPage->setPosition(Vec2(origin.x + SecondPage->getContentSize().width, 360));
 	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
 	auto NP = Menu::create(SecondPage, NULL);
 	NP->setPosition(Vec2::ZERO);
@@ -98,13 +97,13 @@ bool Collection::init()
 
 }
 
-void Collection::returnToTitle(cocos2d::Ref* pSender)
+void CollectionP2::returnToTitle(cocos2d::Ref* pSender)
 {
 	Director::getInstance()->popToRootScene();
 }
 
-void Collection::NextPage(cocos2d::Ref* pSender)
+void CollectionP2::LastPage(cocos2d::Ref* pSender)
 {
-	auto CollectionP2Scene = CollectionP2::createScene();
-	Director::getInstance()->pushScene(CollectionP2Scene);
+	auto CollectionScene = Collection::createScene();
+	Director::getInstance()->pushScene(CollectionScene);
 }
