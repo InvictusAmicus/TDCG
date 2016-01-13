@@ -30,7 +30,7 @@ bool SinglePlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
-	auto label = Label::createWithTTF("NewGame", "fonts/Marker Felt.ttf", 24);
+	auto label = Label::createWithTTF("Single Player Game", "fonts/Marker Felt.ttf", 24);
 
 	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
