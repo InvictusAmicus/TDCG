@@ -21,7 +21,7 @@ Scene* Collection::createScene()
 
 bool Collection::init()
 {
-	
+
 	if (!Layer::init())
 	{
 		return false;
@@ -41,7 +41,7 @@ bool Collection::init()
 
 	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(Collection::returnToTitle, this));
 	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
-		//origin.y + visibleSize.height - Back->getContentSize().height * 8));
+	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
 	auto menu = Menu::create(Back, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
@@ -81,9 +81,9 @@ void Collection::displayCards()
 		sprite->setPosition(Vec2(200 + (i * 100), 250));
 		this->addChild(sprite, 1);
 	}
-	for (int i = 0; i+4 < listOfCards.size() && i < maxCardsPerLine; i++)
+	for (int i = 0; i + 4 < listOfCards.size() && i < maxCardsPerLine; i++)
 	{
-		sprite = listOfCards[i+4]->getSprite();
+		sprite = listOfCards[i + 4]->getSprite();
 		sprite->setPosition(Vec2(200 + (i * 100), 500));
 		this->addChild(sprite, 1);
 	}
