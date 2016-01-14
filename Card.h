@@ -11,13 +11,17 @@ private:
 	int cost;
 	cocos2d::Sprite* cardSprite;
 	std::string name;
-
+	std::string lore;
+	
 public:
 	Card();
 	Card(std::string s);
 	~Card();
-	bool init();
+	bool init() {}
+
 	cocos2d::Sprite* getSprite() { return cardSprite; }
+	std::string getSpriteName() { return name; }
+	std::string getLore() { return lore; }
 	
 	//move card to battlefield position (a1,a2)
 	void moveTo(int a1, int a2);

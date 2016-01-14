@@ -26,14 +26,13 @@ bool Collection::init()
 	{
 		return false;
 	}
+	listOfCards.push_back(new Card("closeNormal.png"));
 	listOfCards.push_back(new Card("SampleCard.png"));
+	listOfCards.push_back(new Card("closeNormal.png"));
 	listOfCards.push_back(new Card("SampleCard.png"));
+	listOfCards.push_back(new Card("closeNormal.png"));
 	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
+
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -66,30 +65,63 @@ bool Collection::init()
 	this->addChild(sprite, 0);
 
 	displayCards();
-
+	
 	return true;
 
 }
 
 void Collection::displayCards()
 {
-	auto sprite = cocos2d::Sprite::create("HelloWorld.png");
+	/*auto sprite = cocos2d::Sprite::create("HelloWorld.png");
 	int i;
-	for (int i = 0; i < listOfCards.size() && i < maxCardsPerLine; i++)
+	for (i = 0; (unsigned)i < listOfCards.size() && i < maxCardsPerLine; i++)
 	{
 		sprite = listOfCards[i]->getSprite();
 		sprite->setPosition(Vec2(200 + (i * 100), 250));
 		this->addChild(sprite, 1);
 	}
-	for (int i = 0; i+4 < listOfCards.size() && i < maxCardsPerLine; i++)
+	for (i = 0; (unsigned)i+4 < listOfCards.size() && i < maxCardsPerLine; i++)
 	{
 		sprite = listOfCards[i+4]->getSprite();
 		sprite->setPosition(Vec2(200 + (i * 100), 500));
 		this->addChild(sprite, 1);
+	}*/
+	// turn auto sprite into auto MenuItemImage
+	int i;
+	auto image = MenuItemImage::create();
+	auto imageMenu = Menu::create();
+	for (i = 0; (unsigned)i < listOfCards.size() && i < maxCardsPerLine;i++)
+	{
+		image = MenuItemImage::create(listOfCards[i]->getSpriteName(), listOfCards[i]->getSpriteName(),
+			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
+		
+		image->setPosition(Vec2(200+(i*100), 500));
+		imageMenu = Menu::create(image, NULL);
+		imageMenu->setPosition(Vec2::ZERO);
+		this->addChild(imageMenu, 1);
+	}
+	for (i = 0; (unsigned)i+4 < listOfCards.size() && i < maxCardsPerLine; i++)
+	{
+		image = MenuItemImage::create(listOfCards[i+4]->getSpriteName(), listOfCards[i+4]->getSpriteName(),
+			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
+
+		image->setPosition(Vec2(200 + (i * 100), 300));
+		imageMenu = Menu::create(image, NULL);
+		imageMenu->setPosition(Vec2::ZERO);
+		this->addChild(imageMenu, 1);
 	}
 
 }
 
+void Collection::displayLore(Card* c)
+{
+	//change lore label to the clicked card's lore
+	auto label = Label::createWithTTF(c->getLore(), "fonts/Marker Felt.ttf", 24);
+	//label->setString(c->getLore());
+	label->setPosition(300, 150);
+	label->setColor(ccc3(0, 0, 0));
+	this->addChild(label,1);
+}
 
 void Collection::returnToTitle(cocos2d::Ref* pSender)
 {

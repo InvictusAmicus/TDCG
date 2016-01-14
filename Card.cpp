@@ -5,11 +5,15 @@
 Card::Card()
 {
 	cardSprite = cocos2d::Sprite::create("HelloWorld.png");
+	name = "HelloWorld";
+	lore = "Default Lore";
 }
 
 Card::Card(std::string s)
 {
 	cardSprite = cocos2d::Sprite::create(s);
+	name = s;
+	lore = "Unique Lore";
 }
 
 Card::~Card()

@@ -18,6 +18,7 @@ public:
 	virtual bool init();
 
 	void displayCards();
+	void displayLore(Card*);
 
 	// a selector callback
 	void returnToTitle(cocos2d::Ref* pSender);
