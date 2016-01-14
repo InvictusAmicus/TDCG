@@ -31,7 +31,7 @@ bool OpeningScreen::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+	
 	auto label = Label::createWithTTF("OpeningScreen", "fonts/Marker Felt.ttf", 24);
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
@@ -40,6 +40,17 @@ bool OpeningScreen::init()
 	auto sprite = Sprite::create("Background.png");
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
+
+	auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this));
+	Attack->setPosition(Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
+	auto menuAttack = Menu::create(Attack, NULL);
+	menuAttack->setPosition(Vec2::ZERO);
+	this->addChild(menuAttack, 1);
+
+
+	auto Grid = Sprite::create("testGrid.png");
+	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	this->addChild(Grid, 0);
 
 	auto containerForSprite1 = Node::create();
 	auto sprite1 = Sprite::create("SampleCard.png");
@@ -64,7 +75,7 @@ bool OpeningScreen::init()
 		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
 		Size s = target->getContentSize();
 		Rect rect = Rect(0, 0, s.width, s.height);
-
+		
 		OriginalX = target->getPosition().x;
 		OriginalY = target->getPosition().y;
 		
@@ -80,6 +91,8 @@ bool OpeningScreen::init()
 	listener1->onTouchMoved = [](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
+		target->setTexture("testEnemy.png");
+		target->setScale(2.0);
 	};
 
 	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
@@ -102,6 +115,8 @@ bool OpeningScreen::init()
 		{
 			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
 			target->setPosition(Vec2(OriginalX, OriginalY));
+			target->setTexture("SampleCard.png");
+			target->setScale(1.0);
 			target->setOpacity(255);
 			if (target == sprite2)
 			{
@@ -126,4 +141,11 @@ void OpeningScreen::GoToTitle()
 {
 	auto MainMenuScene = MainMenu::createScene();
 	Director::getInstance()->pushScene(MainMenuScene);
+}
+
+void OpeningScreen::PlayerAttack(cocos2d::Ref* pSender)
+{
+	CCLOG("Testing Attack");
+
+
 }
