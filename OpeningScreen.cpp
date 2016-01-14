@@ -8,6 +8,7 @@ USING_NS_CC;
 //problem occurs when sprite is removed, after sprite is place on grid set it so it can't be moved
 float OriginalX;
 float OriginalY;
+enum { T, C };
 
 Scene* OpeningScreen::createScene()
 {
@@ -36,6 +37,7 @@ bool OpeningScreen::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
 
+
 	//adds label to the top of the screen to mark screen currently on,
 	//remove later if decided they are not needed
 	auto label = Label::createWithTTF("OpeningScreen", "fonts/Marker Felt.ttf", 24);
@@ -50,17 +52,17 @@ bool OpeningScreen::init()
 	this->addChild(sprite, 0);
 
 	//Adds an attack button to signal the end of the turn, currently not working
-	//auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this));
+	//auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this, sprite3));
 	//Attack->setPosition(Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
 	//auto menuAttack = Menu::create(Attack, NULL);
 	//menuAttack->setPosition(Vec2::ZERO);
 	//this->addChild(menuAttack, 1);
 
-	auto Attack = Sprite::create("ArrowSelection.png");
-	Attack->setPosition(origin + Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
-	auto containerForAttack = Node::create();
-	containerForAttack->addChild(Attack);
-	addChild(containerForAttack, 10);
+	//auto Attack = Sprite::create("ArrowSelection.png");
+	//Attack->setPosition(origin + Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
+	//auto containerForAttack = Node::create();
+	//containerForAttack->addChild(Attack);
+	//addChild(containerForAttack, 10);
 
 	//creates a simple grid to so where sprites need to be placed
 	//needs to be decided how grid is placed and called
@@ -83,17 +85,25 @@ bool OpeningScreen::init()
 	sprite1->setPosition(origin + Vec2((visibleSize.width / 2)+100, (visibleSize.height / 2)-200));
 	containerForSprite1->addChild(sprite1);
 	addChild(containerForSprite1, 10);
-	sprite1->setTag(0);
+	sprite1->setTag(C);
 
 	auto sprite2 = Sprite::create("SampleCard.png");
 	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, (visibleSize.height / 2)-200));
-	sprite2->setTag(1);
+	sprite2->setTag(T);
 	addChild(sprite2, 20);
 
 	auto sprite3 = Sprite::create("SampleCard.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2)-100, (visibleSize.height / 2)-200));
 	addChild(sprite3, 20);
 	sprite3->setTag(2);
+
+	//Adds an attack button to signal the end of the turn, currently not working
+	auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this));
+	Attack->setPosition(Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
+	auto menuAttack = Menu::create(Attack, NULL);
+	menuAttack->setPosition(Vec2::ZERO);
+	this->addChild(menuAttack, 1);
+
 
 	//starts calling the listener events
 	//generally need onTouchBegan and ontouchEnded, onTouchMoved is optional
@@ -134,7 +144,7 @@ bool OpeningScreen::init()
 	listener1->onTouchMoved = [TestArea](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
-		if (target->getTag() == 1 || target->getTag() == 2) 
+		if (target->getTag() == C || target->getTag() == 2) 
 		{
 			target->setTexture("testEnemy.png");
 			if (target->getTag() == 2) 
@@ -240,6 +250,7 @@ void OpeningScreen::GoToTitle()
 void OpeningScreen::PlayerAttack(cocos2d::Ref* pSender)
 {
 	CCLOG("Testing Attack");
-	
-
+	//auto moveBy = MoveBy::create(2, Vec2(20, 0));
+	//t->runAction(moveBy);
+	CCLOG("Moving");
 }
