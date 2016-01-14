@@ -83,14 +83,17 @@ bool OpeningScreen::init()
 	sprite1->setPosition(origin + Vec2((visibleSize.width / 2)+100, (visibleSize.height / 2)-200));
 	containerForSprite1->addChild(sprite1);
 	addChild(containerForSprite1, 10);
+	sprite1->setTag(0);
 
 	auto sprite2 = Sprite::create("SampleCard.png");
 	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, (visibleSize.height / 2)-200));
+	sprite2->setTag(1);
 	addChild(sprite2, 20);
 
 	auto sprite3 = Sprite::create("SampleCard.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2)-100, (visibleSize.height / 2)-200));
 	addChild(sprite3, 20);
+	sprite3->setTag(2);
 
 	//starts calling the listener events
 	//generally need onTouchBegan and ontouchEnded, onTouchMoved is optional
@@ -102,7 +105,7 @@ bool OpeningScreen::init()
 	//sets the Opacity to 180
 	listener1->onTouchBegan = [](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		
+		target->getTag();
 		//add in code so it doesn't touch anything within the grid
 		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 		//
@@ -131,9 +134,17 @@ bool OpeningScreen::init()
 	listener1->onTouchMoved = [TestArea](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
-		target->setTexture("testEnemy.png");
-		target->setScale(2.0);
-		TestArea->setOpacity(200);
+		if (target->getTag() == 1 || target->getTag() == 2) 
+		{
+			target->setTexture("testEnemy.png");
+			if (target->getTag() == 2) 
+			{
+				TestArea->setOpacity(200);
+			}
+		}
+		target->setScale(2.0); 
+			
+		
 	};
 
 
