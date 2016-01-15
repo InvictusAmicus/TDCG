@@ -2,6 +2,7 @@
 #define __SINGLEPLAYGAME_H_
 
 #include "cocos2d.h"
+#include "Player.h"
 
 class SinglePlayGame : public cocos2d::Layer
 {
@@ -19,6 +20,8 @@ public:
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
 	//cocos2d::Label *LifeLabelValue;
+
+	void drawHand(Player*);
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(SinglePlayGame);

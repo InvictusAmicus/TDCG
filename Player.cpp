@@ -1,5 +1,3 @@
-#include <vector>
-#include "Card.h"
 #include "Player.h"
 
 
@@ -24,7 +22,7 @@ bool Player::init()
 	return true;
 }
 
-Card* Player::drawCard()
+void Player::drawCard()
 {
 	if(hand.size() < (unsigned) maxHandSize)
 	{
@@ -38,13 +36,16 @@ Card* Player::drawCard()
 				return new Card();
 			}
 		}*/
-		return new Card();
+		hand.push_back(new Card());
 	}
+//	return new Card();
+	
+	
 }
 
-void Player::playCard(Card* c)
+void Player::playCard(int i)
 {
-	
+	//hand[i].pop();
 }
 
 void Player::declareAttack()

@@ -1,6 +1,9 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#include <vector>
+#include "Card.h"
+
 class Player // : public User
 {
 private:
@@ -14,8 +17,8 @@ public:
 	virtual bool init();
 	
 	//card dependant methods
-	Card* drawCard(/*Deck*?*/);
-	void playCard(Card* c);
+	void drawCard(/*Deck*?*/);
+	void playCard(int i);
 	
 	//end of turn choice methods
 	void declareAttack();
