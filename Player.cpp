@@ -8,6 +8,10 @@ Player::Player()
 	{
 		hand.push_back(new Card("SampleCard.png"));
 	}
+	for (int i = 0; i < 40; i++)
+	{
+		deck.push_back(new Card("HelloWorld.png"));
+	}
 }
 
 Player::~Player()
@@ -36,7 +40,9 @@ void Player::drawCard()
 				return new Card();
 			}
 		}*/
-		hand.push_back(new Card());
+		Card* c = deck[deck.size()-1];
+		hand.push_back(c);
+		deck.pop_back();
 	}
 //	return new Card();
 	

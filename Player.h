@@ -8,6 +8,7 @@ class Player // : public User
 {
 private:
 	std::vector<Card*> hand;
+	std::vector<Card*> deck;
 	const int maxHandSize = 6;
 	int life;
 
@@ -17,7 +18,7 @@ public:
 	virtual bool init();
 	
 	//card dependant methods
-	void drawCard(/*Deck*?*/);
+	void drawCard();
 	void playCard(int i);
 	
 	//end of turn choice methods

@@ -162,15 +162,11 @@ void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
 	Director::getInstance()->popScene();
 }
 
-<<<<<<< HEAD
-
-=======
-void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
+/*void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 {
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
-}
->>>>>>> origin/master
+}*/
 
 bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
@@ -204,7 +200,6 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		CCLOG("%d ", life);
 		CCLOG(" %d", resource);
 }
-<<<<<<< HEAD
 
 void SinglePlayGame::WonGame()
 {
@@ -217,5 +212,3 @@ void SinglePlayGame::LostGame(cocos2d::Ref* pSender)
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
-=======
->>>>>>> origin/master
