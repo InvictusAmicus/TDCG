@@ -1,11 +1,9 @@
 #include "SinglePlayGame.h"
 #include "GameOverScreen.h"
-<<<<<<< HEAD
-//#include "Player.h"
-=======
+
 #include "Card.h"
 #include "Player.h"
->>>>>>> origin/master
+
 
 USING_NS_CC;
 
@@ -16,7 +14,7 @@ int resource = 100;
 
 enum
 {
-	MoveSprite = 1, LifeChange = 1,
+	MoveSprite = 1,
 };
 
 Scene* SinglePlayGame::createScene()
@@ -65,6 +63,7 @@ bool SinglePlayGame::init()
     this->addChild(LifeLabelValue, 1, LabelTagLife);
 
 
+
 	auto ResourceLabel = Label::createWithTTF("Resource", "fonts/Marker Felt.ttf", 24);
 	ResourceLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 150,
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
@@ -110,9 +109,7 @@ bool SinglePlayGame::init()
 	listener->onTouchEnded = CC_CALLBACK_2(SinglePlayGame::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-<<<<<<< HEAD
-	
-=======
+
 	Player* p = new Player();
 
 	for (int i = 0; i < p->getHandSize(); i++)
@@ -126,7 +123,6 @@ bool SinglePlayGame::init()
 		cards->setPosition(Vec2::ZERO);
 		this->addChild(cards, 1);
 	}
->>>>>>> origin/master
 
 
 	return true;

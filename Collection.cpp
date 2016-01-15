@@ -3,13 +3,10 @@
 #include "MainMenu.h"
 
 USING_NS_CC;
-<<<<<<< HEAD
 
 #define LabelTagLore 1236
 
 
-=======
->>>>>>> origin/master
 Scene* Collection::createScene()
 {
 	// 'scene' is an autorelease object
@@ -33,17 +30,16 @@ bool Collection::init()
 	{
 		return false;
 	}
-<<<<<<< HEAD
+
 	listOfCards.push_back(new Card());
-=======
+
 	auto loreLabel = Label::createWithTTF("Click a card to see its lore.", "fonts/Marker Felt.ttf", 24);
 
 	loreLabel->setPosition(350, 200);
 	loreLabel->setColor(ccc3(0, 0, 0));
 	this->addChild(loreLabel, true);
 
-	listOfCards.push_back(new Card("closeNormal.png"));
->>>>>>> origin/master
+	listOfCards.push_back(new Card());
 	listOfCards.push_back(new Card("SampleCard.png"));
 	listOfCards.push_back(new Card("closeNormal.png"));
 	listOfCards.push_back(new Card("SampleCard.png"));
@@ -142,7 +138,7 @@ void Collection::displayCards()
 
 void Collection::displayLore(Card* c)
 {
-<<<<<<< HEAD
+
 	//change lore label to the clicked card's lore
 	//auto label = Label::createWithTTF(c->getLore(), "fonts/Marker Felt.ttf", 24);
 	//label->setString(c->getLore());
@@ -153,9 +149,9 @@ void Collection::displayLore(Card* c)
 	
 	ChangeLore->setString(c->getLore());
 
-=======
+
 //	loreLabel->setString(c->getLore());
->>>>>>> origin/master
+
 }
 
 void Collection::returnToTitle(cocos2d::Ref* pSender)
