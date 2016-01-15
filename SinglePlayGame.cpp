@@ -1,5 +1,6 @@
 #include "SinglePlayGame.h"
 #include "GameOverScreen.h"
+#include "GameWonScreen.h"
 
 #include "Card.h"
 #include "Player.h"
@@ -103,12 +104,12 @@ bool SinglePlayGame::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu,1);
 
-	//auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
-	//LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
+	auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
+	LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
 	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
-	//auto NP = Menu::create(LastPage, NULL);
-	//NP->setPosition(Vec2::ZERO);
-	//this->addChild(NP, 1);
+	auto NP = Menu::create(LastPage, NULL);
+	NP->setPosition(Vec2::ZERO);
+	this->addChild(NP, 1);
 
 
 	auto Test = Sprite::create("ArrowSelection.png");
@@ -162,15 +163,13 @@ void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
 	Director::getInstance()->popScene();
 }
 
-<<<<<<< HEAD
-
-=======
+//TAKE OUT LATER IF NOT NEEDED ONLY A TEMPLATE TO GO TO THE GAMEOVER SCREEN
 void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 {
-	auto GameOverScene = GameOverScreen::createScene();
-	Director::getInstance()->pushScene(GameOverScene);
+	auto GameWonScene = GameWonScreen::createScene();
+	Director::getInstance()->pushScene(GameWonScene);
 }
->>>>>>> origin/master
+
 
 bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
@@ -193,7 +192,7 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		if (life <= 0) {
 			//auto GameOverScene = GameOverScreen::createScene();
 			//Director::getInstance()->pushScene(GameOverScene);
-			WonGame();
+			LostGame();
 		}
 
 		resource = resource - 20;
@@ -204,18 +203,17 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		CCLOG("%d ", life);
 		CCLOG(" %d", resource);
 }
-<<<<<<< HEAD
+
 
 void SinglePlayGame::WonGame()
 {
-	auto GameOverScene = GameOverScreen::createScene();
-	Director::getInstance()->pushScene(GameOverScene);
+	auto GameWonScene = GameWonScreen::createScene();
+	Director::getInstance()->pushScene(GameWonScene);
 }
 
-void SinglePlayGame::LostGame(cocos2d::Ref* pSender)
+void SinglePlayGame::LostGame()
 {
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
-=======
->>>>>>> origin/master
+

@@ -13,8 +13,8 @@ public:
 
 	// a selector callback
 	void returnToTitle(cocos2d::Ref* pSender);
-	//void LastPage(cocos2d::Ref* pSender);
-	void LostGame(cocos2d::Ref* pSender);
+	void LastPage(cocos2d::Ref* pSender);
+	void LostGame();
 	void WonGame();
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
