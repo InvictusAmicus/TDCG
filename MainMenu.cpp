@@ -45,7 +45,7 @@ bool MainMenu::init()
 	
 	auto Cards = MenuItemImage::create("Collection.png", "CollectionClicked.png", CC_CALLBACK_1(MainMenu::menuCollection, this));
 	Cards->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - Cards->getContentSize().height * 8));
+		origin.y + visibleSize.height - Cards->getContentSize().height * 9));
 	auto menuCards = Menu::create(Cards, NULL);
 	menuCards->setPosition(Vec2::ZERO);
 	this->addChild(menuCards, 1);
@@ -77,16 +77,16 @@ bool MainMenu::init()
 	
 	auto spriteOptions = MenuItemImage::create("Options.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuOptions, this));
 	spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 9));
+		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 10));
 	auto menuOptions = Menu::create(spriteOptions, NULL);
 	menuOptions->setPosition(Vec2::ZERO);
 	this->addChild(menuOptions, 1);
 	
-	//sprite only a placeholder until a proper sprite is made
-	//need to make a second sprite for when sprite is clicked
-	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
+
+	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "HowToPlayClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
 	spriteHowToPlay->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 12.5));
+		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 8));
+
 	auto menuHowToPlay = Menu::create(spriteHowToPlay, NULL);
 	menuHowToPlay->setPosition(Vec2::ZERO);
 	this->addChild(menuHowToPlay, 1);

@@ -3,10 +3,13 @@
 #include "MainMenu.h"
 
 USING_NS_CC;
+<<<<<<< HEAD
 
 #define LabelTagLore 1236
 
 
+=======
+>>>>>>> origin/master
 Scene* Collection::createScene()
 {
 	// 'scene' is an autorelease object
@@ -17,19 +20,30 @@ Scene* Collection::createScene()
 
 	// add layer as a child to scene
 	scene->addChild(layer);
-
+	
 	// return the scene
 	return scene;
 }
 
+
 bool Collection::init()
 {
-
+	
 	if (!Layer::init())
 	{
 		return false;
 	}
+<<<<<<< HEAD
 	listOfCards.push_back(new Card());
+=======
+	auto loreLabel = Label::createWithTTF("Click a card to see its lore.", "fonts/Marker Felt.ttf", 24);
+
+	loreLabel->setPosition(350, 200);
+	loreLabel->setColor(ccc3(0, 0, 0));
+	this->addChild(loreLabel, true);
+
+	listOfCards.push_back(new Card("closeNormal.png"));
+>>>>>>> origin/master
 	listOfCards.push_back(new Card("SampleCard.png"));
 	listOfCards.push_back(new Card("closeNormal.png"));
 	listOfCards.push_back(new Card("SampleCard.png"));
@@ -43,7 +57,7 @@ bool Collection::init()
 
 	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(Collection::returnToTitle, this));
 	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
-	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
+		//origin.y + visibleSize.height - Back->getContentSize().height * 8));
 	auto menu = Menu::create(Back, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
@@ -91,13 +105,9 @@ void Collection::displayCards()
 		sprite->setPosition(Vec2(200 + (i * 100), 250));
 		this->addChild(sprite, 1);
 	}
-<<<<<<< HEAD
 	for (i = 0; (unsigned)i+4 < listOfCards.size() && i < maxCardsPerLine; i++)
-=======
-	for (int i = 0; i + 4 < listOfCards.size() && i < maxCardsPerLine; i++)
->>>>>>> origin/master
 	{
-		sprite = listOfCards[i + 4]->getSprite();
+		sprite = listOfCards[i+4]->getSprite();
 		sprite->setPosition(Vec2(200 + (i * 100), 500));
 		this->addChild(sprite, 1);
 	}*/
@@ -128,8 +138,11 @@ void Collection::displayCards()
 
 }
 
+//
+
 void Collection::displayLore(Card* c)
 {
+<<<<<<< HEAD
 	//change lore label to the clicked card's lore
 	//auto label = Label::createWithTTF(c->getLore(), "fonts/Marker Felt.ttf", 24);
 	//label->setString(c->getLore());
@@ -140,6 +153,9 @@ void Collection::displayLore(Card* c)
 	
 	ChangeLore->setString(c->getLore());
 
+=======
+//	loreLabel->setString(c->getLore());
+>>>>>>> origin/master
 }
 
 void Collection::returnToTitle(cocos2d::Ref* pSender)
