@@ -5,14 +5,16 @@
 #include "Player.h"
 
 
+
 USING_NS_CC;
 
-int life = 100;
-int resource = 100;
+int life;
+int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
+#define CardsInHand 1237
 
-enum
+enum 
 {
 	MoveSprite = 1,
 };
@@ -43,6 +45,25 @@ bool SinglePlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
+	life = 100;
+	resource = 100;
+	auto cardInHand = MenuItemImage::create("HelloWorld.png", "HelloWorld.png");
+	this->addChild(cardInHand, 1, CardsInHand);
+
+	/*
+		when moving to the GameOver screen, pass life in.
+		if(life > 0)
+		{
+			print you win
+		}
+		else
+		{
+			print you lose
+		}
+	*/
+	
+
+
 	std::string StringLife = std::to_string(life);
 	std::string StringResource = std::to_string(resource);
 
@@ -50,8 +71,7 @@ bool SinglePlayGame::init()
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
 	this->addChild(label, 1);
-
-
+	
 	auto LifeLabel = Label::createWithTTF("Health", "fonts/Marker Felt.ttf", 24);
 	LifeLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width +10,
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
@@ -83,7 +103,7 @@ bool SinglePlayGame::init()
 	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
 	auto menu = Menu::create(Back, NULL);
 	menu->setPosition(Vec2::ZERO);
-	this->addChild(menu, 1);
+	this->addChild(menu,1);
 
 	auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
 	LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
@@ -111,22 +131,32 @@ bool SinglePlayGame::init()
 
 
 	Player* p = new Player();
+//	cardInHand->setPosition(50,100);
+//	this->addChild(cardInHand, 1, CardsInHand);
+	/*auto cards = Menu::create(cardInHand, NULL);
+	cards->setPosition(Vec2::ZERO);
+	this->addChild(cards, 1);*/
 
-	for (int i = 0; i < p->getHandSize(); i++)
-	{
-		auto cardInHand = MenuItemImage::create("HelloWorld.png", "HelloWorld.png");
-
-		cardInHand->setNormalImage(p->getCardInHand(i)->getSprite());
-		cardInHand->setSelectedImage(p->getCardInHand(i)->getSprite());
-		cardInHand->setPosition(50+(100*i), 100);
-		auto cards = Menu::create(cardInHand, NULL);
-		cards->setPosition(Vec2::ZERO);
-		this->addChild(cards, 1);
-	}
-
-
+	drawHand(p);
+	p->drawCard();
+	drawHand(p);
+	//drawHand(p);
 	return true;
 
+}
+
+void SinglePlayGame::drawHand(Player* p)
+{
+	for (int i = 0; i < p->getHandSize(); i++)
+	{
+
+		auto cardInHand = (MenuItemImage*)getChildByTag(CardsInHand);
+		
+		cardInHand->setNormalImage(p->getCardInHand(i)->getSprite());
+		cardInHand->setSelectedImage(p->getCardInHand(i)->getSprite());
+		cardInHand->setPosition(50 + (100 * i), 100);
+		CCLOG("TEST");
+	}
 }
 
 void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
@@ -134,13 +164,11 @@ void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
 	Director::getInstance()->popScene();
 }
 
-
 void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 {
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
-
 
 bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
