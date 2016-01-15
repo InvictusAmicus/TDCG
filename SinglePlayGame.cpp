@@ -71,9 +71,17 @@ bool SinglePlayGame::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	Player* p = new Player();
+
 	for (int i = 0; i < p->getHandSize(); i++)
 	{
+		auto cardInHand = MenuItemImage::create("HelloWorld.png", "HelloWorld.png");
 
+		cardInHand->setNormalImage(p->getCardInHand(i)->getSprite());
+		cardInHand->setSelectedImage(p->getCardInHand(i)->getSprite());
+		cardInHand->setPosition(50+(100*i), 100);
+		auto cards = Menu::create(cardInHand, NULL);
+		cards->setPosition(Vec2::ZERO);
+		this->addChild(cards, 1);
 	}
 
 

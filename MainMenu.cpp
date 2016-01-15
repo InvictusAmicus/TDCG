@@ -83,7 +83,7 @@ bool MainMenu::init()
 	this->addChild(menuOptions, 1);
 	
 
-	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "HowToPlay.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
+	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "HowToPlayClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
 	spriteHowToPlay->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 8));
 	auto menuHowToPlay = Menu::create(spriteHowToPlay, NULL);

@@ -26,7 +26,7 @@ bool Player::init()
 
 Card* Player::drawCard()
 {
-	if(hand.size() < maxHandSize)
+	if(hand.size() < (unsigned) maxHandSize)
 	{
 	/*	for (int i = 0; i < 6; i++)
 		{
@@ -70,4 +70,9 @@ int Player::getLife()
 int Player::getHandSize()
 {
 	return hand.size();
+}
+
+Card* Player::getCardInHand(int i)
+{
+	return hand[i];
 }

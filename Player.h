@@ -25,6 +25,7 @@ public:
 	void setLife(int d);
 	int getLife();
 	int getHandSize();
+	Card* getCardInHand(int);
 };
 
 #endif //__Player_H__
