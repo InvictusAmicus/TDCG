@@ -1,0 +1,13 @@
+placement for the grid collision tower sprites
+y-axis
+468, 395, 321, 246
+
+x-axis
+175-176, 250, 326, 401, 558, 636, 711.6, 768.4
+
+placement for the enemies
+y-axis
+505.7, 431.8, 358, 284, 210
+
+x-axis
+137, 212, 289, 363, 440, 517, 597, 676, 749, 824.5
