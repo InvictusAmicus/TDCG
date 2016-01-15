@@ -5,6 +5,8 @@
 
 USING_NS_CC;
 
+
+//Currently using designResolutionSize as the main screen size
 static cocos2d::Size designResolutionSize = cocos2d::Size(960, 720);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
@@ -72,12 +74,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
 	////
-	auto scene = MainMenu::createScene();
+	//auto scene = MainMenu::createScene();
 	////
 
 
 	/////
-	//auto scene = OpeningScreen::createScene();
+	auto scene = OpeningScreen::createScene();
 	/////
 
     // run

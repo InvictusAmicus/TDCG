@@ -28,4 +28,3 @@ void Card::moveTo(int a1, int a2)
 {
 	cardSprite->setPosition(a1, a2);
 }
-
