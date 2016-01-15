@@ -1,5 +1,7 @@
 #include "SinglePlayGame.h"
 #include "GameOverScreen.h"
+#include "Card.h"
+#include "Player.h"
 
 USING_NS_CC;
 
@@ -67,6 +69,12 @@ bool SinglePlayGame::init()
 	listener->onTouchBegan = CC_CALLBACK_2(SinglePlayGame::onTouchBegan, this);
 	listener->onTouchEnded = CC_CALLBACK_2(SinglePlayGame::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	Player* p = new Player();
+	for (int i = 0; i < p->getHandSize(); i++)
+	{
+
+	}
 
 
 	return true;

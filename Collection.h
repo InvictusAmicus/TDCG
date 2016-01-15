@@ -1,3 +1,4 @@
+#pragma once
 #ifndef __COLLECTION_H__
 #define __COLLECTION_H__
 
@@ -9,7 +10,6 @@ class Collection : public cocos2d::Layer
 {
 private:
 	std::vector<Card*> listOfCards;
-
 public:
 	static cocos2d::Scene* createScene();
 	const int maxCardsPerLine = 4;

@@ -4,7 +4,8 @@
 class Player // : public User
 {
 private:
-	Card* hand[6];
+	std::vector<Card*> hand;
+	const int maxHandSize = 6;
 	int life;
 
 public:
@@ -15,7 +16,7 @@ public:
 	//card dependant methods
 	Card* drawCard(/*Deck*?*/);
 	void playCard(Card* c);
-
+	
 	//end of turn choice methods
 	void declareAttack();
 	void endTurn();
@@ -23,6 +24,7 @@ public:
 	//other methods if needed
 	void setLife(int d);
 	int getLife();
+	int getHandSize();
 };
 
 #endif //__Player_H__
