@@ -62,8 +62,6 @@ bool SinglePlayGame::init()
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
     this->addChild(LifeLabelValue, 1, LabelTagLife);
 
-
-
 	auto ResourceLabel = Label::createWithTTF("Resource", "fonts/Marker Felt.ttf", 24);
 	ResourceLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 150,
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
@@ -85,12 +83,12 @@ bool SinglePlayGame::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
-	LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
+	//auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
+	//LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
 	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
-	auto NP = Menu::create(LastPage, NULL);
-	NP->setPosition(Vec2::ZERO);
-	this->addChild(NP, 1);
+	//auto NP = Menu::create(LastPage, NULL);
+	//NP->setPosition(Vec2::ZERO);
+	//this->addChild(NP, 1);
 
 
 	auto Test = Sprite::create("ArrowSelection.png");
@@ -135,12 +133,6 @@ void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
 }
 
 
-void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
-{
-	auto GameOverScene = GameOverScreen::createScene();
-	Director::getInstance()->pushScene(GameOverScene);
-}
-
 
 bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
@@ -160,6 +152,12 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
 		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 		life = life - 10;
+		if (life <= 0) {
+			//auto GameOverScene = GameOverScreen::createScene();
+			//Director::getInstance()->pushScene(GameOverScene);
+			WonGame();
+		}
+
 		resource = resource - 20;
 		std::string StringLife = std::to_string(life);
 		std::string StringResource = std::to_string(resource);
@@ -167,4 +165,16 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		ChangeResource->setString(StringResource);
 		CCLOG("%d ", life);
 		CCLOG(" %d", resource);
+}
+
+void SinglePlayGame::WonGame()
+{
+	auto GameOverScene = GameOverScreen::createScene();
+	Director::getInstance()->pushScene(GameOverScene);
+}
+
+void SinglePlayGame::LostGame(cocos2d::Ref* pSender)
+{
+	auto GameOverScene = GameOverScreen::createScene();
+	Director::getInstance()->pushScene(GameOverScene);
 }
