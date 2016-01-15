@@ -16,6 +16,8 @@ public:
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
+	//cocos2d::Label *LifeLabelValue;
+
 	// implement the "static create()" method manually
 	CREATE_FUNC(SinglePlayGame);
 };

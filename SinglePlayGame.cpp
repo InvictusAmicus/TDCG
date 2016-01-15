@@ -1,11 +1,17 @@
 #include "SinglePlayGame.h"
 #include "GameOverScreen.h"
+//#include "Player.h"
 
 USING_NS_CC;
 
+int life = 100;
+int resource = 100;
+#define LabelTagLife 1234
+#define LabelTagResource 1235
+
 enum
 {
-	MoveSprite = 1,
+	MoveSprite = 1, LifeChange = 1,
 };
 
 Scene* SinglePlayGame::createScene()
@@ -34,15 +40,39 @@ bool SinglePlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
+	std::string StringLife = std::to_string(life);
+	std::string StringResource = std::to_string(resource);
+
 	auto label = Label::createWithTTF("Single Player Game", "fonts/Marker Felt.ttf", 24);
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
 	this->addChild(label, 1);
 
+
+	auto LifeLabel = Label::createWithTTF("Health", "fonts/Marker Felt.ttf", 24);
+	LifeLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width +10,
+		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
+	this->addChild(LifeLabel, 1);
+
+	auto LifeLabelValue = Label::createWithTTF(StringLife, "fonts/Marker Felt.ttf", 24);
+	LifeLabelValue->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 70,
+		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
+    this->addChild(LifeLabelValue, 1, LabelTagLife);
+
+
+	auto ResourceLabel = Label::createWithTTF("Resource", "fonts/Marker Felt.ttf", 24);
+	ResourceLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 150,
+		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
+	this->addChild(ResourceLabel, 1);
+
+	auto ResourceLabelValue = Label::createWithTTF(StringResource, "fonts/Marker Felt.ttf", 24);
+	ResourceLabelValue->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 220,
+		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
+	this->addChild(ResourceLabelValue,1, LabelTagResource);
+
+
 	auto sprite = Sprite::create("Background.png");
-
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
 	this->addChild(sprite, 0);
 
 	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(SinglePlayGame::returnToTitle, this));
@@ -65,8 +95,17 @@ bool SinglePlayGame::init()
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(SinglePlayGame::onTouchBegan, this);
+
+	//    life = life - 10;
+	 //   resource = resource - 20;
+	  //  StringLife = std::to_string(life);
+	    //std::string StringResource = std::to_string(resource);
+	   // LifeLabelValue->setString(StringLife);
+	
 	listener->onTouchEnded = CC_CALLBACK_2(SinglePlayGame::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	
 
 
 	return true;
@@ -100,4 +139,15 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		s->runAction(MoveTo::create(1, Vec2(location.x, location.y)));
 		float o = location.x - s->getPosition().x;
 		float a = location.y - s->getPosition().y;
+		//auto LifeTag = getChildByTag(LabelTagLife);
+		CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+		life = life - 10;
+		resource = resource - 20;
+		std::string StringLife = std::to_string(life);
+		std::string StringResource = std::to_string(resource);
+	    ChangeLife->setString(StringLife);
+		ChangeResource->setString(StringResource);
+		CCLOG("%d ", life);
+		CCLOG(" %d", resource);
 }
