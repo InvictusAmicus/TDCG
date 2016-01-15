@@ -10,6 +10,11 @@ float OriginalX;
 float OriginalY;
 enum { T, C };
 
+int row = 5;
+int col = 5;
+int CollisionGridArea[24];
+int gap = 0;
+int testGap = 0;
 Scene* OpeningScreen::createScene()
 {
 	// 'scene' is an autorelease object
@@ -36,6 +41,9 @@ bool OpeningScreen::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
+	for (int i = 0;i < 25;i++) {
+		CollisionGridArea[i] = 0;
+	}
 
 
 	//adds label to the top of the screen to mark screen currently on,
@@ -64,16 +72,51 @@ bool OpeningScreen::init()
 	//containerForAttack->addChild(Attack);
 	//addChild(containerForAttack, 10);
 
+	//////////////////////////////////
 	//creates a simple grid to so where sprites need to be placed
 	//needs to be decided how grid is placed and called
-	auto Grid = Sprite::create("testGrid.png");
-	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	this->addChild(Grid, 0);
+	//auto Grid = Sprite::create("testGrid.png");
+	//Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	//this->addChild(Grid, 0);
+	/////////////////////////////////////////////
 
-	auto TestArea = Sprite::create("AreaCollision.png");
+	//////////////////////////////
+	//auto TestArea = Sprite::create("AreaCollision.png");
+	//TestArea->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	//TestArea->setOpacity(0);
+	//this->addChild(TestArea, 1);
+	//////////////////////////////
+	
+	auto Grid = Sprite::create("GridTemplate2.png");
+	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	Grid->setScale(1.5);
+    this->addChild(Grid, 0);
+
+	auto TestArea = Sprite::create("CollisionSquare.png");
 	TestArea->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	TestArea->setOpacity(0);
 	this->addChild(TestArea, 1);
+
+	auto TowerArea = Sprite::create("testTowerArea.png");
+	TowerArea->setPosition(Vec2(175,468));
+	TowerArea->setOpacity(0);
+	this->addChild(TowerArea, 1);
+	
+	//gap = Grid->getContentSize().width;
+	//testGap = gap;
+	//for (int j = 0; j < 2;j++) {
+		
+	//	TestArea->setPosition(Vec2((visibleSize.width / 2 + origin.x)+testGap, visibleSize.height / 2 + origin.y));
+	//	TestArea->setOpacity(0);
+	//	this->addChild(TestArea, 1);
+	//	testGap = testGap + gap;
+	//}
+
+	//auto Grid2 = Sprite::create("GridSquare.png");
+	//Grid2->setPosition(Vec2(((visibleSize.width / 2) + origin.x) + Grid->getContentSize().width, visibleSize.height / 2 + origin.y));
+	//this->addChild(Grid2, 0);
+
+
 
 	//creates a node to contain the sprites
 	//might need to be changed later depending if problems occur with calling the cards
@@ -128,6 +171,9 @@ bool OpeningScreen::init()
 
 		OriginalX = target->getPosition().x;
 		OriginalY = target->getPosition().y;
+		
+		log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
+
 
 		if (rect.containsPoint(locationInNode))
 		{
@@ -141,17 +187,25 @@ bool OpeningScreen::init()
 
 	//When the sprite is being moved it changes the texture to another texture
 	//texture changes to a smaller sprite to be place on the grid
-	listener1->onTouchMoved = [TestArea](Touch* touch, Event* event) {
+	listener1->onTouchMoved = [TestArea, TowerArea](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
-		if (target->getTag() == C || target->getTag() == 2) 
+		for (int i = 0; i < 25;i++) 
 		{
-			target->setTexture("testEnemy.png");
-			if (target->getTag() == 2) 
-			{
-				TestArea->setOpacity(200);
-			}
+		if (CollisionGridArea[i] == 0) 
+		{
+			TestArea->setOpacity(200);
+			TowerArea->setOpacity(200);
 		}
+	    }
+		//if (target->getTag() == C || target->getTag() == 2) 
+		//{
+		//	target->setTexture("testEnemy.png");
+		//	if (target->getTag() == 2) 
+		//	{
+		//		TestArea->setOpacity(200);
+		//	}
+		//}
 		target->setScale(2.0); 
 			
 		
@@ -165,6 +219,7 @@ bool OpeningScreen::init()
 		
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		TestArea->setOpacity(0);
+		TowerArea->setOpacity(0);
 		if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);

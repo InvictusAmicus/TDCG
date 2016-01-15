@@ -74,12 +74,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
 	////
-	auto scene = MainMenu::createScene();
+	//auto scene = MainMenu::createScene();
 	////
 
 
 	/////
-	//auto scene = OpeningScreen::createScene();
+	auto scene = OpeningScreen::createScene();
 	/////
 
     // run
