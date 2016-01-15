@@ -82,18 +82,11 @@ bool MainMenu::init()
 	menuOptions->setPosition(Vec2::ZERO);
 	this->addChild(menuOptions, 1);
 	
-<<<<<<< HEAD
 
 	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "HowToPlayClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
 	spriteHowToPlay->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 8));
-=======
-	//sprite only a placeholder until a proper sprite is made
-	//need to make a second sprite for when sprite is clicked
-	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
-	spriteHowToPlay->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 12.5));
->>>>>>> origin/master
+
 	auto menuHowToPlay = Menu::create(spriteHowToPlay, NULL);
 	menuHowToPlay->setPosition(Vec2::ZERO);
 	this->addChild(menuHowToPlay, 1);
