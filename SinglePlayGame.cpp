@@ -11,6 +11,7 @@ USING_NS_CC;
 
 int life;
 int resource;
+//int TowerAreaArray[3][3];
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
@@ -53,6 +54,12 @@ bool SinglePlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
+	//for (int g = 0;g < 4;g++) {
+	//	for (int h = 0;h < 4;h++) {
+	//		TowerAreaArray[g][h] = 0;
+	//	}
+	//}
+
 	life = 100;
 	resource = 100;
 
@@ -103,11 +110,21 @@ bool SinglePlayGame::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
-	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(SinglePlayGame::returnToTitle, this));
-	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
-	auto menu = Menu::create(Back, NULL);
+	////////////////////////
+	//REMOVED FOR END TURN
+	//auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(SinglePlayGame::returnToTitle, this));
+	//Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
+	//auto menu = Menu::create(Back, NULL);
+	//menu->setPosition(Vec2::ZERO);
+	//this->addChild(menu,1);
+	////////////////////////
+
+	auto EndTurn = MenuItemImage::create("EndTurn.png", "EndTurn.png", CC_CALLBACK_1(SinglePlayGame::EndRoundTurn, this));
+	EndTurn->setPosition(Vec2(origin.x + visibleSize.width - EndTurn->getContentSize().width, 70));
+	auto menu = Menu::create(EndTurn, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu,1);
+
 
 	auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
 	LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
@@ -119,8 +136,100 @@ bool SinglePlayGame::init()
 
 	auto Test = Sprite::create("ArrowSelection.png");
 	Test->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(Test, 1, MoveSprite);
+	this->addChild(Test, 2, MoveSprite);
 
+	auto Grid = Sprite::create("GridTemplate2.png");
+	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	Grid->setScale(1.5);
+	this->addChild(Grid, 0);
+
+	/////////////////////////////////////////////////////////////////////////////////////
+    ////Tower Area
+
+	auto TowerArea00 = Sprite::create("testTowerArea.png");
+	TowerArea00->setPosition(Vec2(175, 468));
+	TowerArea00->setOpacity(0);
+	this->addChild(TowerArea00, 1);
+
+	auto TowerArea01 = Sprite::create("testTowerArea.png");
+	TowerArea01->setPosition(Vec2(250, 468));
+	TowerArea01->setOpacity(0);
+	this->addChild(TowerArea01, 1);
+
+	auto TowerArea02 = Sprite::create("testTowerArea.png");
+	TowerArea02->setPosition(Vec2(326, 468));
+	TowerArea02->setOpacity(0);
+	this->addChild(TowerArea02, 1);
+
+	auto TowerArea03 = Sprite::create("testTowerArea.png");
+	TowerArea03->setPosition(Vec2(401, 468));
+	TowerArea03->setOpacity(0);
+	this->addChild(TowerArea03, 1);
+
+	auto TowerArea10 = Sprite::create("testTowerArea.png");
+	TowerArea10->setPosition(Vec2(175, 395));
+	TowerArea10->setOpacity(0);
+	this->addChild(TowerArea10, 1);
+
+	auto TowerArea11 = Sprite::create("testTowerArea.png");
+	TowerArea11->setPosition(Vec2(250, 395));
+	TowerArea11->setOpacity(0);
+	this->addChild(TowerArea11, 1);
+
+	auto TowerArea12 = Sprite::create("testTowerArea.png");
+	TowerArea12->setPosition(Vec2(326, 395));
+	TowerArea12->setOpacity(0);
+	this->addChild(TowerArea12, 1);
+
+	auto TowerArea13 = Sprite::create("testTowerArea.png");
+	TowerArea13->setPosition(Vec2(401, 395));
+	TowerArea13->setOpacity(0);
+	this->addChild(TowerArea13, 1);
+
+	auto TowerArea20 = Sprite::create("testTowerArea.png");
+	TowerArea20->setPosition(Vec2(175, 321));
+	TowerArea20->setOpacity(0);
+	this->addChild(TowerArea20, 1);
+
+	auto TowerArea21 = Sprite::create("testTowerArea.png");
+	TowerArea21->setPosition(Vec2(250, 321));
+	TowerArea21->setOpacity(0);
+	this->addChild(TowerArea21, 1);
+
+	auto TowerArea22 = Sprite::create("testTowerArea.png");
+	TowerArea22->setPosition(Vec2(326, 321));
+	TowerArea22->setOpacity(0);
+	this->addChild(TowerArea22, 1);
+
+	auto TowerArea23 = Sprite::create("testTowerArea.png");
+	TowerArea23->setPosition(Vec2(401, 321));
+	TowerArea23->setOpacity(0);
+	this->addChild(TowerArea23, 1);
+
+	auto TowerArea30 = Sprite::create("testTowerArea.png");
+	TowerArea30->setPosition(Vec2(175, 246));
+	TowerArea30->setOpacity(0);
+	this->addChild(TowerArea30, 1);
+
+	auto TowerArea31 = Sprite::create("testTowerArea.png");
+	TowerArea31->setPosition(Vec2(250, 246));
+	TowerArea31->setOpacity(0);
+	this->addChild(TowerArea31, 1);
+
+	auto TowerArea32 = Sprite::create("testTowerArea.png");
+	TowerArea32->setPosition(Vec2(326, 246));
+	TowerArea32->setOpacity(0);
+	this->addChild(TowerArea32, 1);
+
+	auto TowerArea33 = Sprite::create("testTowerArea.png");
+	TowerArea33->setPosition(Vec2(401, 246));
+	TowerArea33->setOpacity(0);
+	this->addChild(TowerArea33, 1);
+
+
+	/////////////////////////////////////////////////////////////////////////////////////
+
+	/*Moves to the place you touch, Can remove later
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(SinglePlayGame::onTouchBegan, this);
 
@@ -132,6 +241,89 @@ bool SinglePlayGame::init()
 	
 	listener->onTouchEnded = CC_CALLBACK_2(SinglePlayGame::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	*/
+	auto sprite3 = Sprite::create("SampleCard.png");
+	sprite3->setPosition(origin + Vec2((visibleSize.width / 2) - 100, (visibleSize.height / 2) - 200));
+	this->addChild(sprite3, 20);
+
+
+	auto listener1 = EventListenerTouchOneByOne::create();
+	listener1->setSwallowTouches(true);
+
+	listener1->onTouchBegan = [](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		CCLOG("Touch");
+		//target->getTag();
+		//add in code so it doesn't touch anything within the grid
+		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
+		//
+		//}
+		//else 
+		//{
+		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
+		Size s = target->getContentSize();
+		Rect rect = Rect(0, 0, s.width, s.height);
+
+		//OriginalX = target->getPosition().x;
+		//OriginalY = target->getPosition().y;
+
+		log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
+
+
+		if (rect.containsPoint(locationInNode))
+		{
+			log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
+			target->setOpacity(180);
+			return true;
+		}
+		return false;
+		// }
+	};
+
+	listener1->onTouchMoved = [=](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		target->setPosition(target->getPosition() + touch->getDelta());
+		for (int i = 0; i < 25;i++)
+		{
+			//if (CollisionGridArea[i] == 0)
+			//{
+				//TestArea->setOpacity(200);
+				//TowerArea->setOpacity(200);
+			//}
+		}
+		//if (target->getTag() == C || target->getTag() == 2) 
+		//{
+		//	target->setTexture("testEnemy.png");
+		//	if (target->getTag() == 2) 
+		//	{
+		//		TestArea->setOpacity(200);
+		//	}
+		//}
+		//target->setScale(2.0);
+	};
+
+	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
+
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		//TestArea->setOpacity(0);
+		//TowerArea->setOpacity(0);
+		if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
+			log("sprite onTouchesEnded.. ");
+			target->setOpacity(255);
+
+		}
+		else
+		{
+			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
+			//target->setPosition(Vec2(OriginalX, OriginalY));
+			target->setTexture("SampleCard.png");
+			target->setScale(1.0);
+			target->setOpacity(255);
+		}
+	};
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, sprite3);
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), cardInHand);
 
 
 	Player* p = new Player();
@@ -193,10 +385,19 @@ void SinglePlayGame::displayHand(Player* p)
 		image = MenuItemImage::create(listOfCards[i + 4]->getSpriteName(), listOfCards[i + 4]->getSpriteName(),
 			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
 
+<<<<<<< HEAD
 		image->setPosition(Vec2(200 + (i * 100), 300));
 		imageMenu = Menu::create(image, NULL);
 		imageMenu->setPosition(Vec2::ZERO);
 		this->addChild(imageMenu, 1);
+=======
+		auto cardInHand = (MenuItemImage*)getChildByTag(CardsInHand);
+		
+		cardInHand->setNormalImage(p->getCardInHand(i)->getSprite());
+		cardInHand->setSelectedImage(p->getCardInHand(i)->getSprite());
+		cardInHand->setPosition(50 + (100 * i), 100);
+		//CCLOG("TEST");
+>>>>>>> origin/master
 	}
 */
 }
@@ -207,7 +408,7 @@ void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
 	Director::getInstance()->popScene();
 }
 
-//TAKE OUT LATER IF NOT NEEDED ONLY A TEMPLATE TO GO TO THE GAMEOVER SCREEN
+//TAKE OUT LATER IF NOT NEEDED, ONLY A TEMPLATE TO GO TO THE GAME WON SCREEN
 void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 {
 	auto GameWonScene = GameWonScreen::createScene();
@@ -217,6 +418,14 @@ void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 
 bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
+	//for (int g = 0;g < 4;g++) {
+	//	for (int h = 0;h < 4;h++) {
+	//		if (TowerAreaArray[g][h] == 0) {
+	//		
+	//		}
+	//	}
+	//}
+	
 	return true;
 }
 
@@ -262,4 +471,9 @@ void SinglePlayGame::LostGame()
 	Director::getInstance()->pushScene(GameOverScene);
 }
 
-
+void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
+{
+	//auto GameWonScene = GameWonScreen::createScene();
+	//Director::getInstance()->pushScene(GameWonScene);
+	CCLOG("Test For End Turn");
+}
