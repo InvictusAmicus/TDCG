@@ -45,8 +45,11 @@ bool Collection::init()
 	listOfCards.push_back(new Card("SampleCard.png"));
 	listOfCards.push_back(new Card("closeNormal.png"));
 	listOfCards.push_back(new Card("SampleCard.png"));
-
-
+	
+	//Testing to see the erasing and the insert at for the vector
+	//listOfCards.erase(listOfCards.begin()+2);
+	//listOfCards.insert(listOfCards.begin() + 2, new Card("closeNormal.png"));
+	
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
