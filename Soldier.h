@@ -1,9 +1,9 @@
 #ifndef __SOLDIER_H__
 #define __SOLDIER_H__
 
-#include "Character.h"
+#include "Card.h"
 #include "Player.h"
-class Soldier : public Character
+class Soldier : public Card
 {
 private:
 	int attack; 

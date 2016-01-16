@@ -8,8 +8,6 @@ class SinglePlayGame : public cocos2d::Layer
 {
 private:
 
-	std::vector<Card*> playerHand;
-
 public:
 	static cocos2d::Scene* createScene();
 	

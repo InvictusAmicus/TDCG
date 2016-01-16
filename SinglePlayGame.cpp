@@ -15,7 +15,7 @@ int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
-<<<<<<< HEAD
+//<<<<<<< HEAD
 #define handSprite1 2000
 #define handSprite2 2001
 #define handSprite3 2002
@@ -24,10 +24,10 @@ int resource;
 #define handSprite6 2005
 
 
-=======
+//=======
 #define T 1238
 #define C 1239
->>>>>>> origin/master
+//>>>>>>> origin/master
 enum 
 {
 	MoveSprite = 1,
@@ -335,14 +335,11 @@ bool SinglePlayGame::init()
 	};
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, sprite3);
+
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), cardInHand);
 
 
 	Player* p = new Player();
-	for (int i = 0; i < p->getHandSize(); i++)
-	{
-		playerHand.push_back(p->getCardInHand(i));	
-	}
 //	cardInHand->setPosition(50,100);
 //	this->addChild(cardInHand, 1, CardsInHand);
 	
@@ -357,7 +354,6 @@ bool SinglePlayGame::init()
 	p->drawCard();
 	p->drawCard();
 	displayHand(p);
-//drawHand(p);
 	return true;
 }
 

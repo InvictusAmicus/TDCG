@@ -18,6 +18,7 @@ public:
 	Card(std::string s);
 	~Card();
 	bool init() {}
+	char type;
 
 	cocos2d::Sprite* getSprite() { return cardSprite; }
 	std::string getSpriteName() { return name; }
