@@ -15,7 +15,11 @@ int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
+<<<<<<< HEAD
 //<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 #define handSprite1 2000
 #define handSprite2 2001
 #define handSprite3 2002
@@ -24,10 +28,16 @@ int resource;
 #define handSprite6 2005
 
 
+<<<<<<< HEAD
 //=======
 #define T 1238
 #define C 1239
 //>>>>>>> origin/master
+=======
+#define T 1238
+#define C 1239
+
+>>>>>>> origin/master
 enum 
 {
 	MoveSprite = 1,
@@ -111,9 +121,9 @@ bool SinglePlayGame::init()
 	this->addChild(ResourceLabelValue,1, LabelTagResource);
 
 
-	auto sprite = Sprite::create("Background.png");
-	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	this->addChild(sprite, 0);
+	auto BackgroundSprite = Sprite::create("Background.png");
+	BackgroundSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	this->addChild(BackgroundSprite, 0);
 
 	////////////////////////
 	//REMOVED FOR END TURN
@@ -247,14 +257,27 @@ bool SinglePlayGame::init()
 	listener->onTouchEnded = CC_CALLBACK_2(SinglePlayGame::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	*/
-	auto sprite3 = Sprite::create("SampleCard.png");
+
+	//auto containerForCards = Node::create();
+
+    auto sprite4 = Sprite::create("SampleCard.png");
+	sprite4->setPosition(origin + Vec2(((visibleSize.width / 2) - 150) - sprite4->getContentSize().width, (visibleSize.height / 2) - 200));
+	this->addChild(sprite4, 21, C);
+
+	auto sprite3 = Sprite::create("SampleTower.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2) - 100, (visibleSize.height / 2) - 200));
 	this->addChild(sprite3, 20, T);
+	
+	/////////////////////////////////////
+	//containerForCards->addChild(sprite3);
+	//addChild(containerForCards, 10);
+	//sprite3->setTag(T);
 
-	auto sprite4 = Sprite::create("SampleCard.png");
-	sprite4->setPosition(origin + Vec2(((visibleSize.width / 2) - 100) - sprite3->getContentSize().width, (visibleSize.height / 2) - 200));
-	this->addChild(sprite4, 20, C);
-
+	
+	//containerForCards->addChild(sprite4);
+	//addChild(containerForCards, 10);
+	//sprite4->setTag(C);
+/*
 	auto listener1 = EventListenerTouchOneByOne::create();
 	listener1->setSwallowTouches(true);
 
@@ -268,20 +291,22 @@ bool SinglePlayGame::init()
 		//}
 		//else 
 		//{
+
 		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
 		Size s = target->getContentSize();
 		Rect rect = Rect(0, 0, s.width, s.height);
-
+	
 		//OriginalX = target->getPosition().x;
 		//OriginalY = target->getPosition().y;
 
 		log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
 
-
+		CCLOG("Before if");
 		if (rect.containsPoint(locationInNode))
 		{
 			log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
 			target->setOpacity(180);
+			CCLOG("After If");
 			return true;
 		}
 		return false;
@@ -335,9 +360,16 @@ bool SinglePlayGame::init()
 	};
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, sprite3);
+<<<<<<< HEAD
 
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), cardInHand);
 
+=======
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), sprite4);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), sprite);
+	///////////////////////////////////////////////
+	*/
+>>>>>>> origin/master
 
 	Player* p = new Player();
 //	cardInHand->setPosition(50,100);
@@ -350,7 +382,7 @@ bool SinglePlayGame::init()
 //	cards->setPosition(Vec2::ZERO);
 //	this->addChild(cards, 1);
 	displayHand(p);
-	p->playCard(0);
+	//p->playCard(0);
 	p->drawCard();
 	p->drawCard();
 	displayHand(p);
@@ -408,6 +440,107 @@ void SinglePlayGame::displayHand(Player* p)
 >>>>>>> origin/master
 	}
 */
+
+	auto listener1 = EventListenerTouchOneByOne::create();
+	listener1->setSwallowTouches(true);
+
+	listener1->onTouchBegan = [](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		CCLOG("Touch");
+		//target->getTag();
+		//add in code so it doesn't touch anything within the grid
+		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
+		//
+		//}
+		//else 
+		//{
+
+		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
+		Size s = target->getContentSize();
+		Rect rect = Rect(0, 0, s.width, s.height);
+
+		//OriginalX = target->getPosition().x;
+		//OriginalY = target->getPosition().y;
+
+		log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
+
+		CCLOG("Before if");
+		if (rect.containsPoint(locationInNode))
+		{
+			log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
+			target->setOpacity(180);
+			CCLOG("After If");
+			return true;
+		}
+		return false;
+		// }
+	};
+
+	listener1->onTouchMoved = [=](Touch* touch, Event* event) {
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		target->setPosition(target->getPosition() + touch->getDelta());
+		for (int i = 0; i < 25;i++)
+		{
+			//if (CollisionGridArea[i] == 0)
+			//{
+			//TestArea->setOpacity(200);
+			//TowerArea->setOpacity(200);
+			//}
+		}
+		if (target->getTag() == T)
+		{
+			target->setTexture("SampleTower.png");
+		}
+		else if (target->getTag() == C)
+		{
+			target->setTexture("testEnemy.png");
+		}
+
+		target->setScale(2.0);
+	};
+
+	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
+
+		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		//TestArea->setOpacity(0);
+		//TowerArea->setOpacity(0);
+		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
+
+		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
+		{
+			log("sprite onTouchesEnded.. ");
+			target->setOpacity(255);
+
+		}
+		else
+		{
+			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
+			//target->setPosition(Vec2(OriginalX, OriginalY));
+			target->setTexture("SampleCard.png");
+			target->setScale(1.0);
+			target->setOpacity(255);
+			
+		}
+	};
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
+
+	for (int j = 0; (unsigned)j < p->getHandSize(); j++)
+	{
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1+j));
+
+	}
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite2));
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite3));
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite4));
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite5));
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite6));
+	
+
+
+
+
+
 }
 
 
