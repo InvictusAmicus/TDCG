@@ -15,6 +15,7 @@ int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
+<<<<<<< HEAD
 #define handSprite1 2000
 #define handSprite2 2001
 #define handSprite3 2002
@@ -23,6 +24,10 @@ int resource;
 #define handSprite6 2005
 
 
+=======
+#define T 1238
+#define C 1239
+>>>>>>> origin/master
 enum 
 {
 	MoveSprite = 1,
@@ -244,8 +249,11 @@ bool SinglePlayGame::init()
 	*/
 	auto sprite3 = Sprite::create("SampleCard.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2) - 100, (visibleSize.height / 2) - 200));
-	this->addChild(sprite3, 20);
+	this->addChild(sprite3, 20, T);
 
+	auto sprite4 = Sprite::create("SampleCard.png");
+	sprite4->setPosition(origin + Vec2(((visibleSize.width / 2) - 100) - sprite3->getContentSize().width, (visibleSize.height / 2) - 200));
+	this->addChild(sprite4, 20, C);
 
 	auto listener1 = EventListenerTouchOneByOne::create();
 	listener1->setSwallowTouches(true);
@@ -291,15 +299,16 @@ bool SinglePlayGame::init()
 				//TowerArea->setOpacity(200);
 			//}
 		}
-		//if (target->getTag() == C || target->getTag() == 2) 
-		//{
-		//	target->setTexture("testEnemy.png");
-		//	if (target->getTag() == 2) 
-		//	{
-		//		TestArea->setOpacity(200);
-		//	}
-		//}
-		//target->setScale(2.0);
+		if (target->getTag() == T) 
+		{
+			target->setTexture("SampleTower.png");
+		}
+		else if (target->getTag() == C)
+		{
+			target->setTexture("testEnemy.png");
+		}
+
+		target->setScale(2.0);
 	};
 
 	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
@@ -307,8 +316,11 @@ bool SinglePlayGame::init()
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		//TestArea->setOpacity(0);
 		//TowerArea->setOpacity(0);
-		if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
-			log("sprite onTouchesEnded.. ");
+		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
+			
+		if(target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
+		{
+		    log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
 
 		}
