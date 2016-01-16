@@ -479,6 +479,18 @@ void SinglePlayGame::displayHand(Player* p)
 			//TowerArea->setOpacity(200);
 			//}
 		}
+		CCLOG("BEFORE IF LOOP");
+		if (p->getCardInHand(1)->getType() =='s') 
+		{
+			CCLOG("IF LOOP RUNNING");
+			target->setTexture("testEnemy.png");
+		}
+		else if (p->getCardInHand(1)->getType() == 't')
+		{
+			CCLOG("IF LOOP RUNNING");
+			target->setTexture("SampleTower.png");
+		}
+		/*
 		if (target->getTag() == T)
 		{
 			target->setTexture("SampleTower.png");
@@ -487,7 +499,7 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			target->setTexture("testEnemy.png");
 		}
-
+		*/
 		target->setScale(2.0);
 	};
 
@@ -528,11 +540,6 @@ void SinglePlayGame::displayHand(Player* p)
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite5));
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite6));
 	
-
-
-
-
-
 }
 
 

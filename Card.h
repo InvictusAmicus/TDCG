@@ -20,6 +20,7 @@ public:
 	bool init() {}
 	char type;
 
+	char getType();
 	cocos2d::Sprite* getSprite() { return cardSprite; }
 	std::string getSpriteName() { return name; }
 	std::string getLore() { return lore; }
