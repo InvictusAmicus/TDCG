@@ -15,7 +15,7 @@ int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
-<<<<<<< HEAD
+
 #define handSprite1 2000
 #define handSprite2 2001
 #define handSprite3 2002
@@ -24,10 +24,9 @@ int resource;
 #define handSprite6 2005
 
 
-=======
 #define T 1238
 #define C 1239
->>>>>>> origin/master
+
 enum 
 {
 	MoveSprite = 1,
