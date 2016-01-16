@@ -15,11 +15,7 @@ int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
-<<<<<<< HEAD
-//<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 #define handSprite1 2000
 #define handSprite2 2001
 #define handSprite3 2002
@@ -28,16 +24,12 @@ int resource;
 #define handSprite6 2005
 
 
-<<<<<<< HEAD
-//=======
-#define T 1238
-#define C 1239
-//>>>>>>> origin/master
-=======
 #define T 1238
 #define C 1239
 
->>>>>>> origin/master
+#define T 1238
+#define C 1239
+
 enum 
 {
 	MoveSprite = 1,
@@ -369,7 +361,7 @@ bool SinglePlayGame::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), sprite);
 	///////////////////////////////////////////////
 	*/
->>>>>>> origin/master
+
 
 	Player* p = new Player();
 //	cardInHand->setPosition(50,100);
