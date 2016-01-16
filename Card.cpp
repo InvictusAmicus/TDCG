@@ -5,7 +5,7 @@
 Card::Card()
 {
 	cardSprite = cocos2d::Sprite::create("HelloWorld.png");
-	name = "HelloWorld";
+	name = "HelloWorld.png";
 	lore = "Default Lore";
 }
 

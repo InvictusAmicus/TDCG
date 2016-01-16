@@ -10,7 +10,7 @@ Player::Player()
 	}
 	for (int i = 0; i < 40; i++)
 	{
-		deck.push_back(new Card("HelloWorld.png"));
+		deck.push_back(new Card("SampleCard2.png"));
 	}
 }
 
@@ -42,16 +42,16 @@ void Player::drawCard()
 		}*/
 		Card* c = deck[deck.size()-1];
 		hand.push_back(c);
-		deck.pop_back();
+		
 	}
 //	return new Card();
-	
+	deck.pop_back();
 	
 }
 
 void Player::playCard(int i)
 {
-	//hand[i].pop();
+	hand.clear();
 }
 
 void Player::declareAttack()

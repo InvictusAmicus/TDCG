@@ -14,6 +14,13 @@ int resource;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
+#define handSprite1 2000
+#define handSprite2 2001
+#define handSprite3 2002
+#define handSprite4 2003
+#define handSprite5 2004
+#define handSprite6 2005
+
 
 enum 
 {
@@ -48,8 +55,6 @@ bool SinglePlayGame::init()
 	
 	life = 100;
 	resource = 100;
-	auto cardInHand = MenuItemImage::create("HelloWorld.png", "HelloWorld.png");
-	this->addChild(cardInHand, 1, CardsInHand);
 
 	/*
 		when moving to the GameOver screen, pass life in.
@@ -130,33 +135,72 @@ bool SinglePlayGame::init()
 
 
 	Player* p = new Player();
-//	cardInHand->setPosition(50,100);
-//	this->addChild(cardInHand, 1, CardsInHand);
-	/*auto cards = Menu::create(cardInHand, NULL);
-	cards->setPosition(Vec2::ZERO);
-	this->addChild(cards, 1);*/
-
-	drawHand(p);
-	p->drawCard();
-	drawHand(p);
-	//drawHand(p);
-	return true;
-
-}
-
-void SinglePlayGame::drawHand(Player* p)
-{
 	for (int i = 0; i < p->getHandSize(); i++)
 	{
-
-		auto cardInHand = (MenuItemImage*)getChildByTag(CardsInHand);
-		
-		cardInHand->setNormalImage(p->getCardInHand(i)->getSprite());
-		cardInHand->setSelectedImage(p->getCardInHand(i)->getSprite());
-		cardInHand->setPosition(50 + (100 * i), 100);
-		CCLOG("TEST");
+		playerHand.push_back(p->getCardInHand(i));	
 	}
+//	cardInHand->setPosition(50,100);
+//	this->addChild(cardInHand, 1, CardsInHand);
+	
+//	for (int i = 0; i < p->getHandSize(); i++)
+	//{
+//		cards->addChild(drawHand(p, i),1);
+	//}
+//	cards->setPosition(Vec2::ZERO);
+//	this->addChild(cards, 1);
+	displayHand(p);
+	p->playCard(0);
+	p->drawCard();
+	p->drawCard();
+	displayHand(p);
+//drawHand(p);
+	return true;
 }
+
+void SinglePlayGame::displayHand(Player* p)
+{
+	this->removeChildByTag(handSprite1);
+	this->removeChildByTag(handSprite2);
+	this->removeChildByTag(handSprite3);
+	this->removeChildByTag(handSprite4);
+	this->removeChildByTag(handSprite5);
+	this->removeChildByTag(handSprite6);
+
+	auto sprite = cocos2d::Sprite::create("HelloWorld.png");
+	int i;
+	for (i = 0; (unsigned)i < p->getHandSize(); i++)
+	{
+		sprite = p->getCardInHand(i)->getSprite();
+		sprite->setPosition(Vec2(100 + (i * 100), 50));
+		this->addChild(sprite, 1, handSprite1 + i);
+	}
+	// turn auto sprite into auto MenuItemImage
+/*	int i;
+	auto image = MenuItemImage::create();
+	auto imageMenu = Menu::create();
+	for (i = 0; (unsigned)i < listOfCards.size() && i < maxCardsPerLine; i++)
+	{
+		image = MenuItemImage::create(listOfCards[i]->getSpriteName(), listOfCards[i]->getSpriteName(),
+			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
+
+		image->setPosition(Vec2(200 + (i * 100), 500));
+		imageMenu = Menu::create(image, NULL);
+		imageMenu->setPosition(Vec2::ZERO);
+		this->addChild(imageMenu, 1);
+	}
+	for (i = 0; (unsigned)i + 4 < listOfCards.size() && i < maxCardsPerLine; i++)
+	{
+		image = MenuItemImage::create(listOfCards[i + 4]->getSpriteName(), listOfCards[i + 4]->getSpriteName(),
+			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
+
+		image->setPosition(Vec2(200 + (i * 100), 300));
+		imageMenu = Menu::create(image, NULL);
+		imageMenu->setPosition(Vec2::ZERO);
+		this->addChild(imageMenu, 1);
+	}
+*/
+}
+
 
 void SinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
 {
@@ -189,7 +233,8 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
 		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 		life = life - 10;
-		if (life <= 0) {
+		if (life <= 0)
+		{
 			//auto GameOverScene = GameOverScreen::createScene();
 			//Director::getInstance()->pushScene(GameOverScene);
 			LostGame();

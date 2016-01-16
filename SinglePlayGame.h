@@ -6,6 +6,10 @@
 
 class SinglePlayGame : public cocos2d::Layer
 {
+private:
+
+	std::vector<Card*> playerHand;
+
 public:
 	static cocos2d::Scene* createScene();
 	
@@ -21,7 +25,7 @@ public:
 
 	//cocos2d::Label *LifeLabelValue;
 
-	void drawHand(Player*);
+void displayHand(Player*/*, int i*/);
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(SinglePlayGame);

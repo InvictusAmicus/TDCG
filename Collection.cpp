@@ -37,7 +37,7 @@ bool Collection::init()
 
 	loreLabel->setPosition(350, 200);
 	loreLabel->setColor(ccc3(0, 0, 0));
-	this->addChild(loreLabel, true);
+	this->addChild(loreLabel, true, LabelTagLore);
 
 	listOfCards.push_back(new Card());
 	listOfCards.push_back(new Card("SampleCard.png"));
@@ -58,13 +58,13 @@ bool Collection::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	//change lore label to the clicked card's lore
+/*	//change lore label to the clicked card's lore
 	auto LoreLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
 	//label->setString(c->getLore());
 	LoreLabel->setPosition(300, 150);
 	LoreLabel->setColor(ccc3(0, 0, 0));
 	this->addChild(LoreLabel, 1, LabelTagLore);
-
+*/
 
 	auto SecondPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(Collection::NextPage, this));
 	SecondPage->setPosition(Vec2(origin.x + visibleSize.width - SecondPage->getContentSize().width, 360));
@@ -133,8 +133,6 @@ void Collection::displayCards()
 	}
 
 }
-
-//
 
 void Collection::displayLore(Card* c)
 {
