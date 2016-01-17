@@ -252,6 +252,7 @@ bool SinglePlayGame::init()
 
 	//auto containerForCards = Node::create();
 
+	/*
     auto sprite4 = Sprite::create("SampleCard.png");
 	sprite4->setPosition(origin + Vec2(((visibleSize.width / 2) - 150) - sprite4->getContentSize().width, (visibleSize.height / 2) - 200));
 	this->addChild(sprite4, 21, C);
@@ -259,7 +260,9 @@ bool SinglePlayGame::init()
 	auto sprite3 = Sprite::create("SampleTower.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2) - 100, (visibleSize.height / 2) - 200));
 	this->addChild(sprite3, 20, T);
-	
+	*/
+
+
 	/////////////////////////////////////
 	//containerForCards->addChild(sprite3);
 	//addChild(containerForCards, 10);

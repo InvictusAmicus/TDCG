@@ -1,6 +1,10 @@
 #include"Options.h"
 #include"MainMenu.h"
 #include"ui/CocosGUI.h"
+#include"SimpleAudioEngine.h"
+
+float musicVolumeControl;
+int EffectsMute = 0;
 
 USING_NS_CC;
 
@@ -29,6 +33,8 @@ bool Options::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	Options::SetMusicVolume(0.5);
+
 
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
 
@@ -49,6 +55,29 @@ bool Options::init()
 	MusicCheckBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - MusicCheckBox->getContentSize().height * 12));
 	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
+	MusicCheckBox->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			CCLOG("CHECKBOX");
+			if (CocosDenshion::SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying() == true) {
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+			}
+			else {
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
+					"background-music-aac.wav", true);
+			}
+
+			CCLOG("CHECKBOX PASSED POSTION");
+			break;
+		default:
+			break;
+		}
+	
+	});
+	
 	this->addChild(MusicCheckBox,1);
 
 	auto MusicCheckBoxLabel = Label::createWithTTF("Mute Music", "fonts/Marker Felt.ttf", 24);
@@ -65,6 +94,31 @@ bool Options::init()
 	SoundEffectCheckBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - SoundEffectCheckBox->getContentSize().height * 14));
 	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
+	SoundEffectCheckBox->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			CCLOG("Sound EFFECT CHECKBOX");
+			//Needs the logic of the sound effect checkbox to be added here
+			if (EffectsMute==0) 
+			{
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+				EffectsMute++;
+			}
+			else {
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+				EffectsMute = 0;
+			}
+			CCLOG(" SOUND EFFECT CHECKBOX PASSED POSTION");
+			break;
+		default:
+			break;
+		}
+
+	});
+
 	this->addChild(SoundEffectCheckBox, 1);
 
 	auto SoundEffectCheckBoxLabel = Label::createWithTTF("Mute Sound Effect", "fonts/Marker Felt.ttf", 24);
@@ -81,8 +135,44 @@ bool Options::init()
 	MusicSlider->loadProgressBarTexture("sliderProgress.png");
 	MusicSlider->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - MusicSlider->getContentSize().height * 4));
-	//MusicSlider->addEventListener(CC_CALLBACK_2(UISliderTest::sliderEvent, this));
+	
+	MusicSlider->setPercent(musicVolumeControl*100);
+	musicVolumeControl = MusicSlider->getPercent();
+
+	//MusicSlider->setPercent(100);
+	//MusicSlider->getPercent();
+	//musicVolumeControl = MusicSlider->getPercent();
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(MusicSlider->getPercent()/100);
+	//MusicSlider->addEventListener(CC_CALLBACK_2(Options::MusicVolume, this));
+	MusicSlider->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			CCLOG("Slider Moved");
+
+			//MusicSlider->setPercent(MusicSlider->getPercent());
+			Options::SetMusicVolume(MusicSlider->getPercent() / 100);
+			CCLOG("PASSED POSTION");
+			break;
+		default:
+			break;
+		}
+	});
+
 	this->addChild(MusicSlider,1);
+	
+	CCLOG("BEFORE STRING");
+	//std::string MusicString = std::to_string(MusicSlider->getPercent());
+	std::string MusicString = std::to_string(musicVolumeControl);
+	auto TestLabel = Label::createWithTTF(MusicString, "fonts/Marker Felt.ttf", 24);
+	TestLabel->setColor(ccc3(0, 0, 0));
+	TestLabel->setPosition(Vec2((origin.x + visibleSize.width / 2) - 250,
+		origin.y + visibleSize.height - MusicSlider->getContentSize().height * 14));
+	this->addChild(TestLabel, 1);
+
+
 
 	auto MusicLabel = Label::createWithTTF("Music Volume", "fonts/Marker Felt.ttf", 24);
 	MusicLabel->setColor(ccc3(0,0,0));
@@ -97,7 +187,25 @@ bool Options::init()
 	SoundEffectSlider->loadProgressBarTexture("sliderProgress.png");
 	SoundEffectSlider->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - SoundEffectSlider->getContentSize().height * 6));
+
 	//SoundEffectSlider->addEventListener(CC_CALLBACK_2(UISliderTest::sliderEvent, this));
+
+	SoundEffectSlider->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			CCLOG("Sound Effect Slider Moved");
+
+			//MusicSlider->setPercent(MusicSlider->getPercent());
+			CCLOG("SOUND EFFECT PASSED POSTION");
+			break;
+		default:
+			break;
+		}
+	});
+
 	this->addChild(SoundEffectSlider,1);
 
 	auto SoundEffectLabel = Label::createWithTTF("Sound Effect Volume", "fonts/Marker Felt.ttf", 24);
@@ -120,4 +228,26 @@ bool Options::init()
 void Options::menuReturn(Ref* pSender)
 {
 	Director::getInstance()->popScene();
+}
+
+double Options::MusicVolume() {
+
+	CCLOG("Music Volume Changed");
+	return musicVolumeControl;
+
+}
+
+void Options::SetMusicVolume(float x) {
+    musicVolumeControl = x;
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(musicVolumeControl);
+
+	//test to see if the slider works, needs the value system to be fixed
+
+	//if (musicVolumeControl >= 1.0) {
+	//	CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	//}
+	//else {
+	//	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+	//}
+	CCLOG("SET VOLUME %f", musicVolumeControl);
 }

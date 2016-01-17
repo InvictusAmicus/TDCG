@@ -2,6 +2,7 @@
 #define __OPTIONS_H_
 
 #include "cocos2d.h"
+#include "ui\UISlider.h"
 
 class Options : public cocos2d::Layer
 {
@@ -13,7 +14,9 @@ public:
 
 	// a selector callback
 	void menuReturn(cocos2d::Ref* pSender);
-
+	//void MusicVolume(cocos2d::ui::Slider, cocos2d::Event* event);
+	double MusicVolume();
+	void SetMusicVolume(float x);
 	CREATE_FUNC(Options);
 };
 
