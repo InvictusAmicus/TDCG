@@ -446,26 +446,32 @@ void SinglePlayGame::displayHand(Player* p)
 		//}
 		//else 
 		//{
-
-		Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
-		Size s = target->getContentSize();
-		Rect rect = Rect(0, 0, s.width, s.height);
-
-		//OriginalX = target->getPosition().x;
-		//OriginalY = target->getPosition().y;
-
-		log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
-
-		CCLOG("Before if");
-		if (rect.containsPoint(locationInNode))
-		{
-			log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
-			target->setOpacity(180);
-			CCLOG("After If");
-			return true;
+		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544) {
+			return false;
 		}
-		return false;
-		// }
+		else 
+		{
+
+			Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
+			Size s = target->getContentSize();
+			Rect rect = Rect(0, 0, s.width, s.height);
+
+			//OriginalX = target->getPosition().x;
+			//OriginalY = target->getPosition().y;
+
+			log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
+
+			CCLOG("Before if");
+			if (rect.containsPoint(locationInNode))
+			{
+				log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
+				target->setOpacity(180);
+				CCLOG("After If");
+				return true;
+			}
+			return false;
+			// }
+		}
 	};
 
 	listener1->onTouchMoved = [=](Touch* touch, Event* event) {
