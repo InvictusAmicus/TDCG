@@ -1,7 +1,7 @@
 #include "SinglePlayGame.h"
 #include "GameOverScreen.h"
 #include "GameWonScreen.h"
-
+#include "SimpleAudioEngine.h"
 #include "Card.h"
 #include "Player.h"
 
@@ -141,9 +141,9 @@ bool SinglePlayGame::init()
 	this->addChild(NP, 1);
 
 
-	auto Test = Sprite::create("ArrowSelection.png");
-	Test->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(Test, 2, MoveSprite);
+	//auto Test = Sprite::create("ArrowSelection.png");
+	//Test->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+	//this->addChild(Test, 2, MoveSprite);
 
 	auto Grid = Sprite::create("GridTemplate2.png");
 	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
@@ -510,6 +510,10 @@ void SinglePlayGame::displayHand(Player* p)
 		//TowerArea->setOpacity(0);
 		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 
+        //CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
+		//    "pew-pew-lei.wav");
+
+
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
 		{
 			log("sprite onTouchesEnded.. ");
@@ -533,6 +537,8 @@ void SinglePlayGame::displayHand(Player* p)
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1+j));
 
 	}
+	
+
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite2));
 	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite3));

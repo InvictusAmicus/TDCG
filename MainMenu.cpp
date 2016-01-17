@@ -4,7 +4,7 @@
 #include "SinglePlayGame.h"
 #include "Options.h"
 #include "HowToPlay.h"
-
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -34,6 +34,8 @@ bool MainMenu::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
+	//	"background-music-aac.wav", true);
 
 	auto Quit = MenuItemImage::create("Quit.png", "QuitClicked.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
 	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
