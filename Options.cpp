@@ -2,11 +2,18 @@
 #include"MainMenu.h"
 #include"ui/CocosGUI.h"
 #include"SimpleAudioEngine.h"
+#include<fstream>
+#include<iostream>
 
 float musicVolumeControl;
-int EffectsMute = 0;
+float SoundEffectsVolumeControl;
+int EffectsMute;
+char testFile;
+int testFileInt;
+
 
 USING_NS_CC;
+using namespace std;
 
 Scene* Options::createScene()
 {
@@ -34,8 +41,55 @@ bool Options::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	Options::SetMusicVolume(0.5);
+	/*
+	FileUtils::getInstance()->addSearchPath("SystemFile");
+	string DataFileName = "System_File.txt";
+	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
+	//CCLOG("%s", fullpath);
+	std::ifstream ReadFile(fullpath);
+	string text;
+	if (!ReadFile) 
+	{
+		CCLOG("FILE NOT FOUND");
+	}
+	else 
+	{
+		//ReadFile.get(testFile);
+		for (int x = 0; !ReadFile.eof(); x++) 
+		{
+			if (x==0) 
+			{
+			    getline(ReadFile, text);
+                //int testFileInt = atoi(text.c_str());
+				std::string::size_type sz;     
+				musicVolumeControl = std::stof(text, &sz);
+				CCLOG("MVC %.2f", musicVolumeControl);
+				x++;
+			}
+			if (x == 1)
+			{
+				getline(ReadFile, text);
+				//int testFileInt = atoi(text.c_str());
+				std::string::size_type sz;     
+				SoundEffectsVolumeControl = std::stof(text, &sz);
+				CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
+				x++;
+			}
+			if (x == 2)
+			{
+				getline(ReadFile, text);
+				EffectsMute = atoi(text.c_str());
+				CCLOG("EFFECTS MUTE %d", EffectsMute);
+			}
+			CCLOG("X == %d", x);
 
-
+		}
+	    
+		ReadFile.close();
+		
+		CCLOG("SYSTEM FILE %d", testFileInt);
+	}
+	*/
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
 
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
