@@ -520,7 +520,7 @@ void SinglePlayGame::displayHand(Player* p)
 		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 
         //CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
-		//    "pew-pew-lei.wav");
+	    //"pew-pew-lei.wav");
 
 
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)

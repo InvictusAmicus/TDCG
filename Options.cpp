@@ -1,3 +1,9 @@
+/*
+Sound effects need to be fix so that they turn off
+Background music has to be fix so that it is muted when turning on if it is muted in system file
+Slide has to change the value range from 1-100 to 0.0-1.0
+*/
+
 #include"Options.h"
 #include"MainMenu.h"
 #include"ui/CocosGUI.h"
@@ -8,6 +14,7 @@
 float musicVolumeControl;
 float SoundEffectsVolumeControl;
 int EffectsMute;
+int MusicMute;
 char testFile;
 int testFileInt;
 
@@ -42,7 +49,7 @@ bool Options::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	//Options::SetMusicVolume(0.5);
 	
-	/*
+	/*/////////////////////////////////////
 	FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
 	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
@@ -59,7 +66,7 @@ bool Options::init()
 		//
 		//When compiled System_File being read from the debug win32, change values there
 		//
-		for (int x = 0; x<3; x++) 
+		for (int x = 0; x<4; x++) 
 		{
 			if (x==0) 
 			{
@@ -85,6 +92,13 @@ bool Options::init()
 				EffectsMute = atoi(text.c_str());
 				CCLOG("EFFECTS MUTE %d", EffectsMute);
 		    }
+			if (x == 3)
+			{
+				getline(ReadFile, text);
+				MusicMute = atoi(text.c_str());
+				CCLOG("EFFECTS MUTE %d", MusicMute);
+			}
+
 			CCLOG("X == %d", x);
 
 		}
@@ -114,6 +128,16 @@ bool Options::init()
 	MusicCheckBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - MusicCheckBox->getContentSize().height * 12));
 	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
+	/*////////////////////////////////
+	if (MusicMute == 1)
+	{
+		MusicCheckBox->setSelectedState(true);
+	}
+	else
+	{
+		MusicCheckBox->setSelectedState(false);
+	}
+	*/
 	MusicCheckBox->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
 		switch (type)
 		{
@@ -121,14 +145,20 @@ bool Options::init()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("CHECKBOX");
-			if (CocosDenshion::SimpleAudioEngine::sharedEngine()->isBackgroundMusicPlaying() == true) {
+			/*//////////////////////////////////
+			if(MusicMute==0){
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+				MusicCheckBox->setSelectedState(true);
+				MusicMute++;
 			}
 			else {
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
 					"background-music-aac.wav", true);
+				MusicCheckBox->setSelectedState(false);
+				MusicMute = 0;
 			}
-
+			Options::setMusicMute(MusicMute);
+			*/
 			CCLOG("CHECKBOX PASSED POSTION");
 			break;
 		default:
@@ -152,6 +182,16 @@ bool Options::init()
 		"check_box_active_disable.png");
 	SoundEffectCheckBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - SoundEffectCheckBox->getContentSize().height * 14));
+	/*//////////////////////////////////////////
+	if (EffectsMute == 1) 
+	{
+	    SoundEffectCheckBox->setSelectedState(true);
+	}
+	else 
+	{
+		SoundEffectCheckBox->setSelectedState(false);
+	}
+	*/
 	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
 	SoundEffectCheckBox->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
 		switch (type)
@@ -161,18 +201,22 @@ bool Options::init()
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Sound EFFECT CHECKBOX");
 			//Needs the logic of the sound effect checkbox to be added here
+			/*//////////////////////////////////////////////
 			if (EffectsMute==0) 
 			{
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
 				EffectsMute++;
+				SoundEffectCheckBox->setSelectedState(true);
 				CCLOG("First IF");
 			}
 			else {
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 				EffectsMute = 0;
+				SoundEffectCheckBox->setSelectedState(false);
 				CCLOG("Else STATEMENT");
 			}
-			//Options::SetSoundEffectMute(EffectsMute);
+			Options::SetSoundEffectMute(EffectsMute);
+			*/
 			CCLOG(" SOUND EFFECT CHECKBOX PASSED POSTION");
 			break;
 		default:
@@ -213,7 +257,7 @@ bool Options::init()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Slider Moved");
-			
+			//////////////////////////////
 			//Options::SetMusicVolume(MusicSlider->getPercent());
 			CCLOG("PASSED POSTION");
 			break;
@@ -259,7 +303,7 @@ bool Options::init()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Sound Effect Slider Moved");
-
+			/////////////////////////////////////////
 			//Options::SetSoundEffectVolume(SoundEffectSlider->getPercent());
 			CCLOG("SOUND EFFECT PASSED POSTION");
 			break;
@@ -299,9 +343,9 @@ double Options::MusicVolume() {
 
 }
 
-
 /*
 void Options::SetMusicVolume(float x) {
+	musicVolumeControl = x;
     float changedVolume = x;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(changedVolume/100);
 
@@ -323,10 +367,12 @@ void Options::SetMusicVolume(float x) {
 		std::string MV = std::to_string(changedVolume);
 		std::string SEV = std::to_string(SoundEffectsVolumeControl);
 		std::string SEM = std::to_string(EffectsMute);
+		std::string MM = std::to_string(MusicMute);
 		
-		ReadFile << changedVolume << "\n";
-		ReadFile << SoundEffectsVolumeControl <<"\n";
-		ReadFile << EffectsMute << "\n";
+		ReadFile << MV << "\n";
+		ReadFile << SEV << "\n";
+		ReadFile << SEM << "\n";
+		ReadFile << MM << "\n";
 		ReadFile.close();
 	}
 
@@ -342,6 +388,7 @@ void Options::SetMusicVolume(float x) {
 }
 
 void Options::SetSoundEffectVolume(float x) {
+	SoundEffectsVolumeControl = x;
 	float changedVolume = x;
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(changedVolume/100);
 
@@ -363,10 +410,12 @@ void Options::SetSoundEffectVolume(float x) {
 		std::string MV = std::to_string(musicVolumeControl);
 		std::string SEV = std::to_string(changedVolume);
 		std::string SEM = std::to_string(EffectsMute);
+		std::string MM = std::to_string(MusicMute);
 
-		ReadFile << musicVolumeControl << "\n";
-		ReadFile << changedVolume << "\n";
-		ReadFile << EffectsMute << "\n";
+		ReadFile << MV << "\n";
+		ReadFile << SEV << "\n";
+		ReadFile << SEM << "\n";
+		ReadFile << MM << "\n";
 		ReadFile.close();
 	}
 
@@ -394,10 +443,46 @@ void Options::SetSoundEffectMute(int x) {
 		std::string MV = std::to_string(musicVolumeControl);
 		std::string SEV = std::to_string(SoundEffectsVolumeControl);
 		std::string SEM = std::to_string(changedState);
+		std::string MM = std::to_string(MusicMute);
 
-		ReadFile << musicVolumeControl << "\n";
-		ReadFile << SoundEffectsVolumeControl << "\n";
-		ReadFile << changedState << "\n";
+		ReadFile << MV << "\n";
+		ReadFile << SEV << "\n";
+		ReadFile << SEM << "\n";
+		ReadFile << MM << "\n";
+		ReadFile.close();
+	}
+
+	CCLOG("SET SE VOLUME %d", changedState);
+
+}
+
+void Options::setMusicMute(int x) {
+	int changedState = x;
+
+	//FileUtils::getInstance()->addSearchPath("SystemFile");
+	string DataFileName = "System_File.txt";
+	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
+	//CCLOG("%s", fullpath);
+	//std::ofstream ReadFile(fullpath);
+	std::ofstream ReadFile;
+	ReadFile.open(fullpath);
+	string text;
+	if (!ReadFile)
+	{
+		CCLOG("SetMusicVolume FILE NOT FOUND");
+	}
+	else
+	{
+		CCLOG("CHANGING FILE CONTENTS");
+		std::string MV = std::to_string(musicVolumeControl);
+		std::string SEV = std::to_string(SoundEffectsVolumeControl);
+		std::string SEM = std::to_string(EffectsMute);
+		std::string MM = std::to_string(changedState);
+
+		ReadFile << MV << "\n";
+		ReadFile << SEV << "\n";
+		ReadFile << SEM << "\n";
+		ReadFile << MM << "\n";
 		ReadFile.close();
 	}
 

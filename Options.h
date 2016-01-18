@@ -19,7 +19,7 @@ public:
 	void SetMusicVolume(float x);
 	void SetSoundEffectVolume(float x);
 	void SetSoundEffectMute(int x);
-
+	void setMusicMute(int x);
 	CREATE_FUNC(Options);
 };
 
