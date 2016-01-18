@@ -40,7 +40,8 @@ bool Options::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	Options::SetMusicVolume(0.5);
+	//Options::SetMusicVolume(0.5);
+	
 	/*
 	FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
@@ -54,33 +55,36 @@ bool Options::init()
 	}
 	else 
 	{
-		//ReadFile.get(testFile);
-		for (int x = 0; !ReadFile.eof(); x++) 
+
+		//
+		//When compiled System_File being read from the debug win32, change values there
+		//
+		for (int x = 0; x<3; x++) 
 		{
 			if (x==0) 
 			{
 			    getline(ReadFile, text);
-                //int testFileInt = atoi(text.c_str());
+                int testFileInt = atoi(text.c_str());
 				std::string::size_type sz;     
 				musicVolumeControl = std::stof(text, &sz);
 				CCLOG("MVC %.2f", musicVolumeControl);
-				x++;
+			//	x++;
 			}
 			if (x == 1)
 			{
 				getline(ReadFile, text);
-				//int testFileInt = atoi(text.c_str());
+				int testFileInt = atoi(text.c_str());
 				std::string::size_type sz;     
 				SoundEffectsVolumeControl = std::stof(text, &sz);
 				CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
-				x++;
+			//	x++;
 			}
 			if (x == 2)
 			{
 				getline(ReadFile, text);
 				EffectsMute = atoi(text.c_str());
 				CCLOG("EFFECTS MUTE %d", EffectsMute);
-			}
+		    }
 			CCLOG("X == %d", x);
 
 		}
@@ -90,6 +94,7 @@ bool Options::init()
 		CCLOG("SYSTEM FILE %d", testFileInt);
 	}
 	*/
+	
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
 
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
@@ -158,13 +163,16 @@ bool Options::init()
 			//Needs the logic of the sound effect checkbox to be added here
 			if (EffectsMute==0) 
 			{
-				CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
 				EffectsMute++;
+				CCLOG("First IF");
 			}
 			else {
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeAllEffects();
 				EffectsMute = 0;
+				CCLOG("Else STATEMENT");
 			}
+			//Options::SetSoundEffectMute(EffectsMute);
 			CCLOG(" SOUND EFFECT CHECKBOX PASSED POSTION");
 			break;
 		default:
@@ -205,9 +213,8 @@ bool Options::init()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Slider Moved");
-
-			//MusicSlider->setPercent(MusicSlider->getPercent());
-			Options::SetMusicVolume(MusicSlider->getPercent() / 100);
+			
+			//Options::SetMusicVolume(MusicSlider->getPercent());
 			CCLOG("PASSED POSTION");
 			break;
 		default:
@@ -243,6 +250,7 @@ bool Options::init()
 		origin.y + visibleSize.height - SoundEffectSlider->getContentSize().height * 6));
 
 	//SoundEffectSlider->addEventListener(CC_CALLBACK_2(UISliderTest::sliderEvent, this));
+	SoundEffectSlider->setPercent(SoundEffectsVolumeControl * 100);
 
 	SoundEffectSlider->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
 		switch (type)
@@ -252,7 +260,7 @@ bool Options::init()
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Sound Effect Slider Moved");
 
-			//MusicSlider->setPercent(MusicSlider->getPercent());
+			//Options::SetSoundEffectVolume(SoundEffectSlider->getPercent());
 			CCLOG("SOUND EFFECT PASSED POSTION");
 			break;
 		default:
@@ -291,9 +299,36 @@ double Options::MusicVolume() {
 
 }
 
+
+/*
 void Options::SetMusicVolume(float x) {
-    musicVolumeControl = x;
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(musicVolumeControl);
+    float changedVolume = x;
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(changedVolume/100);
+
+	//FileUtils::getInstance()->addSearchPath("SystemFile");
+	string DataFileName = "System_File.txt";
+	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
+	//CCLOG("%s", fullpath);
+	//std::ofstream ReadFile(fullpath);
+	std::ofstream ReadFile;
+    ReadFile.open(fullpath);
+	string text;
+	if (!ReadFile)
+	{
+		CCLOG("SetMusicVolume FILE NOT FOUND");
+	}
+	else
+	{
+		CCLOG("CHANGING FILE CONTENTS");
+		std::string MV = std::to_string(changedVolume);
+		std::string SEV = std::to_string(SoundEffectsVolumeControl);
+		std::string SEM = std::to_string(EffectsMute);
+		
+		ReadFile << changedVolume << "\n";
+		ReadFile << SoundEffectsVolumeControl <<"\n";
+		ReadFile << EffectsMute << "\n";
+		ReadFile.close();
+	}
 
 	//test to see if the slider works, needs the value system to be fixed
 
@@ -303,5 +338,70 @@ void Options::SetMusicVolume(float x) {
 	//else {
 	//	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 	//}
-	CCLOG("SET VOLUME %f", musicVolumeControl);
+	CCLOG("SET VOLUME %f", changedVolume);
 }
+
+void Options::SetSoundEffectVolume(float x) {
+	float changedVolume = x;
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(changedVolume/100);
+
+	//FileUtils::getInstance()->addSearchPath("SystemFile");
+	string DataFileName = "System_File.txt";
+	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
+	//CCLOG("%s", fullpath);
+	//std::ofstream ReadFile(fullpath);
+	std::ofstream ReadFile;
+	ReadFile.open(fullpath);
+	string text;
+	if (!ReadFile)
+	{
+		CCLOG("SetMusicVolume FILE NOT FOUND");
+	}
+	else
+	{
+		CCLOG("CHANGING FILE CONTENTS");
+		std::string MV = std::to_string(musicVolumeControl);
+		std::string SEV = std::to_string(changedVolume);
+		std::string SEM = std::to_string(EffectsMute);
+
+		ReadFile << musicVolumeControl << "\n";
+		ReadFile << changedVolume << "\n";
+		ReadFile << EffectsMute << "\n";
+		ReadFile.close();
+	}
+
+	CCLOG("SET SE VOLUME %f", changedVolume);
+
+}
+void Options::SetSoundEffectMute(int x) {
+	int changedState = x;
+
+	//FileUtils::getInstance()->addSearchPath("SystemFile");
+	string DataFileName = "System_File.txt";
+	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
+	//CCLOG("%s", fullpath);
+	//std::ofstream ReadFile(fullpath);
+	std::ofstream ReadFile;
+	ReadFile.open(fullpath);
+	string text;
+	if (!ReadFile)
+	{
+		CCLOG("SetMusicVolume FILE NOT FOUND");
+	}
+	else
+	{
+		CCLOG("CHANGING FILE CONTENTS");
+		std::string MV = std::to_string(musicVolumeControl);
+		std::string SEV = std::to_string(SoundEffectsVolumeControl);
+		std::string SEM = std::to_string(changedState);
+
+		ReadFile << musicVolumeControl << "\n";
+		ReadFile << SoundEffectsVolumeControl << "\n";
+		ReadFile << changedState << "\n";
+		ReadFile.close();
+	}
+
+	CCLOG("SET SE VOLUME %d", changedState);
+
+}
+*/

@@ -17,6 +17,9 @@ public:
 	//void MusicVolume(cocos2d::ui::Slider, cocos2d::Event* event);
 	double MusicVolume();
 	void SetMusicVolume(float x);
+	void SetSoundEffectVolume(float x);
+	void SetSoundEffectMute(int x);
+
 	CREATE_FUNC(Options);
 };
 
