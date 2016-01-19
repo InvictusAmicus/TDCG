@@ -10,14 +10,17 @@ Slide has to change the value range from 1-100 to 0.0-1.0
 #include"SimpleAudioEngine.h"
 #include<fstream>
 #include<iostream>
+#include"AudioEngine.h"
 
-float musicVolumeControl;
+int musicVolumeControl;
 float SoundEffectsVolumeControl;
 int EffectsMute;
 int MusicMute;
 char testFile;
 int testFileInt;
-
+float VolumeFloat;
+int change;
+int track = 0;
 
 USING_NS_CC;
 using namespace std;
@@ -48,8 +51,10 @@ bool Options::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	//Options::SetMusicVolume(0.5);
-	
-	/*/////////////////////////////////////
+	   // track = cocos2d::experimental::AudioEngine::play2d("Iris.mp3", true, 1.0f, nullptr);
+	   // cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
+	/////////////////////////////////////
+	/*
 	FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
 	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
@@ -96,7 +101,7 @@ bool Options::init()
 			{
 				getline(ReadFile, text);
 				MusicMute = atoi(text.c_str());
-				CCLOG("EFFECTS MUTE %d", MusicMute);
+				CCLOG("MUSIC MUTE %d", MusicMute);
 			}
 
 			CCLOG("X == %d", x);
@@ -118,7 +123,6 @@ bool Options::init()
 	auto sprite = Sprite::create("Background.png");
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
-
 	
 	auto MusicCheckBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
 		"check_box_normal_press.png",
@@ -128,7 +132,7 @@ bool Options::init()
 	MusicCheckBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - MusicCheckBox->getContentSize().height * 12));
 	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
-	/*////////////////////////////////
+	////////////////////////////////
 	if (MusicMute == 1)
 	{
 		MusicCheckBox->setSelectedState(true);
@@ -137,7 +141,7 @@ bool Options::init()
 	{
 		MusicCheckBox->setSelectedState(false);
 	}
-	*/
+	
 	MusicCheckBox->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
 		switch (type)
 		{
@@ -145,7 +149,8 @@ bool Options::init()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("CHECKBOX");
-			/*//////////////////////////////////
+			//////////////////////////////////
+			/*
 			if(MusicMute==0){
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 				MusicCheckBox->setSelectedState(true);
@@ -158,7 +163,7 @@ bool Options::init()
 				MusicMute = 0;
 			}
 			Options::setMusicMute(MusicMute);
-			*/
+		*/
 			CCLOG("CHECKBOX PASSED POSTION");
 			break;
 		default:
@@ -182,7 +187,7 @@ bool Options::init()
 		"check_box_active_disable.png");
 	SoundEffectCheckBox->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - SoundEffectCheckBox->getContentSize().height * 14));
-	/*//////////////////////////////////////////
+	//////////////////////////////////////////
 	if (EffectsMute == 1) 
 	{
 	    SoundEffectCheckBox->setSelectedState(true);
@@ -191,7 +196,7 @@ bool Options::init()
 	{
 		SoundEffectCheckBox->setSelectedState(false);
 	}
-	*/
+	
 	//checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
 	SoundEffectCheckBox->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
 		switch (type)
@@ -201,7 +206,8 @@ bool Options::init()
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Sound EFFECT CHECKBOX");
 			//Needs the logic of the sound effect checkbox to be added here
-			/*//////////////////////////////////////////////
+			//////////////////////////////////////////////
+			/*
 			if (EffectsMute==0) 
 			{
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
@@ -211,6 +217,7 @@ bool Options::init()
 			}
 			else {
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+				
 				EffectsMute = 0;
 				SoundEffectCheckBox->setSelectedState(false);
 				CCLOG("Else STATEMENT");
@@ -242,7 +249,7 @@ bool Options::init()
 	MusicSlider->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - MusicSlider->getContentSize().height * 4));
 	
-	MusicSlider->setPercent(musicVolumeControl*100);
+	MusicSlider->setPercent(musicVolumeControl);
 	musicVolumeControl = MusicSlider->getPercent();
 
 	//MusicSlider->setPercent(100);
@@ -257,8 +264,52 @@ bool Options::init()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Slider Moved");
+			CCLOG("SLIDER %d", MusicSlider->getPercent());
+			change = MusicSlider->getPercent();
+			VolumeFloat = change;
+			
+			CCLOG("SLIDER %.6f", VolumeFloat);
 			//////////////////////////////
-			//Options::SetMusicVolume(MusicSlider->getPercent());
+			//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(VolumeFloat);
+			/*
+			if (MusicSlider == 0) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.0f);
+			}
+			else if (MusicSlider->getPercent()>0&& MusicSlider->getPercent()<10) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.1f);
+			}
+			else if (MusicSlider->getPercent()>=10 && MusicSlider->getPercent()<20) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.2f);
+			}
+			else if (MusicSlider->getPercent()>=20 && MusicSlider->getPercent()<30) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.3f);
+			}
+			else if (MusicSlider->getPercent()>=30 && MusicSlider->getPercent()<40) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.4f);
+			}
+			else if (MusicSlider->getPercent()>=40 && MusicSlider->getPercent()<50) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.5f);
+			}
+			else if (MusicSlider->getPercent() >= 50 && MusicSlider->getPercent()<60) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.6f);
+			}
+			else if (MusicSlider->getPercent() >= 60 && MusicSlider->getPercent()<70) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.7f);
+			}
+			else if (MusicSlider->getPercent() >= 70 && MusicSlider->getPercent()<80) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.8f);
+			}
+			else if (MusicSlider->getPercent() >= 80 && MusicSlider->getPercent()<90) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 0.9f);
+			}
+			else if (MusicSlider->getPercent() >= 90 && MusicSlider->getPercent()<100) {
+				cocos2d::experimental::AudioEngine::setVolume(t, 1.0f);
+			}
+			else if (MusicSlider->getPercent() == 100) {}
+			
+			//cocos2d::experimental::AudioEngine::setVolume(t, VolumeFloat);
+			Options::SetMusicVolume(change);
+			*/
 			CCLOG("PASSED POSTION");
 			break;
 		default:
@@ -333,6 +384,7 @@ bool Options::init()
 
 void Options::menuReturn(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(track);
 	Director::getInstance()->popScene();
 }
 
@@ -344,12 +396,46 @@ double Options::MusicVolume() {
 }
 
 /*
-void Options::SetMusicVolume(float x) {
+void Options::SetMusicVolume(int x) {
 	musicVolumeControl = x;
-    float changedVolume = x;
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(changedVolume/100);
+    int changedVolume = x;
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(changedVolume);
 
 	//FileUtils::getInstance()->addSearchPath("SystemFile");
+	if (musicVolumeControl == 0) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.0f);
+	}
+	else if (musicVolumeControl>0 && musicVolumeControl<10) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.1f);
+	}
+	else if (musicVolumeControl >= 10 && musicVolumeControl<20) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.2f);
+	}
+	else if (musicVolumeControl >= 20 && musicVolumeControl<30) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.3f);
+	}
+	else if (musicVolumeControl >= 30 && musicVolumeControl<40) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.4f);
+	}
+	else if (musicVolumeControl >= 40 && musicVolumeControl<50) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.5f);
+	}
+	else if (musicVolumeControl >= 50 && musicVolumeControl<60) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.6f);
+	}
+	else if (musicVolumeControl >= 60 && musicVolumeControl<70) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.7f);
+	}
+	else if (musicVolumeControl >= 70 && musicVolumeControl<80) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.8f);
+	}
+	else if (musicVolumeControl >= 80 && musicVolumeControl<90) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 0.9f);
+	}
+	else if (musicVolumeControl >= 90 && musicVolumeControl <=100) {
+		cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
+	}
+
 	string DataFileName = "System_File.txt";
 	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
 	//CCLOG("%s", fullpath);
@@ -384,9 +470,12 @@ void Options::SetMusicVolume(float x) {
 	//else {
 	//	CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 	//}
-	CCLOG("SET VOLUME %f", changedVolume);
+	CCLOG("SET VOLUME %d", changedVolume);
 }
 
+
+//Due to using AudioEngine to change the music volume no sound effects are stated
+//each sound effect has to be stated and lowered using the if/if else statements as in the set music method
 void Options::SetSoundEffectVolume(float x) {
 	SoundEffectsVolumeControl = x;
 	float changedVolume = x;
@@ -422,6 +511,7 @@ void Options::SetSoundEffectVolume(float x) {
 	CCLOG("SET SE VOLUME %f", changedVolume);
 
 }
+
 void Options::SetSoundEffectMute(int x) {
 	int changedState = x;
 
@@ -488,5 +578,10 @@ void Options::setMusicMute(int x) {
 
 	CCLOG("SET SE VOLUME %d", changedState);
 
+}
+
+int getmusicVolume() 
+{
+	return musicVolumeControl;
 }
 */

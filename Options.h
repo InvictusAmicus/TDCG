@@ -16,10 +16,15 @@ public:
 	void menuReturn(cocos2d::Ref* pSender);
 	//void MusicVolume(cocos2d::ui::Slider, cocos2d::Event* event);
 	double MusicVolume();
-	void SetMusicVolume(float x);
+	void SetMusicVolume(int x);
 	void SetSoundEffectVolume(float x);
 	void SetSoundEffectMute(int x);
 	void setMusicMute(int x);
+	int getmusicVolume();
+	//float SoundEffectsVolumeControl;
+	//int EffectsMute;
+	//int MusicMute;
+
 	CREATE_FUNC(Options);
 };
 

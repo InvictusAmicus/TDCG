@@ -5,8 +5,18 @@
 #include "Options.h"
 #include "HowToPlay.h"
 #include "SimpleAudioEngine.h"
+#include <iostream>
+#include<fstream>
+#include "AudioEngine.h"
 
 USING_NS_CC;
+using namespace std;
+
+int StartMusicVolume;
+//float SoundEffectsVolumeControl;
+//int EffectsMute;
+//int MusicMute;
+int StartTrack;
 
 Scene* MainMenu::createScene()
 {
@@ -33,9 +43,13 @@ bool MainMenu::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	
+	//SystemFile();
+	//PlayMusic();
 
 	//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
 	//	"background-music-aac.wav", true);
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.0);
 
 	auto Quit = MenuItemImage::create("Quit.png", "QuitClicked.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
 	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
@@ -107,6 +121,7 @@ bool MainMenu::init()
 
 void MainMenu::menuCloseCallback(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
     Director::getInstance()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -116,6 +131,7 @@ void MainMenu::menuCloseCallback(Ref* pSender)
 
 void MainMenu::menuNewGame(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
 	//Director::getInstance()->end();
 	auto NewGameScene = SinglePlayGame::createScene();
 	//Director::getInstance()->runWithScene(NewGameScene);
@@ -128,24 +144,133 @@ void MainMenu::menuNewGame(Ref* pSender)
 
 void MainMenu::menuMultiPlayer(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
 	auto MultiPlayerScene = MultiPlayerSearch::createScene();
 	Director::getInstance()->pushScene(MultiPlayerScene);
 }
 
 void MainMenu::menuCollection(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
 	auto CollectionScene = Collection::createScene();
 	Director::getInstance()->pushScene(CollectionScene);
 }
 
 void MainMenu::menuOptions(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
 	auto OptionsScene = Options::createScene();
 	Director::getInstance()->pushScene(OptionsScene);
 }
 
 void MainMenu::menuHowToPlay(Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
 	auto HowToPlayScene = HowToPlay::createScene();
 	Director::getInstance()->pushScene(HowToPlayScene);
 }
+
+/*
+void MainMenu::SystemFile() 
+{
+	CCLOG("START OF SYATEM FILE");
+	FileUtils::getInstance()->addSearchPath("SystemFile");
+	string DataFileName = "System_File.txt";
+	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
+	//CCLOG("%s", fullpath);
+	std::ifstream ReadFile(fullpath);
+	string text;
+	if (!ReadFile)
+	{
+		CCLOG("FILE NOT FOUND");
+	}
+	else
+	{
+
+		//
+		//When compiled System_File being read from the debug win32, change values there
+		//
+		for (int x = 0; x < 4; x++)
+		{
+			if (x == 0)
+			{
+				getline(ReadFile, text);
+				int testFileInt = atoi(text.c_str());
+				std::string::size_type sz;
+				StartMusicVolume = std::stof(text, &sz);
+				CCLOG("MVC %d", StartMusicVolume);
+				//	x++;
+			}
+			if (x == 1)
+			{
+				//getline(ReadFile, text);
+				//int testFileInt = atoi(text.c_str());
+				//std::string::size_type sz;
+				//SoundEffectsVolumeControl = std::stof(text, &sz);
+				//CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
+				//	x++;
+			}
+			if (x == 2)
+			{
+				//getline(ReadFile, text);
+				//EffectsMute = atoi(text.c_str());
+				//CCLOG("EFFECTS MUTE %d", EffectsMute);
+			}
+			if (x == 3)
+			{
+				//getline(ReadFile, text);
+				//MusicMute = atoi(text.c_str());
+				//CCLOG("MUSIC MUTE %d", MusicMute);
+			}
+
+			CCLOG("X == %d", x);
+
+		}
+
+		ReadFile.close();
+	}
+	CCLOG("END OF System FILE");
+}
+
+void MainMenu::PlayMusic()
+{
+	CCLOG("START OF PLAY MUSIC");
+	StartTrack = cocos2d::experimental::AudioEngine::play2d("Iris.mp3", true, 1.0f, nullptr);
+	//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
+	if (StartMusicVolume == 0) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.0f);
+	}
+	else if (StartMusicVolume>0 && StartMusicVolume<10) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.1f);
+	}
+	else if (StartMusicVolume >= 10 && StartMusicVolume<20) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.2f);
+	}
+	else if (StartMusicVolume >= 20 && StartMusicVolume<30) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.3f);
+	}
+	else if (StartMusicVolume >= 30 && StartMusicVolume<40) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.4f);
+	}
+	else if (StartMusicVolume >= 40 && StartMusicVolume<50) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.5f);
+	}
+	else if (StartMusicVolume >= 50 && StartMusicVolume<60) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.6f);
+	}
+	else if (StartMusicVolume >= 60 && StartMusicVolume<70) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.7f);
+	}
+	else if (StartMusicVolume >= 70 && StartMusicVolume<80) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.8f);
+	}
+	else if (StartMusicVolume >= 80 && StartMusicVolume<90) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.9f);
+	}
+	else if (StartMusicVolume >= 90 && StartMusicVolume <= 100) {
+		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
+	}
+	
+	CCLOG("END OF PLAY MUSIC");
+}
+*/

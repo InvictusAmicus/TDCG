@@ -21,6 +21,8 @@ public:
 	void menuOptions(cocos2d::Ref* pSender);
 	void menuCollection(cocos2d::Ref* pSender);
 	void menuHowToPlay(cocos2d::Ref* pSender);
+	void SystemFile();
+	void PlayMusic();
     // implement the "static create()" method manually
     CREATE_FUNC(MainMenu);
 };
