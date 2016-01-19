@@ -13,14 +13,18 @@ Slide has to change the value range from 1-100 to 0.0-1.0
 #include"AudioEngine.h"
 
 int musicVolumeControl;
-float SoundEffectsVolumeControl;
+int SoundEffectsVolumeControl;
 int EffectsMute;
 int MusicMute;
 char testFile;
 int testFileInt;
 float VolumeFloat;
 int change;
+
+//background music track, needed to store audioId
 int track = 0;
+//sound effects tracks, needed to store audioId
+int SeTrack1 = 0;
 
 USING_NS_CC;
 using namespace std;
@@ -79,7 +83,7 @@ bool Options::init()
                 int testFileInt = atoi(text.c_str());
 				std::string::size_type sz;     
 				musicVolumeControl = std::stof(text, &sz);
-				CCLOG("MVC %.2f", musicVolumeControl);
+				CCLOG("MVC %d", musicVolumeControl);
 			//	x++;
 			}
 			if (x == 1)
@@ -88,7 +92,7 @@ bool Options::init()
 				int testFileInt = atoi(text.c_str());
 				std::string::size_type sz;     
 				SoundEffectsVolumeControl = std::stof(text, &sz);
-				CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
+				CCLOG("SEVC %d", SoundEffectsVolumeControl);
 			//	x++;
 			}
 			if (x == 2)
@@ -224,6 +228,11 @@ bool Options::init()
 			}
 			Options::SetSoundEffectMute(EffectsMute);
 			*/
+			
+			//Testing a sound effect, does not loop the music but hold sound effects in mp3 file only
+			//SeTrack1 = cocos2d::experimental::AudioEngine::play2d("correct.mp3", false, SoundEffectsVolumeControl, nullptr);
+			//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 1.0f);
+
 			CCLOG(" SOUND EFFECT CHECKBOX PASSED POSTION");
 			break;
 		default:
@@ -266,9 +275,9 @@ bool Options::init()
 			CCLOG("Slider Moved");
 			CCLOG("SLIDER %d", MusicSlider->getPercent());
 			change = MusicSlider->getPercent();
-			VolumeFloat = change;
+			//VolumeFloat = change;
 			
-			CCLOG("SLIDER %.6f", VolumeFloat);
+			CCLOG("SLIDER %d", change);
 			//////////////////////////////
 			//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(VolumeFloat);
 			/*
@@ -388,7 +397,7 @@ void Options::menuReturn(Ref* pSender)
 	Director::getInstance()->popScene();
 }
 
-double Options::MusicVolume() {
+int Options::MusicVolume() {
 
 	CCLOG("Music Volume Changed");
 	return musicVolumeControl;
@@ -487,37 +496,37 @@ void Options::SetSoundEffectVolume(int x) {
 
 	//FileUtils::getInstance()->addSearchPath("SystemFile");
 	if (musicVolumeControl == 0) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.0f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.0f);
 	}
 	else if (musicVolumeControl>0 && musicVolumeControl<10) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.1f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.1f);
 	}
 	else if (musicVolumeControl >= 10 && musicVolumeControl<20) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.2f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.2f);
 	}
 	else if (musicVolumeControl >= 20 && musicVolumeControl<30) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.3f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.3f);
 	}
 	else if (musicVolumeControl >= 30 && musicVolumeControl<40) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.4f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.4f);
 	}
 	else if (musicVolumeControl >= 40 && musicVolumeControl<50) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.5f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.5f);
 	}
 	else if (musicVolumeControl >= 50 && musicVolumeControl<60) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.6f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.6f);
 	}
 	else if (musicVolumeControl >= 60 && musicVolumeControl<70) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.7f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.7f);
 	}
 	else if (musicVolumeControl >= 70 && musicVolumeControl<80) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.8f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.8f);
 	}
 	else if (musicVolumeControl >= 80 && musicVolumeControl<90) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 0.9f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 0.9f);
 	}
 	else if (musicVolumeControl >= 90 && musicVolumeControl <= 100) {
-		//cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
+		//cocos2d::experimental::AudioEngine::setVolume(SeTrack, 1.0f);
 	}
 
 
@@ -548,7 +557,7 @@ void Options::SetSoundEffectVolume(int x) {
 		ReadFile.close();
 	}
 
-	CCLOG("SET SE VOLUME %f", changedVolume);
+	CCLOG("SET SE VOLUME %d", changedVolume);
 
 }
 
@@ -624,4 +633,10 @@ int getmusicVolume()
 {
 	return musicVolumeControl;
 }
+
+int getSounfEffectVolume()
+{
+    return SoundEffectsVolumeControl;
+}
+
 */

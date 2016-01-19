@@ -15,12 +15,13 @@ public:
 	// a selector callback
 	void menuReturn(cocos2d::Ref* pSender);
 	//void MusicVolume(cocos2d::ui::Slider, cocos2d::Event* event);
-	double MusicVolume();
+	int MusicVolume();
 	void SetMusicVolume(int x);
-	void SetSoundEffectVolume(float x);
+	void SetSoundEffectVolume(int x);
 	void SetSoundEffectMute(int x);
 	void setMusicMute(int x);
 	int getmusicVolume();
+	int getSounfEffectVolume();
 	//float SoundEffectsVolumeControl;
 	//int EffectsMute;
 	//int MusicMute;
