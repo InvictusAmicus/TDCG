@@ -476,10 +476,50 @@ void Options::SetMusicVolume(int x) {
 
 //Due to using AudioEngine to change the music volume no sound effects are stated
 //each sound effect has to be stated and lowered using the if/if else statements as in the set music method
-void Options::SetSoundEffectVolume(float x) {
+//track needs to be changed for the soundeffects being used
+void Options::SetSoundEffectVolume(int x) {
 	SoundEffectsVolumeControl = x;
-	float changedVolume = x;
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(changedVolume/100);
+	//float changedVolume = x;
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(changedVolume/100);
+
+	int changedVolume = x;
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(changedVolume);
+
+	//FileUtils::getInstance()->addSearchPath("SystemFile");
+	if (musicVolumeControl == 0) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.0f);
+	}
+	else if (musicVolumeControl>0 && musicVolumeControl<10) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.1f);
+	}
+	else if (musicVolumeControl >= 10 && musicVolumeControl<20) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.2f);
+	}
+	else if (musicVolumeControl >= 20 && musicVolumeControl<30) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.3f);
+	}
+	else if (musicVolumeControl >= 30 && musicVolumeControl<40) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.4f);
+	}
+	else if (musicVolumeControl >= 40 && musicVolumeControl<50) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.5f);
+	}
+	else if (musicVolumeControl >= 50 && musicVolumeControl<60) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.6f);
+	}
+	else if (musicVolumeControl >= 60 && musicVolumeControl<70) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.7f);
+	}
+	else if (musicVolumeControl >= 70 && musicVolumeControl<80) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.8f);
+	}
+	else if (musicVolumeControl >= 80 && musicVolumeControl<90) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 0.9f);
+	}
+	else if (musicVolumeControl >= 90 && musicVolumeControl <= 100) {
+		//cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
+	}
+
 
 	//FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
