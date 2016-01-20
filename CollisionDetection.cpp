@@ -22,14 +22,17 @@ int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
 	if (ColGrid[x][y - 1] == 'N') {
 		ColGrid[x][y - 1] = c;
 		ColGrid[x][y] = 'N';
+		CCLOG("Returning 0");
 		return 0;
 	}
 	//returns a value of 2 if it finds a Player Sprite in next space
 	else if (ColGrid[x][y - 1] == 'P') {
+		CCLOG("Returning 2");
 		return 2;
 	}
 	//returns a value of one if another enemy is in front of it
 	else {
+		CCLOG("Returning 1");
 		return 1;
 	}
 
@@ -52,7 +55,7 @@ void CollisionDetection::registerObject(int x, int y, char c) {
 		ColGrid[x][y] = c;
 	}
 	else {
-		std::cout << "Postion already took" << std::endl;
+		CCLOG("Postion already took");
 	}
 	CCLOG("registerObject Completed");
 
