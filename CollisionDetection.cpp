@@ -5,14 +5,42 @@
 char ColGrid[10][5];
 int loop = 0;
 
-void CollisionDetection::registerObject() {}
+int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
+	
+	//Creates grid and adds the char N into each space
+	//Using N to stand for Not Taken, can be changed later
+	if (loop == 0) {
+		for (int i = 0;i < 10;i++) {
+			for (int j = 0;j < 5;j++) {
+				ColGrid[i][j] = 'N';
+			}
+		}
+		this->loop = 1;
+	}
 
-void CollisionDetection::CollisionDetect(int x, int y, char c) {
+	//checks to see if the available space is clear
+	if (ColGrid[x][y - 1] == 'N') {
+		ColGrid[x][y - 1] = c;
+		ColGrid[x][y] = 'N';
+		return 0;
+	}
+	//returns a value of 2 if it finds a Player Sprite in next space
+	else if (ColGrid[x][y - 1] == 'P') {
+		return 2;
+	}
+	//returns a value of one if another enemy is in front of it
+	else {
+		return 1;
+	}
+
+}
+
+void CollisionDetection::registerObject(int x, int y, char c) {
 
 	//creates the grid if it is not made
 	if (loop == 0) {
-		for (int i = 0;i < 8;i++) {
-			for (int j = 0;j < 8;j++) {
+		for (int i = 0;i < 10;i++) {
+			for (int j = 0;j < 5;j++) {
 				ColGrid[i][j] = 'N';
 			}
 		}
@@ -26,6 +54,6 @@ void CollisionDetection::CollisionDetect(int x, int y, char c) {
 	else {
 		std::cout << "Postion already took" << std::endl;
 	}
-	std::cout << "WORKED" << std::endl;
+	CCLOG("registerObject Completed");
 
 }

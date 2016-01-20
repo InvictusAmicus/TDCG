@@ -7,8 +7,8 @@ class CollisionDetection
 	~CollisionDetection();
 	bool init();
 public:
-	void registerObject();
-	void CollisionDetect(int x, int y, char c);
+	void registerObject(int x, int y, char c);
+	int enemyCollisionDetect(int x, int y, char c);
 	int loop = 0;
 };
 
