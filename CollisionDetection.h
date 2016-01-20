@@ -6,6 +6,10 @@ class CollisionDetection
 	CollisionDetection();
 	~CollisionDetection();
 	bool init();
+public:
+	void registerObject();
+	void CollisionDetect(int x, int y, char c);
+	int loop = 0;
 };
 
 #endif // __COLLISIONDETECTION_H__
