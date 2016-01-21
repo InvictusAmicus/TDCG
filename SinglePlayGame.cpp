@@ -4,7 +4,7 @@
 #include "SimpleAudioEngine.h"
 #include "Card.h"
 #include "Player.h"
-
+#include "CollisionDetection.h"
 
 
 USING_NS_CC;
@@ -45,7 +45,7 @@ Scene* SinglePlayGame::createScene()
 
 	// add layer as a child to scene
 	NewGameScene->addChild(layer);
-
+	
 	// return the scene
 	return NewGameScene;
 }
