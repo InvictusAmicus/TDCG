@@ -529,21 +529,45 @@ void SinglePlayGame::displayHand(Player* p)
 			target->setOpacity(255);
 			//Dragging the sprites to the relevent postion
 			if (p->getCardInHand(1)->getType() == 't') {
+				//Col - 0  Grid postion 0-0
 				if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 413 && target->getPosition().y < 508) 
 				{
 					target->setPosition(176,478);
 				}
+				//Col - 0  Grid postion 0-1
 				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 359 && target->getPosition().y < 431) 
 				{
 					target->setPosition(174, 402);
 				}
+				//Col - 0  Grid postion 0-2
 				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 286 && target->getPosition().y < 359)
 				{
 					target->setPosition(174, 330);
 				}
+				//Col - 0  Grid postion 0-3
 				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 205 && target->getPosition().y < 286)
 				{
 					target->setPosition(174, 256);
+				}
+				//Col - 1  Grid postion 1-0
+				else if (target->getPosition().x > 213 && target->getPosition().x < 288 && target->getPosition().y > 413 && target->getPosition().y < 508)
+				{
+					target->setPosition(250, 478);
+				}
+				//Col - 1  Grid postion 1-1
+				else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 359 && target->getPosition().y < 413)
+				{
+					target->setPosition(250, 402);
+				}
+				//Col - 1  Grid postion 1-2
+				else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 286 && target->getPosition().y < 359)
+				{
+					target->setPosition(250, 330);
+				}
+				//Col - 1  Grid postion 1-3
+				else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 205 && target->getPosition().y < 286)
+				{
+					target->setPosition(250, 258);
 				}
 				else {
 					target->setTexture("SampleCard.png");
