@@ -527,6 +527,31 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
+			//Dragging the sprites to the relevent postion
+			if (p->getCardInHand(1)->getType() == 't') {
+				if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 413 && target->getPosition().y < 508) 
+				{
+					target->setPosition(176,478);
+				}
+				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 359 && target->getPosition().y < 431) 
+				{
+					target->setPosition(174, 402);
+				}
+				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 286 && target->getPosition().y < 359)
+				{
+					target->setPosition(174, 330);
+				}
+				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 205 && target->getPosition().y < 286)
+				{
+					target->setPosition(174, 256);
+				}
+				else {
+					target->setTexture("SampleCard.png");
+					target->setScale(1.0);
+					target->setOpacity(255);
+				}
+			
+			}
 
 		}
 		else
