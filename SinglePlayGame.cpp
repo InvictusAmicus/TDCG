@@ -569,6 +569,46 @@ void SinglePlayGame::displayHand(Player* p)
 				{
 					target->setPosition(250, 258);
 				}
+				//Col - 2  Grid postion 2-0
+				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 413 && target->getPosition().y < 508)
+				{
+					target->setPosition(325, 478);
+				}
+				//Col - 2  Grid postion 2-1
+				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 359 && target->getPosition().y < 413)
+				{
+					target->setPosition(325, 402);
+				}
+				//Col - 2  Grid postion 2-2
+				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 286 && target->getPosition().y < 359)
+				{
+					target->setPosition(325, 330);
+				}
+				//Col - 2  Grid postion 2-3
+				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 205 && target->getPosition().y < 286)
+				{
+					target->setPosition(325, 258);
+				}
+				//Col - 3  Grid postion 3-0
+				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 413 && target->getPosition().y < 508)
+				{
+					target->setPosition(401, 478);
+				}
+				//Col - 3  Grid postion 3-1
+				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 359 && target->getPosition().y < 413)
+				{
+					target->setPosition(401, 402);
+				}
+				//Col - 3  Grid postion 3-2
+				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 286 && target->getPosition().y < 359)
+				{
+					target->setPosition(401, 330);
+				}
+				//Col - 3  Grid postion 3-3
+				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 205 && target->getPosition().y < 286)
+				{
+					target->setPosition(401, 258);
+				}
 				else {
 					target->setTexture("SampleCard.png");
 					target->setScale(1.0);
