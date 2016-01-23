@@ -537,7 +537,7 @@ void SinglePlayGame::displayHand(Player* p)
 	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
 
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		CollisionDetection TowerReg;
+		CollisionDetection RegObjects;
 		//TestArea->setOpacity(0);
 		//TowerArea->setOpacity(0);
 		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
@@ -552,13 +552,14 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
-			//Dragging the sprites to the relevent postion
+			//Dragging the Tower sprites to the relevent postion
 			if (p->getCardInHand(1)->getType() == 't') {
-				if (resource >= 20) {
+				if (resource >= 20) 
+				{
 					//Col - 0  Grid postion 0-0
 					if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 413 && target->getPosition().y < 508)
 					{
-						if (TowerReg.registerTower(0, 0, 'T') == 0)
+						if (RegObjects.registerTower(0, 0, 'T') == 0)
 						{
 							target->setPosition(176, 478);
 							resource = resource - 20;
@@ -578,7 +579,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 0  Grid postion 0-1
 					else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 359 && target->getPosition().y < 431)
 					{
-						if (TowerReg.registerTower(0, 1, 'T') == 0)
+						if (RegObjects.registerTower(0, 1, 'T') == 0)
 						{
 							target->setPosition(174, 402);
 							resource = resource - 20;
@@ -587,6 +588,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(5.0);
@@ -598,7 +600,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 0  Grid postion 0-2
 					else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 286 && target->getPosition().y < 359)
 					{
-						if (TowerReg.registerTower(0, 2, 'T') == 0)
+						if (RegObjects.registerTower(0, 2, 'T') == 0)
 						{
 							target->setPosition(174, 330);
 							resource = resource - 20;
@@ -607,6 +609,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(3.0);
@@ -616,7 +619,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 0  Grid postion 0-3
 					else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 205 && target->getPosition().y < 286)
 					{
-						if (TowerReg.registerTower(0, 3, 'T') == 0)
+						if (RegObjects.registerTower(0, 3, 'T') == 0)
 						{
 							target->setPosition(174, 256);
 							resource = resource - 20;
@@ -625,6 +628,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(3.0);
@@ -634,7 +638,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 1  Grid postion 1-0
 					else if (target->getPosition().x > 213 && target->getPosition().x < 288 && target->getPosition().y > 413 && target->getPosition().y < 508)
 					{
-						if (TowerReg.registerTower(1, 0, 'T') == 0)
+						if (RegObjects.registerTower(1, 0, 'T') == 0)
 						{
 							target->setPosition(250, 478);
 							resource = resource - 20;
@@ -643,6 +647,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -652,7 +657,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 1  Grid postion 1-1
 					else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 359 && target->getPosition().y < 413)
 					{
-						if (TowerReg.registerTower(1, 1, 'T') == 0)
+						if (RegObjects.registerTower(1, 1, 'T') == 0)
 						{
 							target->setPosition(250, 402);
 							resource = resource - 20;
@@ -661,6 +666,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -670,7 +676,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 1  Grid postion 1-2
 					else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 286 && target->getPosition().y < 359)
 					{
-						if (TowerReg.registerTower(1, 2, 'T') == 0)
+						if (RegObjects.registerTower(1, 2, 'T') == 0)
 						{
 							target->setPosition(250, 330);
 							resource = resource - 20;
@@ -679,6 +685,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -688,7 +695,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 1  Grid postion 1-3
 					else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 205 && target->getPosition().y < 286)
 					{
-						if (TowerReg.registerTower(1, 3, 'T') == 0)
+						if (RegObjects.registerTower(1, 3, 'T') == 0)
 						{
 							target->setPosition(250, 258);
 							resource = resource - 20;
@@ -697,6 +704,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -706,7 +714,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 2  Grid postion 2-0
 					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 413 && target->getPosition().y < 508)
 					{
-						if (TowerReg.registerTower(2, 0, 'T') == 0)
+						if (RegObjects.registerTower(2, 0, 'T') == 0)
 						{
 							target->setPosition(325, 478);
 							resource = resource - 20;
@@ -715,6 +723,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -724,7 +733,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 2  Grid postion 2-1
 					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 359 && target->getPosition().y < 413)
 					{
-						if (TowerReg.registerTower(2, 1, 'T') == 0)
+						if (RegObjects.registerTower(2, 1, 'T') == 0)
 						{
 							target->setPosition(325, 402);
 							resource = resource - 20;
@@ -733,6 +742,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -742,7 +752,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 2  Grid postion 2-2
 					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 286 && target->getPosition().y < 359)
 					{
-						if (TowerReg.registerTower(2, 2, 'T') == 0)
+						if (RegObjects.registerTower(2, 2, 'T') == 0)
 						{
 							target->setPosition(325, 330);
 							resource = resource - 20;
@@ -751,6 +761,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -760,7 +771,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 2  Grid postion 2-3
 					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 205 && target->getPosition().y < 286)
 					{
-						if (TowerReg.registerTower(2, 3, 'T') == 0)
+						if (RegObjects.registerTower(2, 3, 'T') == 0)
 						{
 							target->setPosition(325, 258);
 							resource = resource - 20;
@@ -769,6 +780,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -778,7 +790,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 3  Grid postion 3-0
 					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 413 && target->getPosition().y < 508)
 					{
-						if (TowerReg.registerTower(3, 0, 'T') == 0)
+						if (RegObjects.registerTower(3, 0, 'T') == 0)
 						{
 							target->setPosition(401, 478);
 							resource = resource - 20;
@@ -787,6 +799,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -796,7 +809,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 3  Grid postion 3-1
 					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 359 && target->getPosition().y < 413)
 					{
-						if (TowerReg.registerTower(3, 1, 'T') == 0)
+						if (RegObjects.registerTower(3, 1, 'T') == 0)
 						{
 							target->setPosition(401, 402);
 							resource = resource - 20;
@@ -805,6 +818,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -814,7 +828,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 3  Grid postion 3-2
 					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 286 && target->getPosition().y < 359)
 					{
-						if (TowerReg.registerTower(3, 2, 'T') == 0)
+						if (RegObjects.registerTower(3, 2, 'T') == 0)
 						{
 							target->setPosition(401, 330);
 							resource = resource - 20;
@@ -823,6 +837,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -832,7 +847,7 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 3  Grid postion 3-3
 					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 205 && target->getPosition().y < 286)
 					{
-						if (TowerReg.registerTower(3, 3, 'T') == 0)
+						if (RegObjects.registerTower(3, 3, 'T') == 0)
 						{
 							target->setPosition(401, 258);
 							resource = resource - 20;
@@ -841,6 +856,7 @@ void SinglePlayGame::displayHand(Player* p)
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 							//target->setTexture(spriteTemplate->getTexture());
 							//target->setScale(2.0);
@@ -851,6 +867,7 @@ void SinglePlayGame::displayHand(Player* p)
 						//target->setTexture(spriteTemplate->getTexture());
 						//spriteTemplate->setTexture("TransparentSprite.png");
 						target->setTexture("SampleCard.png");
+						target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 					}
 				}
 				else 
@@ -859,10 +876,37 @@ void SinglePlayGame::displayHand(Player* p)
 					CCLOG("No Resource available");
 					target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 					//target->setTexture(spriteTemplate->getTexture());
-					//target->setScale(2.0);
+					//target->setScale(1.0);
 					//spriteTemplate->setTexture("TransparentSprite.png");
 				}
 			
+			}
+
+			else
+			{
+				//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
+				//target->setPosition(Vec2(OriginalX, OriginalY));
+				//target->setTexture(spriteTemplate->getTexture());
+				target->setScale(1.0);
+				target->setOpacity(255);
+
+			}
+
+			//Dragging the Soldier sprites to the relevent postion
+			//code needs to be added
+			if (p->getCardInHand(1)->getType() == 's') 
+			{
+				if (resource >= 10) 
+				{
+				
+				}
+				else 
+				{
+					ChangeText->setString("Not enough resources");
+					CCLOG("No Resource available");
+					target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+					//target->setScale(0.5);
+				}
 			}
 
 		}
