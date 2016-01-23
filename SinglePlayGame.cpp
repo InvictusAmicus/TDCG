@@ -11,7 +11,10 @@ USING_NS_CC;
 
 int life;
 int resource;
+int TowerGridLoop;
 //int TowerAreaArray[3][3];
+float OriginalXPos, OriginalYPos;
+
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
@@ -69,7 +72,8 @@ bool SinglePlayGame::init()
 
 	life = 100;
 	resource = 100;
-
+	CollisionDetection CreateTheGrids;
+	CreateTheGrids.CreateGrids();
 	/*
 		when moving to the GameOver screen, pass life in.
 		if(life > 0)
@@ -459,8 +463,8 @@ void SinglePlayGame::displayHand(Player* p)
 			Size s = target->getContentSize();
 			Rect rect = Rect(0, 0, s.width, s.height);
 
-			//OriginalX = target->getPosition().x;
-			//OriginalY = target->getPosition().y;
+			OriginalXPos = target->getPosition().x;
+			OriginalYPos = target->getPosition().y;
 
 			log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
 
@@ -515,6 +519,7 @@ void SinglePlayGame::displayHand(Player* p)
 	listener1->onTouchEnded = [=](Touch* touch, Event* event) {
 
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		CollisionDetection TowerReg;
 		//TestArea->setOpacity(0);
 		//TowerArea->setOpacity(0);
 		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
@@ -522,97 +527,250 @@ void SinglePlayGame::displayHand(Player* p)
         //CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
 	    //"pew-pew-lei.wav");
 
-
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
 		{
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
 			//Dragging the sprites to the relevent postion
 			if (p->getCardInHand(1)->getType() == 't') {
-				//Col - 0  Grid postion 0-0
-				if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 413 && target->getPosition().y < 508) 
-				{
-					target->setPosition(176,478);
+				if (resource >= 20) {
+					//Col - 0  Grid postion 0-0
+					if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 413 && target->getPosition().y < 508)
+					{
+						if (TowerReg.registerTower(0, 0, 'T') == 0)
+						{
+							target->setPosition(176, 478);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture("SampleCard.png");
+							target->setScale(1.0);
+							target->setOpacity(255);
+						}
+					}
+					//Col - 0  Grid postion 0-1
+					else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 359 && target->getPosition().y < 431)
+					{
+						if (TowerReg.registerTower(0, 1, 'T') == 0)
+						{
+							target->setPosition(174, 402);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 0  Grid postion 0-2
+					else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 286 && target->getPosition().y < 359)
+					{
+						if (TowerReg.registerTower(0, 2, 'T') == 0)
+						{
+							target->setPosition(174, 330);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 0  Grid postion 0-3
+					else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 205 && target->getPosition().y < 286)
+					{
+						if (TowerReg.registerTower(0, 3, 'T') == 0)
+						{
+							target->setPosition(174, 256);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 1  Grid postion 1-0
+					else if (target->getPosition().x > 213 && target->getPosition().x < 288 && target->getPosition().y > 413 && target->getPosition().y < 508)
+					{
+						if (TowerReg.registerTower(1, 0, 'T') == 0)
+						{
+							target->setPosition(250, 478);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 1  Grid postion 1-1
+					else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 359 && target->getPosition().y < 413)
+					{
+						if (TowerReg.registerTower(1, 1, 'T') == 0)
+						{
+							target->setPosition(250, 402);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 1  Grid postion 1-2
+					else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 286 && target->getPosition().y < 359)
+					{
+						if (TowerReg.registerTower(1, 2, 'T') == 0)
+						{
+							target->setPosition(250, 330);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 1  Grid postion 1-3
+					else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 205 && target->getPosition().y < 286)
+					{
+						if (TowerReg.registerTower(1, 3, 'T') == 0)
+						{
+							target->setPosition(250, 258);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 2  Grid postion 2-0
+					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 413 && target->getPosition().y < 508)
+					{
+						if (TowerReg.registerTower(2, 0, 'T') == 0)
+						{
+							target->setPosition(325, 478);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 2  Grid postion 2-1
+					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 359 && target->getPosition().y < 413)
+					{
+						if (TowerReg.registerTower(2, 1, 'T') == 0)
+						{
+							target->setPosition(325, 402);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 2  Grid postion 2-2
+					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 286 && target->getPosition().y < 359)
+					{
+						if (TowerReg.registerTower(2, 2, 'T') == 0)
+						{
+							target->setPosition(325, 330);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 2  Grid postion 2-3
+					else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 205 && target->getPosition().y < 286)
+					{
+						if (TowerReg.registerTower(2, 3, 'T') == 0)
+						{
+							target->setPosition(325, 258);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 3  Grid postion 3-0
+					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 413 && target->getPosition().y < 508)
+					{
+						if (TowerReg.registerTower(3, 0, 'T') == 0)
+						{
+							target->setPosition(401, 478);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 3  Grid postion 3-1
+					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 359 && target->getPosition().y < 413)
+					{
+						if (TowerReg.registerTower(3, 1, 'T') == 0)
+						{
+							target->setPosition(401, 402);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 3  Grid postion 3-2
+					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 286 && target->getPosition().y < 359)
+					{
+						if (TowerReg.registerTower(3, 2, 'T') == 0)
+						{
+							target->setPosition(401, 330);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					//Col - 3  Grid postion 3-3
+					else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 205 && target->getPosition().y < 286)
+					{
+						if (TowerReg.registerTower(3, 3, 'T') == 0)
+						{
+							target->setPosition(401, 258);
+							resource = resource - 20;
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
+					}
+					else {
+						target->setTexture("SampleCard.png");
+						target->setScale(1.0);
+						target->setOpacity(255);
+					}
 				}
-				//Col - 0  Grid postion 0-1
-				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 359 && target->getPosition().y < 431) 
+				else 
 				{
-					target->setPosition(174, 402);
-				}
-				//Col - 0  Grid postion 0-2
-				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 286 && target->getPosition().y < 359)
-				{
-					target->setPosition(174, 330);
-				}
-				//Col - 0  Grid postion 0-3
-				else if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 205 && target->getPosition().y < 286)
-				{
-					target->setPosition(174, 256);
-				}
-				//Col - 1  Grid postion 1-0
-				else if (target->getPosition().x > 213 && target->getPosition().x < 288 && target->getPosition().y > 413 && target->getPosition().y < 508)
-				{
-					target->setPosition(250, 478);
-				}
-				//Col - 1  Grid postion 1-1
-				else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 359 && target->getPosition().y < 413)
-				{
-					target->setPosition(250, 402);
-				}
-				//Col - 1  Grid postion 1-2
-				else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 286 && target->getPosition().y < 359)
-				{
-					target->setPosition(250, 330);
-				}
-				//Col - 1  Grid postion 1-3
-				else if (target->getPosition().x >= 213 && target->getPosition().x < 288 && target->getPosition().y > 205 && target->getPosition().y < 286)
-				{
-					target->setPosition(250, 258);
-				}
-				//Col - 2  Grid postion 2-0
-				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 413 && target->getPosition().y < 508)
-				{
-					target->setPosition(325, 478);
-				}
-				//Col - 2  Grid postion 2-1
-				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 359 && target->getPosition().y < 413)
-				{
-					target->setPosition(325, 402);
-				}
-				//Col - 2  Grid postion 2-2
-				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 286 && target->getPosition().y < 359)
-				{
-					target->setPosition(325, 330);
-				}
-				//Col - 2  Grid postion 2-3
-				else if (target->getPosition().x > 288 && target->getPosition().x < 365 && target->getPosition().y > 205 && target->getPosition().y < 286)
-				{
-					target->setPosition(325, 258);
-				}
-				//Col - 3  Grid postion 3-0
-				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 413 && target->getPosition().y < 508)
-				{
-					target->setPosition(401, 478);
-				}
-				//Col - 3  Grid postion 3-1
-				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 359 && target->getPosition().y < 413)
-				{
-					target->setPosition(401, 402);
-				}
-				//Col - 3  Grid postion 3-2
-				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 286 && target->getPosition().y < 359)
-				{
-					target->setPosition(401, 330);
-				}
-				//Col - 3  Grid postion 3-3
-				else if (target->getPosition().x > 365 && target->getPosition().x < 505 && target->getPosition().y > 205 && target->getPosition().y < 286)
-				{
-					target->setPosition(401, 258);
-				}
-				else {
-					target->setTexture("SampleCard.png");
-					target->setScale(1.0);
-					target->setOpacity(255);
+					CCLOG("No Resource available");
+					target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 				}
 			
 			}
@@ -627,6 +785,9 @@ void SinglePlayGame::displayHand(Player* p)
 			target->setOpacity(255);
 			
 		}
+		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+		std::string StringResource = std::to_string(resource);
+		ChangeResource->setString(StringResource);
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
 

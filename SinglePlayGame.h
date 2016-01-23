@@ -21,6 +21,7 @@ public:
 	void WonGame();
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+	int TowerGridLoop;
 
 	//cocos2d::Label *LifeLabelValue;
 

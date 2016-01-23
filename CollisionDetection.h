@@ -3,13 +3,16 @@
 
 class CollisionDetection
 {
+public:
 	CollisionDetection();
 	~CollisionDetection();
 	bool init();
-public:
+
 	void registerObject(int x, int y, char c);
 	int enemyCollisionDetect(int x, int y, char c);
-	int loop = 0;
+	int registerTower(int x, int y, char c);
+	void CreateGrids();
+
 };
 
 #endif // __COLLISIONDETECTION_H__
