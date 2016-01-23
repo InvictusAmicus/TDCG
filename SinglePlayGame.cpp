@@ -15,6 +15,7 @@ int TowerGridLoop;
 //int TowerAreaArray[3][3];
 float OriginalXPos, OriginalYPos;
 
+#define ErrorFeedback 1233
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
@@ -116,6 +117,11 @@ bool SinglePlayGame::init()
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
 	this->addChild(ResourceLabelValue,1, LabelTagResource);
 
+	auto FeedBackLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
+	FeedBackLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 70,
+		origin.y + visibleSize.height - 100));
+	FeedBackLabel->setColor(ccc3(0, 0, 0));
+	this->addChild(FeedBackLabel, 1, ErrorFeedback);
 
 	auto BackgroundSprite = Sprite::create("Background.png");
 	BackgroundSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
@@ -405,6 +411,13 @@ void SinglePlayGame::displayHand(Player* p)
 		sprite->setPosition(Vec2(100 + (i * 100), 50));
 		this->addChild(sprite, 1, handSprite1 + i);
 	}
+	
+	//auto spriteTemplate = cocos2d::Sprite::create("HelloWorld.png");
+	//spriteTemplate->setTexture("TransparentSprite.png");
+	//spriteTemplate->setPosition(-50, -50);
+	//this->addChild(spriteTemplate, 0);
+	
+	
 	// turn auto sprite into auto MenuItemImage
 /*	int i;
 	auto image = MenuItemImage::create();
@@ -443,8 +456,13 @@ void SinglePlayGame::displayHand(Player* p)
 	auto listener1 = EventListenerTouchOneByOne::create();
 	listener1->setSwallowTouches(true);
 
-	listener1->onTouchBegan = [](Touch* touch, Event* event) {
+	listener1->onTouchBegan = [=](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
+		
+		//spriteTemplate->setTexture(target->getTexture());
+		//spriteTemplate->setScaleX(target->getScaleX());
+		//spriteTemplate->setScaleY(target->getScaleY());
+		
 		CCLOG("Touch");
 		//target->getTag();
 		//add in code so it doesn't touch anything within the grid
@@ -527,6 +545,9 @@ void SinglePlayGame::displayHand(Player* p)
         //CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
 	    //"pew-pew-lei.wav");
 
+		CCLabelBMFont* ChangeText = (CCLabelBMFont*)getChildByTag(ErrorFeedback);
+
+//Scale of images when they return to the hand need fixed
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
 		{
 			log("sprite onTouchesEnded.. ");
@@ -541,14 +562,17 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(176, 478);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
-							target->setTexture("SampleCard.png");
-							target->setScale(1.0);
-							target->setOpacity(255);
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//target->setContentSize(spriteTemplate->getContentSize());
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 0  Grid postion 0-1
@@ -558,11 +582,17 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(174, 402);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(5.0);
+							//target->setScaleX(spriteTemplate->getScaleX());
+							//target->setScaleY(spriteTemplate->getScaleY());
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 0  Grid postion 0-2
@@ -572,11 +602,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(174, 330);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(3.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 0  Grid postion 0-3
@@ -586,11 +620,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(174, 256);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(3.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 1  Grid postion 1-0
@@ -600,11 +638,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(250, 478);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 1  Grid postion 1-1
@@ -614,11 +656,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(250, 402);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 1  Grid postion 1-2
@@ -628,11 +674,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(250, 330);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 1  Grid postion 1-3
@@ -642,11 +692,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(250, 258);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 2  Grid postion 2-0
@@ -656,11 +710,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(325, 478);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 2  Grid postion 2-1
@@ -670,11 +728,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(325, 402);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 2  Grid postion 2-2
@@ -684,11 +746,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(325, 330);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 2  Grid postion 2-3
@@ -698,11 +764,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(325, 258);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 3  Grid postion 3-0
@@ -712,11 +782,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(401, 478);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 3  Grid postion 3-1
@@ -726,11 +800,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(401, 402);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 3  Grid postion 3-2
@@ -740,11 +818,15 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(401, 330);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					//Col - 3  Grid postion 3-3
@@ -754,23 +836,31 @@ void SinglePlayGame::displayHand(Player* p)
 						{
 							target->setPosition(401, 258);
 							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
 						}
 						else
 						{
 							CCLOG("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//spriteTemplate->setTexture("TransparentSprite.png");
 						}
 					}
 					else {
+						//target->setTexture(spriteTemplate->getTexture());
+						//spriteTemplate->setTexture("TransparentSprite.png");
 						target->setTexture("SampleCard.png");
-						target->setScale(1.0);
-						target->setOpacity(255);
 					}
 				}
 				else 
 				{
+					ChangeText->setString("Not enough resources");
 					CCLOG("No Resource available");
 					target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+					//target->setTexture(spriteTemplate->getTexture());
+					//target->setScale(2.0);
+					//spriteTemplate->setTexture("TransparentSprite.png");
 				}
 			
 			}
@@ -780,7 +870,7 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
 			//target->setPosition(Vec2(OriginalX, OriginalY));
-			target->setTexture("SampleCard.png");
+			//target->setTexture(spriteTemplate->getTexture());
 			target->setScale(1.0);
 			target->setOpacity(255);
 			
