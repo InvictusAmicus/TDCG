@@ -882,15 +882,6 @@ void SinglePlayGame::displayHand(Player* p)
 			
 			}
 
-			else
-			{
-				//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
-				//target->setPosition(Vec2(OriginalX, OriginalY));
-				//target->setTexture(spriteTemplate->getTexture());
-				target->setScale(1.0);
-				target->setOpacity(255);
-
-			}
 
 			//Dragging the Soldier sprites to the relevent postion
 			//code needs to be added
@@ -898,7 +889,111 @@ void SinglePlayGame::displayHand(Player* p)
 			{
 				if (resource >= 10) 
 				{
-				
+					//Col - 0  Grid postion 0-0
+					if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 472 && target->getPosition().y < 545)
+					{
+
+					}
+					//Col - 0  Grid postion 0-1
+					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 395 && target->getPosition().y <= 472) 
+					{
+					
+					}
+					//Col - 0  Grid postion 0-2
+					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+					{
+
+					}
+					//Col - 0  Grid postion 0-3
+					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+					{
+
+					}
+					//Col - 0  Grid postion 0-3
+					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+					{
+
+					}					
+					//Col - 1  Grid postion 1-0
+					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 472 && target->getPosition().y < 545)
+					{
+					}
+					//Col - 1  Grid postion 1-1
+					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+					{
+					}
+					//Col - 1  Grid postion 1-2
+					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+					{
+					}
+					//Col - 1  Grid postion 1-3
+					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+					{
+					}
+					//Col - 1  Grid postion 1-4
+					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+					{
+					}
+					//Col - 2  Grid postion 2-0
+					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 472 && target->getPosition().y < 545)
+					{
+					}
+					//Col - 2  Grid postion 2-1
+					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+					{
+					}
+					//Col - 2  Grid postion 2-2
+					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+					{
+					}
+					//Col - 2  Grid postion 2-3
+					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+					{
+					}
+					//Col - 2  Grid postion 2-4
+					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+					{
+					}				
+					//Col - 3  Grid postion 3-0
+					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 472 && target->getPosition().y < 545)
+					{
+					}
+					//Col - 3  Grid postion 3-1
+					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+					{
+					}
+					//Col - 3  Grid postion 3-2
+					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+					{
+					}
+					//Col - 3  Grid postion 3-3
+					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+					{
+					}
+					//Col - 3  Grid postion 3-4
+					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+					{
+					}				
+					//Col - 4  Grid postion 4-0
+					else if (target->getPosition().x >= 401 && target->getPosition().x < 250 && target->getPosition().y > 472 && target->getPosition().y < 545)
+					{
+					}
+					//Col - 4  Grid postion 4-1
+					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+					{
+					}
+					//Col - 4  Grid postion 4-2
+					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+					{
+					}
+					//Col - 4  Grid postion 4-3
+					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+					{
+					}
+					//Col - 4  Grid postion 4-4
+					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+					{
+					}
 				}
 				else 
 				{
