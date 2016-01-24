@@ -892,11 +892,11 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 0  Grid postion 0-0
 					if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
-						if (RegObjects.registerTower(0, 0, 'T') == 0)
+						if (RegObjects.registerObject(0, 0, 'P') == 0)
 						{
-							target->setPosition(176, 478);
-							resource = resource - 20;
-							ChangeText->setString("Tower Placed");
+							target->setPosition(137, 504);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
 						}
 						else
 						{
@@ -912,102 +912,386 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 0  Grid postion 0-1
 					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 395 && target->getPosition().y <= 472) 
 					{
-					
+						if (RegObjects.registerObject(0, 1, 'P') == 0)
+						{
+							target->setPosition(137, 431);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 0  Grid postion 0-2
 					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 					{
-
+						if (RegObjects.registerObject(0, 2, 'P') == 0)
+						{
+							target->setPosition(137, 358);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 0  Grid postion 0-3
 					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 					{
-
+						if (RegObjects.registerObject(0, 3, 'P') == 0)
+						{
+							target->setPosition(137, 285);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
-					//Col - 0  Grid postion 0-3
+					//Col - 0  Grid postion 0-4
 					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 					{
-
+						if (RegObjects.registerObject(0, 4, 'P') == 0)
+						{
+							target->setPosition(137, 211);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}					
 					//Col - 1  Grid postion 1-0
 					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
+						if (RegObjects.registerObject(1, 0, 'P') == 0)
+						{
+							target->setPosition(214, 504);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 1  Grid postion 1-1
 					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 					{
+						if (RegObjects.registerObject(1, 1, 'P') == 0)
+						{
+							target->setPosition(214, 431);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 1  Grid postion 1-2
 					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 					{
+						if (RegObjects.registerObject(1, 2, 'P') == 0)
+						{
+							target->setPosition(214, 358);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 1  Grid postion 1-3
 					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 					{
+						if (RegObjects.registerObject(1, 3, 'P') == 0)
+						{
+							target->setPosition(214, 285);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 1  Grid postion 1-4
 					else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 					{
+						if (RegObjects.registerObject(1, 4, 'P') == 0)
+						{
+							target->setPosition(214, 211);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 2  Grid postion 2-0
 					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
+						if (RegObjects.registerObject(2, 0, 'P') == 0)
+						{
+							target->setPosition(288, 504);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 2  Grid postion 2-1
 					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 					{
+						if (RegObjects.registerObject(2, 1, 'P') == 0)
+						{
+							target->setPosition(288, 431);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 2  Grid postion 2-2
 					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 					{
+						if (RegObjects.registerObject(2, 2, 'P') == 0)
+						{
+							target->setPosition(288, 358);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 2  Grid postion 2-3
 					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 					{
+						if (RegObjects.registerObject(2, 3, 'P') == 0)
+						{
+							target->setPosition(288, 285);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 2  Grid postion 2-4
 					else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 					{
+						if (RegObjects.registerObject(2, 4, 'P') == 0)
+						{
+							target->setPosition(288, 211);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}				
 					//Col - 3  Grid postion 3-0
 					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
+						if (RegObjects.registerObject(3, 0, 'P') == 0)
+						{
+							target->setPosition(364, 504);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 3  Grid postion 3-1
 					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 					{
+						if (RegObjects.registerObject(3, 1, 'P') == 0)
+						{
+							target->setPosition(364, 431);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 3  Grid postion 3-2
 					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 					{
+						if (RegObjects.registerObject(3, 2, 'P') == 0)
+						{
+							target->setPosition(364, 358);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 3  Grid postion 3-3
 					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 					{
+						if (RegObjects.registerObject(3, 3, 'P') == 0)
+						{
+							target->setPosition(364, 285);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 3  Grid postion 3-4
 					else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 					{
+						if (RegObjects.registerObject(3, 4, 'P') == 0)
+						{
+							target->setPosition(364, 211);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}				
 					//Col - 4  Grid postion 4-0
 					else if (target->getPosition().x >= 401 && target->getPosition().x < 250 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
+						if (RegObjects.registerObject(4, 0, 'P') == 0)
+						{
+							target->setPosition(441, 504);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 4  Grid postion 4-1
 					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 					{
+						if (RegObjects.registerObject(4, 1, 'P') == 0)
+						{
+							target->setPosition(441, 431);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 4  Grid postion 4-2
 					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 					{
+						if (RegObjects.registerObject(4, 2, 'P') == 0)
+						{
+							target->setPosition(441, 358);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 4  Grid postion 4-3
 					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 					{
+						if (RegObjects.registerObject(4, 3, 'P') == 0)
+						{
+							target->setPosition(441, 285);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 					//Col - 4  Grid postion 4-4
 					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 					{
+						if (RegObjects.registerObject(4, 4, 'P') == 0)
+						{
+							target->setPosition(441, 211);
+							resource = resource - 10;
+							ChangeText->setString("Soldier Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+						}
 					}
 				}
 				else 
