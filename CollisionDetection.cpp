@@ -31,14 +31,16 @@ int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
 
 }
 
-void CollisionDetection::registerObject(int x, int y, char c) {
+int CollisionDetection::registerObject(int x, int y, char c) {
 
 	//can register with the colision manager if the grid is available
 	if (ColGrid[x][y] == 'N') {
 		ColGrid[x][y] = c;
+		return 0;
 	}
 	else {
 		CCLOG("Postion already took");
+		return 1;
 	}
 	CCLOG("registerObject Completed");
 

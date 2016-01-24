@@ -892,7 +892,22 @@ void SinglePlayGame::displayHand(Player* p)
 					//Col - 0  Grid postion 0-0
 					if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
-
+						if (RegObjects.registerTower(0, 0, 'T') == 0)
+						{
+							target->setPosition(176, 478);
+							resource = resource - 20;
+							ChangeText->setString("Tower Placed");
+						}
+						else
+						{
+							CCLOG("Can't place here");
+							ChangeText->setString("Can't place here");
+							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							//target->setTexture(spriteTemplate->getTexture());
+							//target->setScale(2.0);
+							//target->setContentSize(spriteTemplate->getContentSize());
+							//spriteTemplate->setTexture("TransparentSprite.png");
+						}
 					}
 					//Col - 0  Grid postion 0-1
 					else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 395 && target->getPosition().y <= 472) 

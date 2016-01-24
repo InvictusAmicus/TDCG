@@ -8,7 +8,7 @@ public:
 	~CollisionDetection();
 	bool init();
 
-	void registerObject(int x, int y, char c);
+	int registerObject(int x, int y, char c);
 	int enemyCollisionDetect(int x, int y, char c);
 	int registerTower(int x, int y, char c);
 	void CreateGrids();
