@@ -31,20 +31,18 @@ bool Collection::init()
 		return false;
 	}
 
-	listOfCards.push_back(new Card());
-
 	auto loreLabel = Label::createWithTTF("Click a card to see its lore.", "fonts/Marker Felt.ttf", 24);
 
-	loreLabel->setPosition(350, 200);
+	loreLabel->setPosition(400, 150);
 	loreLabel->setColor(ccc3(0, 0, 0));
 	this->addChild(loreLabel, true, LabelTagLore);
 
 	listOfCards.push_back(new Card());
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("closeNormal.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("closeNormal.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
+	listOfCards.push_back(new Card("SampleCard2.png"));
+	listOfCards.push_back(new Card());
+	listOfCards.push_back(new Card("SampleCard2.png"));
+	listOfCards.push_back(new Card());
+	listOfCards.push_back(new Card("SampleCard2.png"));
 	
 	//Testing to see the erasing and the insert at for the vector
 	//listOfCards.erase(listOfCards.begin()+2);
@@ -119,7 +117,7 @@ void Collection::displayCards()
 		image = MenuItemImage::create(listOfCards[i]->getSpriteName(), listOfCards[i]->getSpriteName(),
 			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
 		
-		image->setPosition(Vec2(200+(i*100), 500));
+		image->setPosition(Vec2(200+(i*100), 550));
 		imageMenu = Menu::create(image, NULL);
 		imageMenu->setPosition(Vec2::ZERO);
 		this->addChild(imageMenu, 1);
@@ -129,7 +127,7 @@ void Collection::displayCards()
 		image = MenuItemImage::create(listOfCards[i+4]->getSpriteName(), listOfCards[i+4]->getSpriteName(),
 			CC_CALLBACK_0(Collection::displayLore, this, listOfCards[i]));
 
-		image->setPosition(Vec2(200 + (i * 100), 300));
+		image->setPosition(Vec2(200 + (i * 100), 350));
 		imageMenu = Menu::create(image, NULL);
 		imageMenu->setPosition(Vec2::ZERO);
 		this->addChild(imageMenu, 1);

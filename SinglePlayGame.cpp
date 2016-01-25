@@ -14,6 +14,7 @@ int resource;
 int TowerGridLoop;
 //int TowerAreaArray[3][3];
 float OriginalXPos, OriginalYPos;
+std::vector<Sprite*> soldiers;
 
 #define ErrorFeedback 1233
 #define LabelTagLife 1234
@@ -515,6 +516,7 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			CCLOG("IF LOOP RUNNING");
 			target->setTexture("testEnemy.png");
+			soldiers.push_back(target);
 		}
 		else if (p->getCardInHand(1)->getType() == 't')
 		{
@@ -1408,4 +1410,12 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
 	
 	CCLOG("Test For End Turn");
+
+	for (int i = 0;(unsigned) i < soldiers.size(); i++)
+	{
+		CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
+		soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 30);
+		CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
+	}
+	//holding the button keeps calling the method
 }

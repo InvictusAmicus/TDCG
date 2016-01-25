@@ -6,9 +6,11 @@ int x = 0;
 
 Card::Card()
 {
-	cardSprite = cocos2d::Sprite::create("HelloWorld.png");
-	name = "HelloWorld.png";
-	lore = "Default Lore";
+	cardSprite = cocos2d::Sprite::create("SampleCard.png");
+	name = "SampleCard.png";
+	lore =	"Sir Galahad of Dirpe had fought a thousand wars. Many\n"
+			"against himself, a few against the enemies of his kingdom,\n"
+			"and one against the denizen plaguing his king's mind.";
 }
 
 Card::Card(std::string s)
