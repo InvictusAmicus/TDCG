@@ -58,7 +58,7 @@ bool Options::init()
 	   // track = cocos2d::experimental::AudioEngine::play2d("Iris.mp3", true, 1.0f, nullptr);
 	   // cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
 	/////////////////////////////////////
-	/*
+	
 	FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
 	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
@@ -116,7 +116,7 @@ bool Options::init()
 		
 		CCLOG("SYSTEM FILE %d", testFileInt);
 	}
-	*/
+	
 	
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
 
@@ -280,45 +280,45 @@ bool Options::init()
 			CCLOG("SLIDER %d", change);
 			//////////////////////////////
 			//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(VolumeFloat);
-			/*
+			
 			if (MusicSlider == 0) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.0f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.0f);
 			}
 			else if (MusicSlider->getPercent()>0&& MusicSlider->getPercent()<10) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.1f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.1f);
 			}
 			else if (MusicSlider->getPercent()>=10 && MusicSlider->getPercent()<20) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.2f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.2f);
 			}
 			else if (MusicSlider->getPercent()>=20 && MusicSlider->getPercent()<30) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.3f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.3f);
 			}
 			else if (MusicSlider->getPercent()>=30 && MusicSlider->getPercent()<40) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.4f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.4f);
 			}
 			else if (MusicSlider->getPercent()>=40 && MusicSlider->getPercent()<50) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.5f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.5f);
 			}
 			else if (MusicSlider->getPercent() >= 50 && MusicSlider->getPercent()<60) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.6f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.6f);
 			}
 			else if (MusicSlider->getPercent() >= 60 && MusicSlider->getPercent()<70) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.7f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.7f);
 			}
 			else if (MusicSlider->getPercent() >= 70 && MusicSlider->getPercent()<80) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.8f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.8f);
 			}
 			else if (MusicSlider->getPercent() >= 80 && MusicSlider->getPercent()<90) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 0.9f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 0.9f);
 			}
 			else if (MusicSlider->getPercent() >= 90 && MusicSlider->getPercent()<100) {
-				cocos2d::experimental::AudioEngine::setVolume(t, 1.0f);
+				cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
 			}
 			else if (MusicSlider->getPercent() == 100) {}
 			
 			//cocos2d::experimental::AudioEngine::setVolume(t, VolumeFloat);
 			Options::SetMusicVolume(change);
-			*/
+			
 			CCLOG("PASSED POSTION");
 			break;
 		default:
@@ -404,7 +404,7 @@ int Options::MusicVolume() {
 
 }
 
-/*
+
 void Options::SetMusicVolume(int x) {
 	musicVolumeControl = x;
     int changedVolume = x;
@@ -639,4 +639,3 @@ int getSounfEffectVolume()
     return SoundEffectsVolumeControl;
 }
 
-*/

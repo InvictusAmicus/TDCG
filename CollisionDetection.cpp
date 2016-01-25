@@ -5,6 +5,7 @@
 
 char ColGrid[10][5];
 char TowerGrid[5][5];
+char EnemyTowerGrid[5][5];
 
 CollisionDetection::CollisionDetection() {}
 CollisionDetection::~CollisionDetection() {}
@@ -69,6 +70,12 @@ void CollisionDetection::CreateGrids() {
 		for (int i = 0;i < 5;i++) {
 			for (int j = 0;j < 5;j++) {
 				TowerGrid[i][j] = 'N';
+			}
+		}
+	//creates the Enemy Tower grid if it is not made
+		for (int i = 0;i < 5;i++) {
+			for (int j = 0;j < 5;j++) {
+				EnemyTowerGrid[i][j] = 'N';
 			}
 		}
 	//creates the Collision grid if it is not made
