@@ -11,6 +11,7 @@ public:
 	int registerObject(int x, int y, char c);
 	int enemyCollisionDetect(int x, int y, char c);
 	int registerTower(int x, int y, char c);
+	void registerEnemyTower(int x, int y, char c);
 	void CreateGrids();
 
 };

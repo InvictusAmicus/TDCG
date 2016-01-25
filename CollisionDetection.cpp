@@ -61,6 +61,20 @@ int CollisionDetection::registerTower(int x, int y, char c) {
 	CCLOG("registerObject Completed");
 
 }
+
+void CollisionDetection::registerEnemyTower(int x, int y, char c) {
+
+	//Needs to be fixed up later
+	if (TowerGrid[x][y] == 'N') {
+		TowerGrid[x][y] = c;
+	}
+	else {
+		CCLOG("Postion already took");
+	}
+	CCLOG("registerObject Completed");
+
+}
+
 void CollisionDetection::CreateGrids() {
 
 	//Creates grid and adds the char N into each space

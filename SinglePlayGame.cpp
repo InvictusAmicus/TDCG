@@ -12,6 +12,7 @@ USING_NS_CC;
 int life;
 int resource;
 int TowerGridLoop;
+int enemyTurn = 0;
 //int TowerAreaArray[3][3];
 float OriginalXPos, OriginalYPos;
 std::vector<Sprite*> soldiers;
@@ -71,7 +72,7 @@ bool SinglePlayGame::init()
 	//		TowerAreaArray[g][h] = 0;
 	//	}
 	//}
-
+	enemyTurn = 0;
 	life = 100;
 	resource = 100;
 	CollisionDetection CreateTheGrids;
@@ -1410,7 +1411,7 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
 	
 	CCLOG("Test For End Turn");
-
+	enemyAI();
 	for (int i = 0;(unsigned) i < soldiers.size(); i++)
 	{
 		CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
@@ -1418,4 +1419,123 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
 	}
 	//holding the button keeps calling the method
+}
+
+void SinglePlayGame::enemyAI() {
+	//hardcoding enemy postions until proper AI is made
+	//Can be used to check for collisions and win/lose conditions
+	CollisionDetection RegEnemy;
+
+	if (enemyTurn == 0)
+	{
+		CCLOG("Enemy Turn 1");
+		auto EnemyTower1 = Sprite::create("SampleTower.png");
+		EnemyTower1->setPosition(Vec2(635, 478));
+		EnemyTower1->setScale(2.0);
+		this->addChild(EnemyTower1, 1);
+		RegEnemy.registerTower(1,0,'T');
+
+		if (RegEnemy.registerObject(7,3,'E')==0) 
+		{
+		    auto EnemySoldier1 = Sprite::create("testEnemy.png");
+		    EnemySoldier1->setPosition(Vec2(672, 286));
+		    EnemySoldier1->setScale(2.0);
+		    this->addChild(EnemySoldier1, 1);
+		}
+		
+	}
+	else if (enemyTurn==1) 
+	{
+		CCLOG("Enemy Turn 2");
+		if (RegEnemy.registerObject(6, 2, 'E') == 0)
+		{
+			auto EnemySoldier2 = Sprite::create("testEnemy.png");
+			EnemySoldier2->setPosition(Vec2(598, 356));
+			EnemySoldier2->setScale(2.0);
+			this->addChild(EnemySoldier2, 1);
+		}
+		if (RegEnemy.registerObject(9, 0, 'E') == 0)
+		{
+			auto EnemySoldier3 = Sprite::create("testEnemy.png");
+			EnemySoldier3->setPosition(Vec2(826, 508));
+			EnemySoldier3->setScale(2.0);
+			this->addChild(EnemySoldier3, 1);
+		}
+	}
+	else if (enemyTurn == 2) 
+	{
+		CCLOG("Enemy Turn 3");
+		auto EnemyTower2 = Sprite::create("SampleTower.png");
+		EnemyTower2->setPosition(Vec2(787, 257));
+		EnemyTower2->setScale(2.0);
+		this->addChild(EnemyTower2, 1);
+		RegEnemy.registerTower(3, 3, 'T');
+
+		auto EnemyTower3 = Sprite::create("SampleTower.png");
+		EnemyTower3->setPosition(Vec2(787, 477));
+		EnemyTower3->setScale(2.0);
+		this->addChild(EnemyTower3, 1);
+		RegEnemy.registerTower(3, 0, 'T');
+	}
+	else if (enemyTurn == 3) 
+	{
+		CCLOG("Enemy Turn 4");
+		
+		auto EnemyTower4 = Sprite::create("SampleTower.png");
+		EnemyTower4->setPosition(Vec2(558, 257));
+		EnemyTower4->setScale(2.0);
+		this->addChild(EnemyTower4, 1);
+		RegEnemy.registerTower(0, 3, 'T');
+
+		if (RegEnemy.registerObject(5, 0, 'E') == 0)
+		{
+			auto EnemySoldier4 = Sprite::create("testEnemy.png");
+			EnemySoldier4->setPosition(Vec2(517, 509));
+			EnemySoldier4->setScale(2.0);
+			this->addChild(EnemySoldier4, 1);
+		}
+	}
+	else if (enemyTurn == 4) 
+	{
+		CCLOG("Enemy Turn 5");
+		auto EnemyTower5 = Sprite::create("SampleTower.png");
+		EnemyTower5->setPosition(Vec2(711, 329));
+		EnemyTower5->setScale(2.0);
+		this->addChild(EnemyTower5, 1);
+		RegEnemy.registerTower(2, 2, 'T');
+
+		if (RegEnemy.registerObject(5, 4, 'E') == 0)
+		{
+			auto EnemySoldier5 = Sprite::create("testEnemy.png");
+			EnemySoldier5->setPosition(Vec2(517, 211));
+			EnemySoldier5->setScale(2.0);
+			this->addChild(EnemySoldier5, 1);
+		}
+	}
+	else if (enemyTurn == 5) 
+	{
+		CCLOG("Enemy Turn 6");
+		if (RegEnemy.registerObject(9, 4, 'E') == 0)
+		{
+			auto EnemySoldier6 = Sprite::create("testEnemy.png");
+			EnemySoldier6->setPosition(Vec2(827, 213));
+			EnemySoldier6->setScale(2.0);
+			this->addChild(EnemySoldier6, 1);
+		}
+		if (RegEnemy.registerObject(9, 3, 'E') == 0)
+		{
+			auto EnemySoldier7 = Sprite::create("testEnemy.png");
+			EnemySoldier7->setPosition(Vec2(827, 289));
+			EnemySoldier7->setScale(2.0);
+			this->addChild(EnemySoldier7, 1);
+		}
+		if (RegEnemy.registerObject(9, 1, 'E') == 0)
+		{
+			auto EnemySoldier8 = Sprite::create("testEnemy.png");
+			EnemySoldier8->setPosition(Vec2(827, 430));
+			EnemySoldier8->setScale(2.0);
+			this->addChild(EnemySoldier8, 1);
+		}
+	}
+	enemyTurn++;
 }
