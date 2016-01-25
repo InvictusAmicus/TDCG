@@ -498,7 +498,7 @@ void SinglePlayGame::displayHand(Player* p)
 			// }
 		}
 	};
-
+	
 	listener1->onTouchMoved = [=](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
@@ -1406,7 +1406,6 @@ void SinglePlayGame::LostGame()
 
 void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
-	//auto GameWonScene = GameWonScreen::createScene();
-	//Director::getInstance()->pushScene(GameWonScene);
+	
 	CCLOG("Test For End Turn");
 }

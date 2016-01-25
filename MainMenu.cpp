@@ -13,9 +13,9 @@ USING_NS_CC;
 using namespace std;
 
 int StartMusicVolume;
-//float SoundEffectsVolumeControl;
-//int EffectsMute;
-//int MusicMute;
+float SoundEffectsVolumeControl;
+int MenuEffectsMute;
+int MenuMusicMute;
 int StartTrack;
 
 Scene* MainMenu::createScene()
@@ -44,8 +44,8 @@ bool MainMenu::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
-	//SystemFile();
-	//PlayMusic();
+	SystemFile();
+	PlayMusic();
 
 	//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
 	//	"background-music-aac.wav", true);
@@ -170,7 +170,7 @@ void MainMenu::menuHowToPlay(Ref* pSender)
 	Director::getInstance()->pushScene(HowToPlayScene);
 }
 
-/*
+
 void MainMenu::SystemFile() 
 {
 	CCLOG("START OF SYATEM FILE");
@@ -203,24 +203,24 @@ void MainMenu::SystemFile()
 			}
 			if (x == 1)
 			{
-				//getline(ReadFile, text);
-				//int testFileInt = atoi(text.c_str());
-				//std::string::size_type sz;
-				//SoundEffectsVolumeControl = std::stof(text, &sz);
-				//CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
+				getline(ReadFile, text);
+				int testFileInt = atoi(text.c_str());
+				std::string::size_type sz;
+				SoundEffectsVolumeControl = std::stof(text, &sz);
+				CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
 				//	x++;
 			}
 			if (x == 2)
 			{
-				//getline(ReadFile, text);
-				//EffectsMute = atoi(text.c_str());
-				//CCLOG("EFFECTS MUTE %d", EffectsMute);
+				getline(ReadFile, text);
+				MenuEffectsMute = atoi(text.c_str());
+				CCLOG("EFFECTS MUTE %d", MenuEffectsMute);
 			}
 			if (x == 3)
 			{
-				//getline(ReadFile, text);
-				//MusicMute = atoi(text.c_str());
-				//CCLOG("MUSIC MUTE %d", MusicMute);
+				getline(ReadFile, text);
+				MenuMusicMute = atoi(text.c_str());
+				CCLOG("MUSIC MUTE %d", MenuMusicMute);
 			}
 
 			CCLOG("X == %d", x);
@@ -273,4 +273,3 @@ void MainMenu::PlayMusic()
 	
 	CCLOG("END OF PLAY MUSIC");
 }
-*/

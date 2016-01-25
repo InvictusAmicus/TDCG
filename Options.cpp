@@ -154,7 +154,7 @@ bool Options::init()
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("CHECKBOX");
 			//////////////////////////////////
-			/*
+			
 			if(MusicMute==0){
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 				MusicCheckBox->setSelectedState(true);
@@ -167,7 +167,7 @@ bool Options::init()
 				MusicMute = 0;
 			}
 			Options::setMusicMute(MusicMute);
-		*/
+		
 			CCLOG("CHECKBOX PASSED POSTION");
 			break;
 		default:
@@ -211,7 +211,7 @@ bool Options::init()
 			CCLOG("Sound EFFECT CHECKBOX");
 			//Needs the logic of the sound effect checkbox to be added here
 			//////////////////////////////////////////////
-			/*
+			
 			if (EffectsMute==0) 
 			{
 				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopAllEffects();
@@ -227,7 +227,7 @@ bool Options::init()
 				CCLOG("Else STATEMENT");
 			}
 			Options::SetSoundEffectMute(EffectsMute);
-			*/
+			
 			
 			//Testing a sound effect, does not loop the music but hold sound effects in mp3 file only
 			//SeTrack1 = cocos2d::experimental::AudioEngine::play2d("correct.mp3", false, SoundEffectsVolumeControl, nullptr);
@@ -354,8 +354,8 @@ bool Options::init()
 		origin.y + visibleSize.height - SoundEffectSlider->getContentSize().height * 6));
 
 	//SoundEffectSlider->addEventListener(CC_CALLBACK_2(UISliderTest::sliderEvent, this));
-	SoundEffectSlider->setPercent(SoundEffectsVolumeControl * 100);
-
+	SoundEffectSlider->setPercent(SoundEffectsVolumeControl);
+	SoundEffectsVolumeControl = SoundEffectSlider->getPercent();
 	SoundEffectSlider->addTouchEventListener([=](Ref* sender, cocos2d::ui::Widget::TouchEventType type) {
 		switch (type)
 		{
@@ -364,7 +364,40 @@ bool Options::init()
 		case ui::Widget::TouchEventType::ENDED:
 			CCLOG("Sound Effect Slider Moved");
 			/////////////////////////////////////////
-			//Options::SetSoundEffectVolume(SoundEffectSlider->getPercent());
+			if (SoundEffectSlider == 0) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.0f);
+			}
+			else if (SoundEffectSlider->getPercent()>0 && SoundEffectSlider->getPercent()<10) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.1f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 10 && SoundEffectSlider->getPercent()<20) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.2f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 20 && SoundEffectSlider->getPercent()<30) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.3f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 30 && SoundEffectSlider->getPercent()<40) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.4f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 40 && SoundEffectSlider->getPercent()<50) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.5f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 50 && SoundEffectSlider->getPercent()<60) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.6f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 60 && SoundEffectSlider->getPercent()<70) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.7f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 70 && SoundEffectSlider->getPercent()<80) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.8f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 80 && SoundEffectSlider->getPercent()<90) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 0.9f);
+			}
+			else if (SoundEffectSlider->getPercent() >= 90 && SoundEffectSlider->getPercent()<100) {
+				cocos2d::experimental::AudioEngine::setVolume(SeTrack1, 1.0f);
+			}
+			Options::SetSoundEffectVolume(SoundEffectSlider->getPercent());
 			CCLOG("SOUND EFFECT PASSED POSTION");
 			break;
 		default:
