@@ -17,6 +17,7 @@ int enemyTurn = 0;
 float OriginalXPos, OriginalYPos;
 std::vector<Sprite*> soldiers;
 
+#define LabelEnemyLife 1232
 #define ErrorFeedback 1233
 #define LabelTagLife 1234
 #define LabelTagResource 1235
@@ -124,6 +125,16 @@ bool SinglePlayGame::init()
 		origin.y + visibleSize.height - 100));
 	FeedBackLabel->setColor(ccc3(0, 0, 0));
 	this->addChild(FeedBackLabel, 1, ErrorFeedback);
+
+	auto EnemyLifeLabel = Label::createWithTTF("Enemy Health", "fonts/Marker Felt.ttf", 24);
+	EnemyLifeLabel->setPosition(Vec2(origin.x + 700,
+		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
+	this->addChild(EnemyLifeLabel, 1, LabelEnemyLife);
+
+	auto EnemyLifeLabelValue = Label::createWithTTF("100", "fonts/Marker Felt.ttf", 24);
+	EnemyLifeLabelValue->setPosition(Vec2(origin.x + (EnemyLifeLabel->getContentSize().width + 700),
+		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
+	this->addChild(EnemyLifeLabelValue, 1, LabelEnemyLife);
 
 	auto BackgroundSprite = Sprite::create("Background.png");
 	BackgroundSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
