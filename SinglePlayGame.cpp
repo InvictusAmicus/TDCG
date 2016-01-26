@@ -10,6 +10,7 @@
 USING_NS_CC;
 
 int life;
+int Enemylife;
 int resource;
 int TowerGridLoop;
 int enemyTurn = 0;
@@ -74,6 +75,7 @@ bool SinglePlayGame::init()
 	//	}
 	//}
 	enemyTurn = 0;
+	Enemylife = 100;
 	life = 100;
 	resource = 100;
 	CollisionDetection CreateTheGrids;
@@ -129,9 +131,9 @@ bool SinglePlayGame::init()
 	auto EnemyLifeLabel = Label::createWithTTF("Enemy Health", "fonts/Marker Felt.ttf", 24);
 	EnemyLifeLabel->setPosition(Vec2(origin.x + 700,
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
-	this->addChild(EnemyLifeLabel, 1, LabelEnemyLife);
+	this->addChild(EnemyLifeLabel, 1);
 
-	auto EnemyLifeLabelValue = Label::createWithTTF("100", "fonts/Marker Felt.ttf", 24);
+	auto EnemyLifeLabelValue = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
 	EnemyLifeLabelValue->setPosition(Vec2(origin.x + (EnemyLifeLabel->getContentSize().width + 700),
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
 	this->addChild(EnemyLifeLabelValue, 1, LabelEnemyLife);
@@ -1428,6 +1430,17 @@ void SinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 		CCLOG(" %d", resource);
 }
 
+void SinglePlayGame::GameState() 
+{
+	if (life <= 0) 
+	{
+		SinglePlayGame::LostGame();
+	}
+	else if (Enemylife<=0) 
+	{
+		SinglePlayGame::WonGame();
+	}
+}
 
 void SinglePlayGame::WonGame()
 {
@@ -1463,6 +1476,15 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 }
 
 void SinglePlayGame::enemyAI() {
+
+	//Added here until attack method is made
+	CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+	std::string StringEnemyLife = std::to_string(Enemylife);
+	ChangeEnemyLife->setString(StringEnemyLife);
+	SinglePlayGame::GameState();
+	Enemylife = Enemylife - 10;
+	//life = life - 10;
+
 	//hardcoding enemy postions until proper AI is made
 	//Can be used to check for collisions and win/lose conditions
 	CollisionDetection RegEnemy;

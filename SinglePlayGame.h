@@ -23,6 +23,7 @@ public:
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	int TowerGridLoop;
 	void enemyAI();
+	void GameState();
 
 	//cocos2d::Label *LifeLabelValue;
 
