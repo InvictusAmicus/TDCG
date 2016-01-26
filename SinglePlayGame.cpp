@@ -517,7 +517,6 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			CCLOG("IF LOOP RUNNING");
 			target->setTexture("testEnemy.png");
-			soldiers.push_back(target);
 		}
 		else if (p->getCardInHand(1)->getType() == 't')
 		{
@@ -900,6 +899,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(137, 504);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -920,6 +920,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(137, 431);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -936,6 +937,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(137, 358);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -952,6 +954,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(137, 285);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -968,6 +971,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(137, 211);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -984,6 +988,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(214, 504);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1000,6 +1005,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(214, 431);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1016,6 +1022,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(214, 358);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1032,6 +1039,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(214, 285);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1048,6 +1056,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(214, 211);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1064,6 +1073,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(288, 504);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1080,6 +1090,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(288, 431);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1096,6 +1107,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(288, 358);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1112,6 +1124,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(288, 285);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1128,6 +1141,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(288, 211);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1160,6 +1174,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(364, 431);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1176,6 +1191,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(364, 358);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1192,6 +1208,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(364, 285);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1208,6 +1225,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(364, 211);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1224,6 +1242,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(441, 504);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1240,6 +1259,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(441, 431);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1256,6 +1276,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(441, 358);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1272,6 +1293,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(441, 285);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1288,6 +1310,7 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(441, 211);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
 						}
 						else
 						{
@@ -1414,9 +1437,16 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	enemyAI();
 	for (int i = 0;(unsigned) i < soldiers.size(); i++)
 	{
-		CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
-		soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 30);
-		CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
+		if (soldiers.at(i)->getPositionX() + 75 < 825)
+		{
+			CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
+			soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 75);
+			CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
+		}
+		else
+		{
+			//deal damage to enemy = to attack
+		}
 	}
 	//holding the button keeps calling the method
 }
