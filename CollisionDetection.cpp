@@ -13,24 +13,47 @@ CollisionDetection::~CollisionDetection() {}
 int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
 
 	//checks to see if the available space is clear
-	if (ColGrid[x][y - 1] == 'N') {
-		ColGrid[x][y - 1] = c;
+	if (ColGrid[x - 1][y] == 'N') {
+		ColGrid[x - 1][y] = c;
 		ColGrid[x][y] = 'N';
 		CCLOG("Returning 0");
 		return 0;
 	}
 	//returns a value of 2 if it finds a Player Sprite in next space
-	else if (ColGrid[x][y - 1] == 'P') {
+	else if (ColGrid[x - 1][y] == 'P') {
 		CCLOG("Returning 2");
-		return 2;
+		return 1;
 	}
 	//returns a value of one if another enemy is in front of it
 	else {
 		CCLOG("Returning 1");
-		return 1;
+		return 2;
 	}
 
 }
+
+int CollisionDetection::playerCollisionDetect(int x, int y, char c) {
+
+	//checks to see if the available space is clear
+	if (ColGrid[x + 1][y] == 'N') {
+		ColGrid[x + 1][y] = c;
+		ColGrid[x][y] = 'N';
+		CCLOG("Returning 0");
+		return 0;
+	}
+	//returns a value of 2 if it finds a Enemy Sprite in next space
+	else if (ColGrid[x + 1][y] == 'E') {
+		CCLOG("Returning 2");
+		return 1;
+	}
+	//returns a value of one if another player is in front of it
+	else {
+		CCLOG("Returning 1");
+		return 2;
+	}
+
+}
+
 
 int CollisionDetection::registerObject(int x, int y, char c) {
 
