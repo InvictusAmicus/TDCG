@@ -27,7 +27,19 @@ std::vector<Sprite*> soldiers;
 #define Tower01 1239
 #define Tower02 1240
 #define Tower03 1241
-
+#define Tower10 1242
+#define Tower11 1243
+#define Tower12 1244
+#define Tower13 1245
+#define Tower20 1246
+#define Tower20 1247
+#define Tower21 1248
+#define Tower22 1249
+#define Tower23 1250
+#define Tower30 1251
+#define Tower31 1252
+#define Tower32 1253
+#define Tower33 1254
 
 #define handSprite1 2000
 #define handSprite2 2001
@@ -212,62 +224,62 @@ bool SinglePlayGame::init()
 	auto TowerArea10 = Sprite::create("testTowerArea.png");
 	TowerArea10->setPosition(Vec2(250, 468));
 	TowerArea10->setOpacity(0);
-	this->addChild(TowerArea10, 1);
+	this->addChild(TowerArea10, 1, Tower10);
 
 	auto TowerArea11 = Sprite::create("testTowerArea.png");
 	TowerArea11->setPosition(Vec2(250, 395));
 	TowerArea11->setOpacity(0);
-	this->addChild(TowerArea11, 1);
+	this->addChild(TowerArea11, 1, Tower11);
 
 	auto TowerArea12 = Sprite::create("testTowerArea.png");
 	TowerArea12->setPosition(Vec2(250, 321));
 	TowerArea12->setOpacity(0);
-	this->addChild(TowerArea12, 1);
+	this->addChild(TowerArea12, 1, Tower12);
 
 	auto TowerArea13 = Sprite::create("testTowerArea.png");
 	TowerArea13->setPosition(Vec2(250, 246));
 	TowerArea13->setOpacity(0);
-	this->addChild(TowerArea13, 1);
+	this->addChild(TowerArea13, 1, Tower13);
 
 	auto TowerArea20 = Sprite::create("testTowerArea.png");
 	TowerArea20->setPosition(Vec2(326, 468));
 	TowerArea20->setOpacity(0);
-	this->addChild(TowerArea20, 1);
+	this->addChild(TowerArea20, 1, Tower20);
 
 	auto TowerArea21 = Sprite::create("testTowerArea.png");
 	TowerArea21->setPosition(Vec2(326, 395));
 	TowerArea21->setOpacity(0);
-	this->addChild(TowerArea21, 1);
+	this->addChild(TowerArea21, 1, Tower21);
 
 	auto TowerArea22 = Sprite::create("testTowerArea.png");
 	TowerArea22->setPosition(Vec2(326, 321));
 	TowerArea22->setOpacity(0);
-	this->addChild(TowerArea22, 1);
+	this->addChild(TowerArea22, 1, Tower22);
 
 	auto TowerArea23 = Sprite::create("testTowerArea.png");
 	TowerArea23->setPosition(Vec2(326, 246));
 	TowerArea23->setOpacity(0);
-	this->addChild(TowerArea23, 1);
+	this->addChild(TowerArea23, 1, Tower23);
 
 	auto TowerArea30 = Sprite::create("testTowerArea.png");
 	TowerArea30->setPosition(Vec2(401, 468));
 	TowerArea30->setOpacity(0);
-	this->addChild(TowerArea30, 1);
+	this->addChild(TowerArea30, 1, Tower30);
 
 	auto TowerArea31 = Sprite::create("testTowerArea.png");
 	TowerArea31->setPosition(Vec2(401, 395));
 	TowerArea31->setOpacity(0);
-	this->addChild(TowerArea31, 1);
+	this->addChild(TowerArea31, 1, Tower31);
 
 	auto TowerArea32 = Sprite::create("testTowerArea.png");
 	TowerArea32->setPosition(Vec2(401, 321));
 	TowerArea32->setOpacity(0);
-	this->addChild(TowerArea32, 1);
+	this->addChild(TowerArea32, 1, Tower32);
 
 	auto TowerArea33 = Sprite::create("testTowerArea.png");
 	TowerArea33->setPosition(Vec2(401, 246));
 	TowerArea33->setOpacity(0);
-	this->addChild(TowerArea33, 1);
+	this->addChild(TowerArea33, 1, Tower33);
 
 
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -549,11 +561,11 @@ void SinglePlayGame::displayHand(Player* p)
 			target->setTexture("SampleTower.png");
 
             if (CheckT.CheckTower(0, 0) == 0) 
-				{
-					CCLOG("Test Sprite Opacity");
-					Sprite* TowerGrid00 = (Sprite*)getChildByTag(Tower00);
-					TowerGrid00->setOpacity(200);
-				}
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid00 = (Sprite*)getChildByTag(Tower00);
+				TowerGrid00->setOpacity(200);
+			}
 			if (CheckT.CheckTower(0, 1) == 0)
 			{
 				CCLOG("Test Sprite Opacity");
@@ -572,6 +584,79 @@ void SinglePlayGame::displayHand(Player* p)
 				Sprite* TowerGrid03 = (Sprite*)getChildByTag(Tower03);
 				TowerGrid03->setOpacity(200);
 			}
+			if (CheckT.CheckTower(1, 0) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid10 = (Sprite*)getChildByTag(Tower10);
+				TowerGrid10->setOpacity(200);
+			}
+			if (CheckT.CheckTower(1, 1) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid11 = (Sprite*)getChildByTag(Tower11);
+				TowerGrid11->setOpacity(200);
+			}
+			if (CheckT.CheckTower(1, 2) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid12 = (Sprite*)getChildByTag(Tower12);
+				TowerGrid12->setOpacity(200);
+			}
+			if (CheckT.CheckTower(1, 3) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid13 = (Sprite*)getChildByTag(Tower13);
+				TowerGrid13->setOpacity(200);
+			}
+			if (CheckT.CheckTower(2, 0) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid20 = (Sprite*)getChildByTag(Tower20);
+				TowerGrid20->setOpacity(200);
+			}
+			if (CheckT.CheckTower(2, 1) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid21 = (Sprite*)getChildByTag(Tower21);
+				TowerGrid21->setOpacity(200);
+			}
+			if (CheckT.CheckTower(2, 2) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid22 = (Sprite*)getChildByTag(Tower22);
+				TowerGrid22->setOpacity(200);
+			}
+			if (CheckT.CheckTower(2, 3) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid23 = (Sprite*)getChildByTag(Tower23);
+				TowerGrid23->setOpacity(200);
+			}
+			if (CheckT.CheckTower(3, 0) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid30 = (Sprite*)getChildByTag(Tower30);
+				TowerGrid30->setOpacity(200);
+			}
+			if (CheckT.CheckTower(3, 1) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid31 = (Sprite*)getChildByTag(Tower31);
+				TowerGrid31->setOpacity(200);
+			}
+			if (CheckT.CheckTower(3, 2) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid32 = (Sprite*)getChildByTag(Tower32);
+				TowerGrid32->setOpacity(200);
+			}
+			if (CheckT.CheckTower(3, 3) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid33 = (Sprite*)getChildByTag(Tower33);
+				TowerGrid33->setOpacity(200);
+			}
+
 		}
 
 		/*
@@ -1394,18 +1479,38 @@ void SinglePlayGame::displayHand(Player* p)
 		std::string StringResource = std::to_string(resource);
 		ChangeResource->setString(StringResource);
 
-		CCLOG("Opacity 0");
 		Sprite* towerG_00 = (Sprite*)getChildByTag(Tower00);
 		towerG_00->setOpacity(0);
-		CCLOG("Opacity 01");
 		Sprite* towerG_01 = (Sprite*)getChildByTag(Tower01);
 		towerG_01->setOpacity(0);
-		CCLOG("Opacity 02");
 		Sprite* towerG_02 = (Sprite*)getChildByTag(Tower02);
 		towerG_02->setOpacity(0);
-		CCLOG("Opacity 03");
 		Sprite* towerG_03 = (Sprite*)getChildByTag(Tower03);
 		towerG_03->setOpacity(0);
+		Sprite* towerG_10 = (Sprite*)getChildByTag(Tower10);
+		towerG_10->setOpacity(0);
+		Sprite* towerG_11 = (Sprite*)getChildByTag(Tower11);
+		towerG_11->setOpacity(0);
+		Sprite* towerG_12 = (Sprite*)getChildByTag(Tower12);
+		towerG_12->setOpacity(0);
+		Sprite* towerG_13 = (Sprite*)getChildByTag(Tower13);
+		towerG_13->setOpacity(0);
+		Sprite* towerG_20 = (Sprite*)getChildByTag(Tower20);
+		towerG_20->setOpacity(0);
+		Sprite* towerG_21 = (Sprite*)getChildByTag(Tower21);
+		towerG_21->setOpacity(0);
+		Sprite* towerG_22 = (Sprite*)getChildByTag(Tower22);
+		towerG_22->setOpacity(0);
+		Sprite* towerG_23 = (Sprite*)getChildByTag(Tower23);
+		towerG_23->setOpacity(0);
+		Sprite* towerG_30 = (Sprite*)getChildByTag(Tower30);
+		towerG_30->setOpacity(0);
+		Sprite* towerG_31 = (Sprite*)getChildByTag(Tower31);
+		towerG_31->setOpacity(0);
+		Sprite* towerG_32 = (Sprite*)getChildByTag(Tower32);
+		towerG_32->setOpacity(0);
+		Sprite* towerG_33 = (Sprite*)getChildByTag(Tower33);
+		towerG_33->setOpacity(0);
 
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
