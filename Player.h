@@ -1,10 +1,15 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#include <vector>
+#include "Card.h"
+
 class Player // : public User
 {
 private:
-	Card* hand[6];
+	std::vector<Card*> hand;
+	std::vector<Card*> deck;
+	const int maxHandSize = 6;
 	int life;
 
 public:
@@ -13,9 +18,9 @@ public:
 	virtual bool init();
 	
 	//card dependant methods
-	Card* drawCard(/*Deck*?*/);
-	void playCard(Card* c);
-
+	void drawCard();
+	void playCard(int i);
+	
 	//end of turn choice methods
 	void declareAttack();
 	void endTurn();
@@ -23,6 +28,8 @@ public:
 	//other methods if needed
 	void setLife(int d);
 	int getLife();
+	int getHandSize();
+	Card* getCardInHand(int);
 };
 
 #endif //__Player_H__

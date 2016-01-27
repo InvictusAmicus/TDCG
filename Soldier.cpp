@@ -3,7 +3,7 @@
 
 Soldier::Soldier()
 {
-
+	type = 's';
 }
 
 Soldier::~Soldier()

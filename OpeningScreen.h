@@ -16,6 +16,7 @@ public:
 
 	void PlayerAttack(cocos2d::Ref* pSender);
 	
+
 	CREATE_FUNC(OpeningScreen);
 };
 

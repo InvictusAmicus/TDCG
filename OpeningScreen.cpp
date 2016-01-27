@@ -8,7 +8,13 @@ USING_NS_CC;
 //problem occurs when sprite is removed, after sprite is place on grid set it so it can't be moved
 float OriginalX;
 float OriginalY;
+enum { T, C };
 
+int row = 5;
+int col = 5;
+int CollisionGridArea[24];
+int gap = 0;
+int testGap = 0;
 Scene* OpeningScreen::createScene()
 {
 	// 'scene' is an autorelease object
@@ -35,6 +41,10 @@ bool OpeningScreen::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
+	for (int i = 0;i < 25;i++) {
+		CollisionGridArea[i] = 0;
+	}
+
 
 	//adds label to the top of the screen to mark screen currently on,
 	//remove later if decided they are not needed
@@ -50,28 +60,63 @@ bool OpeningScreen::init()
 	this->addChild(sprite, 0);
 
 	//Adds an attack button to signal the end of the turn, currently not working
-	//auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this));
+	//auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this, sprite3));
 	//Attack->setPosition(Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
 	//auto menuAttack = Menu::create(Attack, NULL);
 	//menuAttack->setPosition(Vec2::ZERO);
 	//this->addChild(menuAttack, 1);
 
-	auto Attack = Sprite::create("ArrowSelection.png");
-	Attack->setPosition(origin + Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
-	auto containerForAttack = Node::create();
-	containerForAttack->addChild(Attack);
-	addChild(containerForAttack, 10);
+	//auto Attack = Sprite::create("ArrowSelection.png");
+	//Attack->setPosition(origin + Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
+	//auto containerForAttack = Node::create();
+	//containerForAttack->addChild(Attack);
+	//addChild(containerForAttack, 10);
 
+	//////////////////////////////////
 	//creates a simple grid to so where sprites need to be placed
 	//needs to be decided how grid is placed and called
-	auto Grid = Sprite::create("testGrid.png");
-	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	this->addChild(Grid, 0);
+	//auto Grid = Sprite::create("testGrid.png");
+	//Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	//this->addChild(Grid, 0);
+	/////////////////////////////////////////////
 
-	auto TestArea = Sprite::create("AreaCollision.png");
+	//////////////////////////////
+	//auto TestArea = Sprite::create("AreaCollision.png");
+	//TestArea->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	//TestArea->setOpacity(0);
+	//this->addChild(TestArea, 1);
+	//////////////////////////////
+	
+	auto Grid = Sprite::create("GridTemplate2.png");
+	Grid->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	Grid->setScale(1.5);
+    this->addChild(Grid, 0);
+
+	auto TestArea = Sprite::create("CollisionSquare.png");
 	TestArea->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	TestArea->setOpacity(0);
 	this->addChild(TestArea, 1);
+
+	auto TowerArea = Sprite::create("testTowerArea.png");
+	TowerArea->setPosition(Vec2(175,468));
+	TowerArea->setOpacity(0);
+	this->addChild(TowerArea, 1);
+	
+	//gap = Grid->getContentSize().width;
+	//testGap = gap;
+	//for (int j = 0; j < 2;j++) {
+		
+	//	TestArea->setPosition(Vec2((visibleSize.width / 2 + origin.x)+testGap, visibleSize.height / 2 + origin.y));
+	//	TestArea->setOpacity(0);
+	//	this->addChild(TestArea, 1);
+	//	testGap = testGap + gap;
+	//}
+
+	//auto Grid2 = Sprite::create("GridSquare.png");
+	//Grid2->setPosition(Vec2(((visibleSize.width / 2) + origin.x) + Grid->getContentSize().width, visibleSize.height / 2 + origin.y));
+	//this->addChild(Grid2, 0);
+
+
 
 	//creates a node to contain the sprites
 	//might need to be changed later depending if problems occur with calling the cards
@@ -83,14 +128,25 @@ bool OpeningScreen::init()
 	sprite1->setPosition(origin + Vec2((visibleSize.width / 2)+100, (visibleSize.height / 2)-200));
 	containerForSprite1->addChild(sprite1);
 	addChild(containerForSprite1, 10);
+	sprite1->setTag(C);
 
 	auto sprite2 = Sprite::create("SampleCard.png");
 	sprite2->setPosition(origin + Vec2(visibleSize.width / 2, (visibleSize.height / 2)-200));
+	sprite2->setTag(T);
 	addChild(sprite2, 20);
 
 	auto sprite3 = Sprite::create("SampleCard.png");
 	sprite3->setPosition(origin + Vec2((visibleSize.width / 2)-100, (visibleSize.height / 2)-200));
 	addChild(sprite3, 20);
+	sprite3->setTag(2);
+
+	//Adds an attack button to signal the end of the turn, currently not working
+	auto Attack = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(OpeningScreen::PlayerAttack, this));
+	Attack->setPosition(Vec2(origin.x + visibleSize.width - Attack->getContentSize().width, 360));
+	auto menuAttack = Menu::create(Attack, NULL);
+	menuAttack->setPosition(Vec2::ZERO);
+	this->addChild(menuAttack, 1);
+
 
 	//starts calling the listener events
 	//generally need onTouchBegan and ontouchEnded, onTouchMoved is optional
@@ -102,7 +158,7 @@ bool OpeningScreen::init()
 	//sets the Opacity to 180
 	listener1->onTouchBegan = [](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		
+		target->getTag();
 		//add in code so it doesn't touch anything within the grid
 		//if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 		//
@@ -115,6 +171,9 @@ bool OpeningScreen::init()
 
 		OriginalX = target->getPosition().x;
 		OriginalY = target->getPosition().y;
+		
+		log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
+
 
 		if (rect.containsPoint(locationInNode))
 		{
@@ -128,12 +187,28 @@ bool OpeningScreen::init()
 
 	//When the sprite is being moved it changes the texture to another texture
 	//texture changes to a smaller sprite to be place on the grid
-	listener1->onTouchMoved = [TestArea](Touch* touch, Event* event) {
+	listener1->onTouchMoved = [TestArea, TowerArea](Touch* touch, Event* event) {
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
-		target->setTexture("testEnemy.png");
-		target->setScale(2.0);
-		TestArea->setOpacity(200);
+		for (int i = 0; i < 25;i++) 
+		{
+		if (CollisionGridArea[i] == 0) 
+		{
+			TestArea->setOpacity(200);
+			TowerArea->setOpacity(200);
+		}
+	    }
+		//if (target->getTag() == C || target->getTag() == 2) 
+		//{
+		//	target->setTexture("testEnemy.png");
+		//	if (target->getTag() == 2) 
+		//	{
+		//		TestArea->setOpacity(200);
+		//	}
+		//}
+		target->setScale(2.0); 
+			
+		
 	};
 
 
@@ -144,6 +219,7 @@ bool OpeningScreen::init()
 		
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		TestArea->setOpacity(0);
+		TowerArea->setOpacity(0);
 		if (target->getPosition().y > 300 && target->getPosition().y < 600 && target->getPosition().x > 200 && target->getPosition().x < 700) {
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
@@ -229,6 +305,7 @@ void OpeningScreen::GoToTitle()
 void OpeningScreen::PlayerAttack(cocos2d::Ref* pSender)
 {
 	CCLOG("Testing Attack");
-	
-
+	//auto moveBy = MoveBy::create(2, Vec2(20, 0));
+	//t->runAction(moveBy);
+	CCLOG("Moving");
 }

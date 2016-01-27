@@ -11,14 +11,20 @@ private:
 	int cost;
 	cocos2d::Sprite* cardSprite;
 	std::string name;
+	std::string lore;
 
 public:
 	Card();
 	Card(std::string s);
 	~Card();
-	bool init();
+	bool init() {}
+	char type;
+
+	char getType();
 	cocos2d::Sprite* getSprite() { return cardSprite; }
-	
+	std::string getSpriteName() { return name; }
+	std::string getLore() { return lore; }
+
 	//move card to battlefield position (a1,a2)
 	void moveTo(int a1, int a2);
 
@@ -26,9 +32,9 @@ public:
 	{
 		/*bool TouchScene::onTouchBegan(Touch* touch, Event* event)
 		{
-			labelTouchInfo->setPosition(touch->getLocation());
-			labelTouchInfo->setString("You Touched Here");
-			return tr*/
+		labelTouchInfo->setPosition(touch->getLocation());
+		labelTouchInfo->setString("You Touched Here");
+		return tr*/
 		moveTo(t->getCursorX(), t->getCursorY());
 	}
 
