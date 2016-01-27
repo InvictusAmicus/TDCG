@@ -51,12 +51,24 @@ int main()
 	MYSQL_ROW row;	// the results row (line by line)
 
 	struct connection_details mysqlD;
+
+	//Azure Server
+	
 	mysqlD.server = "eu-cdbr-azure-west-d.cloudapp.net";  // hostname
 	mysqlD.user = "bccd21f1963bb0";		// the root user of mysql	
 	mysqlD.password = "37a685ed"; // the password of the root user in mysql
-	mysqlD.database = "TDCG";	// the databse to pick
+	mysqlD.database = "TDCG";	// the database to pick
+	
 
-								// connect to the mysql database
+	//Local Database
+	/*
+	mysqlD.server = "localhost";  // hostname
+	mysqlD.user = "root";		// the root user of mysql	
+	mysqlD.password = "password"; // the password of the root user in mysql
+	mysqlD.database = "test";	// this will need to be renamed whatever you called your DB on the local host
+	*/
+
+	// connect to the mysql database
 	conn = mysql_connection_setup(mysqlD);
 
 	// assign the results return to the MYSQL_RES pointer
