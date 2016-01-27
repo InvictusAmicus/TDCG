@@ -23,6 +23,11 @@ std::vector<Sprite*> soldiers;
 #define LabelTagLife 1234
 #define LabelTagResource 1235
 #define CardsInHand 1237
+#define Tower00 1238
+#define Tower01 1239
+#define Tower02 1240
+#define Tower03 1241
+
 
 #define handSprite1 2000
 #define handSprite2 2001
@@ -96,6 +101,7 @@ bool SinglePlayGame::init()
 
 	std::string StringLife = std::to_string(life);
 	std::string StringResource = std::to_string(resource);
+	std::string StringEnemyLife = std::to_string(Enemylife);
 
 	auto label = Label::createWithTTF("Single Player Game", "fonts/Marker Felt.ttf", 24);
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
@@ -133,7 +139,9 @@ bool SinglePlayGame::init()
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
 	this->addChild(EnemyLifeLabel, 1);
 
-	auto EnemyLifeLabelValue = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
+
+
+	auto EnemyLifeLabelValue = Label::createWithTTF(StringEnemyLife, "fonts/Marker Felt.ttf", 24);
 	EnemyLifeLabelValue->setPosition(Vec2(origin.x + (EnemyLifeLabel->getContentSize().width + 700),
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
 	this->addChild(EnemyLifeLabelValue, 1, LabelEnemyLife);
@@ -178,28 +186,31 @@ bool SinglePlayGame::init()
 	/////////////////////////////////////////////////////////////////////////////////////
     ////Tower Area
 
+	//X-(175, 250, 326, 401)
+	//Y-(468, 395, 321, 246)
+
 	auto TowerArea00 = Sprite::create("testTowerArea.png");
 	TowerArea00->setPosition(Vec2(175, 468));
 	TowerArea00->setOpacity(0);
-	this->addChild(TowerArea00, 1);
+	this->addChild(TowerArea00, 1, Tower00);
 
 	auto TowerArea01 = Sprite::create("testTowerArea.png");
-	TowerArea01->setPosition(Vec2(250, 468));
+	TowerArea01->setPosition(Vec2(175, 395));
 	TowerArea01->setOpacity(0);
-	this->addChild(TowerArea01, 1);
+	this->addChild(TowerArea01, 1, Tower01);
 
 	auto TowerArea02 = Sprite::create("testTowerArea.png");
-	TowerArea02->setPosition(Vec2(326, 468));
+	TowerArea02->setPosition(Vec2(175, 321));
 	TowerArea02->setOpacity(0);
-	this->addChild(TowerArea02, 1);
+	this->addChild(TowerArea02, 1, Tower02);
 
 	auto TowerArea03 = Sprite::create("testTowerArea.png");
-	TowerArea03->setPosition(Vec2(401, 468));
+	TowerArea03->setPosition(Vec2(175, 246));
 	TowerArea03->setOpacity(0);
-	this->addChild(TowerArea03, 1);
+	this->addChild(TowerArea03, 1, Tower03);
 
 	auto TowerArea10 = Sprite::create("testTowerArea.png");
-	TowerArea10->setPosition(Vec2(175, 395));
+	TowerArea10->setPosition(Vec2(250, 468));
 	TowerArea10->setOpacity(0);
 	this->addChild(TowerArea10, 1);
 
@@ -209,22 +220,22 @@ bool SinglePlayGame::init()
 	this->addChild(TowerArea11, 1);
 
 	auto TowerArea12 = Sprite::create("testTowerArea.png");
-	TowerArea12->setPosition(Vec2(326, 395));
+	TowerArea12->setPosition(Vec2(250, 321));
 	TowerArea12->setOpacity(0);
 	this->addChild(TowerArea12, 1);
 
 	auto TowerArea13 = Sprite::create("testTowerArea.png");
-	TowerArea13->setPosition(Vec2(401, 395));
+	TowerArea13->setPosition(Vec2(250, 246));
 	TowerArea13->setOpacity(0);
 	this->addChild(TowerArea13, 1);
 
 	auto TowerArea20 = Sprite::create("testTowerArea.png");
-	TowerArea20->setPosition(Vec2(175, 321));
+	TowerArea20->setPosition(Vec2(326, 468));
 	TowerArea20->setOpacity(0);
 	this->addChild(TowerArea20, 1);
 
 	auto TowerArea21 = Sprite::create("testTowerArea.png");
-	TowerArea21->setPosition(Vec2(250, 321));
+	TowerArea21->setPosition(Vec2(326, 395));
 	TowerArea21->setOpacity(0);
 	this->addChild(TowerArea21, 1);
 
@@ -234,22 +245,22 @@ bool SinglePlayGame::init()
 	this->addChild(TowerArea22, 1);
 
 	auto TowerArea23 = Sprite::create("testTowerArea.png");
-	TowerArea23->setPosition(Vec2(401, 321));
+	TowerArea23->setPosition(Vec2(326, 246));
 	TowerArea23->setOpacity(0);
 	this->addChild(TowerArea23, 1);
 
 	auto TowerArea30 = Sprite::create("testTowerArea.png");
-	TowerArea30->setPosition(Vec2(175, 246));
+	TowerArea30->setPosition(Vec2(401, 468));
 	TowerArea30->setOpacity(0);
 	this->addChild(TowerArea30, 1);
 
 	auto TowerArea31 = Sprite::create("testTowerArea.png");
-	TowerArea31->setPosition(Vec2(250, 246));
+	TowerArea31->setPosition(Vec2(401, 395));
 	TowerArea31->setOpacity(0);
 	this->addChild(TowerArea31, 1);
 
 	auto TowerArea32 = Sprite::create("testTowerArea.png");
-	TowerArea32->setPosition(Vec2(326, 246));
+	TowerArea32->setPosition(Vec2(401, 321));
 	TowerArea32->setOpacity(0);
 	this->addChild(TowerArea32, 1);
 
@@ -515,6 +526,7 @@ void SinglePlayGame::displayHand(Player* p)
 	};
 	
 	listener1->onTouchMoved = [=](Touch* touch, Event* event) {
+		CollisionDetection CheckT;
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
 		for (int i = 0; i < 25;i++)
@@ -535,7 +547,33 @@ void SinglePlayGame::displayHand(Player* p)
 		{
 			CCLOG("IF LOOP RUNNING");
 			target->setTexture("SampleTower.png");
+
+            if (CheckT.CheckTower(0, 0) == 0) 
+				{
+					CCLOG("Test Sprite Opacity");
+					Sprite* TowerGrid00 = (Sprite*)getChildByTag(Tower00);
+					TowerGrid00->setOpacity(200);
+				}
+			if (CheckT.CheckTower(0, 1) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid01 = (Sprite*)getChildByTag(Tower01);
+				TowerGrid01->setOpacity(200);
+			}
+			if (CheckT.CheckTower(0, 2) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid02 = (Sprite*)getChildByTag(Tower02);
+				TowerGrid02->setOpacity(200);
+			}
+			if (CheckT.CheckTower(0, 3) == 0)
+			{
+				CCLOG("Test Sprite Opacity");
+				Sprite* TowerGrid03 = (Sprite*)getChildByTag(Tower03);
+				TowerGrid03->setOpacity(200);
+			}
 		}
+
 		/*
 		if (target->getTag() == T)
 		{
@@ -1355,6 +1393,20 @@ void SinglePlayGame::displayHand(Player* p)
 		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 		std::string StringResource = std::to_string(resource);
 		ChangeResource->setString(StringResource);
+
+		CCLOG("Opacity 0");
+		Sprite* towerG_00 = (Sprite*)getChildByTag(Tower00);
+		towerG_00->setOpacity(0);
+		CCLOG("Opacity 01");
+		Sprite* towerG_01 = (Sprite*)getChildByTag(Tower01);
+		towerG_01->setOpacity(0);
+		CCLOG("Opacity 02");
+		Sprite* towerG_02 = (Sprite*)getChildByTag(Tower02);
+		towerG_02->setOpacity(0);
+		CCLOG("Opacity 03");
+		Sprite* towerG_03 = (Sprite*)getChildByTag(Tower03);
+		towerG_03->setOpacity(0);
+
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
 
@@ -1478,11 +1530,12 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 void SinglePlayGame::enemyAI() {
 
 	//Added here until attack method is made
+    Enemylife = Enemylife - 10;
+	std::string StringEnemyLife = std::to_string(Enemylife);	
 	CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
-	std::string StringEnemyLife = std::to_string(Enemylife);
-	ChangeEnemyLife->setString(StringEnemyLife);
+    ChangeEnemyLife->setString(StringEnemyLife);
 	SinglePlayGame::GameState();
-	Enemylife = Enemylife - 10;
+	
 	//life = life - 10;
 
 	//hardcoding enemy postions until proper AI is made

@@ -85,6 +85,16 @@ int CollisionDetection::registerTower(int x, int y, char c) {
 
 }
 
+int CollisionDetection::CheckTower(int x, int y) {
+    //check to see Tower postions available
+	if (TowerGrid[x][y] == 'N') {
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
+
 void CollisionDetection::registerEnemyTower(int x, int y, char c) {
 
 	//Needs to be fixed up later
