@@ -151,8 +151,6 @@ bool SinglePlayGame::init()
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
 	this->addChild(EnemyLifeLabel, 1);
 
-
-
 	auto EnemyLifeLabelValue = Label::createWithTTF(StringEnemyLife, "fonts/Marker Felt.ttf", 24);
 	EnemyLifeLabelValue->setPosition(Vec2(origin.x + (EnemyLifeLabel->getContentSize().width + 700),
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
@@ -1469,7 +1467,7 @@ void SinglePlayGame::displayHand(Player* p)
 		else
 		{
 			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
-			//target->setPosition(Vec2(OriginalX, OriginalY));
+			target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 			//target->setTexture(spriteTemplate->getTexture());
 			target->setScale(1.0);
 			target->setOpacity(255);
