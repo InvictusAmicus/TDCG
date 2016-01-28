@@ -328,14 +328,14 @@ bool Options::init()
 
 	this->addChild(MusicSlider,1);
 	
-	CCLOG("BEFORE STRING");
+	//CCLOG("BEFORE STRING");
 	//std::string MusicString = std::to_string(MusicSlider->getPercent());
-	std::string MusicString = std::to_string(musicVolumeControl);
-	auto TestLabel = Label::createWithTTF(MusicString, "fonts/Marker Felt.ttf", 24);
-	TestLabel->setColor(ccc3(0, 0, 0));
-	TestLabel->setPosition(Vec2((origin.x + visibleSize.width / 2) - 250,
-		origin.y + visibleSize.height - MusicSlider->getContentSize().height * 14));
-	this->addChild(TestLabel, 1);
+	//std::string MusicString = std::to_string(musicVolumeControl);
+	//auto TestLabel = Label::createWithTTF(MusicString, "fonts/Marker Felt.ttf", 24);
+	//TestLabel->setColor(ccc3(0, 0, 0));
+	//TestLabel->setPosition(Vec2((origin.x + visibleSize.width / 2) - 250,
+	//	origin.y + visibleSize.height - MusicSlider->getContentSize().height * 14));
+	//this->addChild(TestLabel, 1);
 
 
 
