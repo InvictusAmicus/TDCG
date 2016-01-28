@@ -7,10 +7,12 @@ Movement of enemy soldier sprites
 
 Add attack for towers within a set perimeter
 
-Add health and attack for soldier sprites
+Add health and attack for soldier and player sprites
 
 Add resources after killing enemy or new round 
 
 
 *********Bug Report**************
 Soldier vector need to be cleared after a game is finished
+
+Music has to be fixed so it doesn't start a song twice
