@@ -1,0 +1,16 @@
+*********TO DO LIST***************
+Add cards to hand after the player places one down or at the end of a turn
+
+Player sprites collision detection should move if the player sprite moves
+
+Movement of enemy soldier sprites
+
+Add attack for towers within a set perimeter
+
+Add health and attack for soldier sprites
+
+Add resources after killing enemy or new round 
+
+
+*********Bug Report**************
+Soldier vector need to be cleared after a game is finished
