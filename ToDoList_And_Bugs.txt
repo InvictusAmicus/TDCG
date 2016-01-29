@@ -9,8 +9,12 @@ Add attack for towers within a set perimeter
 
 Add health and attack for soldier sprites
 
-Add resources after killing enemy or new round 
+Add resources after killing enemy
 
 
 *********Bug Report**************
 Soldier vector need to be cleared after a game is finished
+
+
+******Update 29/01/16*******
+Resource updates when end turn clicked

@@ -412,7 +412,7 @@ bool SinglePlayGame::init()
 	*/
 
 
-	Player* p = new Player();
+	p = new Player();
 //	cardInHand->setPosition(50,100);
 //	this->addChild(cardInHand, 1, CardsInHand);
 	
@@ -424,8 +424,8 @@ bool SinglePlayGame::init()
 //	this->addChild(cards, 1);
 	displayHand(p);
 	//p->playCard(0);
-	p->drawCard();
-	p->drawCard();
+	//p->drawCard();
+	//p->drawCard();
 	displayHand(p);
 	return true;
 }
@@ -444,8 +444,13 @@ void SinglePlayGame::displayHand(Player* p)
 	for (i = 0; (unsigned)i < p->getHandSize(); i++)
 	{
 		sprite = p->getCardInHand(i)->getSprite();
-		sprite->setPosition(Vec2(100 + (i * 100), 50));
+		CCLOG("HandSize: %d", p->getHandSize());
+	//	sprite->setPosition(Vec2(100 + (i * 100), 50));
 		this->addChild(sprite, 1, handSprite1 + i);
+		if (getChildByTag(handSprite1 + i) != NULL)
+		{
+			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 50));
+		}
 	}
 	
 	//auto spriteTemplate = cocos2d::Sprite::create("HelloWorld.png");
@@ -1542,7 +1547,6 @@ void SinglePlayGame::LastPage(cocos2d::Ref* pSender)
 	Director::getInstance()->pushScene(GameWonScene);
 }
 
-
 bool SinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
 	//for (int g = 0;g < 4;g++) {
@@ -1599,12 +1603,16 @@ void SinglePlayGame::GameState()
 
 void SinglePlayGame::WonGame()
 {
+	//soldiers.clear();
+	//delete p;
 	auto GameWonScene = GameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
 }
 
 void SinglePlayGame::LostGame()
 {
+	//soldiers.clear();
+	//delete p;
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
@@ -1757,4 +1765,17 @@ void SinglePlayGame::enemyAI() {
 		}
 	}
 	enemyTurn++;
+	startTurn();
+}
+
+void SinglePlayGame::startTurn()
+{
+	//p->drawCard();
+	resource += 100;
+	//displayHand(p);
+	std::string s = std::to_string(resource);
+	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+
+	ChangeResource->setString(s);
+
 }
