@@ -15,6 +15,8 @@ public:
 	int CheckTower(int x, int y);
 	void registerEnemyTower(int x, int y, char c);
 	void CreateGrids();
+	void PlayerTowerAttack();
+	void EnemyTowerAttack();
 };
 
 #endif // __COLLISIONDETECTION_H__

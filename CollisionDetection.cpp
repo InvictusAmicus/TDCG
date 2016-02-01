@@ -132,3 +132,34 @@ void CollisionDetection::CreateGrids() {
 			}
 		}
 }
+
+//Enemy life and Tower attack needs to be added
+void CollisionDetection::PlayerTowerAttack() 
+{
+	for (int i = 0; i <= 3; i++) 
+	{
+		for (int j = 0; j <= 3; j++) 
+		{
+			if (TowerGrid[i][j] == 'T') 
+			{
+				CCLOG("PlayerTowerAttack is ready");
+				if (ColGrid[i][j] == 'E') 
+				{
+					CCLOG("Attacking enemy at %d-%d",i,j);
+				}
+				if (ColGrid[i][j + 1] == 'E')
+				{
+					CCLOG("Attacking enemy at %d-%d", i, j + 1);
+				}
+				if (ColGrid[i + 1][j] == 'E')
+				{
+					CCLOG("Attacking enemy at %d-%d", i + 1, j);
+				}
+				if (ColGrid[i + 1][j + 1] == 'E')
+				{
+					CCLOG("Attacking enemy at %d-%d", i + 1, j + 1);
+				}
+			}
+		}
+	}
+}
