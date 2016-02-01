@@ -197,3 +197,51 @@ void CollisionDetection::EnemyTowerAttack()
 		a++;
 	}
 }
+
+void CollisionDetection::EnemyAttackLife()
+{
+	if (ColGrid[0][0] == 'E') 
+	{
+	  //Remove sprite and take away from player life
+	}
+	if (ColGrid[0][1] == 'E')
+	{
+		//Remove sprite and take away from player life
+	}
+	if (ColGrid[0][2] == 'E')
+	{
+		//Remove sprite and take away from player life
+	}
+	if (ColGrid[0][3] == 'E')
+	{
+		//Remove sprite and take away from player life
+	}
+	if (ColGrid[0][4] == 'E')
+	{
+		//Remove sprite and take away from player life
+	}
+}
+
+void CollisionDetection::playerAttackLife()
+{
+	if (ColGrid[9][0] == 'P')
+	{
+		//Remove sprite and take away from enemy life
+	}
+	if (ColGrid[9][1] == 'P')
+	{
+		//Remove sprite and take away from enemy life
+	}
+	if (ColGrid[9][2] == 'P')
+	{
+		//Remove sprite and take away from enemy life
+	}
+	if (ColGrid[9][3] == 'P')
+	{
+		//Remove sprite and take away from enemy life
+	}
+	if (ColGrid[9][4] == 'P')
+	{
+		//Remove sprite and take away from enemy life
+	}
+}

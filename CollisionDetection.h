@@ -17,6 +17,8 @@ public:
 	void CreateGrids();
 	void PlayerTowerAttack();
 	void EnemyTowerAttack();
+	void playerAttackLife();
+	void EnemyAttackLife();
 };
 
 #endif // __COLLISIONDETECTION_H__
