@@ -163,3 +163,37 @@ void CollisionDetection::PlayerTowerAttack()
 		}
 	}
 }
+
+//Player sprite life and Tower attack needs to be added
+void CollisionDetection::EnemyTowerAttack() 
+{
+	int a = 5;
+
+	for (int i = 0; i <= 3; i++)
+	{
+		for (int j = 0; j <= 3; j++)
+		{
+			if (TowerGrid[i][j] == 'T')
+			{
+				CCLOG("PlayerTowerAttack is ready");
+				if (ColGrid[a][j] == 'P')
+				{
+					CCLOG("Attacking enemy at %d-%d", a, j);
+				}
+				if (ColGrid[a][j + 1] == 'P')
+				{
+					CCLOG("Attacking enemy at %d-%d", a, j + 1);
+				}
+				if (ColGrid[a + 1][j] == 'P')
+				{
+					CCLOG("Attacking enemy at %d-%d", a + 1, j);
+				}
+				if (ColGrid[a + 1][j + 1] == 'P')
+				{
+					CCLOG("Attacking enemy at %d-%d", a + 1, j + 1);
+				}
+			}
+		}
+		a++;
+	}
+}
