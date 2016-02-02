@@ -19,6 +19,11 @@ public:
 	void EnemyTowerAttack();
 	void playerAttackLife();
 	void EnemyAttackLife();
+	int countPlayerTowers();
+	int countPlayerSprites();
+	int countEnemyTowers();
+	int countEnemySprites();
+	void Q();
 };
 
 #endif // __COLLISIONDETECTION_H__

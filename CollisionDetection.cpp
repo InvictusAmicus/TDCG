@@ -131,6 +131,7 @@ void CollisionDetection::CreateGrids() {
 				ColGrid[i][j] = 'N';
 			}
 		}
+		Q();
 }
 
 //Enemy life and Tower attack needs to be added
@@ -245,3 +246,68 @@ void CollisionDetection::playerAttackLife()
 		//Remove sprite and take away from enemy life
 	}
 }
+
+void CollisionDetection::Q() 
+{
+	for (int i = 0; i < 10; i++) 
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			CCLOG("%c ",ColGrid[i][j]);
+		}
+	}
+}
+
+/*
+int CollisionDetection::countPlayerTowers()
+{
+	int TowerC = 0;
+	for (int i = 0; i <= 3; i++) {
+		for (int j = 0; j <= 3; j++) {
+			if (CollisionDetection::TowerGrid[i][j] == 'T') {
+				TowerC++;
+			}
+		}
+	}
+	return TowerC;
+}
+
+int CollisionDetection::countPlayerSprites()
+{
+	int SpriteC = 0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (CollisionDetection::ColGrid[i][j] == 'P') {
+				SpriteC++;
+			}
+		}
+	}
+	return SpriteC;
+}
+
+int CollisionDetection::countEnemyTowers()
+{
+	int TowerC = 0;
+	for (int i = 0; i <= 3; i++) {
+		for (int j = 0; j <= 3; j++) {
+			if (CollisionDetection::EnemyTowerGrid[i][j] == 'T') {
+				TowerC++;
+			}
+		}
+	}
+	return TowerC;
+}
+
+int CollisionDetection::countEnemySprites()
+{
+	int SpriteC = 0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (CollisionDetection::ColGrid[i][j] == 'E') {
+				SpriteC++;
+			}
+		}
+	}
+	return SpriteC;
+}
+*/
