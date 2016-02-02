@@ -4,7 +4,7 @@
 class EnemyAI
 {
 public:
-	void checkVariables();
+	void checkVariables(int x);
 };
 
 #endif // __ENEMYAI_H__

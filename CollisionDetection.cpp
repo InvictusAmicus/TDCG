@@ -258,13 +258,13 @@ void CollisionDetection::Q()
 	}
 }
 
-/*
+
 int CollisionDetection::countPlayerTowers()
 {
 	int TowerC = 0;
 	for (int i = 0; i <= 3; i++) {
 		for (int j = 0; j <= 3; j++) {
-			if (CollisionDetection::TowerGrid[i][j] == 'T') {
+			if (TowerGrid[i][j] == 'T') {
 				TowerC++;
 			}
 		}
@@ -277,7 +277,7 @@ int CollisionDetection::countPlayerSprites()
 	int SpriteC = 0;
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 5; j++) {
-			if (CollisionDetection::ColGrid[i][j] == 'P') {
+			if (ColGrid[i][j] == 'P') {
 				SpriteC++;
 			}
 		}
@@ -290,7 +290,7 @@ int CollisionDetection::countEnemyTowers()
 	int TowerC = 0;
 	for (int i = 0; i <= 3; i++) {
 		for (int j = 0; j <= 3; j++) {
-			if (CollisionDetection::EnemyTowerGrid[i][j] == 'T') {
+			if (EnemyTowerGrid[i][j] == 'T') {
 				TowerC++;
 			}
 		}
@@ -303,11 +303,10 @@ int CollisionDetection::countEnemySprites()
 	int SpriteC = 0;
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 5; j++) {
-			if (CollisionDetection::ColGrid[i][j] == 'E') {
+			if (ColGrid[i][j] == 'E') {
 				SpriteC++;
 			}
 		}
 	}
 	return SpriteC;
 }
-*/
