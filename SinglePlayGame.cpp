@@ -5,6 +5,7 @@
 #include "Card.h"
 #include "Player.h"
 #include "CollisionDetection.h"
+#include "EnemyAI.h"
 
 
 USING_NS_CC;
@@ -12,11 +13,14 @@ USING_NS_CC;
 int life;
 int Enemylife;
 int resource;
+int EnemyResource;
 int TowerGridLoop;
 int enemyTurn = 0;
 //int TowerAreaArray[3][3];
 float OriginalXPos, OriginalYPos;
 std::vector<Sprite*> soldiers;
+
+CollisionDetection* baseGrid = new CollisionDetection();
 
 #define LabelEnemyLife 1232
 #define ErrorFeedback 1233
@@ -95,8 +99,11 @@ bool SinglePlayGame::init()
 	Enemylife = 100;
 	life = 100;
 	resource = 100;
-	CollisionDetection CreateTheGrids;
-	CreateTheGrids.CreateGrids();
+	EnemyResource = 100;
+	//CollisionDetection CreateTheGrids;
+	//CreateTheGrids.CreateGrids();
+	baseGrid->CreateGrids();
+	CCLOG("Creating Grid");
 	/*
 		when moving to the GameOver screen, pass life in.
 		if(life > 0)
@@ -1605,6 +1612,7 @@ void SinglePlayGame::WonGame()
 {
 	//soldiers.clear();
 	//delete p;
+	delete baseGrid;
 	auto GameWonScene = GameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
 }
@@ -1613,6 +1621,7 @@ void SinglePlayGame::LostGame()
 {
 	//soldiers.clear();
 	//delete p;
+	delete baseGrid;
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
@@ -1660,7 +1669,7 @@ void SinglePlayGame::enemyAI() {
 		EnemyTower1->setPosition(Vec2(635, 478));
 		EnemyTower1->setScale(2.0);
 		this->addChild(EnemyTower1, 1);
-		RegEnemy.registerTower(1,0,'T');
+		RegEnemy.registerEnemyTower(1,0,'T');
 
 		if (RegEnemy.registerObject(7,3,'E')==0) 
 		{
@@ -1696,13 +1705,13 @@ void SinglePlayGame::enemyAI() {
 		EnemyTower2->setPosition(Vec2(787, 257));
 		EnemyTower2->setScale(2.0);
 		this->addChild(EnemyTower2, 1);
-		RegEnemy.registerTower(3, 3, 'T');
+		RegEnemy.registerEnemyTower(3, 3, 'T');
 
 		auto EnemyTower3 = Sprite::create("SampleTower.png");
 		EnemyTower3->setPosition(Vec2(787, 477));
 		EnemyTower3->setScale(2.0);
 		this->addChild(EnemyTower3, 1);
-		RegEnemy.registerTower(3, 0, 'T');
+		RegEnemy.registerEnemyTower(3, 0, 'T');
 	}
 	else if (enemyTurn == 3) 
 	{
@@ -1712,7 +1721,7 @@ void SinglePlayGame::enemyAI() {
 		EnemyTower4->setPosition(Vec2(558, 257));
 		EnemyTower4->setScale(2.0);
 		this->addChild(EnemyTower4, 1);
-		RegEnemy.registerTower(0, 3, 'T');
+		RegEnemy.registerEnemyTower(0, 3, 'T');
 
 		if (RegEnemy.registerObject(5, 0, 'E') == 0)
 		{
@@ -1729,7 +1738,7 @@ void SinglePlayGame::enemyAI() {
 		EnemyTower5->setPosition(Vec2(711, 329));
 		EnemyTower5->setScale(2.0);
 		this->addChild(EnemyTower5, 1);
-		RegEnemy.registerTower(2, 2, 'T');
+		RegEnemy.registerEnemyTower(2, 2, 'T');
 
 		if (RegEnemy.registerObject(5, 4, 'E') == 0)
 		{
@@ -1770,6 +1779,9 @@ void SinglePlayGame::enemyAI() {
 
 void SinglePlayGame::startTurn()
 {
+	EnemyAI t;
+	//t.test();
+	t.checkVariables(resource, EnemyResource);
 	//p->drawCard();
 	resource += 100;
 	//displayHand(p);

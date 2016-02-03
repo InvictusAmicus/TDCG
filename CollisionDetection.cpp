@@ -98,8 +98,8 @@ int CollisionDetection::CheckTower(int x, int y) {
 void CollisionDetection::registerEnemyTower(int x, int y, char c) {
 
 	//Needs to be fixed up later
-	if (TowerGrid[x][y] == 'N') {
-		TowerGrid[x][y] = c;
+	if (EnemyTowerGrid[x][y] == 'N') {
+		EnemyTowerGrid[x][y] = c;
 	}
 	else {
 		CCLOG("Postion already took");
@@ -116,7 +116,7 @@ void CollisionDetection::CreateGrids() {
 	//creates the Tower grid if it is not made
 		for (int i = 0;i < 5;i++) {
 			for (int j = 0;j < 5;j++) {
-				TowerGrid[i][j] = 'N';
+			TowerGrid[i][j] = 'N';
 			}
 		}
 	//creates the Enemy Tower grid if it is not made
@@ -133,6 +133,7 @@ void CollisionDetection::CreateGrids() {
 		}
 		Q();
 }
+
 
 //Enemy life and Tower attack needs to be added
 void CollisionDetection::PlayerTowerAttack() 
@@ -269,6 +270,7 @@ int CollisionDetection::countPlayerTowers()
 			}
 		}
 	}
+    CCLOG("PLAYERTOWER, %d", TowerC);
 	return TowerC;
 }
 
@@ -295,6 +297,7 @@ int CollisionDetection::countEnemyTowers()
 			}
 		}
 	}
+	CCLOG("ENEMYTOWER, %d", TowerC);
 	return TowerC;
 }
 
@@ -309,4 +312,6 @@ int CollisionDetection::countEnemySprites()
 		}
 	}
 	return SpriteC;
+
 }
+

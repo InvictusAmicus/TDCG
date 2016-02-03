@@ -24,6 +24,9 @@ public:
 	int countEnemyTowers();
 	int countEnemySprites();
 	void Q();
+	//char ColGrid[10][5];
+	//char TowerGrid[5][5];
+	//char EnemyTowerGrid[5][5];
 };
 
 #endif // __COLLISIONDETECTION_H__
