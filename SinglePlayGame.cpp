@@ -20,7 +20,7 @@ int enemyTurn = 0;
 float OriginalXPos, OriginalYPos;
 std::vector<Sprite*> soldiers;
 
-CollisionDetection* baseGrid = new CollisionDetection();
+CollisionDetection* baseGrid;
 
 #define LabelEnemyLife 1232
 #define ErrorFeedback 1233
@@ -100,6 +100,7 @@ bool SinglePlayGame::init()
 	life = 100;
 	resource = 100;
 	EnemyResource = 100;
+	baseGrid = new CollisionDetection();
 	//CollisionDetection CreateTheGrids;
 	//CreateTheGrids.CreateGrids();
 	baseGrid->CreateGrids();
@@ -183,12 +184,12 @@ bool SinglePlayGame::init()
 	this->addChild(menu,1);
 
 
-	auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::LastPage, this));
-	LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
+	//auto LastPage = MenuItemImage::create("ArrowSelection.png", "ArrowSelection.png", CC_CALLBACK_1(SinglePlayGame::WonGame, this));
+	//LastPage->setPosition(Vec2(origin.x + visibleSize.width - LastPage->getContentSize().width, 360));
 	//origin.y + visibleSize.height - Back->getContentSize().height * 8));
-	auto NP = Menu::create(LastPage, NULL);
-	NP->setPosition(Vec2::ZERO);
-	this->addChild(NP, 1);
+	//auto NP = Menu::create(LastPage, NULL);
+	//NP->setPosition(Vec2::ZERO);
+	//this->addChild(NP, 1);
 
 
 	//auto Test = Sprite::create("ArrowSelection.png");
@@ -1610,8 +1611,14 @@ void SinglePlayGame::GameState()
 
 void SinglePlayGame::WonGame()
 {
+	CCLOG("WON GAME");
 	//soldiers.clear();
 	//delete p;
+	std::vector<Sprite*> TempVector;
+	CCLOG("TEMP %d", TempVector.size());
+	soldiers.swap(TempVector);
+	CCLOG("SOLD %d", soldiers.size());
+	CCLOG("TEMP2 %d", TempVector.size());
 	delete baseGrid;
 	auto GameWonScene = GameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
@@ -1621,6 +1628,8 @@ void SinglePlayGame::LostGame()
 {
 	//soldiers.clear();
 	//delete p;
+	std::vector<Sprite*> TempVector;
+	soldiers.swap(TempVector);
 	delete baseGrid;
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
@@ -1633,6 +1642,7 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	enemyAI();
 	for (int i = 0;(unsigned) i < soldiers.size(); i++)
 	{
+		CCLOG("SOLDIER SIZE %d", soldiers.size());
 		if (soldiers.at(i)->getPositionX() + 75 < 825)
 		{
 			CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
