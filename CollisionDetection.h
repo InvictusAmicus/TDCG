@@ -1,6 +1,9 @@
 #ifndef __COLLISIONDETECTION_H__
 #define __COLLISIONDETECTION_H__
 
+#include <utility>
+#include <iostream>
+
 class CollisionDetection
 {
 public:
@@ -10,7 +13,7 @@ public:
 
 	int registerObject(int x, int y, char c);
 	int enemyCollisionDetect(int x, int y, char c);
-	int playerCollisionDetect(int x, int y, char c);
+	int playerCollisionDetect(std::pair<int, int> TestPostion, char c);
 	int registerTower(int x, int y, char c);
 	int CheckTower(int x, int y);
 	void registerEnemyTower(int x, int y, char c);

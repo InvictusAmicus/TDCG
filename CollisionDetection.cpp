@@ -1,7 +1,9 @@
 #include"CollisionDetection.h"
 #include"SinglePlayGame.h"
 #include"MultiPlayer.h"
-
+#include <utility>
+#include <iostream>
+#include <vector>
 
 char ColGrid[10][5];
 char TowerGrid[5][5];
@@ -32,8 +34,10 @@ int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
 
 }
 
-int CollisionDetection::playerCollisionDetect(int x, int y, char c) {
+int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, char c) {
 
+	int x = std::get<0>(TestPostion);
+	int y = std::get<1>(TestPostion);
 	//checks to see if the available space is clear
 	if (ColGrid[x + 1][y] == 'N') {
 		ColGrid[x + 1][y] = c;

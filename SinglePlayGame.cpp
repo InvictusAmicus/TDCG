@@ -6,7 +6,8 @@
 #include "Player.h"
 #include "CollisionDetection.h"
 #include "EnemyAI.h"
-
+#include <utility>
+#include <iostream>
 
 USING_NS_CC;
 
@@ -19,6 +20,7 @@ int enemyTurn = 0;
 //int TowerAreaArray[3][3];
 float OriginalXPos, OriginalYPos;
 std::vector<Sprite*> soldiers;
+std::vector<std::pair<int, int> > SoldierPostions;
 
 CollisionDetection* baseGrid;
 
@@ -1047,6 +1049,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(0, 0));
 						}
 						else
 						{
@@ -1068,6 +1071,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(0, 1));
 						}
 						else
 						{
@@ -1085,6 +1089,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(0, 2));
 						}
 						else
 						{
@@ -1102,6 +1107,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(0, 3));
 						}
 						else
 						{
@@ -1119,6 +1125,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(0, 4));
 						}
 						else
 						{
@@ -1136,6 +1143,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(1, 0));
 						}
 						else
 						{
@@ -1153,6 +1161,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(1, 1));
 						}
 						else
 						{
@@ -1170,6 +1179,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(1, 2));
 						}
 						else
 						{
@@ -1187,6 +1197,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(1, 3));
 						}
 						else
 						{
@@ -1204,6 +1215,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(1, 4));
 						}
 						else
 						{
@@ -1221,6 +1233,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(2, 0));
 						}
 						else
 						{
@@ -1238,6 +1251,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(2, 1));
 						}
 						else
 						{
@@ -1255,6 +1269,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(2, 2));
 						}
 						else
 						{
@@ -1272,6 +1287,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(2, 3));
 						}
 						else
 						{
@@ -1289,6 +1305,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(2, 4));
 						}
 						else
 						{
@@ -1305,6 +1322,8 @@ void SinglePlayGame::displayHand(Player* p)
 							target->setPosition(364, 504);
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
+							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(3, 0));
 						}
 						else
 						{
@@ -1322,6 +1341,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(3, 1));
 						}
 						else
 						{
@@ -1339,6 +1359,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(3, 2));
 						}
 						else
 						{
@@ -1356,6 +1377,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(3, 3));
 						}
 						else
 						{
@@ -1373,6 +1395,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(3, 4));
 						}
 						else
 						{
@@ -1390,6 +1413,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(4, 0));
 						}
 						else
 						{
@@ -1407,6 +1431,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(4, 1));
 						}
 						else
 						{
@@ -1424,6 +1449,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(4, 2));
 						}
 						else
 						{
@@ -1441,6 +1467,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(4, 3));
 						}
 						else
 						{
@@ -1458,6 +1485,7 @@ void SinglePlayGame::displayHand(Player* p)
 							resource = resource - 10;
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
+							SoldierPostions.push_back(std::make_pair(4, 4));
 						}
 						else
 						{
@@ -1615,8 +1643,10 @@ void SinglePlayGame::WonGame()
 	//soldiers.clear();
 	//delete p;
 	std::vector<Sprite*> TempVector;
+	std::vector<std::pair<int, int> > TempPostions;
 	CCLOG("TEMP %d", TempVector.size());
 	soldiers.swap(TempVector);
+	SoldierPostions.swap(TempPostions);
 	CCLOG("SOLD %d", soldiers.size());
 	CCLOG("TEMP2 %d", TempVector.size());
 	delete baseGrid;
@@ -1629,7 +1659,9 @@ void SinglePlayGame::LostGame()
 	//soldiers.clear();
 	//delete p;
 	std::vector<Sprite*> TempVector;
+	std::vector<std::pair<int, int> > TempPostions;
 	soldiers.swap(TempVector);
+	SoldierPostions.swap(TempPostions);
 	delete baseGrid;
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
@@ -1637,21 +1669,33 @@ void SinglePlayGame::LostGame()
 
 void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
-	
+	CollisionDetection moveForward;
 	CCLOG("Test For End Turn");
 	enemyAI();
 	for (int i = 0;(unsigned) i < soldiers.size(); i++)
 	{
 		CCLOG("SOLDIER SIZE %d", soldiers.size());
-		if (soldiers.at(i)->getPositionX() + 75 < 825)
-		{
-			CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
-			soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 75);
-			CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
+		if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 0) {
+			if (soldiers.at(i)->getPositionX() + 75 < 825)
+			{
+				CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
+				soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 75);
+				CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
+				CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
+				std::get<0>(SoldierPostions.at(i)) = std::get<0>(SoldierPostions.at(i)) + 1;
+				CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
+			}
 		}
-		else
+		else if(moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 1)
 		{
-			//deal damage to enemy = to attack
+			CCLOG("CAN'T MOVE FORWARD Enemy");
+				//call attack
+				//deal damage to enemy = to attack
+		}
+		else if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 2)
+		{
+			CCLOG("CAN'T MOVE FORWARD Player");
+			//Player in front
 		}
 	}
 	//holding the button keeps calling the method
