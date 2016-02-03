@@ -1675,27 +1675,48 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	for (int i = 0;(unsigned) i < soldiers.size(); i++)
 	{
 		CCLOG("SOLDIER SIZE %d", soldiers.size());
-		if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 0) {
-			if (soldiers.at(i)->getPositionX() + 75 < 825)
-			{
-				CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
-				soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 75);
-				CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
-				CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
-				std::get<0>(SoldierPostions.at(i)) = std::get<0>(SoldierPostions.at(i)) + 1;
-				CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
-			}
-		}
-		else if(moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 1)
+		CCLOG("SOLDIER Postions %d", std::get<0>(SoldierPostions.at(i)));
+		if (std::get<0>(SoldierPostions.at(i)) == 9)
 		{
-			CCLOG("CAN'T MOVE FORWARD Enemy");
+
+				//soldiers.erase(soldiers.begin() + i);
+                
+			    Enemylife = Enemylife - 40;
+				std::string StringEnemyLife = std::to_string(Enemylife);
+				CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+				ChangeEnemyLife->setString(StringEnemyLife);
+				moveForward.removeObject(SoldierPostions.at(i));
+				soldiers.at(i)->removeFromParentAndCleanup(true);
+				soldiers.at(i) = NULL;
+				std::get<0>(SoldierPostions.at(i)) = NULL;
+				std::get<1>(SoldierPostions.at(i)) = NULL;
+				//GameState();				
+		}
+		if (soldiers.at(i) != NULL && std::get<0>(SoldierPostions.at(i)) != NULL && std::get<1>(SoldierPostions.at(i)) != NULL) {
+			if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 0) {
+
+				if (soldiers.at(i)->getPositionX() + 75 < 825)
+				{
+					CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
+					soldiers.at(i)->setPositionX(soldiers.at(i)->getPositionX() + 75);
+					CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
+					CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
+					std::get<0>(SoldierPostions.at(i)) = std::get<0>(SoldierPostions.at(i)) + 1;
+					CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
+
+				}
+			}
+			else if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 1)
+			{
+				CCLOG("CAN'T MOVE FORWARD Enemy");
 				//call attack
 				//deal damage to enemy = to attack
-		}
-		else if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 2)
-		{
-			CCLOG("CAN'T MOVE FORWARD Player");
-			//Player in front
+			}
+			else if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 2)
+			{
+				CCLOG("CAN'T MOVE FORWARD Player");
+				//Player in front
+			}
 		}
 	}
 	//holding the button keeps calling the method
@@ -1704,7 +1725,9 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 void SinglePlayGame::enemyAI() {
 
 	//Added here until attack method is made
-    Enemylife = Enemylife - 10;
+    
+	//Enemylife = Enemylife - 10;
+	
 	std::string StringEnemyLife = std::to_string(Enemylife);	
 	CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
     ChangeEnemyLife->setString(StringEnemyLife);

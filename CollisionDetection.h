@@ -26,6 +26,7 @@ public:
 	int countPlayerSprites();
 	int countEnemyTowers();
 	int countEnemySprites();
+	void removeObject(std::pair<int, int> RemovePostion);
 	void Q();
 	//char ColGrid[10][5];
 	//char TowerGrid[5][5];

@@ -55,7 +55,6 @@ int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, c
 		CCLOG("Returning 1");
 		return 2;
 	}
-
 }
 
 
@@ -72,6 +71,13 @@ int CollisionDetection::registerObject(int x, int y, char c) {
 	}
 	CCLOG("registerObject Completed");
 
+}
+
+void CollisionDetection::removeObject(std::pair<int, int> RemovePostion)
+{
+	int x = std::get<0>(RemovePostion);
+	int y = std::get<1>(RemovePostion);
+	ColGrid[x][y] = 'N';
 }
 
 int CollisionDetection::registerTower(int x, int y, char c) {
