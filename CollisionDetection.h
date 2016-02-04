@@ -12,7 +12,7 @@ public:
 	bool init();
 
 	int registerObject(int x, int y, char c);
-	int enemyCollisionDetect(int x, int y, char c);
+	int enemyCollisionDetect(std::pair<int, int> TestPostion, char c);
 	int playerCollisionDetect(std::pair<int, int> TestPostion, char c);
 	int registerTower(int x, int y, char c);
 	int CheckTower(int x, int y);
@@ -26,6 +26,8 @@ public:
 	int countPlayerSprites();
 	int countEnemyTowers();
 	int countEnemySprites();
+	int EnemiesInPlayerArea();
+	int PlayersInEnemyArea();
 	void removeObject(std::pair<int, int> RemovePostion);
 	void Q();
 	//char ColGrid[10][5];

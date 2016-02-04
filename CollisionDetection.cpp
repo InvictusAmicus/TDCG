@@ -12,7 +12,10 @@ char EnemyTowerGrid[5][5];
 CollisionDetection::CollisionDetection() {}
 CollisionDetection::~CollisionDetection() {}
 
-int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
+int CollisionDetection::enemyCollisionDetect(std::pair<int, int> TestPostion, char c) {
+
+	int x = std::get<0>(TestPostion);
+	int y = std::get<1>(TestPostion);
 
 	//checks to see if the available space is clear
 	if (ColGrid[x - 1][y] == 'N') {
@@ -23,12 +26,13 @@ int CollisionDetection::enemyCollisionDetect(int x, int y, char c) {
 	}
 	//returns a value of 2 if it finds a Player Sprite in next space
 	else if (ColGrid[x - 1][y] == 'P') {
-		CCLOG("Returning 2");
+		CCLOG("Returning 1");
+		//call attack on player sprite
 		return 1;
 	}
 	//returns a value of one if another enemy is in front of it
 	else {
-		CCLOG("Returning 1");
+		CCLOG("Returning 2");
 		return 2;
 	}
 
@@ -47,12 +51,13 @@ int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, c
 	}
 	//returns a value of 2 if it finds a Enemy Sprite in next space
 	else if (ColGrid[x + 1][y] == 'E') {
-		CCLOG("Returning 2");
+		CCLOG("Returning 1");
+		//Enemy in front call attack enemy
 		return 1;
 	}
 	//returns a value of one if another player is in front of it
 	else {
-		CCLOG("Returning 1");
+		CCLOG("Returning 2");
 		return 2;
 	}
 }
@@ -323,5 +328,39 @@ int CollisionDetection::countEnemySprites()
 	}
 	return SpriteC;
 
+}
+
+int CollisionDetection::PlayersInEnemyArea() 
+{
+	int PlayersInEnemyArea = 0;
+
+	for (int i = 5; i < 10; i++)
+	{
+		for (int j = 0; j < 5;j++)
+		{
+			if (ColGrid[i][j] == 'P')
+			{
+				PlayersInEnemyArea++;
+			}
+		}
+	}
+	return PlayersInEnemyArea;
+}
+
+int CollisionDetection::EnemiesInPlayerArea() 
+{
+	int EnemiesInPlayerArea = 0;
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5;j++)
+		{
+			if (ColGrid[i][j] == 'E')
+			{
+				EnemiesInPlayerArea++;
+			}
+		}
+	}
+	return EnemiesInPlayerArea;
 }
 

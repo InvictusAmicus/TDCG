@@ -21,6 +21,8 @@ int enemyTurn = 0;
 float OriginalXPos, OriginalYPos;
 std::vector<Sprite*> soldiers;
 std::vector<std::pair<int, int> > SoldierPostions;
+std::vector<Sprite*> EnemySoldiers;
+std::vector<std::pair<int, int> > EnemySoldierPostions;
 
 CollisionDetection* baseGrid;
 
@@ -1644,9 +1646,15 @@ void SinglePlayGame::WonGame()
 	//delete p;
 	std::vector<Sprite*> TempVector;
 	std::vector<std::pair<int, int> > TempPostions;
+	std::vector<Sprite*> TempVector2;
+	std::vector<std::pair<int, int> > TempPostions2;
 	CCLOG("TEMP %d", TempVector.size());
+	
 	soldiers.swap(TempVector);
 	SoldierPostions.swap(TempPostions);
+	EnemySoldiers.swap(TempVector2);
+	EnemySoldierPostions.swap(TempPostions2);
+
 	CCLOG("SOLD %d", soldiers.size());
 	CCLOG("TEMP2 %d", TempVector.size());
 	delete baseGrid;
@@ -1660,8 +1668,14 @@ void SinglePlayGame::LostGame()
 	//delete p;
 	std::vector<Sprite*> TempVector;
 	std::vector<std::pair<int, int> > TempPostions;
+	std::vector<Sprite*> TempVector2;
+	std::vector<std::pair<int, int> > TempPostions2;
+
 	soldiers.swap(TempVector);
 	SoldierPostions.swap(TempPostions);
+	EnemySoldiers.swap(TempVector2);
+	EnemySoldierPostions.swap(TempPostions2);
+
 	delete baseGrid;
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
@@ -1670,6 +1684,54 @@ void SinglePlayGame::LostGame()
 void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
 	CollisionDetection moveForward;
+	for (int x = 0;(unsigned)x < EnemySoldiers.size(); x++)
+	{
+        CCLOG("ENEMY SOLDIER SIZE %d", EnemySoldiers.size());
+		CCLOG("SOLDIER Postions %d", std::get<0>(EnemySoldierPostions.at(x)));
+		if (std::get<0>(EnemySoldierPostions.at(x)) == 0)
+		{
+
+		//life = life - 40;
+		//std::string StringLife = std::to_string(life);
+		//CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+		//ChangeEnemyLife->setString(StringLife);
+		//moveForward.removeObject(EnemySoldierPostions.at(x));
+		//Enemyoldiers.at(i)->removeFromParentAndCleanup(true);
+		//EnemySoldiers.at(i) = NULL;
+		//std::get<0>(EnemySoldierPostions.at(x)) = NULL;
+		//std::get<1>(EnemySoldierPostions.at(x)) = NULL;
+				//GameState();				
+		}
+		if (EnemySoldiers.at(x) != NULL && std::get<0>(EnemySoldierPostions.at(x)) != NULL && std::get<1>(EnemySoldierPostions.at(x)) != NULL) 
+		{
+		    if (moveForward.enemyCollisionDetect(EnemySoldierPostions.at(x), 'E') == 0) 
+			{
+				if (EnemySoldiers.at(x)->getPositionX() - 75 > 75)
+				{
+					CCLOG("%d X co-ordinate: %f", x, EnemySoldiers.at(x)->getPositionX());
+					EnemySoldiers.at(x)->setPositionX(EnemySoldiers.at(x)->getPositionX() - 75);
+					CCLOG("X co-ordinate: %f", EnemySoldiers.at(x)->getPositionX());
+					CCLOG("SoldierP: %d", std::get<0>(EnemySoldierPostions.at(x)));
+					std::get<0>(EnemySoldierPostions.at(x)) = std::get<0>(EnemySoldierPostions.at(x)) - 1;
+					CCLOG("SoldierP: %d", std::get<0>(EnemySoldierPostions.at(x)));
+				}
+						//}
+				else if (moveForward.enemyCollisionDetect(EnemySoldierPostions.at(x), 'E') == 1)
+				{
+					CCLOG("CAN'T MOVE FORWARD player sprite");
+				    //call attack
+					//deal damage to enemy = to attack
+				}
+				else if (moveForward.enemyCollisionDetect(EnemySoldierPostions.at(x), 'E') == 2)
+				{
+					CCLOG("CAN'T MOVE FORWARD enemy ally sprite ahead");
+					//Player in front
+				}
+			}
+		}
+	}
+
+
 	CCLOG("Test For End Turn");
 	enemyAI();
 	for (int i = 0;(unsigned) i < soldiers.size(); i++)
@@ -1738,7 +1800,7 @@ void SinglePlayGame::enemyAI() {
 	//hardcoding enemy postions until proper AI is made
 	//Can be used to check for collisions and win/lose conditions
 	CollisionDetection RegEnemy;
-
+	/*
 	if (enemyTurn == 0)
 	{
 		CCLOG("Enemy Turn 1");
@@ -1754,10 +1816,13 @@ void SinglePlayGame::enemyAI() {
 		    EnemySoldier1->setPosition(Vec2(672, 286));
 		    EnemySoldier1->setScale(2.0);
 		    this->addChild(EnemySoldier1, 1);
+			EnemySoldiers.push_back(EnemySoldier1);
+			EnemySoldierPostions.push_back(std::make_pair(7, 3));
 		}
 		
-	}
-	else if (enemyTurn==1) 
+	}*/
+	//else 
+		if (enemyTurn==1) 
 	{
 		CCLOG("Enemy Turn 2");
 		if (RegEnemy.registerObject(6, 2, 'E') == 0)
@@ -1766,6 +1831,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier2->setPosition(Vec2(598, 356));
 			EnemySoldier2->setScale(2.0);
 			this->addChild(EnemySoldier2, 1);
+			EnemySoldiers.push_back(EnemySoldier2);
+			EnemySoldierPostions.push_back(std::make_pair(6, 2));
 		}
 		if (RegEnemy.registerObject(9, 0, 'E') == 0)
 		{
@@ -1773,6 +1840,9 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier3->setPosition(Vec2(826, 508));
 			EnemySoldier3->setScale(2.0);
 			this->addChild(EnemySoldier3, 1);
+			EnemySoldiers.push_back(EnemySoldier3);
+			EnemySoldierPostions.push_back(std::make_pair(9, 0));
+			CCLOG("MADE 9 0");
 		}
 	}
 	else if (enemyTurn == 2) 
@@ -1806,6 +1876,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier4->setPosition(Vec2(517, 509));
 			EnemySoldier4->setScale(2.0);
 			this->addChild(EnemySoldier4, 1);
+			EnemySoldiers.push_back(EnemySoldier4);
+			EnemySoldierPostions.push_back(std::make_pair(5, 0));
 		}
 	}
 	else if (enemyTurn == 4) 
@@ -1823,6 +1895,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier5->setPosition(Vec2(517, 211));
 			EnemySoldier5->setScale(2.0);
 			this->addChild(EnemySoldier5, 1);
+			EnemySoldiers.push_back(EnemySoldier5);
+			EnemySoldierPostions.push_back(std::make_pair(5, 4));
 		}
 	}
 	else if (enemyTurn == 5) 
@@ -1834,6 +1908,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier6->setPosition(Vec2(827, 213));
 			EnemySoldier6->setScale(2.0);
 			this->addChild(EnemySoldier6, 1);
+			EnemySoldiers.push_back(EnemySoldier6);
+			EnemySoldierPostions.push_back(std::make_pair(9, 4));
 		}
 		if (RegEnemy.registerObject(9, 3, 'E') == 0)
 		{
@@ -1841,6 +1917,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier7->setPosition(Vec2(827, 289));
 			EnemySoldier7->setScale(2.0);
 			this->addChild(EnemySoldier7, 1);
+			EnemySoldiers.push_back(EnemySoldier7);
+			EnemySoldierPostions.push_back(std::make_pair(9, 3));
 		}
 		if (RegEnemy.registerObject(9, 1, 'E') == 0)
 		{
@@ -1848,6 +1926,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldier8->setPosition(Vec2(827, 430));
 			EnemySoldier8->setScale(2.0);
 			this->addChild(EnemySoldier8, 1);
+			EnemySoldiers.push_back(EnemySoldier8);
+			EnemySoldierPostions.push_back(std::make_pair(9, 1));
 		}
 	}
 	enemyTurn++;
