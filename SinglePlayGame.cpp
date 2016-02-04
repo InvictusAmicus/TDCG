@@ -1691,15 +1691,15 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		if (std::get<0>(EnemySoldierPostions.at(x)) == 0)
 		{
 
-		//life = life - 40;
-		//std::string StringLife = std::to_string(life);
-		//CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
-		//ChangeEnemyLife->setString(StringLife);
-		//moveForward.removeObject(EnemySoldierPostions.at(x));
-		//Enemyoldiers.at(i)->removeFromParentAndCleanup(true);
-		//EnemySoldiers.at(i) = NULL;
-		//std::get<0>(EnemySoldierPostions.at(x)) = NULL;
-		//std::get<1>(EnemySoldierPostions.at(x)) = NULL;
+		life = life - 40;
+		std::string StringLife = std::to_string(life);
+		CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+		ChangePlayerLife->setString(StringLife);
+		moveForward.removeObject(EnemySoldierPostions.at(x));
+		//EnemySoldiers.at(x)->removeFromParentAndCleanup(true);
+		EnemySoldiers.at(x) = NULL;
+		std::get<0>(EnemySoldierPostions.at(x)) = NULL;
+		std::get<1>(EnemySoldierPostions.at(x)) = NULL;
 				//GameState();				
 		}
 		if (EnemySoldiers.at(x) != NULL && std::get<0>(EnemySoldierPostions.at(x)) != NULL && std::get<1>(EnemySoldierPostions.at(x)) != NULL) 
@@ -1800,7 +1800,7 @@ void SinglePlayGame::enemyAI() {
 	//hardcoding enemy postions until proper AI is made
 	//Can be used to check for collisions and win/lose conditions
 	CollisionDetection RegEnemy;
-	/*
+	
 	if (enemyTurn == 0)
 	{
 		CCLOG("Enemy Turn 1");
@@ -1820,9 +1820,8 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldierPostions.push_back(std::make_pair(7, 3));
 		}
 		
-	}*/
-	//else 
-		if (enemyTurn==1) 
+	}
+	else if (enemyTurn==1) 
 	{
 		CCLOG("Enemy Turn 2");
 		if (RegEnemy.registerObject(6, 2, 'E') == 0)

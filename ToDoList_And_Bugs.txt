@@ -9,6 +9,7 @@ Add health and attack for soldier and player sprites
 
 Add resources after killing enemy
 
+remove enemy from screen after it has reached the other end
 
 *********Bug Report**************
 Soldier vector need to be cleared after a game is finished
