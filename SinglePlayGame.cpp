@@ -539,12 +539,12 @@ void SinglePlayGame::displayHand(Player* p)
 
 			log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
 
-			CCLOG("Before if");
+			//CCLOG("Before if");
 			if (rect.containsPoint(locationInNode))
 			{
 				log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
 				target->setOpacity(180);
-				CCLOG("After If");
+				//CCLOG("After If");
 				return true;
 			}
 			return false;
@@ -564,15 +564,15 @@ void SinglePlayGame::displayHand(Player* p)
 			//TowerArea->setOpacity(200);
 			//}
 		}
-		CCLOG("BEFORE IF LOOP");
+		//CCLOG("BEFORE IF LOOP");
 		if (p->getCardInHand(1)->getType() =='s') 
 		{
-			CCLOG("IF LOOP RUNNING");
+			//CCLOG("IF LOOP RUNNING");
 			target->setTexture("testEnemy.png");
 		}
 		else if (p->getCardInHand(1)->getType() == 't')
 		{
-			CCLOG("IF LOOP RUNNING");
+			//CCLOG("IF LOOP RUNNING");
 			target->setTexture("SampleTower.png");
 
             if (CheckT.CheckTower(0, 0) == 0) 
@@ -1689,6 +1689,7 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	{
         CCLOG("ENEMY SOLDIER SIZE %d", EnemySoldiers.size());
 		CCLOG("SOLDIER Postions %d", std::get<0>(EnemySoldierPostions.at(x)));
+		
 		if (std::get<0>(EnemySoldierPostions.at(x)) == 0)
 		{
 
@@ -1739,6 +1740,7 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	{
 		CCLOG("SOLDIER SIZE %d", soldiers.size());
 		CCLOG("SOLDIER Postions %d", std::get<0>(SoldierPostions.at(i)));
+		CCLOG("Current i: %d", i);
 		if (std::get<0>(SoldierPostions.at(i)) == 9)
 		{
 
@@ -1753,11 +1755,12 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				soldiers.at(i) = NULL;
 				std::get<0>(SoldierPostions.at(i)) = NULL;
 				std::get<1>(SoldierPostions.at(i)) = NULL;
+				CCLOG("Current i %d :first if:", i);
 				//GameState();				
 		}
 		if (soldiers.at(i) != NULL && std::get<0>(SoldierPostions.at(i)) != NULL && std::get<1>(SoldierPostions.at(i)) != NULL) {
 			if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 0) {
-
+				CCLOG("Current i %d :second 1 if:", i);
 				if (soldiers.at(i)->getPositionX() + 75 < 825)
 				{
 					CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
@@ -1766,21 +1769,24 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
 					std::get<0>(SoldierPostions.at(i)) = std::get<0>(SoldierPostions.at(i)) + 1;
 					CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
-
+					CCLOG("Current i %d :second 2 if:", i);
 				}
 			}
 			else if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 1)
 			{
 				CCLOG("CAN'T MOVE FORWARD Enemy");
+				CCLOG("Current i %d :else if 1:", i);
 				//call attack
 				//deal damage to enemy = to attack
 			}
 			else if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 2)
 			{
 				CCLOG("CAN'T MOVE FORWARD Player");
+				CCLOG("Current i %d :else if 2:", i);
 				//Player in front
 			}
 		}
+		CCLOG("Current i %d :End of for:", i);
 	}
 	//holding the button keeps calling the method
 }

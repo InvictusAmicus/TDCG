@@ -39,9 +39,10 @@ int CollisionDetection::enemyCollisionDetect(std::pair<int, int> TestPostion, ch
 }
 
 int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, char c) {
-
+	
 	int x = std::get<0>(TestPostion);
 	int y = std::get<1>(TestPostion);
+	CCLOG("Running playerCollisionDetect on %d  %d", x, y);
 	//checks to see if the available space is clear
 	if (ColGrid[x + 1][y] == 'N') {
 		ColGrid[x + 1][y] = c;
