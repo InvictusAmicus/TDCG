@@ -16,7 +16,8 @@ Soldier vector need to be cleared after a game is finished
 
 Music has to be fixed so it doesn't start a song twice
 
-Enemy and player sprite don't move when placed in 0 y-axis needs to be fixed
+Enemy and player sprite don't move when placed in 0 y-axis needs to be fixed,
+Player sprites don't move when placed on 0 x-axis, enemies don't seem to be effected on the 9 x-axis
 
 ******Update 29/01/16*******
 Resource updates when end turn clicked

@@ -1052,6 +1052,7 @@ void SinglePlayGame::displayHand(Player* p)
 							ChangeText->setString("Soldier Placed");
 							soldiers.push_back(target);
 							SoldierPostions.push_back(std::make_pair(0, 0));
+							CCLOG("0,0 SET");
 						}
 						else
 						{

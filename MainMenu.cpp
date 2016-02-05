@@ -173,7 +173,7 @@ void MainMenu::menuHowToPlay(Ref* pSender)
 
 void MainMenu::SystemFile() 
 {
-	CCLOG("START OF SYATEM FILE");
+	CCLOG("START OF SYSTEM FILE");
 	FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
 	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
@@ -235,8 +235,10 @@ void MainMenu::SystemFile()
 void MainMenu::PlayMusic()
 {
 	CCLOG("START OF PLAY MUSIC");
-	StartTrack = cocos2d::experimental::AudioEngine::play2d("Iris.mp3", true, 1.0f, nullptr);
+	if (MenuMusicMute!=1){
+	    StartTrack = cocos2d::experimental::AudioEngine::play2d("Iris.mp3", true, 1.0f, nullptr);
 	//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
+    }
 	if (StartMusicVolume == 0) {
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.0f);
 	}
