@@ -1684,6 +1684,7 @@ void SinglePlayGame::LostGame()
 
 void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
+	int r, t;
 	CollisionDetection moveForward;
 	for (int x = 0;(unsigned)x < EnemySoldiers.size(); x++)
 	{
@@ -1704,7 +1705,8 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		std::get<1>(EnemySoldierPostions.at(x)) = NULL;
 				//GameState();				
 		}
-		if (EnemySoldiers.at(x) != NULL && std::get<0>(EnemySoldierPostions.at(x)) != NULL && std::get<1>(EnemySoldierPostions.at(x)) != NULL) 
+		if(EnemySoldiers.at(x) != NULL)
+		//if (EnemySoldiers.at(x) != NULL && std::get<0>(EnemySoldierPostions.at(x)) != NULL && std::get<1>(EnemySoldierPostions.at(x)) != NULL) 
 		{
 		    if (moveForward.enemyCollisionDetect(EnemySoldierPostions.at(x), 'E') == 0) 
 			{
@@ -1741,6 +1743,10 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		CCLOG("SOLDIER SIZE %d", soldiers.size());
 		CCLOG("SOLDIER Postions %d", std::get<0>(SoldierPostions.at(i)));
 		CCLOG("Current i: %d", i);
+		
+		r = std::get<0>(SoldierPostions.at(i));
+		t = std::get<1>(SoldierPostions.at(i));
+
 		if (std::get<0>(SoldierPostions.at(i)) == 9)
 		{
 
@@ -1758,7 +1764,11 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				CCLOG("Current i %d :first if:", i);
 				//GameState();				
 		}
-		if (soldiers.at(i) != NULL && std::get<0>(SoldierPostions.at(i)) != NULL && std::get<1>(SoldierPostions.at(i)) != NULL) {
+		CCLOG("before null if");
+		if (soldiers.at(i) != NULL)
+		{
+			//if (soldiers.at(i) != NULL && std::get<0>(SoldierPostions.at(i)) != NULL && std::get<1>(SoldierPostions.at(i)) != NULL) {
+			CCLOG("Entering null if");
 			if (moveForward.playerCollisionDetect(SoldierPostions.at(i), 'P') == 0) {
 				CCLOG("Current i %d :second 1 if:", i);
 				if (soldiers.at(i)->getPositionX() + 75 < 825)
@@ -1785,8 +1795,9 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				CCLOG("Current i %d :else if 2:", i);
 				//Player in front
 			}
+			//}
 		}
-		CCLOG("Current i %d :End of for:", i);
+		CCLOG("Current i %d :End of for:  Value: %d %d", i,r,t);
 	}
 	//holding the button keeps calling the method
 }
