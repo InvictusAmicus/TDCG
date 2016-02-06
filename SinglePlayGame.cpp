@@ -1823,6 +1823,8 @@ void SinglePlayGame::enemyAI() {
 	EnemyAI GetEnemies;
 	int N = 0, PX = 0, PY = 0;
 
+	//while loop exit is 10000 so that it can be broken later on is no moves can be made
+	//need to add colGrid information
 	while (N!=10000 && PX!=10000 && PY!=10000) 
 	{
 		CCLOG("Running AI");
@@ -1847,7 +1849,12 @@ void SinglePlayGame::enemyAI() {
 			//value 1 will be used for a sprite can be changed later
 			else if (N == 1) 
 			{
-			
+			auto EnemySoldier = Sprite::create("testEnemy.png");
+			EnemySoldier->setPosition(Vec2(PX, PY));
+			EnemySoldier->setScale(2.0);
+			this->addChild(EnemySoldier, 1);
+			//EnemySoldiers.push_back(EnemySoldier);
+			//EnemySoldierPostions.push_back(std::make_pair(9, 0));
 			}
 		}
 		CCLOG("Ran While Loop");

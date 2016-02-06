@@ -51,6 +51,7 @@ void EnemyAI::OpenPostions()
 	
 }
 
+//might need to add the open gird postions from the colgrid in CollsionDetection
 std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyResource, int PS, int PT, int ES, int ET, int PIEA, int EIPA) 
 {
 	int Enemy, PostionX, PostionY;
@@ -82,7 +83,14 @@ std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyReso
 		}
 		else if ((ET - PT)<3 || (ES - PS)<3)
 		{
-
+			if (PIEA!=0) 
+			{
+			  //create tower to help defend against enemy
+			}
+			else if (PIEA == 0) 
+			{
+			//create sprite to attack enemy
+			}
 		}
 
 	}
