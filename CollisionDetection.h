@@ -16,7 +16,7 @@ public:
 	int playerCollisionDetect(std::pair<int, int> TestPostion, char c);
 	int registerTower(int x, int y, char c);
 	int CheckTower(int x, int y);
-	void registerEnemyTower(int x, int y, char c);
+	int registerEnemyTower(int x, int y, char c);
 	void CreateGrids();
 	void PlayerTowerAttack();
 	void EnemyTowerAttack();

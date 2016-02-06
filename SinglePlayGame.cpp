@@ -1830,6 +1830,26 @@ void SinglePlayGame::enemyAI() {
 		N = std::get<0>(AI);
 		PX = std::get<1>(AI);
 		PY = std::get<2>(AI);
+		if (N != 10000 && PX != 10000 && PY != 10000) 
+		{
+			//Value 0 will be used for a tower can be changed later
+			if (N == 0) 
+			{
+				if (RegEnemy.registerEnemyTower(3, 0, 'T') == 0) {
+					auto CreateTower = Sprite::create("testTowerArea.png");
+					CreateTower->setPosition(Vec2(PX, PY));
+					CreateTower->setOpacity(0);
+					this->addChild(CreateTower, 1);
+					EnemyResource = EnemyResource - 40;
+				}
+				
+			}
+			//value 1 will be used for a sprite can be changed later
+			else if (N == 1) 
+			{
+			
+			}
+		}
 		CCLOG("Ran While Loop");
 	}
 	*/
@@ -1974,10 +1994,11 @@ void SinglePlayGame::startTurn()
 	t.checkVariables(resource, EnemyResource);
 	//p->drawCard();
 	resource += 100;
+	EnemyResource += 100;
 	//displayHand(p);
+
 	std::string s = std::to_string(resource);
 	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
-
 	ChangeResource->setString(s);
 
 }

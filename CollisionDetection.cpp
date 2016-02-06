@@ -111,13 +111,15 @@ int CollisionDetection::CheckTower(int x, int y) {
 	}
 }
 
-void CollisionDetection::registerEnemyTower(int x, int y, char c) {
+int CollisionDetection::registerEnemyTower(int x, int y, char c) {
 
 	//Needs to be fixed up later
 	if (EnemyTowerGrid[x][y] == 'N') {
 		EnemyTowerGrid[x][y] = c;
+		return 0;
 	}
 	else {
+		return 1;
 		CCLOG("Postion already took");
 	}
 	CCLOG("registerObject Completed");
