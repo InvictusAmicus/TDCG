@@ -1819,6 +1819,21 @@ void SinglePlayGame::enemyAI() {
 	//Can be used to check for collisions and win/lose conditions
 	CollisionDetection RegEnemy;
 	
+	/*
+	EnemyAI GetEnemies;
+	int N = 0, PX = 0, PY = 0;
+
+	while (N!=10000 && PX!=10000 && PY!=10000) 
+	{
+		CCLOG("Running AI");
+		std::tuple <int, int, int> AI = GetEnemies.checkVariables(resource, EnemyResource);
+		N = std::get<0>(AI);
+		PX = std::get<1>(AI);
+		PY = std::get<2>(AI);
+		CCLOG("Ran While Loop");
+	}
+	*/
+	
 	if (enemyTurn == 0)
 	{
 		CCLOG("Enemy Turn 1");
@@ -1947,6 +1962,7 @@ void SinglePlayGame::enemyAI() {
 			EnemySoldierPostions.push_back(std::make_pair(9, 1));
 		}
 	}
+	
 	enemyTurn++;
 	startTurn();
 }

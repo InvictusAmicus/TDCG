@@ -1,5 +1,9 @@
 #include"EnemyAI.h"
 #include"CollisionDetection.h"
+#include<iostream>
+#include<tuple>
+
+#define NoMove 10000
 
 USING_NS_CC;
 
@@ -7,14 +11,15 @@ int PlayersInEnemyArea;
 int EnemysInPlayerArea;
 
 //x variable will be the enemy resources
-void EnemyAI::checkVariables(int PlayerResource, int EnemyResource) 
+std::tuple <int, int, int> EnemyAI::checkVariables(int PlayerResource, int EnemyResource)
 {
-	test();
 	//PS = Player Sprite, PT = Player Tower
 	//ES = Enemy Sprite, ET = Enemy Tower
 	//PIEA = Players In enemy area, EIPA = Enemies In Player Area
 	int PS = 0, PT = 0, ES = 0, ET = 0, PIEA = 0, EIPA = 0;
 	CollisionDetection FieldState;
+	FieldState.Q();
+
 	PS = FieldState.countPlayerSprites();
 	PT = FieldState.countPlayerTowers();
 	ES = FieldState.countEnemySprites();
@@ -30,18 +35,69 @@ void EnemyAI::checkVariables(int PlayerResource, int EnemyResource)
 	CCLOG("ET %d", ET);
 	CCLOG("PIEA %d", PIEA);
 	CCLOG("EIPA %d", EIPA);
-}
-	
+	std::tuple<int, int, int> EnemyCreation = CreateEnemy(PlayerResource, EnemyResource,
+		                                                  PS, PT, ES, ET, PIEA, EIPA);
+	int EnemyNumber = std::get<0>(EnemyCreation);
+	int EnemyPostionX = std::get<1>(EnemyCreation);
+	int EnemyPostionY = std::get<2>(EnemyCreation);
 
-	void EnemyAI::test()
+	return std::make_tuple(EnemyNumber, EnemyPostionX, EnemyPostionY);
+
+}
+
+void EnemyAI::OpenPostions() 
+{
+	CollisionDetection GridField;
+	
+}
+
+std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyResource, int PS, int PT, int ES, int ET, int PIEA, int EIPA) 
+{
+	int Enemy, PostionX, PostionY;
+
+	//first statement if no sprites or towers can be made
+	//value will be the lowest card value, current value 40
+    if (EnemyResource<200)
 	{
-		CollisionDetection testArea;
-		for (int i = 0; i < 10; i++)
-		{
-			for (int j = 0; j < 5; j++)
-			{
-				//CCLOG("%c ", testArea.Q());
-			}
-		}
-		testArea.Q();
+		CCLOG("Return first EnemyCreate Statement");
+		return std::make_tuple(NoMove, NoMove, NoMove);
 	}
+
+
+	else if (EnemyResource>PlayerResource && (ES>PS || ET>PT)) 
+	{
+		if (((ES - PS)>3) && ((ET - PT)>3) && PIEA == 0)
+		{
+			//return in order to save resources
+			//no player sprites will be in the area
+			return std::make_tuple(NoMove, NoMove, NoMove);
+		}
+	    else if ((ES-PS)>3) 
+		{
+		
+		}
+		else if ((ET-PT)>3) 
+		{
+		
+		}
+		else if ((ET - PT)<3 || (ES - PS)<3)
+		{
+
+		}
+
+	}
+	else if (EnemyResource>PlayerResource && (ES<PS || ET<PT))
+	{
+
+	}
+	else if (EnemyResource<PlayerResource && (ES<PS || ET<PT))
+	{
+
+	}
+	else if (EnemyResource<PlayerResource && (ES>PS || ET>PT))
+	{
+	
+	}
+
+	return  std::make_tuple(NoMove,NoMove,NoMove);
+}
