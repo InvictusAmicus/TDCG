@@ -113,12 +113,144 @@ std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyReso
 }
 
 //x and y value will be for the ColGrid postion
-void EnemySpritePlacements(int x, int y) 
+std::pair <int, int> EnemySpritePlacements(int x, int y)
 {
+	int xCoordinate, yCoordinate;
+	//5
+	if (x == 5 && y == 0) 
+	{
+		xCoordinate = 518;
+		yCoordinate = 508;
+	}
+	else if (x == 5 && y == 1) 
+	{ 
+		xCoordinate = 518; 
+		yCoordinate = 434;
+	}
+	else if (x == 5 && y == 2) 
+	{ 
+		xCoordinate = 518; 
+		yCoordinate = 359;
+	}
+	else if (x == 5 && y == 3) 
+	{ 
+		xCoordinate = 518; 
+		yCoordinate = 287;
+	}
+	else if (x == 5 && y == 4) 
+	{ 
+		xCoordinate = 518; 
+		yCoordinate = 209;
+	}
+	//6
+	else if (x == 6 && y == 0) 
+	{ 
+		xCoordinate = 597; 
+		yCoordinate = 508;
+	}
+	else if (x == 6 && y == 1) 
+	{ 
+		xCoordinate = 597; 
+		yCoordinate = 434;
+	}
+	else if (x == 6 && y == 2) 
+	{ 
+		xCoordinate = 597;
+		yCoordinate = 359;
+	}
+	else if (x == 6 && y == 3) 
+	{ 
+		xCoordinate = 597; 
+		yCoordinate = 287;
+	}
+	else if (x == 6 && y == 4) 
+	{ 
+		xCoordinate = 597; 
+		yCoordinate = 209;
+	}
+	//7
+	else if (x == 7 && y == 0) 
+	{ 
+		xCoordinate = 674; 
+		yCoordinate = 508;
+	}
+	else if (x == 7 && y == 1) 
+	{ 
+		xCoordinate = 674;
+		yCoordinate = 434;
+	}
+	else if (x == 7 && y == 2) 
+	{ 
+		xCoordinate = 674; 
+		yCoordinate = 359;
+	}
+	else if (x == 7 && y == 3) 
+	{ 
+		xCoordinate = 674; 
+		yCoordinate = 287;
+	}
+	else if (x == 7 && y == 4) 
+	{ 
+		xCoordinate = 674; 
+		yCoordinate = 209;
+	}
+	//8
+	else if (x == 8 && y == 0) 
+	{ 
+		xCoordinate = 747; 
+		yCoordinate = 508;
+	}
+	else if (x == 8 && y == 1) 
+	{
+		xCoordinate = 747;
+		yCoordinate = 434;
+	}
+	else if (x == 8 && y == 2) 
+	{ 
+		xCoordinate = 747;
+		yCoordinate = 359;
+	}
+	else if (x == 8 && y == 3) 
+	{ 
+		xCoordinate = 747; 
+		yCoordinate = 287;
+	}
+	else if (x == 8 && y == 4) 
+	{ 
+		xCoordinate = 747; 
+		yCoordinate = 209;
+	}
+	//9
+	else if (x == 9 && y == 0) 
+	{ 
+		xCoordinate = 828; 
+		yCoordinate = 508;
+	}
+	else if (x == 9 && y == 1) 
+	{ 
+		xCoordinate = 828; 
+		yCoordinate = 434;
+	}
+	else if (x == 9 && y == 2) 
+	{ 
+		xCoordinate = 828; 
+		yCoordinate = 359;
+	}
+	else if (x == 9 && y == 3) 
+	{ 
+		xCoordinate = 828; 
+		yCoordinate = 287;
+	}
+	else if (x == 9 && y == 4) 
+	{ 
+		xCoordinate = 828; 
+		yCoordinate = 209;
+	}
 
+	return std::make_pair(xCoordinate, yCoordinate);
 }
 
-//x and y value will be for the ColGrid postion
+//x and y value will be for the EnemyTowerlGrid postion
 std::pair <int, int> EnemyTowerPlacements(int x, int y)
 {
 	int xCoordinate, yCoordinate;
