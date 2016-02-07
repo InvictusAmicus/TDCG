@@ -9,6 +9,8 @@ USING_NS_CC;
 
 int PlayersInEnemyArea;
 int EnemysInPlayerArea;
+char ColGrid2[10][5];
+
 
 //x variable will be the enemy resources
 std::tuple <int, int, int> EnemyAI::checkVariables(int PlayerResource, int EnemyResource)
@@ -108,4 +110,101 @@ std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyReso
 	}
 
 	return  std::make_tuple(NoMove,NoMove,NoMove);
+}
+
+//x and y value will be for the ColGrid postion
+void EnemySpritePlacements(int x, int y) 
+{
+
+}
+
+//x and y value will be for the ColGrid postion
+std::pair <int, int> EnemyTowerPlacements(int x, int y)
+{
+	int xCoordinate, yCoordinate;
+	//0 Column
+	if (x == 0 && y == 0) 
+	{
+		xCoordinate = 557;
+		yCoordinate = 470;
+	}
+	else if (x == 0 && y == 1) 
+	{
+		xCoordinate = 557;
+		yCoordinate = 395;
+	}
+	else if (x == 0 && y == 2) 
+	{
+		xCoordinate = 557;
+		yCoordinate = 323;
+	}
+	else if (x == 0 && y == 3) 
+	{
+		xCoordinate = 557;
+		yCoordinate = 249;
+	}
+	//1 Column
+	else if (x == 1 && y == 0) 
+	{
+		xCoordinate = 634;
+		yCoordinate = 470;
+	}
+	else if (x == 1 && y == 1) 
+	{
+		xCoordinate = 634;
+		yCoordinate = 395;
+	}
+	else if (x == 1 && y == 2) 
+	{
+		xCoordinate = 634;
+		yCoordinate = 323;
+	}
+	else if (x == 1 && y == 3) 
+	{
+		xCoordinate = 634;
+		yCoordinate = 249;
+	}
+	//2 Column
+	else if (x == 2 && y == 0) 
+	{
+		xCoordinate = 711;
+		yCoordinate = 470;
+	}
+	else if (x == 2 && y == 1) 
+	{
+		xCoordinate = 711;
+		yCoordinate = 395;
+	}
+	else if (x == 2 && y == 2) 
+	{
+		xCoordinate = 711;
+		yCoordinate = 323;
+	}
+	else if (x == 2 && y == 3) 
+	{
+		xCoordinate = 711;
+		yCoordinate = 249;
+	}
+	//3 Column
+	else if (x == 3 && y == 0) 
+	{
+		xCoordinate = 787;
+		yCoordinate = 470;
+	}
+	else if (x == 3 && y == 1) 
+	{
+		xCoordinate = 787;
+		yCoordinate = 395;
+	}
+	else if (x == 3 && y == 2) 
+	{
+		xCoordinate = 787;
+		yCoordinate = 323;
+	}
+	else if (x == 3 && y == 3) 
+	{
+		xCoordinate = 787;
+		yCoordinate = 249;
+	}
+	return std::make_pair(xCoordinate, yCoordinate);
 }
