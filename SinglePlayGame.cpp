@@ -1799,6 +1799,8 @@ void SinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		}
 		CCLOG("Current i %d :End of for:  Value: %d %d", i,r,t);
 	}
+	moveForward.PlayerTowerAttack();
+	moveForward.EnemyTowerAttack();
 	//holding the button keeps calling the method
 }
 

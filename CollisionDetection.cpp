@@ -193,24 +193,24 @@ void CollisionDetection::EnemyTowerAttack()
 	{
 		for (int j = 0; j <= 3; j++)
 		{
-			if (TowerGrid[i][j] == 'T')
+			if (EnemyTowerGrid[i][j] == 'T')
 			{
-				CCLOG("PlayerTowerAttack is ready");
+				CCLOG("EnemyTowerAttack is ready");
 				if (ColGrid[a][j] == 'P')
 				{
-					CCLOG("Attacking enemy at %d-%d", a, j);
+					CCLOG("Attacking player at %d-%d", a, j);
 				}
 				if (ColGrid[a][j + 1] == 'P')
 				{
-					CCLOG("Attacking enemy at %d-%d", a, j + 1);
+					CCLOG("Attacking player at %d-%d", a, j + 1);
 				}
 				if (ColGrid[a + 1][j] == 'P')
 				{
-					CCLOG("Attacking enemy at %d-%d", a + 1, j);
+					CCLOG("Attacking player at %d-%d", a + 1, j);
 				}
 				if (ColGrid[a + 1][j + 1] == 'P')
 				{
-					CCLOG("Attacking enemy at %d-%d", a + 1, j + 1);
+					CCLOG("Attacking player at %d-%d", a + 1, j + 1);
 				}
 			}
 		}
