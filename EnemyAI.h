@@ -12,6 +12,7 @@ public:
 	void FieldPostions();
 	void OpenPostions();
 	void CopyTowerGrid();
+	void CopyColGridMap();
 	std::pair <int, int>  EnemySpritePlacements(int x, int y);
 	std::pair <int, int> EnemyTowerPlacements(int x, int y);
 	void test();

@@ -10,7 +10,7 @@ USING_NS_CC;
 int PlayersInEnemyArea;
 int EnemysInPlayerArea;
 char CopyEnemyTowerGrid[5][5];
-char ColGrid2[10][5];
+char CopyColGrid[10][5];
 
 
 //x variable will be the enemy resources
@@ -54,6 +54,16 @@ void EnemyAI::CopyTowerGrid()
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; j++) {
 			CopyEnemyTowerGrid[i][j] = FieldState.getEnemyTowerGrid(i,j);
+		}
+	}
+}
+
+void EnemyAI::CopyColGridMap()
+{
+	CollisionDetection FieldState;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 5; j++) {
+			CopyColGrid[i][j] = FieldState.getColGrid(i, j);
 		}
 	}
 }

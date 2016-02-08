@@ -372,3 +372,7 @@ char CollisionDetection::getEnemyTowerGrid(int x, int y)
 	return EnemyTowerGrid[x][y];
 }
 
+char CollisionDetection::getColGrid(int x, int y)
+{
+	return ColGrid[x][y];
+}

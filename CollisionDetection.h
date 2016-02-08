@@ -19,6 +19,7 @@ public:
 	int registerEnemyTower(int x, int y, char c);
 	void CreateGrids();
 	char getEnemyTowerGrid(int x, int y);
+	char getColGrid(int x, int y);
 	void PlayerTowerAttack();
 	void EnemyTowerAttack();
 	void playerAttackLife();
