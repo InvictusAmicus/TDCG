@@ -38,14 +38,34 @@ std::tuple <int, int, int> EnemyAI::checkVariables(int PlayerResource, int Enemy
 	CCLOG("ET %d", ET);
 	CCLOG("PIEA %d", PIEA);
 	CCLOG("EIPA %d", EIPA);
+	CopyTowerGrid();
+	CopyColGridMap();
+	
+	/*
+	//check the contents of the two grid arrays
+	for (int x = 0; x < 5;x++) { 
+		for (int j = 0; j < 5;j++) 
+		{
+			CCLOG("Tower Grid %d,%d :: %c", x,j,CopyEnemyTowerGrid[x][j]);
+		} 
+	}
+	for (int x = 0; x < 10;x++) {
+		for (int j = 0; j < 5;j++)
+		{
+			CCLOG("ColGrid Grid %d,%d :: %c", x, j, CopyColGrid[x][j]);
+		}
+	}
+	*/
+	
 	std::tuple<int, int, int> EnemyCreation = CreateEnemy(PlayerResource, EnemyResource,
 		                                                  PS, PT, ES, ET, PIEA, EIPA);
 	int EnemyNumber = std::get<0>(EnemyCreation);
 	int EnemyPostionX = std::get<1>(EnemyCreation);
 	int EnemyPostionY = std::get<2>(EnemyCreation);
-
+	
 	return std::make_tuple(EnemyNumber, EnemyPostionX, EnemyPostionY);
-
+	
+	//return std::make_tuple(NoMove, NoMove, NoMove);
 }
 
 void EnemyAI::CopyTowerGrid()
@@ -81,13 +101,17 @@ std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyReso
 
 	//first statement if no sprites or towers can be made
 	//value will be the lowest card value, current value 40
-    if (EnemyResource<200)
+    
+	if (EnemyResource<200)
 	{
 		CCLOG("Return first EnemyCreate Statement");
 		return std::make_tuple(NoMove, NoMove, NoMove);
 	}
 
-
+	//set is so only sprites can be made
+	//400 is just a base value for the resources at the moment
+	else if (EnemyResource<400) {}
+	else if (EnemyResource >= 400) {}
 	else if (EnemyResource>PlayerResource && (ES>PS || ET>PT)) 
 	{
 		if (((ES - PS)>3) && ((ET - PT)>3) && PIEA == 0)
