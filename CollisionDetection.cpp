@@ -367,4 +367,8 @@ int CollisionDetection::EnemiesInPlayerArea()
 	return EnemiesInPlayerArea;
 }
 
+char CollisionDetection::getEnemyTowerGrid(int x, int y) 
+{
+	return EnemyTowerGrid[x][y];
+}
 

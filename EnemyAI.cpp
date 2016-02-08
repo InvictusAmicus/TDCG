@@ -9,6 +9,7 @@ USING_NS_CC;
 
 int PlayersInEnemyArea;
 int EnemysInPlayerArea;
+char CopyEnemyTowerGrid[5][5];
 char ColGrid2[10][5];
 
 
@@ -45,6 +46,16 @@ std::tuple <int, int, int> EnemyAI::checkVariables(int PlayerResource, int Enemy
 
 	return std::make_tuple(EnemyNumber, EnemyPostionX, EnemyPostionY);
 
+}
+
+void EnemyAI::CopyTowerGrid()
+{
+	CollisionDetection FieldState;
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			CopyEnemyTowerGrid[i][j] = FieldState.getEnemyTowerGrid(i,j);
+		}
+	}
 }
 
 void EnemyAI::OpenPostions() 

@@ -11,6 +11,7 @@ public:
 	std::tuple <int, int, int> checkVariables(int PlayerResource, int EnemyResource);
 	void FieldPostions();
 	void OpenPostions();
+	void CopyTowerGrid();
 	std::pair <int, int>  EnemySpritePlacements(int x, int y);
 	std::pair <int, int> EnemyTowerPlacements(int x, int y);
 	void test();
