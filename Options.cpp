@@ -156,13 +156,13 @@ bool Options::init()
 			//////////////////////////////////
 			
 			if(MusicMute==0){
-				CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+				//CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 				MusicCheckBox->setSelectedState(true);
 				MusicMute++;
 			}
 			else {
-				CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
-					"background-music-aac.wav", true);
+				//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
+				//	"background-music-aac.wav", true);
 				MusicCheckBox->setSelectedState(false);
 				MusicMute = 0;
 			}

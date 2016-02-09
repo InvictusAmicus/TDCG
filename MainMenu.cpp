@@ -131,7 +131,8 @@ void MainMenu::menuCloseCallback(Ref* pSender)
 
 void MainMenu::menuNewGame(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	//cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
 	//Director::getInstance()->end();
 	auto NewGameScene = SinglePlayGame::createScene();
 	//Director::getInstance()->runWithScene(NewGameScene);
@@ -144,7 +145,8 @@ void MainMenu::menuNewGame(Ref* pSender)
 
 void MainMenu::menuMultiPlayer(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	//cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
 	auto MultiPlayerScene = MultiPlayerSearch::createScene();
 	Director::getInstance()->pushScene(MultiPlayerScene);
 }
@@ -236,7 +238,7 @@ void MainMenu::PlayMusic()
 {
 	CCLOG("START OF PLAY MUSIC");
 	if (MenuMusicMute!=1){
-	    StartTrack = cocos2d::experimental::AudioEngine::play2d("Iris.mp3", true, 1.0f, nullptr);
+	    StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
 	//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
     }
 	if (StartMusicVolume == 0) {

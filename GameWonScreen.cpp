@@ -1,4 +1,8 @@
 #include"GameWonScreen.h"
+#include "AudioEngine.h"
+
+int GameWonTrack;
+int GameMenu2;
 
 USING_NS_CC;
 
@@ -45,10 +49,14 @@ bool GameWonScreen::init()
 
 	this->addChild(sprite, 0);
 
+	GameWonTrack = cocos2d::experimental::AudioEngine::play2d("GameWon.mp3", true, 1.0f, nullptr);
+
 	return true;
 }
 
 void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(GameWonTrack);
+	GameMenu2 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
 	Director::getInstance()->popToRootScene();
 }

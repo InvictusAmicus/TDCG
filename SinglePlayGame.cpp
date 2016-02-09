@@ -8,8 +8,12 @@
 #include "EnemyAI.h"
 #include <utility>
 #include <iostream>
+#include "AudioEngine.h"
+
 
 USING_NS_CC;
+
+int SinglePlayerGameMusic;
 
 int life;
 int Enemylife;
@@ -93,6 +97,9 @@ bool SinglePlayGame::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+
+	SinglePlayerGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
 	
 	//for (int g = 0;g < 4;g++) {
 	//	for (int h = 0;h < 4;h++) {
@@ -1659,6 +1666,9 @@ void SinglePlayGame::WonGame()
 	CCLOG("SOLD %d", soldiers.size());
 	CCLOG("TEMP2 %d", TempVector.size());
 	delete baseGrid;
+
+	cocos2d::experimental::AudioEngine::stopAll();
+
 	auto GameWonScene = GameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
 }
@@ -1678,6 +1688,9 @@ void SinglePlayGame::LostGame()
 	EnemySoldierPostions.swap(TempPostions2);
 
 	delete baseGrid;
+
+	cocos2d::experimental::AudioEngine::stopAll();
+
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }

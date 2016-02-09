@@ -1,4 +1,8 @@
 #include"GameOverScreen.h"
+#include "AudioEngine.h"
+
+int GameOverTrack;
+int GameMenu;
 
 USING_NS_CC;
 
@@ -45,10 +49,14 @@ bool GameOverScreen::init()
 
 	this->addChild(sprite, 0);
 
+	GameOverTrack = cocos2d::experimental::AudioEngine::play2d("GameOver.mp3", true, 1.0f, nullptr);
+
 	return true;
 }
 
 void GameOverScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
+	cocos2d::experimental::AudioEngine::stop(GameOverTrack);
+	GameMenu = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
 	Director::getInstance()->popToRootScene();
 }
