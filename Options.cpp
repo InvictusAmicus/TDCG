@@ -22,7 +22,7 @@ float VolumeFloat;
 int change;
 
 //background music track, needed to store audioId
-int track = 0;
+int GameMenu3 = 0;
 //sound effects tracks, needed to store audioId
 int SeTrack1 = 0;
 
@@ -282,37 +282,37 @@ bool Options::init()
 			//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(VolumeFloat);
 			
 			if (MusicSlider == 0) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.0f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.0f);
 			}
 			else if (MusicSlider->getPercent()>0&& MusicSlider->getPercent()<10) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.1f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.1f);
 			}
 			else if (MusicSlider->getPercent()>=10 && MusicSlider->getPercent()<20) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.2f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.2f);
 			}
 			else if (MusicSlider->getPercent()>=20 && MusicSlider->getPercent()<30) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.3f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.3f);
 			}
 			else if (MusicSlider->getPercent()>=30 && MusicSlider->getPercent()<40) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.4f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.4f);
 			}
 			else if (MusicSlider->getPercent()>=40 && MusicSlider->getPercent()<50) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.5f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.5f);
 			}
 			else if (MusicSlider->getPercent() >= 50 && MusicSlider->getPercent()<60) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.6f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.6f);
 			}
 			else if (MusicSlider->getPercent() >= 60 && MusicSlider->getPercent()<70) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.7f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.7f);
 			}
 			else if (MusicSlider->getPercent() >= 70 && MusicSlider->getPercent()<80) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.8f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.8f);
 			}
 			else if (MusicSlider->getPercent() >= 80 && MusicSlider->getPercent()<90) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 0.9f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.9f);
 			}
 			else if (MusicSlider->getPercent() >= 90 && MusicSlider->getPercent()<100) {
-				cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
+				cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 1.0f);
 			}
 			else if (MusicSlider->getPercent() == 100) {}
 			
@@ -426,7 +426,11 @@ bool Options::init()
 
 void Options::menuReturn(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(track);
+	cocos2d::experimental::AudioEngine::stop(GameMenu3);
+	if (MusicMute != 1)
+	{
+		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	}
 	Director::getInstance()->popScene();
 }
 
@@ -445,37 +449,37 @@ void Options::SetMusicVolume(int x) {
 
 	//FileUtils::getInstance()->addSearchPath("SystemFile");
 	if (musicVolumeControl == 0) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.0f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.0f);
 	}
 	else if (musicVolumeControl>0 && musicVolumeControl<10) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.1f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.1f);
 	}
 	else if (musicVolumeControl >= 10 && musicVolumeControl<20) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.2f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.2f);
 	}
 	else if (musicVolumeControl >= 20 && musicVolumeControl<30) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.3f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.3f);
 	}
 	else if (musicVolumeControl >= 30 && musicVolumeControl<40) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.4f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.4f);
 	}
 	else if (musicVolumeControl >= 40 && musicVolumeControl<50) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.5f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.5f);
 	}
 	else if (musicVolumeControl >= 50 && musicVolumeControl<60) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.6f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.6f);
 	}
 	else if (musicVolumeControl >= 60 && musicVolumeControl<70) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.7f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.7f);
 	}
 	else if (musicVolumeControl >= 70 && musicVolumeControl<80) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.8f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.8f);
 	}
 	else if (musicVolumeControl >= 80 && musicVolumeControl<90) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 0.9f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 0.9f);
 	}
 	else if (musicVolumeControl >= 90 && musicVolumeControl <=100) {
-		cocos2d::experimental::AudioEngine::setVolume(track, 1.0f);
+		cocos2d::experimental::AudioEngine::setVolume(GameMenu3, 1.0f);
 	}
 
 	string DataFileName = "System_File.txt";
@@ -659,6 +663,10 @@ void Options::setMusicMute(int x) {
 	}
 
 	CCLOG("SET SE VOLUME %d", changedState);
+	if (changedState!=0) 
+	{
+		cocos2d::experimental::AudioEngine::stopAll();
+	}
 
 }
 
@@ -672,3 +680,7 @@ int getSounfEffectVolume()
     return SoundEffectsVolumeControl;
 }
 
+int Options::getMusicMute() 
+{
+	return MusicMute;
+}

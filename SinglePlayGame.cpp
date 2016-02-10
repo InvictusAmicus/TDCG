@@ -9,7 +9,7 @@
 #include <utility>
 #include <iostream>
 #include "AudioEngine.h"
-
+#include "Options.h"
 
 USING_NS_CC;
 
@@ -97,10 +97,10 @@ bool SinglePlayGame::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-
-	SinglePlayerGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
-	
+	Options gameMusic;
+	if (gameMusic.getMusicMute() != 1) {
+		SinglePlayerGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
+	}
 	//for (int g = 0;g < 4;g++) {
 	//	for (int h = 0;h < 4;h++) {
 	//		TowerAreaArray[g][h] = 0;

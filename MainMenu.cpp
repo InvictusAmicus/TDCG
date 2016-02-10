@@ -237,7 +237,10 @@ void MainMenu::SystemFile()
 void MainMenu::PlayMusic()
 {
 	CCLOG("START OF PLAY MUSIC");
+	Options setMusic;
+	setMusic.setMusicMute(MenuMusicMute);
 	if (MenuMusicMute!=1){
+		cocos2d::experimental::AudioEngine::stopAll();
 	    StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
 	//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
     }
