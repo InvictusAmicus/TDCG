@@ -3,7 +3,7 @@
 
 #include"Character.h"
 
-class Tower : public Character
+class Tower : public Card
 {
 private:
 	int damage;
@@ -12,10 +12,21 @@ private:
 public:
 	Tower();
 	~Tower();
+	Tower(std::string name)
+	{
+		setSprite(name);
+	}
+
 	bool init();
 	void move();
 	void shoot();
 	bool checkSurroundings();
+
+	virtual int getPositionX() { return positionX; }
+	virtual int getPositionY() { return positionY; }
+	virtual void setPositionX(int x) { positionX = x; }
+	virtual void setPositionY(int y) { positionY = y; }
+
 };
 
 #endif // __TOWER_H__

@@ -1,17 +1,18 @@
-
+#pragma once
 #ifndef __SINGLEPLAYGAME_H__
 #define __SINGLEPLAYGAME_H_
 
 #include "cocos2d.h"
 #include "Player.h"
 
-class SinglePlayGame : public cocos2d::Layer
+class NewSinglePlayGame : public cocos2d::Layer
 {
 private:
 	Player* p;
+
 public:
 	static cocos2d::Scene* createScene();
-	
+
 	virtual bool init();
 
 	// a selector callback
@@ -29,10 +30,10 @@ public:
 
 	//cocos2d::Label *LifeLabelValue;
 
-void displayHand(Player*);
+	void displayHand(Player*);
 
 	// implement the "static create()" method manually
-	CREATE_FUNC(SinglePlayGame);
+	CREATE_FUNC(NewSinglePlayGame);
 };
 
 #endif // __SINGLEPLAYGAME_H__

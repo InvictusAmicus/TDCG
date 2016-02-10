@@ -8,17 +8,18 @@ Soldier::Soldier()
 
 Soldier::~Soldier()
 {
-	attack = 0;
+	health = 1;
+	attack = 1;
 	positionX = 0;
 	positionY = 0;
 	delete this;
 }
-/*
-void Soldier::attackPlayer(Player* p)
+
+/*void Soldier::attackPlayer(Player* p)
 {
 	p->setLife(attack);
-}
-*/
+}*/
+
 void Soldier::move()
 {
 	positionY += 1;

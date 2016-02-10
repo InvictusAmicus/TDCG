@@ -1,6 +1,7 @@
 #include "Collection.h"
 #include "MainMenu.h"
 #include "MultiPlayerSearch.h"
+//#include "NewSinglePlayGame.h"
 #include "SinglePlayGame.h"
 #include "Options.h"
 #include "HowToPlay.h"

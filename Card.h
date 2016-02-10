@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include <iostream>
+#include <string>
 
 class Card
 {
@@ -28,15 +29,7 @@ public:
 	//move card to battlefield position (a1,a2)
 	void moveTo(int a1, int a2);
 
-	void touched(cocos2d::EventMouse* t)
-	{
-		/*bool TouchScene::onTouchBegan(Touch* touch, Event* event)
-		{
-		labelTouchInfo->setPosition(touch->getLocation());
-		labelTouchInfo->setString("You Touched Here");
-		return tr*/
-		moveTo(t->getCursorX(), t->getCursorY());
-	}
+	void setSprite(std::string name) { cardSprite = cocos2d::Sprite::create(name); }
 
 };
 

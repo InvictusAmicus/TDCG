@@ -32,6 +32,12 @@ public:
 	int PlayersInEnemyArea();
 	void removeObject(std::pair<int, int> RemovePostion);
 	void Q();
+
+	void removeObject(int, int);
+	int enemyCollisionDetect(int, int, char);
+	int playerCollisionDetect(int, int, char);
+
+	
 	//char ColGrid[10][5];
 	//char TowerGrid[5][5];
 	//char EnemyTowerGrid[5][5];

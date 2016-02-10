@@ -38,6 +38,7 @@ int CollisionDetection::enemyCollisionDetect(std::pair<int, int> TestPostion, ch
 
 }
 
+
 int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, char c) {
 	
 	int x = std::get<0>(TestPostion);
@@ -375,4 +376,69 @@ char CollisionDetection::getEnemyTowerGrid(int x, int y)
 char CollisionDetection::getColGrid(int x, int y)
 {
 	return ColGrid[x][y];
+}
+
+
+//Declan trying something
+void CollisionDetection::removeObject(int r, int t)
+{
+	ColGrid[r][t] = 'N';
+}
+
+int CollisionDetection::enemyCollisionDetect(int r, int t, char c)
+{
+	int x = r;
+	int y = t;
+
+	//checks to see if the available space is clear
+	if (ColGrid[x - 1][y] == 'N')
+	{
+		ColGrid[x - 1][y] = c;
+		ColGrid[x][y] = 'N';
+		CCLOG("Returning 0");
+		return 0;
+	}
+	//returns a value of 2 if it finds a Player Sprite in next space
+	else if (ColGrid[x - 1][y] == 'P')
+	{
+		CCLOG("Returning 1");
+		//call attack on player sprite
+		return 1;
+	}
+	//returns a value of one if another enemy is in front of it
+	else
+	{
+		CCLOG("Returning 2");
+		return 2;
+	}
+
+}
+
+int CollisionDetection::playerCollisionDetect(int r, int t, char c)
+{
+	int x = r;
+	int y = t;
+
+	//checks to see if the available space is clear
+	if (ColGrid[x - 1][y] == 'N')
+	{
+		ColGrid[x - 1][y] = c;
+		ColGrid[x][y] = 'N';
+		CCLOG("Returning 0");
+		return 0;
+	}
+	//returns a value of 2 if it finds a Player Sprite in next space
+	else if (ColGrid[x - 1][y] == 'P')
+	{
+		CCLOG("Returning 1");
+		//call attack on player sprite
+		return 1;
+	}
+	//returns a value of one if another enemy is in front of it
+	else
+	{
+		CCLOG("Returning 2");
+		return 2;
+	}
+
 }
