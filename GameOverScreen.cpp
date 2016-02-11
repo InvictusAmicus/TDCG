@@ -1,5 +1,6 @@
-#include"GameOverScreen.h"
+#include "GameOverScreen.h"
 #include "AudioEngine.h"
+#include "Options.h"
 
 int GameOverTrack;
 int GameMenu;
@@ -32,6 +33,11 @@ bool GameOverScreen::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	Options gameMusic;
+	if (gameMusic.getMusicMute() != 1) {
+		GameOverTrack = cocos2d::experimental::AudioEngine::play2d("GameOver.mp3", true, 1.0f, nullptr);
+	}
+
 	auto label = Label::createWithTTF("Game Over Screen", "fonts/Marker Felt.ttf", 24);
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
@@ -49,14 +55,15 @@ bool GameOverScreen::init()
 
 	this->addChild(sprite, 0);
 
-	GameOverTrack = cocos2d::experimental::AudioEngine::play2d("GameOver.mp3", true, 1.0f, nullptr);
-
 	return true;
 }
 
 void GameOverScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(GameOverTrack);
-	GameMenu = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	cocos2d::experimental::AudioEngine::stopAll();
+	Options gameMusic;
+	if (gameMusic.getMusicMute() != 1) {
+		GameMenu = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	}
 	Director::getInstance()->popToRootScene();
 }

@@ -117,6 +117,11 @@ bool Options::init()
 		CCLOG("SYSTEM FILE %d", testFileInt);
 	}
 	
+	if (MusicMute != 1)
+	{
+		cocos2d::experimental::AudioEngine::stopAll();
+		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	}
 	
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
 
@@ -426,7 +431,7 @@ bool Options::init()
 
 void Options::menuReturn(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(GameMenu3);
+	cocos2d::experimental::AudioEngine::stopAll();
 	if (MusicMute != 1)
 	{
 		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
@@ -667,6 +672,10 @@ void Options::setMusicMute(int x) {
 	{
 		cocos2d::experimental::AudioEngine::stopAll();
 	}
+	if (changedState!=1) 
+	{
+		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	}
 
 }
 
@@ -683,4 +692,9 @@ int getSounfEffectVolume()
 int Options::getMusicMute() 
 {
 	return MusicMute;
+}
+
+void Options::setMute(int x) 
+{
+	MusicMute = x;
 }

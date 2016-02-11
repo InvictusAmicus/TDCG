@@ -104,7 +104,9 @@ bool SinglePlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	Options gameMusic;
+	CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
 	if (gameMusic.getMusicMute() != 1) {
+		CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
 		SinglePlayerGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
 	}
 	//for (int g = 0;g < 4;g++) {

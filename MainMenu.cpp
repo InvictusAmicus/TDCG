@@ -44,9 +44,16 @@ bool MainMenu::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	
+
 	SystemFile();
 	PlayMusic();
+
+	if (MenuMusicMute == 0) {
+		CCLOG("MenuMusicMute if statement");
+		//cocos2d::experimental::AudioEngine::stopAll();
+		StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
+	}
 
 	//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
 	//	"background-music-aac.wav", true);
@@ -224,6 +231,8 @@ void MainMenu::SystemFile()
 				getline(ReadFile, text);
 				MenuMusicMute = atoi(text.c_str());
 				CCLOG("MUSIC MUTE %d", MenuMusicMute);
+				Options GameMusic;
+				GameMusic.setMute(MenuMusicMute);
 			}
 
 			CCLOG("X == %d", x);
@@ -238,13 +247,15 @@ void MainMenu::SystemFile()
 void MainMenu::PlayMusic()
 {
 	CCLOG("START OF PLAY MUSIC");
-	Options setMusic;
-	setMusic.setMusicMute(MenuMusicMute);
-	if (MenuMusicMute!=1){
-		cocos2d::experimental::AudioEngine::stopAll();
-	    StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	//Options setMusic;
+	//CCLOG("setMusic %d", setMusic.getMusicMute());
+	//setMusic.setMusicMute(MenuMusicMute);
+	//if (MenuMusicMute==0){
+	//	CCLOG("MenuMusicMute if statement");
+		//cocos2d::experimental::AudioEngine::stopAll();
+	//    StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
 	//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
-    }
+    //}
 	if (StartMusicVolume == 0) {
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.0f);
 	}

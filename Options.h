@@ -16,8 +16,9 @@ public:
 	void menuReturn(cocos2d::Ref* pSender);
 	//void MusicVolume(cocos2d::ui::Slider, cocos2d::Event* event);
 	int MusicVolume();
-	int MusicMute;
+	//int MusicMute;
 	int getMusicMute();
+	void setMute(int x);
 	void SetMusicVolume(int x);
 	void SetSoundEffectVolume(int x);
 	void SetSoundEffectMute(int x);
