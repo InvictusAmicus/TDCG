@@ -17,8 +17,9 @@ Player::Player()
 Player::~Player()
 {
 	hand.clear();
+	deck.clear();
 	life = 0;
-	delete this;
+//	delete this;
 }
 
 bool Player::init()
@@ -82,4 +83,19 @@ int Player::getHandSize()
 Card* Player::getCardInHand(int i)
 {
 	return hand[i];
+}
+
+void Player::reset()
+{
+	hand.clear();
+	deck.clear();
+	life = 100;
+	for (int i = 0; i < 4; i++)
+	{
+		hand.push_back(new Card("SampleCard.png"));
+	}
+	for (int i = 0; i < 40; i++)
+	{
+		deck.push_back(new Card("SampleCard2.png"));
+	}
 }

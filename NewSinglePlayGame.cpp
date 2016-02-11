@@ -1,4 +1,3 @@
-/*
 #include "NewSinglePlayGame.h"
 #include "GameOverScreen.h"
 #include "GameWonScreen.h"
@@ -13,7 +12,6 @@
 
 USING_NS_CC;
 
-int life;
 int Enemylife;
 int resource;
 int EnemyResource;
@@ -98,16 +96,17 @@ bool NewSinglePlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	p = new Player();
+
 	enemyTurn = 0;
 	Enemylife = 100;
-	life = 100;
 	resource = 100;
 	EnemyResource = 100;
 	baseGrid = new CollisionDetection();
 	baseGrid->CreateGrids();
 	CCLOG("Creating Grid");
 
-	std::string StringLife = std::to_string(life);
+	std::string StringLife = std::to_string(p->getLife());
 	std::string StringResource = std::to_string(resource);
 	std::string StringEnemyLife = std::to_string(Enemylife);
 
@@ -288,24 +287,22 @@ void NewSinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
 	//auto LifeTag = getChildByTag(LabelTagLife);
 	CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
 	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
-	life = life - 10;
-	if (life <= 0)
+	p->setLife(10);
+	if (p->getLife() <= 0)
 	{
 		LostGame();
 	}
 
 	resource = resource - 20;
-	std::string StringLife = std::to_string(life);
+	std::string StringLife = std::to_string(p->getLife());
 	std::string StringResource = std::to_string(resource);
 	ChangeLife->setString(StringLife);
 	ChangeResource->setString(StringResource);
-	CCLOG("%d ", life);
-	CCLOG(" %d", resource);
 }
 
 void NewSinglePlayGame::GameState()
 {
-	if (life <= 0)
+	if (p->getLife() <= 0)
 	{
 		NewSinglePlayGame::LostGame();
 	}
@@ -317,25 +314,26 @@ void NewSinglePlayGame::GameState()
 
 void NewSinglePlayGame::WonGame()
 {
-	CCLOG("WON GAME");
-	army.clear();
+	/*army.clear();
 	enemyArmy.clear();
 	towers.clear();
 	enemyTowers.clear();
 	delete p;
-	delete baseGrid;
+	delete baseGrid;*/
 	auto GameWonScene = GameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
 }
 
 void NewSinglePlayGame::LostGame()
 {
+	/*
 	army.clear();
 	enemyArmy.clear();
 	towers.clear();
 	enemyTowers.clear();
-	delete p;
+	p->reset();				something here prevents new scene being created
 	delete baseGrid;
+	*/
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
@@ -343,121 +341,105 @@ void NewSinglePlayGame::LostGame()
 void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
 	int r, t;
+	bool hasAttacked = false;
 	CollisionDetection moveForward;
 	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
 	{
-//		CCLOG("ENEMY SOLDIER SIZE %d", EnemySoldiers.size());
-//		CCLOG("SOLDIER Postions %d", std::get<0>(EnemySoldierPostions.at(x)));
-
 		if ((enemyArmy.at(x)->getPositionX()) == 0)
 		{
-			life = life - 40;
-			std::string StringLife = std::to_string(life);
+			p->setLife(40);
+			GameState();
+
+			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
+			std::string StringLife = std::to_string(p->getLife());
 			CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
 			ChangePlayerLife->setString(StringLife);
-			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
+			this->removeChild(enemyArmy.at(x)->getSprite());
 			enemyArmy.erase(enemyArmy.begin() + x);
-			enemyArmy.at(x) = NULL;
-			enemyArmy.erase(enemyArmy.begin() + x);
-			//GameState();				
+			x--;
+			hasAttacked = true;
 		}
-		if (enemyArmy.at(x) != NULL)
-			//if (EnemySoldiers.at(x) != NULL && std::get<0>(EnemySoldierPostions.at(x)) != NULL && std::get<1>(EnemySoldierPostions.at(x)) != NULL) 
+		if (!hasAttacked)
 		{
-			if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 0)
+			if (enemyArmy.at(x) != NULL)
 			{
-				if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
+				if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 0)
 				{
-			//		CCLOG("%d X co-ordinate: %f", x, EnemySoldiers.at(x)->getPositionX());
-					enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
-				//	CCLOG("X co-ordinate: %f", EnemySoldiers.at(x)->getPositionX());
-				//	CCLOG("SoldierP: %d", std::get<0>(EnemySoldierPostions.at(x)));
-					enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
-				//	CCLOG("SoldierP: %d", std::get<0>(EnemySoldierPostions.at(x)));
+					if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
+					{
+						enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
+						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
+					}
+					//}
+					else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
+					{
+						//enemyArmy.at(x);
+						//call attack
+						//deal damage to enemy = to attack
+					}
+					else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
+					{
+						//Player in front
+					}
 				}
-				//}
-				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
-				{
-					CCLOG("CAN'T MOVE FORWARD player sprite");
-					//enemyArmy.at(x);
-					//call attack
-					//deal damage to enemy = to attack
-				}
-				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
-				{
-					CCLOG("CAN'T MOVE FORWARD enemy ally sprite ahead");
-					//Player in front
-				}
-			}
+			}	
 		}
+		hasAttacked = false;
 	}
-
 
 	CCLOG("Test For End Turn");
 	enemyAI();
 	for (int i = 0; (unsigned)i < army.size(); i++)
 	{
-		CCLOG("SOLDIER SIZE %d", army.size());
-		//CCLOG("SOLDIER Postions %d", std::get<0>(SoldierPostions.at(i)));
-		CCLOG("Current i: %d", i);
-
 		r = army.at(i)->getPositionX();
 		t = army.at(i)->getPositionY();
 
 		if ((army.at(i)->getPositionX()) == 9)
 		{
-
-			//soldiers.erase(soldiers.begin() + i);
-
 			Enemylife = Enemylife - 40;
+			GameState();
 			std::string StringEnemyLife = std::to_string(Enemylife);
 			CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
 			ChangeEnemyLife->setString(StringEnemyLife);
 			moveForward.removeObject(army.at(i)->getPositionX(), army.at(i)->getPositionY());
 			army.at(i)->getSprite()->removeFromParentAndCleanup(true);
-			army.at(i) = NULL;
 			army.erase(army.begin() + i);
-			CCLOG("Current i %d :first if:", i);
-			//GameState();				
+			hasAttacked = true;
+			i--;
 		}
-		CCLOG("before null if");
-		if (army.at(i) != NULL)
+		if (!hasAttacked)
 		{
-			//if (soldiers.at(i) != NULL && std::get<0>(SoldierPostions.at(i)) != NULL && std::get<1>(SoldierPostions.at(i)) != NULL) {
-			CCLOG("Entering null if");
-			if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 0) {
-				CCLOG("Current i %d :second 1 if:", i);
-				if (army.at(i)->getSprite()->getPositionX() + 75 < 825)
-				{
-//					CCLOG("%d X co-ordinate: %f", i, soldiers.at(i)->getPositionX());
-					army.at(i)->getSprite()->setPositionX(army.at(i)->getSprite()->getPositionX() + 75);
-//					CCLOG("X co-ordinate: %f", soldiers.at(i)->getPositionX());
-//					CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
-					army.at(i)->setPositionX(army.at(i)->getPositionX() + 1);
-//					CCLOG("SoldierP: %d", std::get<0>(SoldierPostions.at(i)));
-//					CCLOG("Current i %d :second 2 if:", i);
+			if (army.at(i) != NULL)
+			{
+				if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 0) {
+					CCLOG("Current i %d :second 1 if:", i);
+					if (army.at(i)->getSprite()->getPositionX() + 75 < 825)
+					{
+						army.at(i)->getSprite()->setPositionX(army.at(i)->getSprite()->getPositionX() + 75);
+						army.at(i)->setPositionX(army.at(i)->getPositionX() + 1);
+					}
 				}
+				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 1)
+				{
+					CCLOG("CAN'T MOVE FORWARD Enemy");
+					CCLOG("Current i %d :else if 1:", i);
+					//call attack
+					//deal damage to enemy = to attack
+				}
+				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 2)
+				{
+					CCLOG("CAN'T MOVE FORWARD Player");
+					CCLOG("Current i %d :else if 2:", i);
+					//Player in front
+				}
+				//}
 			}
-			else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 1)
-			{
-				CCLOG("CAN'T MOVE FORWARD Enemy");
-				CCLOG("Current i %d :else if 1:", i);
-				//call attack
-				//deal damage to enemy = to attack
-			}
-			else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 2)
-			{
-				CCLOG("CAN'T MOVE FORWARD Player");
-				CCLOG("Current i %d :else if 2:", i);
-				//Player in front
-			}
-			//}
+			CCLOG("Current i %d :End of for:  Value: %d %d", i, r, t);
 		}
-		CCLOG("Current i %d :End of for:  Value: %d %d", i, r, t);
+		moveForward.PlayerTowerAttack();
+		moveForward.EnemyTowerAttack();
+		//holding the button keeps calling the method
 	}
-	moveForward.PlayerTowerAttack();
-	moveForward.EnemyTowerAttack();
-	//holding the button keeps calling the method
 }
 
 void NewSinglePlayGame::enemyAI()
@@ -1704,10 +1686,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
 
-	for (int j = 0; (unsigned)j < p->getHandSize(); j++)
+	for (int j = 0; j < p->getHandSize(); j++)
 	{
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1 + j));
 	}
 }
-
-*/

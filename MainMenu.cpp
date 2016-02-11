@@ -1,8 +1,8 @@
 #include "Collection.h"
 #include "MainMenu.h"
 #include "MultiPlayerSearch.h"
-//#include "NewSinglePlayGame.h"
-#include "SinglePlayGame.h"
+#include "NewSinglePlayGame.h"
+//#include "SinglePlayGame.h"
 #include "Options.h"
 #include "HowToPlay.h"
 #include "SimpleAudioEngine.h"
@@ -142,7 +142,7 @@ void MainMenu::menuNewGame(Ref* pSender)
 	//cocos2d::experimental::AudioEngine::stop(StartTrack);
 	cocos2d::experimental::AudioEngine::stopAll();
 	//Director::getInstance()->end();
-	auto NewGameScene = SinglePlayGame::createScene();
+	auto NewGameScene = NewSinglePlayGame::createScene();
 	//Director::getInstance()->runWithScene(NewGameScene);
 	Director::getInstance()->pushScene(NewGameScene);
 	//Director::getInstance()->popScene(NewGameScene);
@@ -179,7 +179,6 @@ void MainMenu::menuHowToPlay(Ref* pSender)
 	auto HowToPlayScene = HowToPlay::createScene();
 	Director::getInstance()->pushScene(HowToPlayScene);
 }
-
 
 void MainMenu::SystemFile() 
 {

@@ -25,6 +25,8 @@ public:
 	void declareAttack();
 	void endTurn();
 
+	void reset();
+
 	//other methods if needed
 	void setLife(int d);
 	int getLife();

@@ -22,7 +22,7 @@ Soldier::~Soldier()
 
 void Soldier::move()
 {
-	positionY += 1;
+	positionX += 1;
 }
 
 int Soldier::getPositionX()
