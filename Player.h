@@ -11,6 +11,7 @@ private:
 	std::vector<Card*> deck;
 	const int maxHandSize = 6;
 	int life;
+	int resource;
 
 public:
 	Player();
@@ -28,8 +29,11 @@ public:
 	void reset();
 
 	//other methods if needed
-	void setLife(int d);
+	void setLife(int);
 	int getLife();
+	void setResource(int);
+	int getResource();
+
 	int getHandSize();
 	Card* getCardInHand(int);
 };

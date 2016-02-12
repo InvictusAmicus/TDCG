@@ -4,6 +4,7 @@
 Player::Player()
 {
 	life = 100;
+	resource = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		hand.push_back(new Card("SampleCard.png"));
@@ -90,6 +91,7 @@ void Player::reset()
 	hand.clear();
 	deck.clear();
 	life = 100;
+	resource = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		hand.push_back(new Card("SampleCard.png"));
@@ -98,4 +100,14 @@ void Player::reset()
 	{
 		deck.push_back(new Card("SampleCard2.png"));
 	}
+}
+
+void Player::setResource(int d)
+{
+	resource += d;
+}
+
+int Player::getResource()
+{
+	return resource;
 }
