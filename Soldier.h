@@ -26,7 +26,6 @@ public:
 	virtual int getPositionY();
 	virtual void setPositionX(int x) { positionX = x; }
 	virtual void setPositionY(int y) { positionY = y; }
-
 };
 
 #endif // __SOLDIER_H__

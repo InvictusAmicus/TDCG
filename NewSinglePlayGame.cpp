@@ -95,6 +95,11 @@ bool NewSinglePlayGame::init()
 		return false;
 	}
 
+	enemyArmy.clear();
+	army.clear();
+	towers.clear();
+	enemyTowers.clear();
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -104,7 +109,6 @@ bool NewSinglePlayGame::init()
 		CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
 		SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
 	}
-
 	p = new Player();
 
 	enemyTurn = 0;
@@ -261,7 +265,6 @@ bool NewSinglePlayGame::init()
 	TowerArea33->setOpacity(0);
 	this->addChild(TowerArea33, 1, Tower33);
 
-	p = new Player();
 	displayHand(p);
 	displayHand(p);
 	return true;
@@ -323,13 +326,10 @@ void NewSinglePlayGame::GameState()
 
 void NewSinglePlayGame::WonGame()
 {
-	/*army.clear();
-	enemyArmy.clear();
-	towers.clear();
-	enemyTowers.clear();
-	delete p;
-	delete baseGrid;*/
-
+	
+	p->reset();
+	delete baseGrid;
+	
 	cocos2d::experimental::AudioEngine::stopAll();
 
 	auto GameWonScene = GameWonScreen::createScene();
@@ -338,14 +338,13 @@ void NewSinglePlayGame::WonGame()
 
 void NewSinglePlayGame::LostGame()
 {
-	/*
-	army.clear();
-	enemyArmy.clear();
-	towers.clear();
-	enemyTowers.clear();
-	p->reset();				something here prevents new scene being created
+	
+//	army.clear();
+//	enemyArmy.clear();	// prevents new scene being created, but can't play again without it
+
+	p->reset();
 	delete baseGrid;
-	*/
+	
 
 	cocos2d::experimental::AudioEngine::stopAll();
 
@@ -358,22 +357,25 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	int r, t;
 	bool hasAttacked = false;
 	CollisionDetection moveForward;
-	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
+	for (int x = 0; (unsigned)x < enemyArmy.size(); )
 	{
+		int place = enemyArmy.at(x)->getPositionX();
 		if ((enemyArmy.at(x)->getPositionX()) == 0)
 		{
 			p->setLife(40);
-			GameState();
+//			GameState();
 
 			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 			std::string StringLife = std::to_string(p->getLife());
 			CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
 			ChangePlayerLife->setString(StringLife);
-			this->removeChild(enemyArmy.at(x)->getSprite());
+			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
+//			this->removeChild(enemyArmy.at(x)->getSprite());
 			enemyArmy.erase(enemyArmy.begin() + x);
-			x--;
+					
 			hasAttacked = true;
 		}
+		
 		if (!hasAttacked)
 		{
 			if (enemyArmy.at(x) != NULL)
@@ -397,7 +399,8 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						//Player in front
 					}
 				}
-			}	
+			}
+			x++;
 		}
 		hasAttacked = false;
 	}
@@ -455,6 +458,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		moveForward.EnemyTowerAttack();
 		//holding the button keeps calling the method
 	}
+	hasAttacked = false;
 }
 
 void NewSinglePlayGame::enemyAI()
@@ -463,7 +467,7 @@ void NewSinglePlayGame::enemyAI()
 	std::string StringEnemyLife = std::to_string(Enemylife);
 	CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
 	ChangeEnemyLife->setString(StringEnemyLife);
-	NewSinglePlayGame::GameState();
+//	NewSinglePlayGame::GameState();
 
 	//Can be used to check for collisions and win/lose conditions
 	CollisionDetection RegEnemy;

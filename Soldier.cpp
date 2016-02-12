@@ -4,14 +4,14 @@
 Soldier::Soldier()
 {
 	type = 's';
+	health = 1;
+	attack = 1;
 }
 
 Soldier::~Soldier()
 {
-	health = 1;
-	attack = 1;
-	positionX = 0;
-	positionY = 0;
+	//positionX = 0;
+	//positionY = 0;
 	delete this;
 }
 
