@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "CollisionDetection.h"
 #include "EnemyAI.h"
+#include "Options.h"
+#include "AudioEngine.h"
 #include <utility>
 #include <iostream>
 
@@ -17,6 +19,7 @@ int resource;
 int EnemyResource;
 int TowerGridLoop;
 int enemyTurn = 0;
+int SinglePlayGameMusic;
 float OriginalXPos, OriginalYPos;
 
 std::vector<Soldier*> army;
@@ -95,6 +98,13 @@ bool NewSinglePlayGame::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	Options gameMusic;
+	CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
+	if (gameMusic.getMusicMute() != 1) {
+		CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
+		SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
+	}
 
 	p = new Player();
 
@@ -320,6 +330,9 @@ void NewSinglePlayGame::WonGame()
 	enemyTowers.clear();
 	delete p;
 	delete baseGrid;*/
+
+	cocos2d::experimental::AudioEngine::stopAll();
+
 	auto GameWonScene = GameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
 }
@@ -334,6 +347,9 @@ void NewSinglePlayGame::LostGame()
 	p->reset();				something here prevents new scene being created
 	delete baseGrid;
 	*/
+
+	cocos2d::experimental::AudioEngine::stopAll();
+
 	auto GameOverScene = GameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }

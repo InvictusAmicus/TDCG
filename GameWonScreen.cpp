@@ -1,5 +1,6 @@
-#include"GameWonScreen.h"
+#include "GameWonScreen.h"
 #include "AudioEngine.h"
+#include "Options.h"
 
 int GameWonTrack;
 int GameMenu2;
@@ -32,6 +33,11 @@ bool GameWonScreen::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	Options gameMusic;
+	if (gameMusic.getMusicMute() != 1) {
+		GameWonTrack = cocos2d::experimental::AudioEngine::play2d("GameWon.mp3", true, 1.0f, nullptr);
+	}
+
 	auto label = Label::createWithTTF("Game Won Screen", "fonts/Marker Felt.ttf", 24);
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
@@ -49,14 +55,15 @@ bool GameWonScreen::init()
 
 	this->addChild(sprite, 0);
 
-	GameWonTrack = cocos2d::experimental::AudioEngine::play2d("GameWon.mp3", true, 1.0f, nullptr);
-
 	return true;
 }
 
 void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(GameWonTrack);
-	GameMenu2 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	cocos2d::experimental::AudioEngine::stopAll();
+	Options gameMusic;
+	if (gameMusic.getMusicMute() != 1) {
+		GameMenu2 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+	}
 	Director::getInstance()->popToRootScene();
 }
