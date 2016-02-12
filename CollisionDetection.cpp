@@ -420,15 +420,15 @@ int CollisionDetection::playerCollisionDetect(int r, int t, char c)
 	int y = t;
 
 	//checks to see if the available space is clear
-	if (ColGrid[x - 1][y] == 'N')
+	if (ColGrid[x + 1][y] == 'N')
 	{
-		ColGrid[x - 1][y] = c;
+		ColGrid[x + 1][y] = c;
 		ColGrid[x][y] = 'N';
 		CCLOG("Returning 0");
 		return 0;
 	}
 	//returns a value of 2 if it finds a Player Sprite in next space
-	else if (ColGrid[x - 1][y] == 'P')
+	else if (ColGrid[x + 1][y] == 'P')
 	{
 		CCLOG("Returning 1");
 		//call attack on player sprite
@@ -440,5 +440,4 @@ int CollisionDetection::playerCollisionDetect(int r, int t, char c)
 		CCLOG("Returning 2");
 		return 2;
 	}
-
 }

@@ -363,7 +363,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		if ((enemyArmy.at(x)->getPositionX()) == 0)
 		{
 			p->setLife(40);
-//			GameState();
+			GameState();
 
 			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 			std::string StringLife = std::to_string(p->getLife());
@@ -429,8 +429,8 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		{
 			if (army.at(i) != NULL)
 			{
-				if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 0) {
-					CCLOG("Current i %d :second 1 if:", i);
+				if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 0)
+				{
 					if (army.at(i)->getSprite()->getPositionX() + 75 < 825)
 					{
 						army.at(i)->getSprite()->setPositionX(army.at(i)->getSprite()->getPositionX() + 75);
@@ -450,7 +450,6 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					CCLOG("Current i %d :else if 2:", i);
 					//Player in front
 				}
-				//}
 			}
 			CCLOG("Current i %d :End of for:  Value: %d %d", i, r, t);
 		}
@@ -615,10 +614,10 @@ void NewSinglePlayGame::startTurn()
 	EnemyAI t;
 	//t.test();
 	t.checkVariables(p->getResource(), EnemyResource);
-	//p->drawCard();
 	p->setResource(100);
 	EnemyResource += 100;
-	//displayHand(p);
+//	p->drawCard();
+//	displayHand(p);
 	std::string s = std::to_string(p->getResource());
 	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 	ChangeResource->setString(s);
@@ -626,27 +625,34 @@ void NewSinglePlayGame::startTurn()
 
 void NewSinglePlayGame::displayHand(Player* p)
 {
-	this->removeChildByTag(handSprite1);
-	this->removeChildByTag(handSprite2);
-	this->removeChildByTag(handSprite3);
-	this->removeChildByTag(handSprite4);
-	this->removeChildByTag(handSprite5);
-	this->removeChildByTag(handSprite6);
+	for (int i = 0; i < 6; i++)
+	{
+		CCLOG("Card No: %d", i);
+		if (getChildByTag(handSprite1 + i) != NULL)
+		{
+			getChildByTag(handSprite1 + i)->removeFromParentAndCleanup(true);
+		}
+	}
+//	this->removeChildByTag(handSprite1);
+//	this->removeChildByTag(handSprite2);
+//	this->removeChildByTag(handSprite3);
+//	this->removeChildByTag(handSprite4);
+//	this->removeChildByTag(handSprite5);
+//	this->removeChildByTag(handSprite6);
 
 	auto sprite = cocos2d::Sprite::create("HelloWorld.png");
 	int i;
 	for (i = 0; (unsigned)i < p->getHandSize(); i++)
 	{
 		sprite = p->getCardInHand(i)->getSprite();
-		CCLOG("HandSize: %d", p->getHandSize());
-		//	sprite->setPosition(Vec2(100 + (i * 100), 50));
-		this->addChild(sprite, 1, handSprite1 + i);
-		if (getChildByTag(handSprite1 + i) != NULL)
-		{
+		sprite->setPosition(Vec2(100 + (i * 100), 50));
+		this->addChild(p->getCardInHand(i)->getSprite(), 1, handSprite1 + i);
+	
+//		if (getChildByTag(handSprite1 + i) != NULL)
+//		{
 			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 50));
-		}
+//		}
 	}
-
 
 	auto listener1 = EventListenerTouchOneByOne::create();
 	listener1->setSwallowTouches(true);
