@@ -21,6 +21,7 @@ public:
 	//card dependant methods
 	void drawCard();
 	void playCard(int i);
+	void removeFromHand(int x);
 	
 	//end of turn choice methods
 	void declareAttack();
@@ -35,6 +36,7 @@ public:
 	int getResource();
 
 	int getHandSize();
+	int getDeckSize();
 	Card* getCardInHand(int);
 };
 

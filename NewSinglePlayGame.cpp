@@ -616,15 +616,18 @@ void NewSinglePlayGame::startTurn()
 	t.checkVariables(p->getResource(), EnemyResource);
 	p->setResource(100);
 	EnemyResource += 100;
-//	p->drawCard();
-//	displayHand(p);
+	
 	std::string s = std::to_string(p->getResource());
 	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 	ChangeResource->setString(s);
+    
+	p->drawCard();
+	displayHand(p);
 }
 
 void NewSinglePlayGame::displayHand(Player* p)
 {
+	CCLOG("DECK SIZE %d", p->getDeckSize());
 	for (int i = 0; i < 6; i++)
 	{
 		CCLOG("Card No: %d", i);
@@ -633,24 +636,28 @@ void NewSinglePlayGame::displayHand(Player* p)
 			getChildByTag(handSprite1 + i)->removeFromParentAndCleanup(true);
 		}
 	}
-//	this->removeChildByTag(handSprite1);
-//	this->removeChildByTag(handSprite2);
-//	this->removeChildByTag(handSprite3);
-//	this->removeChildByTag(handSprite4);
-//	this->removeChildByTag(handSprite5);
-//	this->removeChildByTag(handSprite6);
+	//this->removeChildByTag(handSprite1);
+	//this->removeChildByTag(handSprite2);
+	//this->removeChildByTag(handSprite3);
+	//this->removeChildByTag(handSprite4);
+	//this->removeChildByTag(handSprite5);
+	//this->removeChildByTag(handSprite6);
 
-	auto sprite = cocos2d::Sprite::create("HelloWorld.png");
+	//auto sprite = cocos2d::Sprite::create("HelloWorld.png");
 	int i;
 	for (i = 0; (unsigned)i < p->getHandSize(); i++)
 	{
-		sprite = p->getCardInHand(i)->getSprite();
-		sprite->setPosition(Vec2(100 + (i * 100), 50));
-		this->addChild(p->getCardInHand(i)->getSprite(), 1, handSprite1 + i);
+		//sprite = p->getCardInHand(i)->getSprite();
+		//sprite->setPosition(Vec2(100 + (i * 100), 50));
+		auto sprite = cocos2d::Sprite::create(p->getCardInHand(i)->getSpriteName());
+		CCLOG("Card: %i -> %s", i, p->getCardInHand(i)->getSpriteName());
+		//sprite->setPosition(Vec2(100 + (i * 100), 50));
+		this->addChild(sprite, 1, handSprite1 + i);
 	
 //		if (getChildByTag(handSprite1 + i) != NULL)
 //		{
 			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 50));
+			CCLOG("TAG %d", (handSprite1+i));
 //		}
 	}
 
@@ -660,7 +667,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 	listener1->onTouchBegan = [=](Touch* touch, Event* event)
 	{
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-
+		
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544) {
 			return false;
 		}
@@ -691,12 +698,38 @@ void NewSinglePlayGame::displayHand(Player* p)
 		CollisionDetection CheckT;
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setPosition(target->getPosition() + touch->getDelta());
-	
-		if (p->getCardInHand(1)->getType() == 's')
+		int tag = target->getTag();
+		char type;
+		if (tag == 2000)
+		{
+			type = p->getCardInHand(0)->getType();
+		}
+		else if (tag == 2001)
+		{
+			type = p->getCardInHand(1)->getType();
+		}
+		else if (tag == 2002)
+		{
+			type = p->getCardInHand(2)->getType();
+		}
+		else if (tag == 2003)
+		{
+			type = p->getCardInHand(3)->getType();
+		}
+		else if (tag == 2004)
+		{
+			type = p->getCardInHand(4)->getType();
+		}
+		else if (tag == 2005)
+		{
+			type = p->getCardInHand(5)->getType();
+		}
+		if (type == 's')
+//		if(target->getTag())
 		{
 			target->setTexture("testEnemy.png");
 		}
-		else if (p->getCardInHand(1)->getType() == 't')
+		else if (type == 't')
 		{
 			target->setTexture("SampleTower.png");
 			if (CheckT.CheckTower(0, 0) == 0)
@@ -806,7 +839,32 @@ void NewSinglePlayGame::displayHand(Player* p)
 
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		CollisionDetection RegObjects;
-		
+		int tag = target->getTag();
+		char type;
+		if (tag == 2000)
+		{
+			type = p->getCardInHand(0)->getType();
+		}
+		else if (tag == 2001)
+		{
+			type = p->getCardInHand(1)->getType();
+		}
+		else if (tag == 2002)
+		{
+			type = p->getCardInHand(2)->getType();
+		}
+		else if (tag == 2003)
+		{
+			type = p->getCardInHand(3)->getType();
+		}
+		else if (tag == 2004)
+		{
+			type = p->getCardInHand(4)->getType();
+		}
+		else if (tag == 2005)
+		{
+			type = p->getCardInHand(5)->getType();
+		}
 		CCLabelBMFont* ChangeText = (CCLabelBMFont*)getChildByTag(ErrorFeedback);
 
 		//Scale of images when they return to the hand need fixed
@@ -815,7 +873,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 			log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
 			//Dragging the Tower sprites to the relevent postion
-			if (p->getCardInHand(1)->getType() == 't') {
+			if (type == 't') {
 				if (p->getResource() >= 20)
 				{
 					//Col - 0  Grid postion 0-0
@@ -826,6 +884,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(176, 478);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -842,6 +901,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(174, 402);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -858,6 +918,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(174, 330);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
+
 						}
 						else
 						{
@@ -874,6 +936,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(174, 256);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -890,6 +953,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(250, 478);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -906,6 +970,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(250, 402);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -922,6 +987,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(250, 330);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -938,6 +1004,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(250, 258);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -954,6 +1021,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(325, 478);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -970,6 +1038,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(325, 402);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -986,6 +1055,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(325, 330);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -1002,6 +1072,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(325, 258);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -1018,6 +1089,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(401, 478);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -1034,6 +1106,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(401, 402);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -1050,6 +1123,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(401, 330);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -1066,6 +1140,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(401, 258);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							p->removeFromHand(target->getTag());
 						}
 						else
 						{
@@ -1091,7 +1166,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 
 			//Dragging the Soldier sprites to the relevent postion
 			//code needs to be added
-			if (p->getCardInHand(1)->getType() == 's')
+			if (type == 's')
 			{
 				if (p->getResource() >= 10)
 				{
@@ -1107,7 +1182,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 504));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1129,7 +1206,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1151,7 +1230,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 358));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 
 						}
@@ -1175,7 +1256,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 285));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 
 						}
@@ -1198,7 +1281,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 211));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 
 						}
@@ -1221,7 +1306,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 504));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 
 						}
@@ -1244,7 +1331,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1266,9 +1355,10 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 358));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
-
 						}
 						else
 						{
@@ -1289,7 +1379,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 285));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1311,7 +1403,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 211));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1333,7 +1427,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 504));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1355,7 +1451,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1377,7 +1475,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 358));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1399,7 +1499,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 285));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1421,7 +1523,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 211));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1443,7 +1547,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1465,7 +1571,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1487,7 +1595,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 358));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1509,7 +1619,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 285));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1531,7 +1643,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 211));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1553,7 +1667,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1575,7 +1691,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 431));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1597,7 +1715,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 358));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1619,7 +1739,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 285));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1641,7 +1763,9 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 211));
+							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
+							displayHand(p);
 							this->addChild((army.at(army.size() - 1))->getSprite());
 						}
 						else
@@ -1709,8 +1833,10 @@ void NewSinglePlayGame::displayHand(Player* p)
 		towerG_33->setOpacity(0);
 
 	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
-
+	if (p->getHandSize() > 0)
+	{
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this->getChildByTag(handSprite1));
+	}
 	for (int j = 0; j < p->getHandSize(); j++)
 	{
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1 + j));
