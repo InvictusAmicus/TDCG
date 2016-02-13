@@ -650,7 +650,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 		//sprite = p->getCardInHand(i)->getSprite();
 		//sprite->setPosition(Vec2(100 + (i * 100), 50));
 		auto sprite = cocos2d::Sprite::create(p->getCardInHand(i)->getSpriteName());
-		CCLOG("Card: %i -> %s", i, p->getCardInHand(i)->getSpriteName());
 		//sprite->setPosition(Vec2(100 + (i * 100), 50));
 		this->addChild(sprite, 1, handSprite1 + i);
 	
@@ -884,7 +883,14 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(176, 478);
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(0);
+							towers.at(towers.size() - 1)->setPositionY(0);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(176, 478));
 							p->removeFromHand(target->getTag());
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -899,9 +905,16 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(0, 1, 'T') == 0)
 						{
 							target->setPosition(174, 402);
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(0);
+							towers.at(towers.size() - 1)->setPositionY(1);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(174, 402));
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -919,7 +932,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
-
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(0);
+							towers.at(towers.size() - 1)->setPositionY(2);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(174, 330));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -937,6 +956,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(0);
+							towers.at(towers.size() - 1)->setPositionY(3);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(174, 256));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -954,6 +980,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(1);
+							towers.at(towers.size() - 1)->setPositionY(0);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(250, 478));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -971,6 +1004,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(1);
+							towers.at(towers.size() - 1)->setPositionY(1);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(250, 402));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -988,6 +1028,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(1);
+							towers.at(towers.size() - 1)->setPositionY(2);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(250, 330));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1005,6 +1052,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(1);
+							towers.at(towers.size() - 1)->setPositionY(3);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(250, 258));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1022,6 +1076,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(2);
+							towers.at(towers.size() - 1)->setPositionY(0);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(325, 478));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1039,6 +1100,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(2);
+							towers.at(towers.size() - 1)->setPositionY(1);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(325, 402));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1056,6 +1124,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(2);
+							towers.at(towers.size() - 1)->setPositionY(2);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(325, 330));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1073,6 +1148,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(2);
+							towers.at(towers.size() - 1)->setPositionY(3);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(325, 258));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1090,6 +1172,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(3);
+							towers.at(towers.size() - 1)->setPositionY(0);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(401, 478));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1107,6 +1196,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(3);
+							towers.at(towers.size() - 1)->setPositionY(1);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(401, 402));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1124,6 +1220,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(3);
+							towers.at(towers.size() - 1)->setPositionY(2);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(401, 330));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
@@ -1141,6 +1244,13 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-20);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
+							towers.push_back(new Tower("SampleTower.png"));
+							towers.at(towers.size() - 1)->setPositionX(3);
+							towers.at(towers.size() - 1)->setPositionY(3);
+							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(401, 258));
+							target->removeFromParentAndCleanup(true);
+							displayHand(p);
+							this->addChild((towers.at(towers.size() - 1))->getSprite());
 						}
 						else
 						{
