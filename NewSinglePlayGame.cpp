@@ -426,10 +426,8 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			}	
 		}
 		//x++;
-		
+		hasAttacked = false;
 	}
-	hasAttacked = false;
-
 
 	CCLOG("Test For End Turn");
 	enemyAI();
