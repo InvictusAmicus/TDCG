@@ -358,7 +358,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	int r, t;
 	bool hasAttacked = false;
 	CollisionDetection moveForward;
-	for (int x = 0; (unsigned)x < enemyArmy.size(); )
+	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
 	{
 		int place = enemyArmy.at(x)->getPositionX();
 		if ((enemyArmy.at(x)->getPositionX()) == 0)
@@ -373,7 +373,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 //			this->removeChild(enemyArmy.at(x)->getSprite());
 			enemyArmy.erase(enemyArmy.begin() + x);
-					
+			x--;
 			hasAttacked = true;
 		}
 		
@@ -423,9 +423,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				{
 					//Player in front
 				}
-			}
+			}	
 		}
-		x++;
+		//x++;
+		
 	}
 	hasAttacked = false;
 
