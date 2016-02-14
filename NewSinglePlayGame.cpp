@@ -403,11 +403,13 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 							{
 								army.at(y)->getSprite()->removeFromParentAndCleanup(true);
 								army.erase(army.begin() + y);
+								EnemyResource += 50;
 							}
 							if (enemyArmy.at(x)->getHealth() <= 0)
 							{
 								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 								enemyArmy.erase(enemyArmy.begin() + x);
+								p->setResource(50);
 							}
 						}
 					}

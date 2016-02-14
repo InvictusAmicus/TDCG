@@ -1,6 +1,5 @@
 *********TO DO LIST***************
 
-
 Add attack for towers within a set perimeter(Need attack method for Towers Collision detection done)
 
 Add health and attack for soldier and player sprites
@@ -8,7 +7,6 @@ Add health and attack for soldier and player sprites
 Add resources after killing enemy
 
 *********Bug Report**************
-Soldier vector need to be cleared after a game is finished (done)
 
 Music has to be fixed so it doesn't start a song twice
 
@@ -23,4 +21,8 @@ Add cards to hand after the player places one down or at the end of a turn
 
 Movement of enemy soldier sprites
 
+Soldier vector need to be cleared after a game is finished
+
 remove enemy from screen after it has reached the other end
+
+enemy soldiers kill each other upon contact
