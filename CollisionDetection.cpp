@@ -1,6 +1,6 @@
-#include"CollisionDetection.h"
-#include"SinglePlayGame.h"
-#include"MultiPlayer.h"
+#include "CollisionDetection.h"
+#include "SinglePlayGame.h"
+#include "MultiPlayer.h"
 #include <utility>
 #include <iostream>
 #include <vector>

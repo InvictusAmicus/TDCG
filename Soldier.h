@@ -26,6 +26,9 @@ public:
 	virtual int getPositionY();
 	virtual void setPositionX(int x) { positionX = x; }
 	virtual void setPositionY(int y) { positionY = y; }
+	virtual int getHealth() { return health; }
+	virtual void setHealth(int);
+	virtual int getAttack();
 };
 
 #endif // __SOLDIER_H__

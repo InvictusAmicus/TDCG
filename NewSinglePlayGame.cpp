@@ -387,23 +387,41 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
 						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
 					}
-					//}
-					else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
+				}
+				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
+				{
+					//enemyArmy.at(x);
+					//call attack
+					//deal damage to enemy = to attack
+					for (int y = 0; y < army.size(); y++)
 					{
-						//enemyArmy.at(x);
-						//call attack
-						//deal damage to enemy = to attack
-					}
-					else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
-					{
-						//Player in front
+						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1 && army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY())
+						{
+							army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
+							enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
+							if (army.at(y)->getHealth() <= 0)
+							{
+								army.at(y)->getSprite()->removeFromParentAndCleanup(true);
+								army.erase(army.begin() + y);
+							}
+							if (enemyArmy.at(x)->getHealth() <= 0)
+							{
+								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
+								enemyArmy.erase(enemyArmy.begin() + x);
+							}
+						}
 					}
 				}
+				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
+				{
+					//Player in front
+				}
 			}
-			x++;
 		}
-		hasAttacked = false;
+		x++;
 	}
+	hasAttacked = false;
+
 
 	CCLOG("Test For End Turn");
 	enemyAI();
@@ -429,7 +447,8 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		{
 			if (army.at(i) != NULL)
 			{
-				if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 0)
+				if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(),
+					army.at(i)->getPositionY(), 'P') == 0)
 				{
 					if (army.at(i)->getSprite()->getPositionX() + 75 < 825)
 					{
@@ -437,14 +456,17 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						army.at(i)->setPositionX(army.at(i)->getPositionX() + 1);
 					}
 				}
-				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 1)
+				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(),
+					army.at(i)->getPositionY(), 'P') == 1)
 				{
 					CCLOG("CAN'T MOVE FORWARD Enemy");
 					CCLOG("Current i %d :else if 1:", i);
 					//call attack
 					//deal damage to enemy = to attack
+					
 				}
-				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(), army.at(i)->getPositionY(), 'P') == 2)
+				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(),
+					army.at(i)->getPositionY(), 'P') == 2)
 				{
 					CCLOG("CAN'T MOVE FORWARD Player");
 					CCLOG("Current i %d :else if 2:", i);
@@ -680,11 +702,11 @@ void NewSinglePlayGame::displayHand(Player* p)
 			OriginalXPos = target->getPosition().x;
 			OriginalYPos = target->getPosition().y;
 
-			log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
+		//	log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
 
 			if (rect.containsPoint(locationInNode))
 			{
-				log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
+		//		log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
 				target->setOpacity(180);
 				return true;
 			}
@@ -869,7 +891,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 		//Scale of images when they return to the hand need fixed
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
 		{
-			log("sprite onTouchesEnded.. ");
+		//	log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
 			//Dragging the Tower sprites to the relevent postion
 			if (type == 't') {
@@ -1364,7 +1386,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.push_back(new Soldier("TestEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(3);
-							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 285));
 							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);

@@ -34,3 +34,13 @@ int Soldier::getPositionY()
 {
 	return positionY;
 }
+
+void Soldier::setHealth(int d)
+{
+	health -= d;
+}
+
+int Soldier::getAttack()
+{
+	return attack;
+}
