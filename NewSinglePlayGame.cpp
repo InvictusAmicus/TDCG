@@ -385,7 +385,9 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				{
 					if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
 					{
-						enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
+						auto moveBy = MoveBy::create(1, Vec2(-75, 0));
+						enemyArmy.at(x)->getSprite()->runAction(moveBy);
+						//enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
 						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
 					}
 				}
@@ -457,8 +459,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				{
 					if (army.at(i)->getSprite()->getPositionX() + 75 < 825)
 					{
-						army.at(i)->getSprite()->setPositionX(army.at(i)->getSprite()->getPositionX() + 75);
+						auto moveBy = MoveBy::create(1, Vec2(75, 0));
+						army.at(i)->getSprite()->runAction(moveBy);
+						//army.at(i)->getSprite()->setPositionX(army.at(i)->getSprite()->getPositionX() + 75);
 						army.at(i)->setPositionX(army.at(i)->getPositionX() + 1);
+						
 					}
 				}
 				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(),
@@ -489,7 +494,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 
 void NewSinglePlayGame::enemyAI()
 {
-
+	
 	std::string StringEnemyLife = std::to_string(Enemylife);
 	CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
 	ChangeEnemyLife->setString(StringEnemyLife);
