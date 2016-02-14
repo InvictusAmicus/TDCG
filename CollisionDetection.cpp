@@ -38,7 +38,6 @@ int CollisionDetection::enemyCollisionDetect(std::pair<int, int> TestPostion, ch
 
 }
 
-
 int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, char c) {
 	
 	int x = std::get<0>(TestPostion);
@@ -63,7 +62,6 @@ int CollisionDetection::playerCollisionDetect(std::pair<int, int> TestPostion, c
 		return 2;
 	}
 }
-
 
 int CollisionDetection::registerObject(int x, int y, char c) {
 
@@ -152,7 +150,6 @@ void CollisionDetection::CreateGrids() {
 		}
 		Q();
 }
-
 
 //Enemy life and Tower attack needs to be added
 void CollisionDetection::PlayerTowerAttack() 
@@ -278,7 +275,6 @@ void CollisionDetection::Q()
 	}
 }
 
-
 int CollisionDetection::countPlayerTowers()
 {
 	int TowerC = 0;
@@ -377,7 +373,6 @@ char CollisionDetection::getColGrid(int x, int y)
 {
 	return ColGrid[x][y];
 }
-
 
 //Declan trying something
 void CollisionDetection::removeObject(int r, int t)
