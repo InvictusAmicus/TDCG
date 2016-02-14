@@ -1,7 +1,5 @@
 *********TO DO LIST***************
-Add cards to hand after the player places one down or at the end of a turn
 
-Movement of enemy soldier sprites
 
 Add attack for towers within a set perimeter(Need attack method for Towers Collision detection done)
 
@@ -9,13 +7,20 @@ Add health and attack for soldier and player sprites
 
 Add resources after killing enemy
 
-remove enemy from screen after it has reached the other end
-
 *********Bug Report**************
-Soldier vector need to be cleared after a game is finished
+Soldier vector need to be cleared after a game is finished (done)
 
 Music has to be fixed so it doesn't start a song twice
 
-******Update 29/01/16*******
+Placing a soldier in grid space 0-3 places it in 1-3
+
+Enemy doing 1 extra attack of damage than it should be
+
+*********COMPLETED***************
 Resource updates when end turn clicked
 
+Add cards to hand after the player places one down or at the end of a turn
+
+Movement of enemy soldier sprites
+
+remove enemy from screen after it has reached the other end
