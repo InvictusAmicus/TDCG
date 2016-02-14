@@ -59,9 +59,17 @@ std::tuple <int, int, int> EnemyAI::checkVariables(int PlayerResource, int Enemy
 	
 	std::tuple<int, int, int> EnemyCreation = CreateEnemy(PlayerResource, EnemyResource,
 		                                                  PS, PT, ES, ET, PIEA, EIPA);
-	int EnemyNumber = std::get<0>(EnemyCreation);
-	int EnemyPostionX = std::get<1>(EnemyCreation);
-	int EnemyPostionY = std::get<2>(EnemyCreation);
+	//int EnemyNumber = std::get<0>(EnemyCreation);
+	//int EnemyPostionX = std::get<1>(EnemyCreation);
+	//int EnemyPostionY = std::get<2>(EnemyCreation);
+	
+	//hardcoded test data
+	int EnemyNumber = 0;
+	int EnemyPostionX = 635;
+	int EnemyPostionY = 478;
+    if (PlayerResource >= 200) { EnemyNumber = 1; }
+    if (PlayerResource >= 200) { EnemyPostionX = 672; }
+	if (PlayerResource >= 200) { EnemyPostionY = 286; }
 	
 	return std::make_tuple(EnemyNumber, EnemyPostionX, EnemyPostionY);
 	
