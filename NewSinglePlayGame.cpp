@@ -393,7 +393,8 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//deal damage to enemy = to attack
 					for (int y = 0; y < army.size(); y++)
 					{
-						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1 && army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY())
+						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
+							&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
 						{
 							army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
 							enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
@@ -409,7 +410,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 								moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 								enemyArmy.erase(enemyArmy.begin() + x);
-								x--;
+								if (x != 0)
+								{
+									x--;
+								}
 								p->setResource(50);
 							}
 						}
@@ -551,7 +555,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
 					//CCLOG("HEALTH, %d", army.at(p)->getHealth());
 					//CCLOG("Damage, %d", enemyTowers.at(o)->getDamage());
-					army.at(p)->setHealth(army.at(p)->getHealth()-enemyTowers.at(o)->getDamage());
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
 					if (army.at(p)->getHealth() <= 0)
 					{
 						//CCLOG("2 if");
@@ -566,7 +570,6 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			}
 		}
 
-		
 		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 2)
 		{//template code for towers shooting 
 			//CCLOG("Start of Two");
@@ -620,6 +623,137 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				}
 			}
 
+		}
+		hasShot = false;
+	}
+	for (int q = 0; q < towers.size(); q++)
+	{
+		CCLOG("TOWER attack statement");
+		CCLOG("MOVE, r = %d, t = %d", towers.at(q)->getPositionX(), towers.at(q)->getPositionY());
+
+		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 0)
+		{
+			//template code for towers shooting 
+			//CCLOG("if Zero");
+			//animation for shooting
+			for (int r = 0; r < enemyArmy.size(); r++)
+			{
+				//CCLOG("Start of Zero");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX()
+					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY())
+				{
+					//CCLOG("1 if");
+					hasShot = true;
+					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
+					if (enemyArmy.at(r)->getHealth() <= 0)
+					{
+						//CCLOG("2 if");
+						moveForward.removeObject(enemyArmy.at(r)->getPositionX(), enemyArmy.at(r)->getPositionY());
+						enemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
+						enemyArmy.erase(enemyArmy.begin() + r);
+						p->setResource(50);
+						r--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+		}
+		//CCLOG("before ONE");
+		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 1)
+		{
+			for (int r = 0; r < enemyArmy.size(); r++)
+			{
+				//CCLOG("Start of Zero");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX()
+					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY() + 1)
+				{
+					//CCLOG("1 if");
+					hasShot = true;
+					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
+					if (enemyArmy.at(r)->getHealth() <= 0)
+					{
+						//CCLOG("2 if");
+						moveForward.removeObject(enemyArmy.at(r)->getPositionX(), enemyArmy.at(r)->getPositionY());
+						enemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
+						enemyArmy.erase(enemyArmy.begin() + r);
+						p->setResource(50);
+						r--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+		
+		}
+
+		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 2)
+		{//template code for towers shooting 
+		 //CCLOG("Start of Two");
+		 //animation for shooting
+			for (int r = 0; r < enemyArmy.size(); r++)
+			{
+				//CCLOG("Start of Zero");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX() + 1
+					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY())
+				{
+					//CCLOG("1 if");
+					hasShot = true;
+					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
+					if (enemyArmy.at(r)->getHealth() <= 0)
+					{
+						//CCLOG("2 if");
+						moveForward.removeObject(enemyArmy.at(r)->getPositionX(), enemyArmy.at(r)->getPositionY());
+						enemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
+						enemyArmy.erase(enemyArmy.begin() + r);
+						p->setResource(50);
+						r--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+		}
+
+		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 3)
+		{
+			//template code for towers shooting 
+			//CCLOG("Start of three");
+			//animation for shooting
+			for (int r = 0; r < enemyArmy.size(); r++)
+			{
+				//CCLOG("Start of Zero");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX() + 1
+					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY() + 1)
+				{
+					//CCLOG("1 if");
+					hasShot = true;
+					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
+					if (enemyArmy.at(r)->getHealth() <= 0)
+					{
+						//CCLOG("2 if");
+						moveForward.removeObject(enemyArmy.at(r)->getPositionX(), enemyArmy.at(r)->getPositionY());
+						enemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
+						enemyArmy.erase(enemyArmy.begin() + r);
+						p->setResource(50);
+						r--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
 		}
 		hasShot = false;
 	}

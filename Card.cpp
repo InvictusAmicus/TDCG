@@ -35,12 +35,20 @@ void Card::moveTo(int a1, int a2)
 
 char Card::getType() 
 {
-	type = 's';
+	/*type = 's';
 
 	if (x >= 200) {
 		type = 't';
 	}
 	x++;
-	CCLOG("%d", x);
+	CCLOG("%d", x);*/
+	if (name == "SampleCard.png")
+	{
+		return 't';
+	}
+	else
+	{
+		return 's';
+	}
 	return type;
 }

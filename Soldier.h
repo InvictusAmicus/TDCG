@@ -13,10 +13,7 @@ private:
 
 public:
 	Soldier();
-	Soldier(std::string name)
-	{
-		setSprite(name);
-	}
+	Soldier(std::string name);
 
 	~Soldier();
 	virtual bool init() { return true; }

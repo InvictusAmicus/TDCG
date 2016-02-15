@@ -8,6 +8,14 @@ Soldier::Soldier()
 	attack = 1;
 }
 
+Soldier::Soldier(std::string n)
+{
+	setSprite(n);
+	type = 's';
+	health = 4;
+	attack = 1;
+}
+
 Soldier::~Soldier()
 {
 	//positionX = 0;

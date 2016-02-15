@@ -12,10 +12,7 @@ private:
 public:
 	Tower();
 	~Tower();
-	Tower(std::string name)
-	{
-		setSprite(name);
-	}
+	Tower(std::string name);
 
 //	bool init();
 	void move();

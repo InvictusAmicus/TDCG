@@ -38,7 +38,7 @@ public:
 	int playerCollisionDetect(int, int, char);
 
 	int enemyTowerAttacks(int, int);
-
+	int towerAttacks(int, int);
 	
 	//char ColGrid[10][5];
 	//char TowerGrid[5][5];

@@ -11,6 +11,13 @@ Tower::~Tower()
 	
 }
 
+Tower::Tower(std::string name)
+{
+	setSprite(name);
+	damage = 1;
+	type = 't';
+}
+
 bool Tower::checkSurroundings()
 {
 	if (positionX - 1 == NULL && positionX == NULL)
