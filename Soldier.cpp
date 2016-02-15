@@ -4,7 +4,7 @@
 Soldier::Soldier()
 {
 	type = 's';
-	health = 1;
+	health = 4;
 	attack = 1;
 }
 

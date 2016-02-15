@@ -102,10 +102,12 @@ int CollisionDetection::registerTower(int x, int y, char c) {
 
 int CollisionDetection::CheckTower(int x, int y) {
     //check to see Tower postions available
-	if (TowerGrid[x][y] == 'N') {
+	if (TowerGrid[x][y] == 'N')
+	{
 		return 0;
 	}
-	else {
+	else
+	{
 		return 1;
 	}
 }
@@ -183,6 +185,7 @@ void CollisionDetection::PlayerTowerAttack()
 }
 
 //Player sprite life and Tower attack needs to be added
+/*
 void CollisionDetection::EnemyTowerAttack() 
 {
 	int a = 5;
@@ -215,7 +218,7 @@ void CollisionDetection::EnemyTowerAttack()
 		a++;
 	}
 }
-
+*/
 void CollisionDetection::EnemyAttackLife()
 {
 	if (ColGrid[0][0] == 'E') 
@@ -435,4 +438,38 @@ int CollisionDetection::playerCollisionDetect(int r, int t, char c)
 		CCLOG("Returning 2");
 		return 2;
 	}
+}
+
+int CollisionDetection::enemyTowerAttacks(int r, int t)
+{
+	int a = 5;
+	CCLOG("enemyTowerAttacks is ready");
+	if (ColGrid[a + r][t] == 'P')
+	{
+		CCLOG("Attacking player at %d-%d", a + r, t);
+		CCLOG("ZERO");
+		return 0;
+	}
+	
+	if (ColGrid[a + r][t + 1] == 'P')
+	{
+		CCLOG("Attacking player at %d-%d", a + r, t + 1);
+		CCLOG("ONE");
+		return 1;
+	}
+	if (ColGrid[a + r + 1][t] == 'P')
+	{
+		CCLOG("Attacking player at %d-%d", a + r + 1, t);
+		CCLOG("TWO");
+		return 2;
+	}
+	if (ColGrid[a + r + 1][t + 1] == 'P')
+	{
+		CCLOG("Attacking player at %d-%d", a + r + 1, t + 1);
+		CCLOG("THREE");
+		return 3;
+	}
+	
+	//CCLOG("Returning -1");
+	return -1;
 }

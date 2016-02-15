@@ -1,6 +1,16 @@
 #include "Tower.h"
 #include "Soldier.h"
 
+Tower::Tower()
+{
+	damage = 1;
+}
+
+Tower::~Tower()
+{
+	
+}
+
 bool Tower::checkSurroundings()
 {
 	if (positionX - 1 == NULL && positionX == NULL)

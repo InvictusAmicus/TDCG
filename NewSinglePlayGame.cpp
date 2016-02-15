@@ -339,14 +339,9 @@ void NewSinglePlayGame::WonGame()
 
 void NewSinglePlayGame::LostGame()
 {
-	
-//	army.clear();
-//	enemyArmy.clear();	// prevents new scene being created, but can't play again without it
-
 	p->reset();
 	delete baseGrid;
 	
-
 	cocos2d::experimental::AudioEngine::stopAll();
 
 	auto GameOverScene = GameOverScreen::createScene();
@@ -358,7 +353,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	int r, t;
 	bool hasAttacked = false;
 	CollisionDetection moveForward;
-	for (int x = 0; (unsigned)x < enemyArmy.size(); )
+	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
 	{
 		int place = enemyArmy.at(x)->getPositionX();
 		if ((enemyArmy.at(x)->getPositionX()) == 0)
@@ -373,7 +368,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 //			this->removeChild(enemyArmy.at(x)->getSprite());
 			enemyArmy.erase(enemyArmy.begin() + x);
-					
+			x--;
 			hasAttacked = true;
 		}
 		
@@ -414,6 +409,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 								moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 								enemyArmy.erase(enemyArmy.begin() + x);
+								x--;
 								p->setResource(50);
 							}
 						}
@@ -423,12 +419,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				{
 					//Player in front
 				}
-			}
+			}	
 		}
-		x++;
+		//x++;
+		hasAttacked = false;
 	}
-	hasAttacked = false;
-
 
 	CCLOG("Test For End Turn");
 	enemyAI();
@@ -485,11 +480,148 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			}
 			CCLOG("Current i %d :End of for:  Value: %d %d", i, r, t);
 		}
-		moveForward.PlayerTowerAttack();
-		moveForward.EnemyTowerAttack();
+		//moveForward.PlayerTowerAttack();
+		//moveForward.EnemyTowerAttack();
 		//holding the button keeps calling the method
 	}
 	hasAttacked = false;
+
+	//soldier movement above
+	//tower movement below
+	bool hasShot = false;
+	CCLOG("before TOWER attack statement");
+	for (int o = 0; o < enemyTowers.size(); o++)
+	{
+		CCLOG("TOWER attack statement");
+		CCLOG("MOVE, r = %d, t = %d", enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY());
+		
+		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 0)
+		{	
+			//template code for towers shooting 
+			//CCLOG("if Zero");
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				//CCLOG("Start of Zero");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY())
+				{
+					//CCLOG("1 if");
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						//CCLOG("2 if");
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+		}
+		//CCLOG("before ONE");
+		if(moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 1)
+		{
+			//template code for towers shooting 
+
+			//animation for shooting
+
+
+			//CCLOG("Start of ONE");
+			for (int p = 0; p < army.size(); p++)
+			{
+				//CCLOG("for ONE");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY()+1)
+				{
+					//CCLOG("1 if");
+					hasShot = true;
+					//army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					//CCLOG("HEALTH, %d", army.at(p)->getHealth());
+					//CCLOG("Damage, %d", enemyTowers.at(o)->getDamage());
+					army.at(p)->setHealth(army.at(p)->getHealth()-enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						//CCLOG("2 if");
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+		}
+		
+		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 2)
+		{//template code for towers shooting 
+			//CCLOG("Start of Two");
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				//CCLOG("for TWO");
+				//CCLOG("army x: %d", army.at(p)->getPositionX());
+				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 6);
+				//CCLOG("army y: %d", army.at(p)->getPositionY());
+				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY())
+				{
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+		}
+		
+		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 3)
+		{
+			//template code for towers shooting 
+			//CCLOG("Start of three");
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY() + 1)
+				{
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+						CCLOG("PLAYER SHOT");
+					}
+				}
+			}
+
+		}
+		hasShot = false;
+	}
 }
 
 void NewSinglePlayGame::enemyAI()
@@ -510,10 +642,13 @@ void NewSinglePlayGame::enemyAI()
 	if (std::get<0>(CreateEnemyObjects) == 0)
 	{
 		Tower* t1 = new Tower("SampleTower.png");
+		//t1->setPositionX(1);
+		//t1->setPositionY(0);
 		t1->getSprite()->setPosition(Vec2(std::get<1>(CreateEnemyObjects), std::get<2>(CreateEnemyObjects)));
 		t1->getSprite()->setScale(2.0);
 		this->addChild(t1->getSprite(), 1);
 		RegEnemy.registerEnemyTower(1, 0, 'T');
+		enemyTowers.push_back(t1);
 	}
 	else if (std::get<0>(CreateEnemyObjects) == 1) 
 	{
@@ -525,16 +660,18 @@ void NewSinglePlayGame::enemyAI()
 		this->addChild(s1->getSprite(), 1);
 		enemyArmy.push_back(s1);
 	}
-	//
-	*/
+*/
 	
 	if (enemyTurn == 0)
 	{
 		Tower* t1 = new Tower("SampleTower.png");
+		t1->setPositionX(1);
+		t1->setPositionY(0);
 		t1->getSprite()->setPosition(Vec2(635, 478));
 		t1->getSprite()->setScale(2.0);
 		this->addChild(t1->getSprite(), 1);
 		RegEnemy.registerEnemyTower(1, 0, 'T');
+		enemyTowers.push_back(t1);
 
 		if (RegEnemy.registerObject(7, 3, 'E') == 0)
 		{
@@ -546,7 +683,6 @@ void NewSinglePlayGame::enemyAI()
 			this->addChild(s1->getSprite(), 1);
 			enemyArmy.push_back(s1);
 		}
-
 	}
 	else if (enemyTurn == 1)
 	{
@@ -576,15 +712,21 @@ void NewSinglePlayGame::enemyAI()
 	{
 		Tower* t2 = new Tower("SampleTower.png");
 		t2->getSprite()->setPosition(Vec2(787, 257));
+		t2->setPositionX(3);
+		t2->setPositionY(3);
 		t2->getSprite()->setScale(2.0);
 		this->addChild(t2->getSprite(), 1);
 		RegEnemy.registerEnemyTower(3, 3, 'T');
+		enemyTowers.push_back(t2);
 		
 		Tower* t3 = new Tower("SampleTower.png");
 		t3->getSprite()->setPosition(Vec2(787, 477));
+		t3->setPositionX(3);
+		t3->setPositionY(0);
 		t3->getSprite()->setScale(2.0);
 		this->addChild(t3->getSprite(), 1);
 		RegEnemy.registerEnemyTower(3, 0, 'T');
+		enemyTowers.push_back(t3);
 	}
 	else if (enemyTurn == 3)
 	{
@@ -592,9 +734,12 @@ void NewSinglePlayGame::enemyAI()
 		
 		Tower* t4 = new Tower("SampleTower.png");
 		t4->getSprite()->setPosition(Vec2(558, 257));
+		t4->setPositionX(0);
+		t4->setPositionY(3);
 		t4->getSprite()->setScale(2.0);
 		this->addChild(t4->getSprite(), 1);
 		RegEnemy.registerEnemyTower(0, 3, 'T');
+		enemyTowers.push_back(t4);
 
 		if (RegEnemy.registerObject(5, 0, 'E') == 0)
 		{
@@ -611,9 +756,12 @@ void NewSinglePlayGame::enemyAI()
 	{
 		Tower* t5 = new Tower("SampleTower.png");
 		t5->getSprite()->setPosition(Vec2(558, 257));
+		t5->setPositionX(2);
+		t5->setPositionY(2);
 		t5->getSprite()->setScale(2.0);
 		this->addChild(t5->getSprite(), 1);
 		RegEnemy.registerEnemyTower(2, 2, 'T');
+		enemyTowers.push_back(t5);
 
 		if (RegEnemy.registerObject(5, 4, 'E') == 0)
 		{
@@ -711,7 +859,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 	
 //		if (getChildByTag(handSprite1 + i) != NULL)
 //		{
-			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 50));
+			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 80));
 			CCLOG("TAG %d", (handSprite1+i));
 //		}
 	}
@@ -736,11 +884,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 			OriginalXPos = target->getPosition().x;
 			OriginalYPos = target->getPosition().y;
 
-		//	log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
-
 			if (rect.containsPoint(locationInNode))
 			{
-		//		log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
 				target->setOpacity(180);
 				return true;
 			}
@@ -891,7 +1036,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 
 	listener1->onTouchEnded = [=](Touch* touch, Event* event)
 	{
-
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		CollisionDetection RegObjects;
 		int tag = target->getTag();
@@ -1328,7 +1472,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 				}
 
 			}
-
 
 			//Dragging the Soldier sprites to the relevent postion
 			//code needs to be added
@@ -1949,7 +2092,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 					//target->setScale(0.5);
 				}
 			}
-
 		}
 		else
 		{
@@ -1958,7 +2100,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 			//target->setTexture(spriteTemplate->getTexture());
 			target->setScale(1.0);
 			target->setOpacity(255);
-
 		}
 		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 		std::string StringResource = std::to_string(p->getResource());
@@ -1996,7 +2137,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 		towerG_32->setOpacity(0);
 		Sprite* towerG_33 = (Sprite*)getChildByTag(Tower33);
 		towerG_33->setOpacity(0);
-
 	};
 	if (p->getHandSize() > 0)
 	{

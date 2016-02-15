@@ -21,7 +21,7 @@ public:
 	char getEnemyTowerGrid(int x, int y);
 	char getColGrid(int x, int y);
 	void PlayerTowerAttack();
-	void EnemyTowerAttack();
+	//void EnemyTowerAttack();
 	void playerAttackLife();
 	void EnemyAttackLife();
 	int countPlayerTowers();
@@ -36,6 +36,7 @@ public:
 	void removeObject(int, int);
 	int enemyCollisionDetect(int, int, char);
 	int playerCollisionDetect(int, int, char);
+	int enemyTowerAttacks(int, int);
 
 	
 	//char ColGrid[10][5];
