@@ -440,7 +440,7 @@ int CollisionDetection::playerCollisionDetect(int r, int t, char c)
 	}
 }
 
-<<<<<<< HEAD
+
 int CollisionDetection::enemyTowerAttacks(int r, int t)
 {
 	int a = 5;
@@ -472,31 +472,5 @@ int CollisionDetection::enemyTowerAttacks(int r, int t)
 	}
 	
 	//CCLOG("Returning -1");
-=======
-int CollisionDetection::enemyTowerAttack(int r, int t)
-{
-	CCLOG("enemyTowerAttack is ready");
-	if (ColGrid[r][t] == 'P')
-	{
-		CCLOG("Attacking player at %d-%d", r, t);
-		return 0;
-	}
-	if (ColGrid[r][t + 1] == 'P')
-	{
-		CCLOG("Attacking player at %d-%d", r, t + 1);
-		return 1;
-	}
-	if (ColGrid[r + 1][t] == 'P')
-	{
-		CCLOG("Attacking player at %d-%d", r + 1, t);
-		return 2;
-	}
-	if (ColGrid[r + 1][t + 1] == 'P')
-	{
-		CCLOG("Attacking player at %d-%d", r + 1, t + 1);
-		return 3;
-	}
-
->>>>>>> 3283bbadbfe5d2e86fe7afd95e234b87c30f470c
 	return -1;
 }

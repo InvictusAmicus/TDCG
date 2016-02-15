@@ -36,11 +36,8 @@ public:
 	void removeObject(int, int);
 	int enemyCollisionDetect(int, int, char);
 	int playerCollisionDetect(int, int, char);
-<<<<<<< HEAD
+
 	int enemyTowerAttacks(int, int);
-=======
-	int enemyTowerAttack(int, int);
->>>>>>> 3283bbadbfe5d2e86fe7afd95e234b87c30f470c
 
 	
 	//char ColGrid[10][5];
