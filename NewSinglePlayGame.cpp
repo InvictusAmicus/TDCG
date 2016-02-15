@@ -339,14 +339,9 @@ void NewSinglePlayGame::WonGame()
 
 void NewSinglePlayGame::LostGame()
 {
-	
-//	army.clear();
-//	enemyArmy.clear();	// prevents new scene being created, but can't play again without it
-
 	p->reset();
 	delete baseGrid;
 	
-
 	cocos2d::experimental::AudioEngine::stopAll();
 
 	auto GameOverScene = GameOverScreen::createScene();
@@ -490,6 +485,106 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		//holding the button keeps calling the method
 	}
 	hasAttacked = false;
+
+	//soldier movement above
+	//tower movement below
+	bool hasShot = false;
+	for (int o = 0; o < enemyTowers.size(); o++)
+	{
+		if (moveForward.enemyTowerAttack(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 0)
+		{
+			//template code for towers shooting 
+
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX()
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY()+ 1)
+				{
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+					}
+				}
+			}
+		}
+		if(moveForward.enemyTowerAttack(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 1)
+		{
+			//template code for towers shooting 
+
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 1
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY())
+				{
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+					}
+				}
+			}
+		}
+		if (moveForward.enemyTowerAttack(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 2)
+		{//template code for towers shooting 
+
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 1
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY() + 1)
+				{
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+					}
+				}
+			}
+		}
+		if (moveForward.enemyTowerAttack(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 3)
+		{
+			//template code for towers shooting 
+
+			//animation for shooting
+			for (int p = 0; p < army.size(); p++)
+			{
+				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX()
+					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY())
+				{
+					hasShot = true;
+					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(p)->getHealth() <= 0)
+					{
+						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
+						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + p);
+						EnemyResource += 50;
+						p--;
+					}
+				}
+			}
+
+		}
+		hasShot = false;
+	}
 }
 
 void NewSinglePlayGame::enemyAI()
@@ -525,8 +620,7 @@ void NewSinglePlayGame::enemyAI()
 		this->addChild(s1->getSprite(), 1);
 		enemyArmy.push_back(s1);
 	}
-	//
-	*/
+*/
 	
 	if (enemyTurn == 0)
 	{
@@ -546,7 +640,6 @@ void NewSinglePlayGame::enemyAI()
 			this->addChild(s1->getSprite(), 1);
 			enemyArmy.push_back(s1);
 		}
-
 	}
 	else if (enemyTurn == 1)
 	{
@@ -736,11 +829,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 			OriginalXPos = target->getPosition().x;
 			OriginalYPos = target->getPosition().y;
 
-		//	log("Coordinates began... x = %f, y = %f", touch->getLocation().x, touch->getLocation().y);
-
 			if (rect.containsPoint(locationInNode))
 			{
-		//		log("sprite began... x = %f, y = %f", locationInNode.x, locationInNode.y);
 				target->setOpacity(180);
 				return true;
 			}
@@ -891,7 +981,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 
 	listener1->onTouchEnded = [=](Touch* touch, Event* event)
 	{
-
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		CollisionDetection RegObjects;
 		int tag = target->getTag();
@@ -1328,7 +1417,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 				}
 
 			}
-
 
 			//Dragging the Soldier sprites to the relevent postion
 			//code needs to be added
@@ -1949,7 +2037,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 					//target->setScale(0.5);
 				}
 			}
-
 		}
 		else
 		{
@@ -1958,7 +2045,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 			//target->setTexture(spriteTemplate->getTexture());
 			target->setScale(1.0);
 			target->setOpacity(255);
-
 		}
 		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
 		std::string StringResource = std::to_string(p->getResource());
@@ -1996,7 +2082,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 		towerG_32->setOpacity(0);
 		Sprite* towerG_33 = (Sprite*)getChildByTag(Tower33);
 		towerG_33->setOpacity(0);
-
 	};
 	if (p->getHandSize() > 0)
 	{

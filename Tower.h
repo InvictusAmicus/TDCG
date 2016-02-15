@@ -17,16 +17,17 @@ public:
 		setSprite(name);
 	}
 
-	bool init();
+//	bool init();
 	void move();
 	void shoot();
 	bool checkSurroundings();
 
+	virtual int getDamage() { return damage; }
 	virtual int getPositionX() { return positionX; }
 	virtual int getPositionY() { return positionY; }
+
 	virtual void setPositionX(int x) { positionX = x; }
 	virtual void setPositionY(int y) { positionY = y; }
-
 };
 
 #endif // __TOWER_H__
