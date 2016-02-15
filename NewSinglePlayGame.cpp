@@ -414,6 +414,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 								moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 								enemyArmy.erase(enemyArmy.begin() + x);
+								x--;
 								p->setResource(50);
 							}
 						}
@@ -710,7 +711,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 	
 //		if (getChildByTag(handSprite1 + i) != NULL)
 //		{
-			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 50));
+			this->getChildByTag(handSprite1 + i)->setPosition(Vec2(100 + (i * 100), 80));
 			CCLOG("TAG %d", (handSprite1+i));
 //		}
 	}
