@@ -503,7 +503,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 0)
 		{	
 			//template code for towers shooting 
-			//CCLOG("if Zero");
+			//CCLOG("enemy if Zero");
 			//animation for shooting
 			for (int p = 0; p < army.size(); p++)
 			{
@@ -538,10 +538,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 
 			//animation for shooting
 
-			//CCLOG("Start of ONE");
+			//CCLOG("enemy Start of ONE");
 			for (int p = 0; p < army.size(); p++)
 			{
-				//CCLOG("for ONE");
+				//CCLOG("enemy for ONE");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
@@ -572,11 +572,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 
 		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 2)
 		{//template code for towers shooting 
-			//CCLOG("Start of Two");
+			//CCLOG("enemy Start of Two");
 			//animation for shooting
 			for (int p = 0; p < army.size(); p++)
 			{
-				//CCLOG("for TWO");
+				//CCLOG("enemy for TWO");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 6);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
@@ -602,7 +602,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		if (moveForward.enemyTowerAttacks(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()) == 3)
 		{
 			//template code for towers shooting 
-			//CCLOG("Start of three");
+			//CCLOG("enemy Start of three");
 			//animation for shooting
 			for (int p = 0; p < army.size(); p++)
 			{
@@ -634,11 +634,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 0)
 		{
 			//template code for towers shooting 
-			//CCLOG("if Zero");
+			//CCLOG("player if Zero");
 			//animation for shooting
 			for (int r = 0; r < enemyArmy.size(); r++)
 			{
-				//CCLOG("Start of Zero");
+				//CCLOG("player Start of Zero");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
@@ -662,12 +662,12 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				}
 			}
 		}
-		//CCLOG("before ONE");
+		//CCLOG("player before ONE");
 		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 1)
 		{
 			for (int r = 0; r < enemyArmy.size(); r++)
 			{
-				//CCLOG("Start of Zero");
+				//CCLOG("player Start of One");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
@@ -695,11 +695,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 
 		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 2)
 		{//template code for towers shooting 
-		 //CCLOG("Start of Two");
+		 //CCLOG("player Start of Two");
 		 //animation for shooting
 			for (int r = 0; r < enemyArmy.size(); r++)
 			{
-				//CCLOG("Start of Zero");
+				//CCLOG("Player Start of Two");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
@@ -727,11 +727,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		if (moveForward.towerAttacks(towers.at(q)->getPositionX(), towers.at(q)->getPositionY()) == 3)
 		{
 			//template code for towers shooting 
-			//CCLOG("Start of three");
+			//CCLOG("player Start of three");
 			//animation for shooting
 			for (int r = 0; r < enemyArmy.size(); r++)
 			{
-				//CCLOG("Start of Zero");
+				//CCLOG("player Start of three");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
@@ -754,6 +754,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					}
 				}
 			}
+			
 		}
 		hasShot = false;
 	}
@@ -1989,7 +1990,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(0);
-							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 431));
+							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 504));
 							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
 							displayHand(p);
@@ -2099,7 +2100,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						}
 					}
 					//Col - 4  Grid postion 4-0
-					else if (target->getPosition().x >= 401 && target->getPosition().x < 250 && target->getPosition().y > 472 && target->getPosition().y < 545)
+					else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 472 && target->getPosition().y < 545)
 					{
 						if (RegObjects.registerObject(4, 0, 'P') == 0)
 						{
@@ -2109,7 +2110,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(0);
-							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 431));
+							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 504));
 							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
 							displayHand(p);
