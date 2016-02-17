@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <ctime>
 #include <time.h>
+#include "GameOverScreen.h"
 
 Player::Player()
 {
@@ -48,11 +49,19 @@ void Player::drawCard()
 {
 	if(hand.size() < (unsigned) maxHandSize)
 	{
-		for (int a = hand.size(); a < (unsigned)maxHandSize; a++)
-		{
-			hand.push_back(deck[0]);
-			deck.erase(deck.begin());
-		}	
+		//for (int a = hand.size(); a < (unsigned)maxHandSize; a++)
+		//{
+			if (deck.size() > 0)
+			{
+				hand.push_back(deck[0]);
+				deck.erase(deck.begin());
+			}
+			else
+			{
+				auto GameOverScene = GameOverScreen::createScene();
+				Director::getInstance()->pushScene(GameOverScene);
+			}
+		//}	
 	}
 }
 

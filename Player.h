@@ -4,6 +4,8 @@
 #include <vector>
 #include "Card.h"
 
+USING_NS_CC;
+
 class Player // : public User
 {
 private:
