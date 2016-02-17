@@ -1,11 +1,14 @@
 #ifndef __SOLDIER_H__
 #define __SOLDIER_H__
 
+#include "NewSinglePlayGame.h"
 #include "Card.h"
 #include "Player.h"
+
 class Soldier : public Card
 {
 private:
+	int ability;
 	int attack;
 	int health;
 	int positionX;
@@ -17,6 +20,7 @@ public:
 
 	~Soldier();
 	virtual bool init() { return true; }
+	virtual void activateAbility(Player*);
 	virtual void attackPlayer(Player*) {}
 	virtual void move();
 	virtual int getPositionX();

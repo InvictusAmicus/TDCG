@@ -6,6 +6,7 @@ Soldier::Soldier()
 	type = 's';
 	health = 4;
 	attack = 1;
+	ability = 1;
 }
 
 Soldier::Soldier(std::string n)
@@ -14,6 +15,7 @@ Soldier::Soldier(std::string n)
 	type = 's';
 	health = 4;
 	attack = 1;
+	ability = 2;
 }
 
 Soldier::~Soldier()
@@ -51,4 +53,16 @@ void Soldier::setHealth(int d)
 int Soldier::getAttack()
 {
 	return attack;
+}
+
+void Soldier::activateAbility(Player* p)
+{
+	if (ability == 1)
+	{
+		p->drawCard();
+	}
+	else if (ability == 2)
+	{
+		p->setLife(-20);
+	}
 }

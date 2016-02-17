@@ -409,6 +409,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 							if (army.at(y)->getHealth() <= 0)
 							{
 								moveForward.removeObject(army.at(y)->getPositionX(), army.at(y)->getPositionY());
+								army.at(y)->activateAbility(p);
+								CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+								std::string StringLife = std::to_string(p->getLife());
+								ChangeLife->setString(StringLife);
 								army.at(y)->getSprite()->removeFromParentAndCleanup(true);
 								army.erase(army.begin() + y);
 								y--;
@@ -510,27 +514,32 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			//template code for towers shooting 
 			//CCLOG("enemy if Zero");
 			//animation for shooting
-			for (int p = 0; p < army.size(); p++)
+			for (int z = 0; z < army.size(); z++)
 			{
 				//CCLOG("Start of Zero");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 5);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
 				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
-				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
-					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY())
+				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
+					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY())
 				{
 					//CCLOG("1 if");
 					hasShot = true;
-					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
-					if (army.at(p)->getHealth() <= 0)
+					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(z)->getHealth() <= 0)
 					{
 						//CCLOG("2 if");
-						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
-						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
-						army.erase(army.begin() + p);
+						moveForward.removeObject(army.at(z)->getPositionX(), army.at(z)->getPositionY());
+						army.at(z)->activateAbility(p);
+						CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+						std::string StringLife = std::to_string(p->getLife());
+						ChangeLife->setString(StringLife);
+
+						army.at(z)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + z);
 						EnemyResource += 50;
-						p--;
+						z--;
 						CCLOG("PLAYER SHOT");
 					}
 				}
@@ -544,7 +553,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			//animation for shooting
 
 			//CCLOG("enemy Start of ONE");
-			for (int p = 0; p < army.size(); p++)
+			for (int z = 0; z < army.size(); z++)
 			{
 				//CCLOG("enemy for ONE");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
@@ -552,23 +561,27 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
 				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
 
-				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
-					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY()+1)
+				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
+					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY()+1)
 				{
 					//CCLOG("1 if");
 					hasShot = true;
 					//army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
 					//CCLOG("HEALTH, %d", army.at(p)->getHealth());
 					//CCLOG("Damage, %d", enemyTowers.at(o)->getDamage());
-					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
-					if (army.at(p)->getHealth() <= 0)
+					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(z)->getHealth() <= 0)
 					{
 						//CCLOG("2 if");
-						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
-						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
-						army.erase(army.begin() + p);
+						moveForward.removeObject(army.at(z)->getPositionX(), army.at(z)->getPositionY());
+						army.at(z)->activateAbility(p);
+						CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+						std::string StringLife = std::to_string(p->getLife());
+						ChangeLife->setString(StringLife);
+						army.at(z)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + z);
 						EnemyResource += 50;
-						p--;
+						z--;
 						CCLOG("PLAYER SHOT");
 					}
 				}
@@ -579,25 +592,29 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		{//template code for towers shooting 
 			//CCLOG("enemy Start of Two");
 			//animation for shooting
-			for (int p = 0; p < army.size(); p++)
+			for (int z = 0; z < army.size(); z++)
 			{
 				//CCLOG("enemy for TWO");
 				//CCLOG("army x: %d", army.at(p)->getPositionX());
 				//CCLOG("tower x: %d", enemyTowers.at(o)->getPositionX() + 6);
 				//CCLOG("army y: %d", army.at(p)->getPositionY());
 				//CCLOG("tower y: %d", enemyTowers.at(o)->getPositionY());
-				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
-					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY())
+				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
+					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY())
 				{
 					hasShot = true;
-					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
-					if (army.at(p)->getHealth() <= 0)
+					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(z)->getHealth() <= 0)
 					{
-						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
-						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
-						army.erase(army.begin() + p);
+						moveForward.removeObject(army.at(z)->getPositionX(), army.at(z)->getPositionY());
+						army.at(z)->activateAbility(p);
+						CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+						std::string StringLife = std::to_string(p->getLife());
+						ChangeLife->setString(StringLife);
+						army.at(z)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + z);
 						EnemyResource += 50;
-						p--;
+						z--;
 						CCLOG("PLAYER SHOT");
 					}
 				}
@@ -609,20 +626,20 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			//template code for towers shooting 
 			//CCLOG("enemy Start of three");
 			//animation for shooting
-			for (int p = 0; p < army.size(); p++)
+			for (int z = 0; z < army.size(); z++)
 			{
-				if (army.at(p)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
-					&& army.at(p)->getPositionY() == enemyTowers.at(o)->getPositionY() + 1)
+				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
+					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY() + 1)
 				{
 					hasShot = true;
-					army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
-					if (army.at(p)->getHealth() <= 0)
+					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
+					if (army.at(z)->getHealth() <= 0)
 					{
-						moveForward.removeObject(army.at(p)->getPositionX(), army.at(p)->getPositionY());
-						army.at(p)->getSprite()->removeFromParentAndCleanup(true);
-						army.erase(army.begin() + p);
+						moveForward.removeObject(army.at(z)->getPositionX(), army.at(z)->getPositionY());
+						army.at(z)->getSprite()->removeFromParentAndCleanup(true);
+						army.erase(army.begin() + z);
 						EnemyResource += 50;
-						p--;
+						z--;
 						CCLOG("PLAYER SHOT");
 					}
 				}
@@ -1017,7 +1034,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 		}
 		else
 		{
-
 			Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
 			Size s = target->getContentSize();
 			Rect rect = Rect(0, 0, s.width, s.height);
