@@ -1028,7 +1028,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 	listener1->onTouchBegan = [=](Touch* touch, Event* event)
 	{
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		
 		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544) {
 			return false;
 		}
@@ -1185,7 +1184,6 @@ void NewSinglePlayGame::displayHand(Player* p)
 				Sprite* TowerGrid33 = (Sprite*)getChildByTag(Tower33);
 				TowerGrid33->setOpacity(200);
 			}
-
 		}
 
 		target->setScale(2.0);
@@ -1224,7 +1222,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 		CCLabelBMFont* ChangeText = (CCLabelBMFont*)getChildByTag(ErrorFeedback);
 
 		//Scale of images when they return to the hand need fixed
-		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
+		if (target->getPosition().x >100 && target->getPosition().x <478 && target->getPosition().y > 178 && target->getPosition().y <544)
 		{
 		//	log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
@@ -1616,7 +1614,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 						}
 					}
-					else {
+					else
+					{
 						target->setTexture("SampleCard.png");
 						target->setPosition(Vec2(OriginalXPos, OriginalYPos));
 					}
