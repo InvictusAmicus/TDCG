@@ -355,6 +355,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	CollisionDetection moveForward;
 	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
 	{
+		if (x < 0)
+		{
+			x = 0;
+		}
 		int place = enemyArmy.at(x)->getPositionX();
 		if ((enemyArmy.at(x)->getPositionX()) == 0)
 		{
@@ -393,6 +397,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//deal damage to enemy = to attack
 					for (int y = 0; y < army.size(); y++)
 					{
+						if (x < 0)
+						{
+							x = 0;
+						}
 						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
 							&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
 						{
@@ -403,6 +411,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 								moveForward.removeObject(army.at(y)->getPositionX(), army.at(y)->getPositionY());
 								army.at(y)->getSprite()->removeFromParentAndCleanup(true);
 								army.erase(army.begin() + y);
+								y--;
 								EnemyResource += 50;
 							}
 							if (enemyArmy.at(x)->getHealth() <= 0)
@@ -410,10 +419,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 								moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 								enemyArmy.erase(enemyArmy.begin() + x);
-								if (x != 0)
-								{
-									x--;
-								}
+								x--;
 								p->setResource(50);
 							}
 						}
@@ -462,7 +468,6 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						army.at(i)->getSprite()->runAction(moveBy);
 						//army.at(i)->getSprite()->setPositionX(army.at(i)->getSprite()->getPositionX() + 75);
 						army.at(i)->setPositionX(army.at(i)->getPositionX() + 1);
-						
 					}
 				}
 				else if (moveForward.playerCollisionDetect(army.at(i)->getPositionX(),
