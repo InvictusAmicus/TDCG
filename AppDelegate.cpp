@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "MainMenu.h"
-#include "SinglePlayGame.h"
+#include "NewSinglePlayGame.h"
 #include "OpeningScreen.h"
 #include "SimpleAudioEngine.h" 
 

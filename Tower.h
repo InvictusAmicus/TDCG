@@ -1,7 +1,8 @@
 #ifndef __TOWER_H__
 #define __TOWER_H__
 
-#include"Character.h"
+#include "Card.h"
+#include <iostream>
 
 class Tower : public Card
 {
@@ -15,10 +16,6 @@ public:
 	Tower(std::string name);
 
 //	bool init();
-	void move();
-	void shoot();
-	bool checkSurroundings();
-
 	virtual int getDamage() { return damage; }
 	virtual int getPositionX() { return positionX; }
 	virtual int getPositionY() { return positionY; }

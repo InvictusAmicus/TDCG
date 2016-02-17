@@ -1,5 +1,5 @@
 #include "CollisionDetection.h"
-#include "SinglePlayGame.h"
+#include "NewSinglePlayGame.h"
 #include "MultiPlayer.h"
 #include <utility>
 #include <iostream>
