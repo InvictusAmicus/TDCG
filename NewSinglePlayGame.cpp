@@ -1196,35 +1196,42 @@ void NewSinglePlayGame::displayHand(Player* p)
 		int tag = target->getTag();
 		char type;
 		int cost;
+		std::string spriteName;
 		if (tag == 2000)
 		{
 			type = p->getCardInHand(0)->getType();
 			cost = p->getCardInHand(0)->getCost();
+			spriteName = p->getCardInHand(0)->getSpriteName();
 		}
 		else if (tag == 2001)
 		{
 			type = p->getCardInHand(1)->getType();
 			cost = p->getCardInHand(1)->getCost();
+			spriteName = p->getCardInHand(1)->getSpriteName();
 		}
 		else if (tag == 2002)
 		{
 			type = p->getCardInHand(2)->getType();
 			cost = p->getCardInHand(2)->getCost();
+			spriteName = p->getCardInHand(2)->getSpriteName();
 		}
 		else if (tag == 2003)
 		{
 			type = p->getCardInHand(3)->getType();
 			cost = p->getCardInHand(3)->getCost();
+			spriteName = p->getCardInHand(3)->getSpriteName();
 		}
 		else if (tag == 2004)
 		{
 			type = p->getCardInHand(4)->getType();
 			cost = p->getCardInHand(4)->getCost();
+			spriteName = p->getCardInHand(4)->getSpriteName();
 		}
 		else if (tag == 2005)
 		{
 			type = p->getCardInHand(5)->getType();
-			cost = p->getCardInHand(6)->getCost();
+			cost = p->getCardInHand(5)->getCost();
+			spriteName = p->getCardInHand(5)->getSpriteName();
 		}
 		CCLabelBMFont* ChangeText = (CCLabelBMFont*)getChildByTag(ErrorFeedback);
 
@@ -1234,7 +1241,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 		//	log("sprite onTouchesEnded.. ");
 			target->setOpacity(255);
 			//Dragging the Tower sprites to the relevent postion
-			if (type == 't') {
+			if (type == 't')
+			{
 				if (p->getResource() >= cost)
 				{
 					//Col - 0  Grid postion 0-0
@@ -1259,6 +1267,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 0  Grid postion 0-1
@@ -1283,6 +1292,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 0  Grid postion 0-2
@@ -1307,6 +1317,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 0  Grid postion 0-3
@@ -1331,6 +1342,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 1  Grid postion 1-0
@@ -1379,6 +1391,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 1  Grid postion 1-2
@@ -1403,6 +1416,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 1  Grid postion 1-3
@@ -1427,6 +1441,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 2  Grid postion 2-0
@@ -1451,6 +1466,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 2  Grid postion 2-1
@@ -1475,6 +1491,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 2  Grid postion 2-2
@@ -1499,6 +1516,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 2  Grid postion 2-3
@@ -1523,6 +1541,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 3  Grid postion 3-0
@@ -1547,6 +1566,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 3  Grid postion 3-1
@@ -1571,6 +1591,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 3  Grid postion 3-2
@@ -1595,6 +1616,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					//Col - 3  Grid postion 3-3
@@ -1619,6 +1641,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
 						}
 					}
 					else
@@ -1632,6 +1655,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 					ChangeText->setString("Not enough resources");
 					CCLOG("No Resource available");
 					target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+					target->setTexture(spriteName);
+					target->setScale(1.0);
 				}
 
 			}
@@ -1664,6 +1689,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 0  Grid postion 0-1
@@ -1688,6 +1715,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 0  Grid postion 0-2
@@ -1713,6 +1742,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 0  Grid postion 0-3
@@ -1738,6 +1769,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 0  Grid postion 0-4
@@ -1763,6 +1796,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 1  Grid postion 1-0
@@ -1788,6 +1823,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 1  Grid postion 1-1
@@ -1812,6 +1849,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 1  Grid postion 1-2
@@ -1836,6 +1875,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 1  Grid postion 1-3
@@ -1860,6 +1901,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 1  Grid postion 1-4
@@ -1884,6 +1927,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 2  Grid postion 2-0
@@ -1908,6 +1953,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 2  Grid postion 2-1
@@ -1932,6 +1979,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 2  Grid postion 2-2
@@ -1956,6 +2005,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 2  Grid postion 2-3
@@ -1980,6 +2031,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 2  Grid postion 2-4
@@ -2004,6 +2057,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 3  Grid postion 3-0
@@ -2028,6 +2083,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 3  Grid postion 3-1
@@ -2052,6 +2109,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 3  Grid postion 3-2
@@ -2076,6 +2135,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 3  Grid postion 3-3
@@ -2100,6 +2161,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 3  Grid postion 3-4
@@ -2124,6 +2187,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 4  Grid postion 4-0
@@ -2148,6 +2213,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 4  Grid postion 4-1
@@ -2172,6 +2239,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 4  Grid postion 4-2
@@ -2196,6 +2265,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 4  Grid postion 4-3
@@ -2220,6 +2291,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 					//Col - 4  Grid postion 4-4
@@ -2244,6 +2317,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 							CCLOG("Can't place here");
 							ChangeText->setString("Can't place here");
 							target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+							target->setTexture(spriteName);
+							target->setScale(1.0);
 						}
 					}
 				}
@@ -2252,7 +2327,8 @@ void NewSinglePlayGame::displayHand(Player* p)
 					ChangeText->setString("Not enough resources");
 					CCLOG("No Resource available");
 					target->setPosition(Vec2(OriginalXPos, OriginalYPos));
-					//target->setScale(0.5);
+					target->setTexture(spriteName);
+					target->setScale(1.0);
 				}
 			}
 		}
@@ -2260,6 +2336,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 		{
 			//target->setPosition(origin + Vec2((visibleSize.width / 2) + 100, (visibleSize.height / 2) - 200));
 			target->setPosition(Vec2(OriginalXPos, OriginalYPos));
+			target->setTexture(spriteName);
 			//target->setTexture(spriteTemplate->getTexture());
 			target->setScale(1.0);
 			target->setOpacity(255);
