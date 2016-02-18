@@ -131,6 +131,8 @@ void Collection::displayCards(int x)
 		CCLOG("Card No: %d", i);
 		if (getChildByTag(DisplaySprite0 + i) != NULL)
 		{
+			auto fadeOut = FadeOut::create(1.0f);
+			this->getChildByTag(DisplaySprite0 + i)->runAction(fadeOut);
 			getChildByTag(DisplaySprite0 + i)->removeFromParentAndCleanup(true);
 		}
 	}
@@ -176,8 +178,10 @@ void Collection::displayCards(int x)
 		for (j = 0; (unsigned)j + 8 < listOfCards.size() && j < maxCardsPerLine; j++)
 		{
 			auto sprite = cocos2d::Sprite::create(listOfCards[j + 8]->getSpriteName());
-			auto rotateTo = RotateTo::create(1.0f, 40.0f);
-			sprite->runAction(rotateTo);
+			sprite->setOpacity(0);
+			sprite->setCascadeOpacityEnabled(true);
+			auto fadeIn = FadeIn::create(1.0f);
+			sprite->runAction(fadeIn);
 			this->addChild(sprite, 1, DisplaySprite0 + j);
 			this->getChildByTag(DisplaySprite0 + j)->setPosition(Vec2(200 + (j * 100), 550));
 			CCLOG("TAG %d", (DisplaySprite0 + j));
@@ -186,8 +190,10 @@ void Collection::displayCards(int x)
 		for (j = 0; (unsigned)j + 12 < listOfCards.size() && j < maxCardsPerLine; j++)
 		{
 			auto sprite = cocos2d::Sprite::create(listOfCards[j + 12]->getSpriteName());
-			auto rotateTo = RotateTo::create(1.0f, 40.0f);
-			sprite->runAction(rotateTo);
+			sprite->setOpacity(0);
+			sprite->setCascadeOpacityEnabled(true);
+			auto fadeIn = FadeIn::create(1.0f);
+			sprite->runAction(fadeIn);
 			this->addChild(sprite, 1, DisplaySprite0 + j + 4);
 			this->getChildByTag(DisplaySprite0 + j + 4)->setPosition(Vec2(200 + (j * 100), 350));
 			CCLOG("TAG %d", (DisplaySprite0 + j + 4));
@@ -204,8 +210,10 @@ void Collection::displayCards(int x)
 		for (j = 0; (unsigned)j + 16 < listOfCards.size() && j < maxCardsPerLine; j++)
 		{
 			auto sprite = cocos2d::Sprite::create(listOfCards[j + 16]->getSpriteName());
-			auto rotateBy = RotateBy::create(3.0f, 360.0f);
-			sprite->runAction(rotateBy);
+			sprite->setOpacity(0);
+			sprite->setCascadeOpacityEnabled(true);
+			auto fadeIn = FadeIn::create(1.0f);
+			sprite->runAction(fadeIn);
 			this->addChild(sprite, 1, DisplaySprite0 + j);
 			this->getChildByTag(DisplaySprite0 + j)->setPosition(Vec2(200 + (j * 100), 550));
 			CCLOG("TAG %d", (DisplaySprite0 + j));
@@ -214,8 +222,10 @@ void Collection::displayCards(int x)
 		for (j = 0; (unsigned)j + 20 < listOfCards.size() && j < maxCardsPerLine; j++)
 		{
 			auto sprite = cocos2d::Sprite::create(listOfCards[j + 20]->getSpriteName());
-			auto rotateBy = RotateBy::create(1.0f, 360.0f);
-			sprite->runAction(rotateBy);
+			sprite->setOpacity(0);
+			sprite->setCascadeOpacityEnabled(true);
+			auto fadeIn = FadeIn::create(1.0f);
+			sprite->runAction(fadeIn);
 			this->addChild(sprite, 1, DisplaySprite0 + j + 4);
 			this->getChildByTag(DisplaySprite0 + j + 4)->setPosition(Vec2(200 + (j * 100), 350));
 			CCLOG("TAG %d", (DisplaySprite0 + j + 4));
@@ -232,16 +242,22 @@ void Collection::displayCards(int x)
 		for (j = 0; (unsigned)j + 24 < listOfCards.size() && j < maxCardsPerLine; j++)
 		{
 			auto sprite = cocos2d::Sprite::create(listOfCards[j + 24]->getSpriteName());
+			sprite->setOpacity(0);
+			sprite->setCascadeOpacityEnabled(true);
+			auto fadeIn = FadeIn::create(1.0f);
+			sprite->runAction(fadeIn);
 			this->addChild(sprite, 1, DisplaySprite0 + j);
-			this->getChildByTag(DisplaySprite0 + j)->setPosition(Vec2(-150,550));
-			auto moveTo = MoveTo::create(1, Vec2(200 + (j * 100), 550));
-			sprite->runAction(moveTo);
+			this->getChildByTag(DisplaySprite0 + j)->setPosition(Vec2(200 + (j * 100), 550));
 			CCLOG("TAG %d", (DisplaySprite0 + j));
 			EventNum++;
 		}
 		for (j = 0; (unsigned)j + 28 < listOfCards.size() && j < maxCardsPerLine; j++)
 		{
 			auto sprite = cocos2d::Sprite::create(listOfCards[j + 28]->getSpriteName());
+			sprite->setOpacity(0);
+			sprite->setCascadeOpacityEnabled(true);
+			auto fadeIn = FadeIn::create(1.0f);
+			sprite->runAction(fadeIn);
 			this->addChild(sprite, 1, DisplaySprite0 + j + 4);
 			this->getChildByTag(DisplaySprite0 + j + 4)->setPosition(Vec2(200 + (j * 100), 350));
 			CCLOG("TAG %d", (DisplaySprite0 + j + 4));
