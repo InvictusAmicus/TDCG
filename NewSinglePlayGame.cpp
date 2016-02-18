@@ -1195,29 +1195,36 @@ void NewSinglePlayGame::displayHand(Player* p)
 		CollisionDetection RegObjects;
 		int tag = target->getTag();
 		char type;
+		int cost;
 		if (tag == 2000)
 		{
 			type = p->getCardInHand(0)->getType();
+			cost = p->getCardInHand(0)->getCost();
 		}
 		else if (tag == 2001)
 		{
 			type = p->getCardInHand(1)->getType();
+			cost = p->getCardInHand(1)->getCost();
 		}
 		else if (tag == 2002)
 		{
 			type = p->getCardInHand(2)->getType();
+			cost = p->getCardInHand(2)->getCost();
 		}
 		else if (tag == 2003)
 		{
 			type = p->getCardInHand(3)->getType();
+			cost = p->getCardInHand(3)->getCost();
 		}
 		else if (tag == 2004)
 		{
 			type = p->getCardInHand(4)->getType();
+			cost = p->getCardInHand(4)->getCost();
 		}
 		else if (tag == 2005)
 		{
 			type = p->getCardInHand(5)->getType();
+			cost = p->getCardInHand(6)->getCost();
 		}
 		CCLabelBMFont* ChangeText = (CCLabelBMFont*)getChildByTag(ErrorFeedback);
 
@@ -1228,7 +1235,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 			target->setOpacity(255);
 			//Dragging the Tower sprites to the relevent postion
 			if (type == 't') {
-				if (p->getResource() >= 20)
+				if (p->getResource() >= cost)
 				{
 					//Col - 0  Grid postion 0-0
 					if (target->getPosition().x > 136 && target->getPosition().x < 213 && target->getPosition().y > 413 && target->getPosition().y < 508)
@@ -1236,7 +1243,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(0, 0, 'T') == 0)
 						{
 							target->setPosition(176, 478);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							towers.push_back(new Tower("SampleTower.png"));
 							towers.at(towers.size() - 1)->setPositionX(0);
@@ -1264,7 +1271,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							towers.at(towers.size() - 1)->setPositionX(0);
 							towers.at(towers.size() - 1)->setPositionY(1);
 							towers.at(towers.size() - 1)->getSprite()->setPosition(Vec2(174, 402));
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							target->removeFromParentAndCleanup(true);
@@ -1284,7 +1291,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(0, 2, 'T') == 0)
 						{
 							target->setPosition(174, 330);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1308,7 +1315,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(0, 3, 'T') == 0)
 						{
 							target->setPosition(174, 256);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1332,7 +1339,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(1, 0, 'T') == 0)
 						{
 							target->setPosition(250, 478);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1356,7 +1363,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(1, 1, 'T') == 0)
 						{
 							target->setPosition(250, 402);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1380,7 +1387,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(1, 2, 'T') == 0)
 						{
 							target->setPosition(250, 330);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1404,7 +1411,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(1, 3, 'T') == 0)
 						{
 							target->setPosition(250, 258);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1428,7 +1435,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(2, 0, 'T') == 0)
 						{
 							target->setPosition(325, 478);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1452,7 +1459,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(2, 1, 'T') == 0)
 						{
 							target->setPosition(325, 402);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1476,7 +1483,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(2, 2, 'T') == 0)
 						{
 							target->setPosition(325, 330);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1500,7 +1507,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(2, 3, 'T') == 0)
 						{
 							target->setPosition(325, 258);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1524,7 +1531,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(3, 0, 'T') == 0)
 						{
 							target->setPosition(401, 478);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1548,7 +1555,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(3, 1, 'T') == 0)
 						{
 							target->setPosition(401, 402);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1572,7 +1579,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(3, 2, 'T') == 0)
 						{
 							target->setPosition(401, 330);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1596,7 +1603,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerTower(3, 3, 'T') == 0)
 						{
 							target->setPosition(401, 258);
-							p->setResource(-20);
+							p->setResource(-cost);
 							ChangeText->setString("Tower Placed");
 							p->removeFromHand(target->getTag());
 							towers.push_back(new Tower("SampleTower.png"));
@@ -1641,7 +1648,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(0, 0, 'P') == 0)
 						{
 							target->setPosition(137, 504);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(0);
@@ -1665,7 +1672,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(0, 1, 'P') == 0)
 						{
 							target->setPosition(137, 431);
-							p->setResource(-10); 
+							p->setResource(-cost); 
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(0);
@@ -1689,7 +1696,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(0, 2, 'P') == 0)
 						{
 							target->setPosition(137, 358);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(0);
@@ -1714,7 +1721,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(0, 3, 'P') == 0)
 						{
 							target->setPosition(137, 285);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(0);
@@ -1739,7 +1746,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(0, 4, 'P') == 0)
 						{
 							target->setPosition(137, 211);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(0);
@@ -1764,7 +1771,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(1, 0, 'P') == 0)
 						{
 							target->setPosition(214, 504);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(1);
@@ -1789,7 +1796,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(1, 1, 'P') == 0)
 						{
 							target->setPosition(214, 431);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(1);
@@ -1813,7 +1820,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(1, 2, 'P') == 0)
 						{
 							target->setPosition(214, 358);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(1);
@@ -1837,7 +1844,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(1, 3, 'P') == 0)
 						{
 							target->setPosition(214, 285);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(1);
@@ -1861,7 +1868,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(1, 4, 'P') == 0)
 						{
 							target->setPosition(214, 211);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(1);
@@ -1885,7 +1892,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(2, 0, 'P') == 0)
 						{
 							target->setPosition(288, 504);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(2);
@@ -1909,7 +1916,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(2, 1, 'P') == 0)
 						{
 							target->setPosition(288, 431);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(2);
@@ -1933,7 +1940,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(2, 2, 'P') == 0)
 						{
 							target->setPosition(288, 358);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(2);
@@ -1957,7 +1964,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(2, 3, 'P') == 0)
 						{
 							target->setPosition(288, 285);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(2);
@@ -1981,7 +1988,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(2, 4, 'P') == 0)
 						{
 							target->setPosition(288, 211);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(2);
@@ -2005,7 +2012,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(3, 0, 'P') == 0)
 						{
 							target->setPosition(364, 504);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(3);
@@ -2029,7 +2036,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(3, 1, 'P') == 0)
 						{
 							target->setPosition(364, 431);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(3);
@@ -2053,7 +2060,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(3, 2, 'P') == 0)
 						{
 							target->setPosition(364, 358);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(3);
@@ -2077,7 +2084,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(3, 3, 'P') == 0)
 						{
 							target->setPosition(364, 285);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(3);
@@ -2101,7 +2108,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(3, 4, 'P') == 0)
 						{
 							target->setPosition(364, 211);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(3);
@@ -2125,7 +2132,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(4, 0, 'P') == 0)
 						{
 							target->setPosition(441, 504);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(4);
@@ -2149,7 +2156,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(4, 1, 'P') == 0)
 						{
 							target->setPosition(441, 431);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(4);
@@ -2173,7 +2180,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(4, 2, 'P') == 0)
 						{
 							target->setPosition(441, 358);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(4);
@@ -2197,7 +2204,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(4, 3, 'P') == 0)
 						{
 							target->setPosition(441, 285);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(4);
@@ -2221,7 +2228,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 						if (RegObjects.registerObject(4, 4, 'P') == 0)
 						{
 							target->setPosition(441, 211);
-							p->setResource(-10);
+							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier("testEnemy.png"));
 							army.at(army.size() - 1)->setPositionX(4);
