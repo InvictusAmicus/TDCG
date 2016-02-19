@@ -107,8 +107,10 @@ bool NewSinglePlayGame::init()
 	Options gameMusic;
 	CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
 	if (gameMusic.getMusicMute() != 1) {
+		int V = gameMusic.getmusicVolume();
+		CCLOG("gameMusic.getmusicVolume() %d", V);
 		CCLOG("GAME MUTE %d", gameMusic.getMusicMute());
-		SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, 1.0f, nullptr);
+		SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("GameMusic.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
 	p = new Player();
 

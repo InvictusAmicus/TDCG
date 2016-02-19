@@ -35,7 +35,8 @@ bool GameWonScreen::init()
 
 	Options gameMusic;
 	if (gameMusic.getMusicMute() != 1) {
-		GameWonTrack = cocos2d::experimental::AudioEngine::play2d("GameWon.mp3", true, 1.0f, nullptr);
+		int V = gameMusic.getmusicVolume();
+		GameWonTrack = cocos2d::experimental::AudioEngine::play2d("GameWon.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
 
 	auto label = Label::createWithTTF("Game Won Screen", "fonts/Marker Felt.ttf", 24);
@@ -63,7 +64,8 @@ void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;
 	if (gameMusic.getMusicMute() != 1) {
-		GameMenu2 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		int V = gameMusic.getmusicVolume();
+		GameMenu2 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
 	Director::getInstance()->popToRootScene();
 }

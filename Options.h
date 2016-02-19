@@ -18,6 +18,8 @@ public:
 	int MusicVolume();
 	//int MusicMute;
 	int getMusicMute();
+	void setMV(int x);
+	float getMusicFloatVolume(int x);
 	void setMute(int x);
 	void SetMusicVolume(int x);
 	void SetSoundEffectVolume(int x);

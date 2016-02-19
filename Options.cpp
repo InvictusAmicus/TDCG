@@ -120,7 +120,7 @@ bool Options::init()
 	if (MusicMute != 1)
 	{
 		cocos2d::experimental::AudioEngine::stopAll();
-		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, getMusicFloatVolume(musicVolumeControl), nullptr);
 	}
 	
 	auto label = Label::createWithTTF("Options", "fonts/Marker Felt.ttf", 24);
@@ -434,7 +434,7 @@ void Options::menuReturn(Ref* pSender)
 	cocos2d::experimental::AudioEngine::stopAll();
 	if (MusicMute != 1)
 	{
-		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, getMusicFloatVolume(musicVolumeControl), nullptr);
 	}
 	Director::getInstance()->popScene();
 }
@@ -679,12 +679,12 @@ void Options::setMusicMute(int x) {
 
 }
 
-int getmusicVolume() 
+int Options::getmusicVolume() 
 {
 	return musicVolumeControl;
 }
 
-int getSounfEffectVolume()
+int Options::getSounfEffectVolume()
 {
     return SoundEffectsVolumeControl;
 }
@@ -697,4 +697,54 @@ int Options::getMusicMute()
 void Options::setMute(int x) 
 {
 	MusicMute = x;
+}
+
+float Options::getMusicFloatVolume(int x) 
+{
+	CCLOG("Start");
+	int CheckVolume = x;
+	CCLOG("X, %d",x);
+
+	if (CheckVolume == 0) {
+		CCLOG("Start 0.0");
+		return 0.0f;
+	}
+	else if (CheckVolume>0 && CheckVolume<10) {
+		CCLOG("Start 0.1");
+		return 0.1f;
+	}
+	else if (CheckVolume >= 10 && CheckVolume<20) {
+		CCLOG("Test");
+		return 0.2f;
+	}
+	else if (CheckVolume >= 20 && CheckVolume<30) {
+		CCLOG("Test .3");
+		return 0.3f;
+	}
+	else if (CheckVolume >= 30 && CheckVolume<40) {
+		return 0.4f;
+	}
+	else if (CheckVolume >= 40 && CheckVolume<50) {
+		return 0.5f;
+	}
+	else if (CheckVolume >= 50 && CheckVolume<60) {
+		return 0.6f;
+	}
+	else if (CheckVolume >= 60 && CheckVolume<70) {
+		return 0.7f;
+	}
+	else if (CheckVolume >= 70 && CheckVolume<80) {
+		return 0.8f;
+	}
+	else if (CheckVolume >= 80 && CheckVolume<90) {
+		return 0.9f;
+	}
+	else if (CheckVolume >= 90 && CheckVolume <= 100) {
+		return 1.0f;
+	}
+}
+
+void Options::setMV(int x) 
+{
+	musicVolumeControl = x;
 }

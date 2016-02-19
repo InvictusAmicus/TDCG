@@ -35,7 +35,8 @@ bool GameOverScreen::init()
 
 	Options gameMusic;
 	if (gameMusic.getMusicMute() != 1) {
-		GameOverTrack = cocos2d::experimental::AudioEngine::play2d("GameOver.mp3", true, 1.0f, nullptr);
+		int V = gameMusic.getmusicVolume();
+		GameOverTrack = cocos2d::experimental::AudioEngine::play2d("GameOver.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
 
 	auto label = Label::createWithTTF("Game Over Screen", "fonts/Marker Felt.ttf", 24);
@@ -63,7 +64,8 @@ void GameOverScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;
 	if (gameMusic.getMusicMute() != 1) {
-		GameMenu = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		int V = gameMusic.getmusicVolume();
+		GameMenu = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
 	Director::getInstance()->popToRootScene();
 }

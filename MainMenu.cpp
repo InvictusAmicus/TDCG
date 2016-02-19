@@ -50,8 +50,10 @@ bool MainMenu::init()
 
 	if (MenuMusicMute == 0) {
 		CCLOG("MenuMusicMute if statement");
+		CCLOG("%d", StartMusicVolume);
+		Options playM;
 		//cocos2d::experimental::AudioEngine::stopAll();
-		StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, playM.getMusicFloatVolume(StartMusicVolume), nullptr);
 		//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
 	}
 
@@ -208,6 +210,8 @@ void MainMenu::SystemFile()
 				std::string::size_type sz;
 				StartMusicVolume = std::stof(text, &sz);
 				CCLOG("MVC %d", StartMusicVolume);
+				Options GameMusic;
+				GameMusic.setMV(StartMusicVolume);
 				//	x++;
 			}
 			if (x == 1)
