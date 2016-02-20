@@ -14,7 +14,7 @@ USING_NS_CC;
 using namespace std;
 
 int StartMusicVolume;
-float SoundEffectsVolumeControl;
+int SoundEffectsVolume;
 int MenuEffectsMute;
 int MenuMusicMute;
 int StartTrack;
@@ -219,14 +219,18 @@ void MainMenu::SystemFile()
 				getline(ReadFile, text);
 				int testFileInt = atoi(text.c_str());
 				std::string::size_type sz;
-				SoundEffectsVolumeControl = std::stof(text, &sz);
-				CCLOG("SEVC %.2f", SoundEffectsVolumeControl);
+				SoundEffectsVolume = std::stof(text, &sz);
+				Options GameMusic;
+				GameMusic.setSEV(SoundEffectsVolume);
+				CCLOG("SEVC %d", SoundEffectsVolume);
 				//	x++;
 			}
 			if (x == 2)
 			{
 				getline(ReadFile, text);
 				MenuEffectsMute = atoi(text.c_str());
+				Options GameMusic;
+				GameMusic.setSEVMute(MenuEffectsMute);
 				CCLOG("EFFECTS MUTE %d", MenuEffectsMute);
 			}
 			if (x == 3)

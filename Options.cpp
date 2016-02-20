@@ -688,15 +688,33 @@ int Options::getSounfEffectVolume()
 {
     return SoundEffectsVolumeControl;
 }
+void Options::setSEV(int x) 
+{
+	SoundEffectsVolumeControl = x;
+}
 
 int Options::getMusicMute() 
 {
 	return MusicMute;
 }
 
+int Options::getEffectsMute() 
+{
+	return EffectsMute;
+}
+
+int Options::EffectsVolume() 
+{
+	return SoundEffectsVolumeControl;
+}
+
 void Options::setMute(int x) 
 {
 	MusicMute = x;
+}
+void Options::setSEVMute(int x)
+{
+	EffectsMute = x;
 }
 
 float Options::getMusicFloatVolume(int x) 

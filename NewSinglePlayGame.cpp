@@ -406,6 +406,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
 							&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
 						{
+							CCLOG("CHECKING AUDIO");
+							Options EffectsMusic;
+							if (EffectsMusic.getEffectsMute() != 1) {
+								int V = EffectsMusic.EffectsVolume();
+								CCLOG("gameMusic.getmusicVolume() %d", V);
+								SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+							}
+
 							army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
 							enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
 							if (army.at(y)->getHealth() <= 0)
@@ -526,6 +534,15 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
 					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY())
 				{
+
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					//CCLOG("1 if");
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
@@ -566,6 +583,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 5
 					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY()+1)
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					//CCLOG("1 if");
 					hasShot = true;
 					//army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
@@ -604,6 +629,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
 					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY())
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
 					if (army.at(z)->getHealth() <= 0)
@@ -633,6 +666,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (army.at(z)->getPositionX() == enemyTowers.at(o)->getPositionX() + 6
 					&& army.at(z)->getPositionY() == enemyTowers.at(o)->getPositionY() + 1)
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
 					if (army.at(z)->getHealth() <= 0)
@@ -670,6 +711,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX()
 					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY())
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					//CCLOG("1 if");
 					hasShot = true;
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
@@ -699,6 +748,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX()
 					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY() + 1)
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					//CCLOG("1 if");
 					hasShot = true;
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
@@ -731,6 +788,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX() + 1
 					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY())
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					//CCLOG("1 if");
 					hasShot = true;
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
@@ -763,6 +828,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				if (enemyArmy.at(r)->getPositionX() == towers.at(q)->getPositionX() + 1
 					&& enemyArmy.at(r)->getPositionY() == towers.at(q)->getPositionY() + 1)
 				{
+					CCLOG("CHECKING AUDIO");
+					Options EffectsMusic;
+					if (EffectsMusic.getEffectsMute() != 1) {
+						int V = EffectsMusic.EffectsVolume();
+						CCLOG("gameMusic.getmusicVolume() %d", V);
+						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+					}
+
 					//CCLOG("1 if");
 					hasShot = true;
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
