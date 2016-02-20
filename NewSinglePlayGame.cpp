@@ -355,102 +355,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	int r, t;
 	bool hasAttacked = false;
 	CollisionDetection moveForward;
-	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
-	{
-		if (x < 0)
-		{
-			x = 0;
-		}
-		int place = enemyArmy.at(x)->getPositionX();
-		if ((enemyArmy.at(x)->getPositionX()) == 0)
-		{
-			p->setLife(40);
-			GameState();
-
-			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
-			std::string StringLife = std::to_string(p->getLife());
-			CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
-			ChangePlayerLife->setString(StringLife);
-			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
-//			this->removeChild(enemyArmy.at(x)->getSprite());
-			enemyArmy.erase(enemyArmy.begin() + x);
-			x--;
-			hasAttacked = true;
-		}
-		
-		if (!hasAttacked)
-		{
-			if (enemyArmy.at(x) != NULL)
-			{
-				if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 0)
-				{
-					if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
-					{
-						auto moveBy = MoveBy::create(1, Vec2(-75, 0));
-						enemyArmy.at(x)->getSprite()->runAction(moveBy);
-						//enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
-						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
-					}
-				}
-				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
-				{
-					//enemyArmy.at(x);
-					//call attack
-					//deal damage to enemy = to attack
-					for (int y = 0; y < army.size(); y++)
-					{
-						if (x < 0)
-						{
-							x = 0;
-						}
-						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
-							&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
-						{
-							CCLOG("CHECKING AUDIO");
-							Options EffectsMusic;
-							if (EffectsMusic.getEffectsMute() != 1) {
-								int V = EffectsMusic.EffectsVolume();
-								CCLOG("gameMusic.getmusicVolume() %d", V);
-								SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
-							}
-
-							army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
-							enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
-							if (army.at(y)->getHealth() <= 0)
-							{
-								moveForward.removeObject(army.at(y)->getPositionX(), army.at(y)->getPositionY());
-								army.at(y)->activateAbility(p);
-								CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
-								std::string StringLife = std::to_string(p->getLife());
-								ChangeLife->setString(StringLife);
-								army.at(y)->getSprite()->removeFromParentAndCleanup(true);
-								army.erase(army.begin() + y);
-								y--;
-								EnemyResource += 50;
-							}
-							if (enemyArmy.at(x)->getHealth() <= 0)
-							{
-								moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
-								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
-								enemyArmy.erase(enemyArmy.begin() + x);
-								x--;
-								p->setResource(50);
-							}
-						}
-					}
-				}
-				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
-				{
-					//Player in front
-				}
-			}	
-		}
-		//x++;
-		hasAttacked = false;
-	}
-
-	CCLOG("Test For End Turn");
-	enemyAI();
+	
 	for (int i = 0; (unsigned)i < army.size(); i++)
 	{
 		r = army.at(i)->getPositionX();
@@ -855,6 +760,103 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		}
 		hasShot = false;
 	}
+	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
+	{
+		if (x < 0)
+		{
+			x = 0;
+		}
+		int place = enemyArmy.at(x)->getPositionX();
+		if ((enemyArmy.at(x)->getPositionX()) == 0)
+		{
+			p->setLife(40);
+			GameState();
+
+			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
+			std::string StringLife = std::to_string(p->getLife());
+			CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+			ChangePlayerLife->setString(StringLife);
+			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
+			//			this->removeChild(enemyArmy.at(x)->getSprite());
+			enemyArmy.erase(enemyArmy.begin() + x);
+			x--;
+			hasAttacked = true;
+		}
+
+		if (!hasAttacked)
+		{
+			if (enemyArmy.at(x) != NULL)
+			{
+				if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 0)
+				{
+					if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
+					{
+						auto moveBy = MoveBy::create(1, Vec2(-75, 0));
+						enemyArmy.at(x)->getSprite()->runAction(moveBy);
+						//enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
+						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
+					}
+				}
+				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
+				{
+					//enemyArmy.at(x);
+					//call attack
+					//deal damage to enemy = to attack
+					for (int y = 0; y < army.size(); y++)
+					{
+						if (x < 0)
+						{
+							x = 0;
+						}
+						if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
+							&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
+						{
+							CCLOG("CHECKING AUDIO");
+							Options EffectsMusic;
+							if (EffectsMusic.getEffectsMute() != 1) {
+								int V = EffectsMusic.EffectsVolume();
+								CCLOG("gameMusic.getmusicVolume() %d", V);
+								SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+							}
+
+							army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
+							enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
+							if (army.at(y)->getHealth() <= 0)
+							{
+								moveForward.removeObject(army.at(y)->getPositionX(), army.at(y)->getPositionY());
+								army.at(y)->activateAbility(p);
+								CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+								std::string StringLife = std::to_string(p->getLife());
+								ChangeLife->setString(StringLife);
+								army.at(y)->getSprite()->removeFromParentAndCleanup(true);
+								army.erase(army.begin() + y);
+								y--;
+								EnemyResource += 50;
+							}
+							if (enemyArmy.at(x)->getHealth() <= 0)
+							{
+								moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
+								enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
+								enemyArmy.erase(enemyArmy.begin() + x);
+								x--;
+								p->setResource(50);
+							}
+						}
+					}
+				}
+				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
+				{
+					//Player in front
+				}
+			}
+		}
+		//x++;
+		hasAttacked = false;
+	}
+
+	CCLOG("Test For End Turn");
+	enemyAI();
+
 }
 
 void NewSinglePlayGame::enemyAI()
