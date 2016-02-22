@@ -891,27 +891,33 @@ void NewSinglePlayGame::enemyAI()
 	/*
 	//Creates an enemy tower and adds it to the field
 	//
-	std::tuple<int, int, int> CreateEnemyObjects= CreateEnemy.checkVariables(p->getResource(), EnemyResource);
-	if (std::get<0>(CreateEnemyObjects) == 0)
-	{
-		Tower* t1 = new Tower("SampleTower.png");
-		//t1->setPositionX(1);
-		//t1->setPositionY(0);
-		t1->getSprite()->setPosition(Vec2(std::get<1>(CreateEnemyObjects), std::get<2>(CreateEnemyObjects)));
-		t1->getSprite()->setScale(2.0);
-		this->addChild(t1->getSprite(), 1);
-		RegEnemy.registerEnemyTower(1, 0, 'T');
-		enemyTowers.push_back(t1);
-	}
-	else if (std::get<0>(CreateEnemyObjects) == 1) 
-	{
-		Soldier* s1 = new Soldier("testEnemy.png");
-		s1->setPositionX(7);
-		s1->setPositionY(3);
-		s1->getSprite()->setPosition(Vec2(672, 286));
-		s1->getSprite()->setScale(2.0);
-		this->addChild(s1->getSprite(), 1);
-		enemyArmy.push_back(s1);
+	int CreateLoop = 0;
+	while(CreateLoop!=10000){
+	    std::tuple<int, int, int> CreateEnemyObjects= CreateEnemy.checkVariables(p->getResource(), EnemyResource);
+	    if (std::get<0>(CreateEnemyObjects) == 0)
+	    {
+		    Tower* t1 = new Tower("SampleTower.png");
+		    //t1->setPositionX(1);
+		    //t1->setPositionY(0);
+		    t1->getSprite()->setPosition(Vec2(std::get<1>(CreateEnemyObjects), std::get<2>(CreateEnemyObjects)));
+		    t1->getSprite()->setScale(2.0);
+		    this->addChild(t1->getSprite(), 1);
+		    RegEnemy.registerEnemyTower(1, 0, 'T');
+		    enemyTowers.push_back(t1);
+		    EnemyResource = EnemyResource - 200;
+	    }
+	    else if (std::get<0>(CreateEnemyObjects) == 1) 
+	    {
+		    Soldier* s1 = new Soldier("testEnemy.png");
+		    s1->setPositionX(7);
+		    s1->setPositionY(3);
+		    s1->getSprite()->setPosition(Vec2(672, 286));
+		    s1->getSprite()->setScale(2.0);
+		    this->addChild(s1->getSprite(), 1);
+		    enemyArmy.push_back(s1);
+		    EnemyResource = EnemyResource - 100;
+	    }
+	CreateLoop = std::get<0>(CreateEnemyObjects);
 	}
 */
 	

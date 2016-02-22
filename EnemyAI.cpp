@@ -59,17 +59,17 @@ std::tuple <int, int, int> EnemyAI::checkVariables(int PlayerResource, int Enemy
 	
 	std::tuple<int, int, int> EnemyCreation = CreateEnemy(PlayerResource, EnemyResource,
 		                                                  PS, PT, ES, ET, PIEA, EIPA);
-	//int EnemyNumber = std::get<0>(EnemyCreation);
-	//int EnemyPostionX = std::get<1>(EnemyCreation);
-	//int EnemyPostionY = std::get<2>(EnemyCreation);
+	int EnemyNumber = std::get<0>(EnemyCreation);
+	int EnemyPostionX = std::get<1>(EnemyCreation);
+	int EnemyPostionY = std::get<2>(EnemyCreation);
 	
 	//hardcoded test data
-	int EnemyNumber = 0;
-	int EnemyPostionX = 635;
-	int EnemyPostionY = 478;
-    if (PlayerResource >= 200) { EnemyNumber = 1; }
-    if (PlayerResource >= 200) { EnemyPostionX = 672; }
-	if (PlayerResource >= 200) { EnemyPostionY = 286; }
+	//int EnemyNumber = 0;
+	//int EnemyPostionX = 635;
+	//int EnemyPostionY = 478;
+    //if (PlayerResource >= 200) { EnemyNumber = 1; }
+    //if (PlayerResource >= 200) { EnemyPostionX = 672; }
+	//if (PlayerResource >= 200) { EnemyPostionY = 286; }
 	
 	return std::make_tuple(EnemyNumber, EnemyPostionX, EnemyPostionY);
 	
@@ -105,44 +105,82 @@ void EnemyAI::OpenPostions()
 //might need to add the open gird postions from the colgrid in CollsionDetection
 std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyResource, int PS, int PT, int ES, int ET, int PIEA, int EIPA) 
 {
-	int Enemy, PostionX, PostionY;
-
+	//int Enemy, PostionX, PostionY;
+	bool CanCreateEnemy = false, CanCreateTower = true, make = false;
+	
+	
 	//first statement if no sprites or towers can be made
-	//value will be the lowest card value, current value 40
-    
-	if (EnemyResource<200)
+	if (EnemyResource<100)
 	{
 		CCLOG("Return first EnemyCreate Statement");
 		return std::make_tuple(NoMove, NoMove, NoMove);
 	}
 
-	//set is so only sprites can be made
-	//400 is just a base value for the resources at the moment
-	else if (EnemyResource<400) {}
-	else if (EnemyResource >= 400) {}
-	else if (EnemyResource>PlayerResource && (ES>PS || ET>PT)) 
+	//makes the boolean variable true if the Soldier sprites can be made
+	if (EnemyResource >= 100) 
+	{ 
+		CanCreateEnemy = true; 
+	}
+	//makes the boolean variable true if the Tower sprites can be made
+    if (EnemyResource >= 200) 
+	{ 
+		CanCreateTower = true; 
+	}
+	
+	if (EnemyResource > PlayerResource && (ES > PS || ET > PT))
 	{
-		if (((ES - PS)>3) && ((ET - PT)>3) && PIEA == 0)
+		//EnemySprites - PlayerSprites > 3 && EnemyTower - PlayerTower > 3 && Players in enemy area = 0
+		if (((ES - PS) > 3) && ((ET - PT) > 3) && PIEA == 0)
 		{
 			//return in order to save resources
 			//no player sprites will be in the area
 			return std::make_tuple(NoMove, NoMove, NoMove);
 		}
-	    else if ((ES-PS)>3) 
+		else if ((ES - PS) > 3 && PIEA != 0 && CanCreateTower == true)
 		{
-		
+			for (int i = 5; i < 10; i++) {
+				for (int j = 0; j < 5; j++) {
+					if (CopyColGrid[i][j] = 'P' && make != true)
+					{
+						if (CopyEnemyTowerGrid[i - 5][j] == 'N')
+						{
+							make = true;
+							//std::pair<int, int> TCreate = EnemyTowerPlacements(i - 5, j);
+							//int EnemyPostionX = std::get<0>(TCreate);
+							//int EnemyPostionY = std::get<1>(TCreate);
+							//return std::make_tuple(0, EnemyPostionX, EnemyPostionY);
+						}
+					}
+				}
+			}
 		}
-		else if ((ET-PT)>3) 
+		else if ((ES - PS) > 3 && PIEA == 0 && CanCreateEnemy == true)
 		{
+			for (int j = 0; j < 5; j++) {
+				for (int i = 5; i < 10; i++) {
+					if (CopyColGrid[i][j] == 'N' && make != true)
+					{
+						//make = true;
+						//std::tuple<int, int> SCreate = EnemySpritePlacements(i, j);
+						//int EnemyPostionX = std::get<0>(SCreate);
+						//int EnemyPostionY = std::get<1>(SCreate);
+						//return std::make_tuple(1, EnemyPostionX, EnemyPostionY);
+					}
+				}
+			}
+		}
 		
+		else if ((ET-PT)>3)
+		{
+
 		}
 		else if ((ET - PT)<3 || (ES - PS)<3)
 		{
-			if (PIEA!=0) 
+			if (PIEA!=0)
 			{
 			  //create tower to help defend against enemy
 			}
-			else if (PIEA == 0) 
+			else if (PIEA == 0)
 			{
 			//create sprite to attack enemy
 			}
@@ -159,10 +197,11 @@ std::tuple <int, int, int>EnemyAI::CreateEnemy(int PlayerResource, int EnemyReso
 	}
 	else if (EnemyResource<PlayerResource && (ES>PS || ET>PT))
 	{
-	
-	}
 
+	}
+	
 	return  std::make_tuple(NoMove,NoMove,NoMove);
+	
 }
 
 //x and y value will be for the ColGrid postion
