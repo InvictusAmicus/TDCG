@@ -674,7 +674,7 @@ void Options::setMusicMute(int x) {
 	}
 	if (changedState!=1) 
 	{
-		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
+		GameMenu3 = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, getMusicFloatVolume(musicVolumeControl), nullptr);
 	}
 
 }
