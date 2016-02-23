@@ -365,6 +365,15 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		{
 			Enemylife = Enemylife - 40;
 			GameState();
+
+			CCLOG("CHECKING AUDIO");
+			Options EffectsMusic;
+			if (EffectsMusic.getEffectsMute() != 1) {
+				int V = EffectsMusic.EffectsVolume();
+				CCLOG("gameMusic.getmusicVolume() %d", V);
+				SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("WallAttack.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+			}
+
 			std::string StringEnemyLife = std::to_string(Enemylife);
 			CCLabelBMFont* ChangeEnemyLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
 			ChangeEnemyLife->setString(StringEnemyLife);
@@ -778,6 +787,14 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 		{
 			p->setLife(40);
 			GameState();
+
+			CCLOG("CHECKING AUDIO");
+			Options EffectsMusic;
+			if (EffectsMusic.getEffectsMute() != 1) {
+				int V = EffectsMusic.EffectsVolume();
+				CCLOG("gameMusic.getmusicVolume() %d", V);
+				SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("WallAttack.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+			}
 
 			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
 			std::string StringLife = std::to_string(p->getLife());
