@@ -1787,7 +1787,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
-							army.at(0)->getSprite()->setTexture("testEnemy.png");
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 504));
@@ -1814,6 +1814,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost); 
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 431));
@@ -1840,6 +1841,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 358));
@@ -1867,7 +1869,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
-							army.at(army.size() - 1)->setPositionX(0);
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 285));
 							p->removeFromHand(target->getTag());
@@ -1894,6 +1896,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(0);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(137, 211));
@@ -1921,6 +1924,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 504));
@@ -1948,6 +1952,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 431));
@@ -1974,6 +1979,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 358));
@@ -2000,6 +2006,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 285));
@@ -2026,6 +2033,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(1);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(214, 211));
@@ -2052,6 +2060,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 504));
@@ -2078,6 +2087,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 431));
@@ -2104,6 +2114,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 358));
@@ -2130,6 +2141,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 285));
@@ -2156,6 +2168,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(2);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(288, 211));
@@ -2182,6 +2195,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 504));
@@ -2234,6 +2248,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 358));
@@ -2260,6 +2275,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 285));
@@ -2286,6 +2302,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(3);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(364, 211));
@@ -2312,6 +2329,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(0);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 504));
@@ -2338,6 +2356,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(1);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 431));
@@ -2364,6 +2383,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(2);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 358));
@@ -2390,6 +2410,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(3);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 285));
@@ -2416,6 +2437,7 @@ void NewSinglePlayGame::displayHand(Player* p)
 							p->setResource(-cost);
 							ChangeText->setString("Soldier Placed");
 							army.push_back(new Soldier(spriteName));
+							army.at(army.size() - 1)->getSprite()->setTexture("testEnemy.png");
 							army.at(army.size() - 1)->setPositionX(4);
 							army.at(army.size() - 1)->setPositionY(4);
 							army.at(army.size() - 1)->getSprite()->setPosition(Vec2(441, 211));
