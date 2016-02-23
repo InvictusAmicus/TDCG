@@ -75,7 +75,7 @@ bool Options::init()
 		//
 		//When compiled System_File being read from the debug win32, change values there
 		//
-		for (int x = 0; x<4; x++) 
+		for (int x = 0; x<4; x++)
 		{
 			if (x==0) 
 			{
@@ -107,9 +107,7 @@ bool Options::init()
 				MusicMute = atoi(text.c_str());
 				CCLOG("MUSIC MUTE %d", MusicMute);
 			}
-
 			CCLOG("X == %d", x);
-
 		}
 	    
 		ReadFile.close();
@@ -425,8 +423,14 @@ bool Options::init()
 	menuReturn->setPosition(Vec2::ZERO);
 	this->addChild(menuReturn, 1);
 
-	return true;
+	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
+	username->setPlaceHolder("Name:");
+	username->setFontSize(20);
+	username->setMaxLength(10);
+	username->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
+	this->addChild(username, 1);
 
+	return true;
 }
 
 void Options::menuReturn(Ref* pSender)
@@ -446,8 +450,8 @@ int Options::MusicVolume() {
 
 }
 
-
-void Options::SetMusicVolume(int x) {
+void Options::SetMusicVolume(int x)
+{
 	musicVolumeControl = x;
     int changedVolume = x;
 	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(changedVolume);
@@ -528,7 +532,8 @@ void Options::SetMusicVolume(int x) {
 //Due to using AudioEngine to change the music volume no sound effects are stated
 //each sound effect has to be stated and lowered using the if/if else statements as in the set music method
 //track needs to be changed for the soundeffects being used
-void Options::SetSoundEffectVolume(int x) {
+void Options::SetSoundEffectVolume(int x)
+{
 	SoundEffectsVolumeControl = x;
 	//float changedVolume = x;
 	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(changedVolume/100);
