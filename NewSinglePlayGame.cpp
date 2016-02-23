@@ -1156,21 +1156,25 @@ void NewSinglePlayGame::displayHand(Player* p)
 	listener1->onTouchBegan = [=](Touch* touch, Event* event)
 	{
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
-		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544) {
+		if (target->getPosition().x >100 && target->getPosition().x <859 && target->getPosition().y > 178 && target->getPosition().y <544)
+		{
 			return false;
 		}
 		else
 		{
 			Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
+			
 			Size s = target->getContentSize();
 			Rect rect = Rect(0, 0, s.width, s.height);
-
 			OriginalXPos = target->getPosition().x;
 			OriginalYPos = target->getPosition().y;
-
+			
 			if (rect.containsPoint(locationInNode))
 			{
 				target->setOpacity(180);
+				target->setPositionX(touch->getStartLocation().x);
+				target->setPositionY(touch->getStartLocation().y);
+
 				return true;
 			}
 			return false;
