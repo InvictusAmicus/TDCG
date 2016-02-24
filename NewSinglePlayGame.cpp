@@ -457,12 +457,10 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
-					//auto TowerAttackSprite = Sprite::create("TowerBullet.png");
-					//TowerAttackSprite->setPosition(Vec2(enemyTowers.at(o)->getPositionX(), enemyTowers.at(o)->getPositionY()));
-					//TowerAttackSprite->setOpacity(255);
-					//this->addChild(TowerAttackSprite, 2);
-					//TowerAttackSprite->runAction(MoveTo::create(1, Vec2(army.at(z)->getPositionX(), army.at(z)->getPositionY())));
-
+					//0-0
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
 
 					//CCLOG("1 if");
 					hasShot = true;
@@ -512,6 +510,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
+					//0-1
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
+
 					//CCLOG("1 if");
 					hasShot = true;
 					//army.at(p)->setHealth(enemyTowers.at(o)->getDamage());
@@ -558,6 +561,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
+					//1-0
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
+
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
 					if (army.at(z)->getHealth() <= 0)
@@ -594,6 +602,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						CCLOG("gameMusic.getmusicVolume() %d", V);
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
+
+					//1-1
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
 
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
@@ -640,6 +653,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
+					//0-0
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
+
 					//CCLOG("1 if");
 					hasShot = true;
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
@@ -676,6 +694,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						CCLOG("gameMusic.getmusicVolume() %d", V);
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
+
+					//0-1
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
 
 					//CCLOG("1 if");
 					hasShot = true;
@@ -717,6 +740,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
+					//1-0
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
+
 					//CCLOG("1 if");
 					hasShot = true;
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
@@ -756,6 +784,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						CCLOG("gameMusic.getmusicVolume() %d", V);
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
+
+					//1-1
+					//auto Bullet = Sprite::create("TowerBullet.png");
+					//Bullet->setPosition(Vec2(100, 500));
+					//this->addChild(Bullet, 1);
 
 					//CCLOG("1 if");
 					hasShot = true;
@@ -844,25 +877,29 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 							}
 							////////////////////////////////////////////////////////
 						    //Creates a sprite in front of a player sprite which fades in and out 
+							/*
+							auto PlayerSwordSlash = Sprite::create("PlayerSwordAttack.png");
+							PlayerSwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+20, army.at(y)->getSprite()->getPositionY()));
+							PlayerSwordSlash->setOpacity(0);
+							this->addChild(PlayerSwordSlash, 1);
 							
-							//auto PlayerSwordSlash = Sprite::create("PlayerSwordAttack.png");
-							//PlayerSwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+20, army.at(y)->getSprite()->getPositionY()));
-							//PlayerSwordSlash->setOpacity(0);
-							//this->addChild(PlayerSwordSlash, 1);
-							
-							//auto EnemySwordSlash = Sprite::create("EnemySoldierAttack.png");
-							//EnemySwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+60, army.at(y)->getSprite()->getPositionY()));
-							//EnemySwordSlash->setOpacity(0);
-							//this->addChild(EnemySwordSlash, 1);
+							auto EnemySwordSlash = Sprite::create("EnemySoldierAttack.png");
+							EnemySwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+60, army.at(y)->getSprite()->getPositionY()));
+							EnemySwordSlash->setOpacity(0);
+							this->addChild(EnemySwordSlash, 1);
 
 							//running the animation actions
-							//auto fadeIn = FadeIn::create(0.5f);
-							//auto fadeOut = FadeOut::create(0.5f);
-							//auto PlayerAttackSeq = Sequence::create(fadeIn, fadeOut, nullptr);
-							//auto EnemyAttackSeq = Sequence::create(fadeIn, fadeOut, nullptr);
+							auto fadeIn = FadeIn::create(0.5f);
+							auto fadeOut = FadeOut::create(0.5f);
+
+							//DelayTime *delayAction = DelayTime::create(1.0);
+
+							//auto PlayerAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
+							
+							//auto EnemyAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
 							//PlayerSwordSlash->runAction(PlayerAttackSeq);
 							//EnemySwordSlash->runAction(EnemyAttackSeq);
-							
+							*/
 							//////////////////////////////////////////////////
 							army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
 							enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
