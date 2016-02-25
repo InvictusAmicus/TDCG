@@ -508,3 +508,22 @@ int CollisionDetection::towerAttacks(int r, int t)
 	return -1;
 }
 
+int CollisionDetection::playerTowerBulletX(int x)
+{
+	if (x == 0) { return 174; }
+	else if (x == 1) { return 250; }
+	else if (x == 2) { return 325; }
+	else if (x == 3) { return 401; }
+
+	return 0;
+}
+
+int CollisionDetection::TowerBulletY(int y)
+{
+	if (y == 0) { return 478; }
+	else if (y == 1) { return 402; }
+	else if (y == 2) { return 330; }
+	else if (y == 3) { return 256; }
+
+	return 0;
+}

@@ -22,6 +22,7 @@ public:
 
 	virtual void setPositionX(int x) { positionX = x; }
 	virtual void setPositionY(int y) { positionY = y; }
+
 };
 
 #endif // __TOWER_H__

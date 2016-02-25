@@ -26,6 +26,7 @@ std::vector<Soldier*> army;
 std::vector<Soldier*> enemyArmy;
 std::vector<Tower*> towers;
 std::vector<Tower*> enemyTowers;
+std::vector<Sprite*> spriteAnimation;
 
 //need to set soldier to sprite
 
@@ -355,7 +356,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	int r, t;
 	bool hasAttacked = false;
 	CollisionDetection moveForward;
-	
+
 	for (int i = 0; (unsigned)i < army.size(); i++)
 	{
 		r = army.at(i)->getPositionX();
@@ -653,13 +654,23 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
-					//0-0
-					//auto Bullet = Sprite::create("TowerBullet.png");
-					//Bullet->setPosition(Vec2(100, 500));
-					//this->addChild(Bullet, 1);
-
 					//CCLOG("1 if");
 					hasShot = true;
+					
+					if (hasShot == true)
+					{
+						//0-0
+						auto Bullet = Sprite::create("TowerBullet.png");
+						spriteAnimation.push_back(Bullet);
+						int BulletX = moveForward.playerTowerBulletX(towers.at(q)->getPositionX());
+						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
+						Bullet->setPosition(Vec2(BulletX, BulletY));
+						this->addChild(Bullet, 1);
+						auto moveTo = MoveTo::create(0.3, Vec2(BulletX-40, BulletY+35));
+						Bullet->runAction(moveTo);
+					}
+					
+
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
 					if (enemyArmy.at(r)->getHealth() <= 0)
 					{
@@ -695,13 +706,23 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
-					//0-1
-					//auto Bullet = Sprite::create("TowerBullet.png");
-					//Bullet->setPosition(Vec2(100, 500));
-					//this->addChild(Bullet, 1);
-
 					//CCLOG("1 if");
 					hasShot = true;
+					
+					if (hasShot == true)
+					{
+						//0-1
+						auto Bullet = Sprite::create("TowerBullet.png");
+						spriteAnimation.push_back(Bullet);
+						int BulletX = moveForward.playerTowerBulletX(towers.at(q)->getPositionX());
+						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
+						Bullet->setPosition(Vec2(BulletX, BulletY));
+						this->addChild(Bullet, 1);
+						auto moveTo = MoveTo::create(0.3, Vec2(BulletX - 40, BulletY - 35));
+						Bullet->runAction(moveTo);
+					}
+					
+
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
 					if (enemyArmy.at(r)->getHealth() <= 0)
 					{
@@ -740,13 +761,22 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
-					//1-0
-					//auto Bullet = Sprite::create("TowerBullet.png");
-					//Bullet->setPosition(Vec2(100, 500));
-					//this->addChild(Bullet, 1);
-
 					//CCLOG("1 if");
 					hasShot = true;
+					
+					if (hasShot == true)
+					{
+						//1-0
+						auto Bullet = Sprite::create("TowerBullet.png");
+						spriteAnimation.push_back(Bullet);
+						int BulletX = moveForward.playerTowerBulletX(towers.at(q)->getPositionX());
+						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
+						Bullet->setPosition(Vec2(BulletX, BulletY));
+						this->addChild(Bullet, 1);
+						auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY + 35));
+						Bullet->runAction(moveTo);
+					}
+					
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
 					if (enemyArmy.at(r)->getHealth() <= 0)
 					{
@@ -785,13 +815,23 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("TowerShot.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
 					}
 
-					//1-1
-					//auto Bullet = Sprite::create("TowerBullet.png");
-					//Bullet->setPosition(Vec2(100, 500));
-					//this->addChild(Bullet, 1);
-
 					//CCLOG("1 if");
 					hasShot = true;
+					
+					if (hasShot==true) 
+					{
+					    //1-1
+					    auto Bullet = Sprite::create("TowerBullet.png");
+						spriteAnimation.push_back(Bullet);
+						int BulletX = moveForward.playerTowerBulletX(towers.at(q)->getPositionX());
+						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
+					    Bullet->setPosition(Vec2(BulletX, BulletY));
+					    this->addChild(Bullet, 1);
+						auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY - 35));
+						Bullet->runAction(moveTo);
+					}
+					
+
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
 					if (enemyArmy.at(r)->getHealth() <= 0)
 					{
@@ -2579,3 +2619,4 @@ void NewSinglePlayGame::displayHand(Player* p)
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1 + j));
 	}
 }
+

@@ -40,6 +40,11 @@ public:
 	int enemyTowerAttacks(int, int);
 	int towerAttacks(int, int);
 	
+	int playerTowerBulletX(int x);
+	int TowerBulletY(int y);
+	//int enemyTowerBulletX(int x);
+	//int enemyTowerBulletY(int y);
+
 	//char ColGrid[10][5];
 	//char TowerGrid[5][5];
 	//char EnemyTowerGrid[5][5];
