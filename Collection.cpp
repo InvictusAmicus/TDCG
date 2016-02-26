@@ -31,7 +31,6 @@ Scene* Collection::createScene()
 	return scene;
 }
 
-
 bool Collection::init()
 {
 	
