@@ -6,11 +6,20 @@
 class GameWonScreen : public cocos2d::Layer
 {
 public:
+	
+	/*!
+	*Creates the scene for the GameWonScreen
+	*/
 	static cocos2d::Scene* createScene();
 
+	/*!
+	*Called to initialize the scene
+	*/
 	virtual bool init();
 
-	// a selector callback
+	/*!
+	*Returns the user to the Main Menu
+	*/
 	void returnToTitleScreen(cocos2d::Ref* pSender);
 
 	CREATE_FUNC(GameWonScreen);

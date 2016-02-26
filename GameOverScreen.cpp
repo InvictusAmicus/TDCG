@@ -34,7 +34,8 @@ bool GameOverScreen::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	Options gameMusic;
-	if (gameMusic.getMusicMute() != 1) {
+	if (gameMusic.getMusicMute() != 1) 
+	{
 		int V = gameMusic.getmusicVolume();
 		GameOverTrack = cocos2d::experimental::AudioEngine::play2d("GameOver.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
@@ -63,7 +64,8 @@ void GameOverScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;
-	if (gameMusic.getMusicMute() != 1) {
+	if (gameMusic.getMusicMute() != 1) 
+	{
 		int V = gameMusic.getmusicVolume();
 		GameMenu = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, gameMusic.getMusicFloatVolume(V), nullptr);
 	}
