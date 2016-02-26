@@ -2,12 +2,11 @@
 #include "MainMenu.h"
 #include "MultiPlayerSearch.h"
 #include "NewSinglePlayGame.h"
-//#include "SinglePlayGame.h"
 #include "Options.h"
 #include "HowToPlay.h"
 #include "SimpleAudioEngine.h"
 #include <iostream>
-#include<fstream>
+#include <fstream>
 #include "AudioEngine.h"
 
 USING_NS_CC;
@@ -36,7 +35,6 @@ Scene* MainMenu::createScene()
 
 bool MainMenu::init()
 {
-
     if ( !Layer::init() )
     {
         return false;
@@ -48,18 +46,13 @@ bool MainMenu::init()
 	SystemFile();
 	PlayMusic();
 
-	if (MenuMusicMute == 0) {
+	if (MenuMusicMute == 0) 
+	{
 		CCLOG("MenuMusicMute if statement");
 		CCLOG("%d", StartMusicVolume);
 		Options playM;
-		//cocos2d::experimental::AudioEngine::stopAll();
 		StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, playM.getMusicFloatVolume(StartMusicVolume), nullptr);
-		//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
 	}
-
-	//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
-	//	"background-music-aac.wav", true);
-	//CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.0);
 
 	auto Quit = MenuItemImage::create("Quit.png", "QuitClicked.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
 	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
@@ -68,7 +61,6 @@ bool MainMenu::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	
 	auto Cards = MenuItemImage::create("Collection.png", "CollectionClicked.png", CC_CALLBACK_1(MainMenu::menuCollection, this));
 	Cards->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - Cards->getContentSize().height * 9));
@@ -117,17 +109,13 @@ bool MainMenu::init()
 	menuHowToPlay->setPosition(Vec2::ZERO);
 	this->addChild(menuHowToPlay, 1);
 
-
 	auto sprite = Sprite::create("Background.png");
-
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
 	this->addChild(sprite, 0);
 
     return true;
 
 }
-
 
 void MainMenu::menuCloseCallback(Ref* pSender)
 {
@@ -141,21 +129,13 @@ void MainMenu::menuCloseCallback(Ref* pSender)
 
 void MainMenu::menuNewGame(Ref* pSender)
 {
-	//cocos2d::experimental::AudioEngine::stop(StartTrack);
 	cocos2d::experimental::AudioEngine::stopAll();
-	//Director::getInstance()->end();
 	auto NewGameScene = NewSinglePlayGame::createScene();
-	//Director::getInstance()->runWithScene(NewGameScene);
 	Director::getInstance()->pushScene(NewGameScene);
-	//Director::getInstance()->popScene(NewGameScene);
-	//Director::getInstance()->replaceScene(NewGameScene);
-
-
 }
 
 void MainMenu::menuMultiPlayer(Ref* pSender)
 {
-	//cocos2d::experimental::AudioEngine::stop(StartTrack);
 	cocos2d::experimental::AudioEngine::stopAll();
 	auto MultiPlayerScene = MultiPlayerSearch::createScene();
 	Director::getInstance()->pushScene(MultiPlayerScene);
@@ -188,7 +168,6 @@ void MainMenu::SystemFile()
 	FileUtils::getInstance()->addSearchPath("SystemFile");
 	string DataFileName = "System_File.txt";
 	std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(DataFileName.c_str());
-	//CCLOG("%s", fullpath);
 	std::ifstream ReadFile(fullpath);
 	string text;
 	if (!ReadFile)
@@ -197,10 +176,6 @@ void MainMenu::SystemFile()
 	}
 	else
 	{
-
-		//
-		//When compiled System_File being read from the debug win32, change values there
-		//
 		for (int x = 0; x < 4; x++)
 		{
 			if (x == 0)
@@ -212,7 +187,6 @@ void MainMenu::SystemFile()
 				CCLOG("MVC %d", StartMusicVolume);
 				Options GameMusic;
 				GameMusic.setMV(StartMusicVolume);
-				//	x++;
 			}
 			if (x == 1)
 			{
@@ -223,7 +197,6 @@ void MainMenu::SystemFile()
 				Options GameMusic;
 				GameMusic.setSEV(SoundEffectsVolume);
 				CCLOG("SEVC %d", SoundEffectsVolume);
-				//	x++;
 			}
 			if (x == 2)
 			{
@@ -243,9 +216,7 @@ void MainMenu::SystemFile()
 			}
 
 			CCLOG("X == %d", x);
-
 		}
-
 		ReadFile.close();
 	}
 	CCLOG("END OF System FILE");
@@ -254,48 +225,50 @@ void MainMenu::SystemFile()
 void MainMenu::PlayMusic()
 {
 	CCLOG("START OF PLAY MUSIC");
-	//Options setMusic;
-	//CCLOG("setMusic %d", setMusic.getMusicMute());
-	//setMusic.setMusicMute(MenuMusicMute);
-	//if (MenuMusicMute==0){
-	//	CCLOG("MenuMusicMute if statement");
-		//cocos2d::experimental::AudioEngine::stopAll();
-	//    StartTrack = cocos2d::experimental::AudioEngine::play2d("MainMenu.mp3", true, 1.0f, nullptr);
-	//cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
-    //}
-	if (StartMusicVolume == 0) {
+
+	if (StartMusicVolume == 0) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.0f);
 	}
-	else if (StartMusicVolume>0 && StartMusicVolume<10) {
+	else if (StartMusicVolume>0 && StartMusicVolume<10) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.1f);
 	}
-	else if (StartMusicVolume >= 10 && StartMusicVolume<20) {
+	else if (StartMusicVolume >= 10 && StartMusicVolume<20) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.2f);
 	}
-	else if (StartMusicVolume >= 20 && StartMusicVolume<30) {
+	else if (StartMusicVolume >= 20 && StartMusicVolume<30) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.3f);
 	}
-	else if (StartMusicVolume >= 30 && StartMusicVolume<40) {
+	else if (StartMusicVolume >= 30 && StartMusicVolume<40) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.4f);
 	}
-	else if (StartMusicVolume >= 40 && StartMusicVolume<50) {
+	else if (StartMusicVolume >= 40 && StartMusicVolume<50) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.5f);
 	}
-	else if (StartMusicVolume >= 50 && StartMusicVolume<60) {
+	else if (StartMusicVolume >= 50 && StartMusicVolume<60) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.6f);
 	}
-	else if (StartMusicVolume >= 60 && StartMusicVolume<70) {
+	else if (StartMusicVolume >= 60 && StartMusicVolume<70) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.7f);
 	}
-	else if (StartMusicVolume >= 70 && StartMusicVolume<80) {
+	else if (StartMusicVolume >= 70 && StartMusicVolume<80) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.8f);
 	}
-	else if (StartMusicVolume >= 80 && StartMusicVolume<90) {
+	else if (StartMusicVolume >= 80 && StartMusicVolume<90) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 0.9f);
 	}
-	else if (StartMusicVolume >= 90 && StartMusicVolume <= 100) {
+	else if (StartMusicVolume >= 90 && StartMusicVolume <= 100) 
+	{
 		cocos2d::experimental::AudioEngine::setVolume(StartTrack, 1.0f);
 	}
-	
 	CCLOG("END OF PLAY MUSIC");
 }
