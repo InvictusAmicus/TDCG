@@ -274,18 +274,6 @@ bool NewSinglePlayGame::init()
 	return true;
 }
 
-void NewSinglePlayGame::returnToTitle(cocos2d::Ref* pSender)
-{
-	Director::getInstance()->popScene();
-}
-
-//TAKE OUT LATER IF NOT NEEDED, ONLY A TEMPLATE TO GO TO THE GAME WON SCREEN
-void NewSinglePlayGame::LastPage(cocos2d::Ref* pSender)
-{
-	auto GameWonScene = GameWonScreen::createScene();
-	Director::getInstance()->pushScene(GameWonScene);
-}
-
 bool NewSinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
 	return true;
@@ -2619,4 +2607,3 @@ void NewSinglePlayGame::displayHand(Player* p)
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1 + j));
 	}
 }
-
