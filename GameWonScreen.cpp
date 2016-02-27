@@ -1,9 +1,12 @@
 #include "GameWonScreen.h"
 #include "AudioEngine.h"
 #include "Options.h"
+#include "ui/CocosGUI.h"
+#include <iostream>
 
 int GameWonTrack;
 int GameMenu2;
+std::string name = "Enter Name:";
 
 USING_NS_CC;
 
@@ -56,7 +59,33 @@ bool GameWonScreen::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
 	this->addChild(sprite, 0);
+	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
+	username->setPlaceHolder("Name:");
+	username->setFontSize(20);
+	username->setMaxLength(10);
+	username->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
+	//username->getText();
+	this->addChild(username, 1);
 
+	auto nameLabel = Label::create(name, "fonts/Marker Felt.ttf", 24);
+	nameLabel->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height/2));
+	this->addChild(nameLabel, 1);
+
+/*	username->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type))
+	{
+		switch(type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			//stuff to go here
+			
+			break;
+		default:
+			break;
+		}
+	}*/
 	return true;
 }
 

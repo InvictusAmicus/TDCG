@@ -396,13 +396,6 @@ bool Options::init()
 	menuReturn->setPosition(Vec2::ZERO);
 	this->addChild(menuReturn, 1);
 
-	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
-	username->setPlaceHolder("Name:");
-	username->setFontSize(20);
-	username->setMaxLength(10);
-	username->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
-	this->addChild(username, 1);
-
 	return true;
 }
 
