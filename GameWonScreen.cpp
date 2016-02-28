@@ -3,7 +3,9 @@
 #include "Options.h"
 #include "ui/CocosGUI.h"
 #include <iostream>
+#include "NewSinglePlayGame.h"
 
+int playerScore;
 int GameWonTrack;
 int GameMenu2;
 std::string name = "Enter Name:";
@@ -25,6 +27,23 @@ Scene* GameWonScreen::createScene()
 	return GameWonScreenScene;
 }
 
+Scene* GameWonScreen::createScene(int s)
+{
+	// 'scene' is an autorelease object
+	auto GameWonScreenScene = Scene::create();
+	
+	// 'layer' is an autorelease object
+	auto layer = GameWonScreen::create();
+
+	// add layer as a child to scene
+	GameWonScreenScene->addChild(layer);
+
+	// return the scene
+
+	//playerScore = s;
+	return GameWonScreenScene;
+}
+
 bool GameWonScreen::init()
 {
 
@@ -32,6 +51,9 @@ bool GameWonScreen::init()
 	{
 		return false;
 	}
+	NewSinglePlayGame game;
+	playerScore = game.getScore();
+	CCLOG("Score: init: %d", playerScore);
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -57,21 +79,29 @@ bool GameWonScreen::init()
 	auto sprite = Sprite::create("Background.png");
 
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
 	this->addChild(sprite, 0);
-	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
+
+/*	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
 	username->setPlaceHolder("Name:");
 	username->setFontSize(20);
 	username->setMaxLength(10);
 	username->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
 	//username->getText();
 	this->addChild(username, 1);
-
-	auto nameLabel = Label::create(name, "fonts/Marker Felt.ttf", 24);
-	nameLabel->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height/2));
+*/
+	CCLOG("Score: %d", playerScore);
+	auto nameLabel = Label::createWithTTF("Score: "+std::to_string(playerScore), "fonts/Marker Felt.ttf", 24);
+	nameLabel->setColor(Color3B::BLACK);
+	nameLabel->setPosition(Vec2(origin.x + visibleSize.width / 2, 200));
 	this->addChild(nameLabel, 1);
 
+/*
+	auto keyboard = EventListenerKeyboard::create();
+
+	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
+	keyboard->onKeyPressed = CC_CALLBACK_2(GameWonScreen::onKeyPressed, 0);
+
+*/
 /*	username->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type))
 	{
 		switch(type)
@@ -100,3 +130,9 @@ void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 	}
 	Director::getInstance()->popToRootScene();
 }
+/*
+void GameWonScreen::onKeyPressed()
+{
+
+}
+*/

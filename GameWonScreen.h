@@ -12,6 +12,8 @@ public:
 	*/
 	static cocos2d::Scene* createScene();
 
+	static cocos2d::Scene* createScene(int);
+
 	/*!
 	*Called to initialize the scene
 	*/
@@ -21,7 +23,7 @@ public:
 	*Returns the user to the Main Menu
 	*/
 	void returnToTitleScreen(cocos2d::Ref* pSender);
-
+	
 	CREATE_FUNC(GameWonScreen);
 };
 

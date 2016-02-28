@@ -21,6 +21,7 @@ int TowerGridLoop;
 int enemyTurn = 0;
 int SinglePlayGameMusic;
 float OriginalXPos, OriginalYPos;
+int score;
 
 std::vector<Soldier*> army;
 std::vector<Soldier*> enemyArmy;
@@ -318,13 +319,13 @@ void NewSinglePlayGame::GameState()
 
 void NewSinglePlayGame::WonGame()
 {
-	
+	score = p->getLife();
 	p->reset();
 	delete baseGrid;
 	
 	cocos2d::experimental::AudioEngine::stopAll();
 
-	auto GameWonScene = GameWonScreen::createScene();
+	auto GameWonScene = GameWonScreen::createScene(score);
 	Director::getInstance()->pushScene(GameWonScene);
 }
 
@@ -2632,4 +2633,10 @@ void NewSinglePlayGame::displayHand(Player* p)
 	{
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(handSprite1 + j));
 	}
+}
+
+int NewSinglePlayGame::getScore()
+{
+	CCLOG("Score: getScore: %d", score);
+	return score;
 }
