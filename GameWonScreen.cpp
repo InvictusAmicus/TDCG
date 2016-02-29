@@ -69,9 +69,9 @@ bool GameWonScreen::init()
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
 	this->addChild(label, 1);
-
-	auto ReturnToTitle = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(GameWonScreen::returnToTitleScreen, this));
-	ReturnToTitle->setPosition(Vec2(origin.x + visibleSize.width - ReturnToTitle->getContentSize().width, 70));
+	
+	auto ReturnToTitle = MenuItemImage::create("Submit.png", "Submit.png", CC_CALLBACK_1(GameWonScreen::returnToTitleScreen, this));
+	ReturnToTitle->setPosition(Vec2(origin.x + visibleSize.width/2 - ReturnToTitle->getContentSize().width, 70));
 	auto menu = Menu::create(ReturnToTitle, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
@@ -81,14 +81,14 @@ bool GameWonScreen::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
-/*	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
-	username->setPlaceHolder("Name:");
+	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
+	username->setPlaceHolder("Enter Name:");
 	username->setFontSize(20);
 	username->setMaxLength(10);
 	username->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
 	//username->getText();
 	this->addChild(username, 1);
-*/
+
 	CCLOG("Score: %d", playerScore);
 	auto nameLabel = Label::createWithTTF("Score: "+std::to_string(playerScore), "fonts/Marker Felt.ttf", 24);
 	nameLabel->setColor(Color3B::BLACK);
@@ -121,6 +121,8 @@ bool GameWonScreen::init()
 
 void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
+	//add database insert
+
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;
 	if (gameMusic.getMusicMute() != 1) 

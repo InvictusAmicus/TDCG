@@ -31,7 +31,7 @@ std::vector<Sprite*> spriteAnimation;
 
 //need to set soldier to sprite
 
-CollisionDetection* baseGrid;
+CollisionDetection baseGrid;
 
 #define LabelEnemyLife 1232
 #define ErrorFeedback 1233
@@ -120,8 +120,8 @@ bool NewSinglePlayGame::init()
 	Enemylife = 100;
 	p->setResource(100);
 	EnemyResource = 100;
-	baseGrid = new CollisionDetection();
-	baseGrid->CreateGrids();
+//	baseGrid = new CollisionDetection();
+	baseGrid.CreateGrids();
 	CCLOG("Creating Grid");
 
 	std::string StringLife = std::to_string(p->getLife());
@@ -209,7 +209,7 @@ bool NewSinglePlayGame::init()
 	TowerArea03->setPosition(Vec2(175, 246));
 	TowerArea03->setOpacity(0);
 	this->addChild(TowerArea03, 1, Tower03);
-
+	
 	auto TowerArea10 = Sprite::create("testTowerArea.png");
 	TowerArea10->setPosition(Vec2(250, 468));
 	TowerArea10->setOpacity(0);
@@ -321,7 +321,7 @@ void NewSinglePlayGame::WonGame()
 {
 	score = p->getLife();
 	p->reset();
-	delete baseGrid;
+//	delete baseGrid;
 	
 	cocos2d::experimental::AudioEngine::stopAll();
 
@@ -332,7 +332,7 @@ void NewSinglePlayGame::WonGame()
 void NewSinglePlayGame::LostGame()
 {
 	p->reset();
-	delete baseGrid;
+//	delete baseGrid;
 	
 	cocos2d::experimental::AudioEngine::stopAll();
 
