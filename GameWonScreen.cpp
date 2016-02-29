@@ -122,6 +122,8 @@ bool GameWonScreen::init()
 void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
 	//add database insert
+//	database* d = new database();
+//	d->insert(score);
 
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;
@@ -132,9 +134,3 @@ void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 	}
 	Director::getInstance()->popToRootScene();
 }
-/*
-void GameWonScreen::onKeyPressed()
-{
-
-}
-*/
