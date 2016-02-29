@@ -319,7 +319,7 @@ void NewSinglePlayGame::GameState()
 
 void NewSinglePlayGame::WonGame()
 {
-	score = p->getLife();
+	score = p->getLife() * (p->getResource()/100);
 	p->reset();
 //	delete baseGrid;
 	
