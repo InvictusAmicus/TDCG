@@ -1,5 +1,5 @@
 #ifndef __GAMEWONSCREEN_H__
-#define __GAMEWONSCREEN_H_
+#define __GAMEWONSCREEN_H__
 
 #include "cocos2d.h"
 

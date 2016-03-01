@@ -116,8 +116,6 @@ bool OpeningScreen::init()
 	//Grid2->setPosition(Vec2(((visibleSize.width / 2) + origin.x) + Grid->getContentSize().width, visibleSize.height / 2 + origin.y));
 	//this->addChild(Grid2, 0);
 
-
-
 	//creates a node to contain the sprites
 	//might need to be changed later depending if problems occur with calling the cards
 	auto containerForSprite1 = Node::create();
@@ -207,10 +205,8 @@ bool OpeningScreen::init()
 		//	}
 		//}
 		target->setScale(2.0); 
-			
 		
 	};
-
 
 	//if the object is not within the set postion returns to the original postion,
 	//also set the texture back to the original texture

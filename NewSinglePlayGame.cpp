@@ -120,7 +120,7 @@ bool NewSinglePlayGame::init()
 	Enemylife = 100;
 	p->setResource(100);
 	EnemyResource = 100;
-//	baseGrid = new CollisionDetection();
+    //baseGrid = new CollisionDetection();
 	baseGrid.CreateGrids();
 	CCLOG("Creating Grid");
 
@@ -153,8 +153,8 @@ bool NewSinglePlayGame::init()
 		origin.y + visibleSize.height - LifeLabel->getContentSize().height));
 	this->addChild(ResourceLabelValue, 1, LabelTagResource);
 
-	auto FeedBackLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
-	FeedBackLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 70,
+	auto FeedBackLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 36);
+	FeedBackLabel->setPosition(Vec2(origin.x + LifeLabel->getContentSize().width + 100,
 		origin.y + visibleSize.height - 100));
 	FeedBackLabel->setColor(ccc3(0, 0, 0));
 	this->addChild(FeedBackLabel, 1, ErrorFeedback);

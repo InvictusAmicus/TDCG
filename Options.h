@@ -1,5 +1,5 @@
 #ifndef __OPTIONS_H__
-#define __OPTIONS_H_
+#define __OPTIONS_H__
 
 #include "cocos2d.h"
 #include "ui\UISlider.h"

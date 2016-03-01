@@ -1,5 +1,5 @@
 #ifndef __HOWTOPLAY_H__
-#define __HOWTOPLAY_H_
+#define __HOWTOPLAY_H__
 
 #include "cocos2d.h"
 

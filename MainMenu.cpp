@@ -1,6 +1,6 @@
 #include "Collection.h"
 #include "MainMenu.h"
-#include "MultiPlayerSearch.h"
+#include "LeaderBoard.h"
 #include "NewSinglePlayGame.h"
 #include "Options.h"
 #include "HowToPlay.h"
@@ -137,7 +137,7 @@ void MainMenu::menuNewGame(Ref* pSender)
 void MainMenu::menuMultiPlayer(Ref* pSender)
 {
 	cocos2d::experimental::AudioEngine::stopAll();
-	auto MultiPlayerScene = MultiPlayerSearch::createScene();
+	auto MultiPlayerScene = LeaderBoard::createScene();
 	Director::getInstance()->pushScene(MultiPlayerScene);
 }
 

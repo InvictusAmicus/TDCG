@@ -1,6 +1,6 @@
 
 #ifndef __OPENINGSCREEN_H__
-#define __OPENINGSCREEN_H_
+#define __OPENINGSCREEN_H__
 
 #include "cocos2d.h"
 
