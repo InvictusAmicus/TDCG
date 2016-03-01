@@ -23,13 +23,13 @@ public:
 	virtual void activateAbility(Player*);
 	virtual void attackPlayer(Player*) {}
 	virtual void move();
-	virtual int getPositionX();
-	virtual int getPositionY();
 	virtual void setPositionX(int x) { positionX = x; }
 	virtual void setPositionY(int y) { positionY = y; }
-	virtual int getHealth() { return health; }
 	virtual void setHealth(int);
 	virtual int getAttack();
+	virtual int getPositionX();
+	virtual int getPositionY();
+	virtual int getHealth() { return health; }
 };
 
 #endif // __SOLDIER_H__

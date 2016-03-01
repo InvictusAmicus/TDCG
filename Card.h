@@ -21,19 +21,40 @@ public:
 	bool init() {}
 	
 	char type;
+	/*!
+	* Returns card type based off of name
+	*/
 	char getType();
+
+	/*!
+	* get the sprite variable of the card
+	*/
 	cocos2d::Sprite* getSprite() { return cardSprite; }
+
+	/*!
+	* Get the name of the sprite card
+	*/
 	std::string getSpriteName() { return name; }
+	
+	/*!
+	* Get the lore of the card
+	*/
 	std::string getLore() { return lore; }
 
+	/*!
+	* Return the cost of the card
+	*/
 	int getCost() { return cost; }
+
+	/*!
+	* Set the cost of the card
+	*/
 	void setCost(int c) { cost = c; }
-
-	//move card to battlefield position (a1,a2)
-	void moveTo(int a1, int a2);
-
+	
+	/*!
+	* Create the sprite of the card
+	*/
 	void setSprite(std::string name) { cardSprite = cocos2d::Sprite::create(name); }
-
 };
 
 #endif // !_CARD_H_

@@ -110,20 +110,8 @@ Card::~Card()
 	delete this;
 }
 
-void Card::moveTo(int a1, int a2)
-{
-	cardSprite->setPosition(a1, a2);
-}
-
 char Card::getType() 
 {
-	/*type = 's';
-
-	if (x >= 200) {
-		type = 't';
-	}
-	x++;
-	CCLOG("%d", x);*/
 	if (name == "SampleCard.png")
 	{
 		return 't';

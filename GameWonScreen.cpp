@@ -82,12 +82,14 @@ bool GameWonScreen::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
-	auto e = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
-	e->setPlaceHolder("Enter Name:");
-	e->setFontSize(20);
-	e->setMaxLength(10);
-	e->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
-	this->addChild(e, 1);
+	auto ed = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
+	ed->setPlaceHolder("Enter Name:");
+	ed->setFontSize(20);
+	ed->setMaxLength(10);
+	ed->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
+	this->addChild(ed, 1);
+
+//	e = ed;
 
 	CCLOG("Score: %d", playerScore);
 	auto nameLabel = Label::createWithTTF("Score: "+std::to_string(playerScore), "fonts/Marker Felt.ttf", 24);
@@ -124,6 +126,7 @@ void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 	//add database insert
 	Database* d = new Database();
 //	d->write(e->getText(), playerScore);
+	delete d;
 
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;

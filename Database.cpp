@@ -1,16 +1,12 @@
 #include "Database.h"
 #include <vector>
-/*
-#include "mysql_connection.h"
 
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-*/
+
+using namespace std;
+
 void Database::createConnection()
 {
-	/*
+	
 	try
 	{
 	}		
@@ -24,26 +20,25 @@ void Database::createConnection()
 
 			stmt = con->createStatement();
 		}
-		catch
+		catch(sql::SQLException &e)
 		{
 
 		}
 	}
-	*/
+	
 }
 
 void Database::write(std::string name, int s)
 {
-/*	
-	stmt->execute("create table if not exists profile( username varchar(20), score int(6));");
+	
+//	stmt->execute("create table if not exists profile( username varchar(20), score int(6));");
 
-	stmt->executeUpdate("insert into playerprofile values (name, s);");
-*/
+	stmt->executeUpdate("insert into playerprofile values (" +name+"," + to_string(s) + ");");
+
 }
 
 std::vector<Profile*> Database::read()
 {
-/*
 	try
 	{
 		res = stmt->executeQuery("select username, score from profile order by score desc;");
@@ -51,35 +46,13 @@ std::vector<Profile*> Database::read()
 		std::string data;
 		std::vector<Profile*> leaderboard;
 
-		while (res->next())
+		for (int x = 0; res->next() && x < 5; x++)
 		{
-			std::istream* retrievedPassword_stream = res->getBlob("username");
-			//			cout << retrievedPassword_stream << endl;
-			//if (retrievedPassword_stream)
-			//{
-			//	char pws[11] = "helloworld";
-			//	retrievedPassword_stream->getline(pws, 10);
-			//	std::string x = pws;
-			//	//std::string retrievedPassword(pws);
-			//	cout << x << endl;
-			//	cout << res->getBlob("username") << "\t";
-			//cout << res->getString("username") << ":\t";
-			//cout << res->getBlob("name") << ":\t";
-			//cout << res->getInt("score") << endl;
-			
-			std::string user = res->getBlob("username");
-			int userScore = res->getInt(score);
+			std::string user = res->getString("username").c_str();
+			int userScore = res->getInt("score");
 
 			leaderboard.push_back(new Profile(user, userScore));
-			
-		
-			}
 		}
-
-		
-		delete res;
-		delete stmt;
-		delete con;
 	}
 
 	catch (sql::SQLException &e)
@@ -90,7 +63,7 @@ std::vector<Profile*> Database::read()
 		cout << " (MySQL error code: " << e.getErrorCode();
 		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 	}
-*/
+
 	std::vector<Profile*> p;
 	return p;
 	//return leaderboard;
@@ -98,9 +71,4 @@ std::vector<Profile*> Database::read()
 
 void Database::del()
 {
-/*
-	delete res;
-	delete stmt;
-	delete con;
-*/
 }

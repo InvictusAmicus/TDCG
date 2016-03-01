@@ -6,27 +6,46 @@
 #include <iostream>
 #include <vector>
 #include "Profile.h"
+#include <stdlib.h>
+
+#include "mysql_connection.h"
+
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
 class Database
 {
 public:
-/*
+
 	sql::Driver *driver;
 	sql::Connection *con;
 	sql::Statement *stmt;
 	sql::ResultSet *res;
-*/
-	Database() { createConnection(); }
+
+	Database()
+	{
+		createConnection();
+	}
+	~Database()
+	{
+//		con->close();
+//		delete this;
+	}
+
+
 	/*!
 	* Create database connection
 	*/
 	void createConnection();
 
-	/*
+	/*!
 	* Insert Data to the database
 	*/
 	void write(std::string, int);
 
-	/*
+	/*!
 	*Read data from database
 	*/
 	std::vector<Profile*> read();
