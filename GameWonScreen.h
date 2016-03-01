@@ -7,6 +7,8 @@ class GameWonScreen : public cocos2d::Layer
 {
 public:
 	
+	//ui::EditBox* e;
+
 	/*!
 	*Creates the scene for the GameWonScreen
 	*/

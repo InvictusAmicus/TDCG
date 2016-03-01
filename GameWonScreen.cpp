@@ -4,6 +4,7 @@
 #include "ui/CocosGUI.h"
 #include <iostream>
 #include "NewSinglePlayGame.h"
+#include "Database.h"
 
 int playerScore;
 int GameWonTrack;
@@ -71,7 +72,7 @@ bool GameWonScreen::init()
 	this->addChild(label, 1);
 	
 	auto ReturnToTitle = MenuItemImage::create("Submit.png", "Submit.png", CC_CALLBACK_1(GameWonScreen::returnToTitleScreen, this));
-	ReturnToTitle->setPosition(Vec2(origin.x + visibleSize.width/2 - ReturnToTitle->getContentSize().width, 70));
+	ReturnToTitle->setPosition(Vec2(origin.x + visibleSize.width/2, 70));
 	auto menu = Menu::create(ReturnToTitle, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
@@ -81,13 +82,12 @@ bool GameWonScreen::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
-	auto username = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
-	username->setPlaceHolder("Enter Name:");
-	username->setFontSize(20);
-	username->setMaxLength(10);
-	username->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
-	//username->getText();
-	this->addChild(username, 1);
+	auto e = ui::EditBox::create(Size(200, 40), "AreaCollision.png");
+	e->setPlaceHolder("Enter Name:");
+	e->setFontSize(20);
+	e->setMaxLength(10);
+	e->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
+	this->addChild(e, 1);
 
 	CCLOG("Score: %d", playerScore);
 	auto nameLabel = Label::createWithTTF("Score: "+std::to_string(playerScore), "fonts/Marker Felt.ttf", 24);
@@ -122,8 +122,8 @@ bool GameWonScreen::init()
 void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
 	//add database insert
-//	database* d = new database();
-//	d->insert(score);
+	Database* d = new Database();
+//	d->write(e->getText(), playerScore);
 
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;

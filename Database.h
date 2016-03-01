@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 #include "Profile.h"
 class Database
 {
@@ -14,7 +15,7 @@ public:
 	sql::Statement *stmt;
 	sql::ResultSet *res;
 */
-
+	Database() { createConnection(); }
 	/*!
 	* Create database connection
 	*/
@@ -28,8 +29,8 @@ public:
 	/*
 	*Read data from database
 	*/
-	Profile* read();
-
+	std::vector<Profile*> read();
+	
 	/*!
 	Close the database connection
 	*/
