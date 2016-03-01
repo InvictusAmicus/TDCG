@@ -10,6 +10,7 @@ int playerScore;
 int GameWonTrack;
 int GameMenu2;
 std::string name = "Enter Name:";
+ui::EditBox* e;
 
 USING_NS_CC;
 
@@ -89,7 +90,7 @@ bool GameWonScreen::init()
 	ed->setPosition(Vec2(origin.x + visibleSize.width / 2, 150));
 	this->addChild(ed, 1);
 
-//	e = ed;
+	e = ed;
 
 	CCLOG("Score: %d", playerScore);
 	auto nameLabel = Label::createWithTTF("Score: "+std::to_string(playerScore), "fonts/Marker Felt.ttf", 24);
@@ -97,36 +98,14 @@ bool GameWonScreen::init()
 	nameLabel->setPosition(Vec2(origin.x + visibleSize.width / 2, 200));
 	this->addChild(nameLabel, 1);
 
-/*
-	auto keyboard = EventListenerKeyboard::create();
-
-	Director::getInstance()->getOpenGLView()->setIMEKeyboardState(true);
-	keyboard->onKeyPressed = CC_CALLBACK_2(GameWonScreen::onKeyPressed, 0);
-
-*/
-/*	username->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type))
-	{
-		switch(type)
-		{
-		case ui::Widget::TouchEventType::BEGAN:
-			break;
-		case ui::Widget::TouchEventType::ENDED:
-			//stuff to go here
-			
-			break;
-		default:
-			break;
-		}
-	}*/
 	return true;
 }
 
 void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
 	//add database insert
-	Database* d = new Database();
-//	d->write(e->getText(), playerScore);
-	delete d;
+	Database d;
+	d.write(e->getText(), playerScore);
 
 	cocos2d::experimental::AudioEngine::stopAll();
 	Options gameMusic;

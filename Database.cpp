@@ -1,8 +1,9 @@
 #include "Database.h"
 #include <vector>
-
+#include "cocos2d.h"
 
 using namespace std;
+USING_NS_CC;
 
 void Database::createConnection()
 {
@@ -22,7 +23,7 @@ void Database::createConnection()
 		}
 		catch(sql::SQLException &e)
 		{
-
+			printf("CANNOT CONNECT");
 		}
 	}
 	
@@ -30,11 +31,21 @@ void Database::createConnection()
 
 void Database::write(std::string name, int s)
 {
-	
-//	stmt->execute("create table if not exists profile( username varchar(20), score int(6));");
-
-	stmt->executeUpdate("insert into playerprofile values (" +name+"," + to_string(s) + ");");
-
+	try
+	{
+		driver = get_driver_instance();
+		con = driver->connect("localhost", "root", "password");
+		con->setSchema("gamesfleadh2016");
+		stmt = con->createStatement();
+//		stmt->executeUpdate("insert into profile values ('" + name + "', " + to_string(s) + ");");
+		std::string x = "insert into profile (username, score) values ( '" +  name + "', " + to_string(s) + " )";
+//		stmt->executeUpdate(x);
+	}
+	catch (sql::SQLException &e)
+	{
+		printf("CANNOT CONNECT");
+		CCLOG("CANNOT CONNECT");
+	}
 }
 
 std::vector<Profile*> Database::read()
