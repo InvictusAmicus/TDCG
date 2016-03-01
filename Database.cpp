@@ -10,6 +10,9 @@ void Database::createConnection()
 	
 	try
 	{
+//		con = driver->connect("eu-cdbr-azure-north-d.cloudapp.net", "bc2a6cfa292f50", "1004b8f2");
+//		con->setSchema("gamesfleadh2016");
+
 	}		
 	catch(sql::SQLException &e)
 	{
