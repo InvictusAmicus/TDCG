@@ -460,20 +460,20 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//auto Bullet = Sprite::create("TowerBullet.png");
 					//Bullet->setPosition(Vec2(100, 500));
 					//this->addChild(Bullet, 1);
-					/*
+					
 					auto Bullet = Sprite::create("TowerBullet.png");
 					spriteAnimation.push_back(Bullet);
-					int BulletX = moveForward.playerTowerBulletX(enemyTowers.at(o)->getPositionX());
+					int BulletX = moveForward.enemyTowerBulletX(enemyTowers.at(o)->getPositionX());
 					int BulletY = moveForward.TowerBulletY(enemyTowers.at(o)->getPositionY());
 					Bullet->setPosition(Vec2(BulletX, BulletY));
 					this->addChild(Bullet, 1);
-					auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY - 35));
+					auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY + 35));
 					auto fade = FadeOut::create(0.1f);
 					auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 					removeAction.push_back(runAction(BulletAttack));
 					//Bullet->runAction(moveTo);
 					Bullet->runAction(removeAction.back());
-					*/
+					
 
 					//CCLOG("1 if");
 					hasShot = true;
@@ -527,6 +527,19 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//auto Bullet = Sprite::create("TowerBullet.png");
 					//Bullet->setPosition(Vec2(100, 500));
 					//this->addChild(Bullet, 1);
+					auto Bullet = Sprite::create("TowerBullet.png");
+					spriteAnimation.push_back(Bullet);
+					int BulletX = moveForward.enemyTowerBulletX(enemyTowers.at(o)->getPositionX());
+					int BulletY = moveForward.TowerBulletY(enemyTowers.at(o)->getPositionY());
+					Bullet->setPosition(Vec2(BulletX, BulletY));
+					this->addChild(Bullet, 1);
+					auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY - 35));
+					auto fade = FadeOut::create(0.1f);
+					auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+					removeAction.push_back(runAction(BulletAttack));
+					//Bullet->runAction(moveTo);
+					Bullet->runAction(removeAction.back());
+
 
 					//CCLOG("1 if");
 					hasShot = true;
@@ -578,6 +591,19 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//auto Bullet = Sprite::create("TowerBullet.png");
 					//Bullet->setPosition(Vec2(100, 500));
 					//this->addChild(Bullet, 1);
+					auto Bullet = Sprite::create("TowerBullet.png");
+					spriteAnimation.push_back(Bullet);
+					int BulletX = moveForward.enemyTowerBulletX(enemyTowers.at(o)->getPositionX());
+					int BulletY = moveForward.TowerBulletY(enemyTowers.at(o)->getPositionY());
+					Bullet->setPosition(Vec2(BulletX, BulletY));
+					this->addChild(Bullet, 1);
+					auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY + 35));
+					auto fade = FadeOut::create(0.1f);
+					auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+					removeAction.push_back(runAction(BulletAttack));
+					//Bullet->runAction(moveTo);
+					Bullet->runAction(removeAction.back());
+
 
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());
@@ -620,6 +646,18 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//auto Bullet = Sprite::create("TowerBullet.png");
 					//Bullet->setPosition(Vec2(100, 500));
 					//this->addChild(Bullet, 1);
+					auto Bullet = Sprite::create("TowerBullet.png");
+					spriteAnimation.push_back(Bullet);
+					int BulletX = moveForward.enemyTowerBulletX(enemyTowers.at(o)->getPositionX());
+					int BulletY = moveForward.TowerBulletY(enemyTowers.at(o)->getPositionY());
+					Bullet->setPosition(Vec2(BulletX, BulletY));
+					this->addChild(Bullet, 1);
+					auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY - 35));
+					auto fade = FadeOut::create(0.1f);
+					auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+					removeAction.push_back(runAction(BulletAttack));
+					//Bullet->runAction(moveTo);
+					Bullet->runAction(removeAction.back());
 
 					hasShot = true;
 					army.at(z)->setHealth(enemyTowers.at(o)->getDamage());

@@ -527,3 +527,13 @@ int CollisionDetection::TowerBulletY(int y)
 
 	return 0;
 }
+
+int CollisionDetection::enemyTowerBulletX(int x) 
+{
+	if (x == 0) { return 557; }
+	else if (x == 1) { return 634; }
+	else if (x == 2) { return 711; }
+	else if (x == 3) { return 787; }
+
+	return 0;
+}

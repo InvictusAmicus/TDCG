@@ -105,6 +105,8 @@ public:
 	
 	int TowerBulletY(int y);
 	
+    int enemyTowerBulletX(int x);
+
 	char getEnemyTowerGrid(int x, int y);
 	
 	/*
@@ -113,7 +115,7 @@ public:
 	char getColGrid(int x, int y);
 	
 	//void EnemyTowerAttack();
-	//int enemyTowerBulletX(int x);
+	
 	//int enemyTowerBulletY(int y);
 	//char ColGrid[10][5];
 	//char TowerGrid[5][5];
