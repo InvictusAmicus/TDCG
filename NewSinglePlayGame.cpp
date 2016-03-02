@@ -104,6 +104,8 @@ bool NewSinglePlayGame::init()
 	army.clear();
 	towers.clear();
 	enemyTowers.clear();
+	spriteAnimation.clear();
+	removeAction.clear();
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -422,6 +424,140 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 	}
 	hasAttacked = false;
 
+	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
+	{
+		if (x < 0)
+		{
+			x = 0;
+		}
+		int place = enemyArmy.at(x)->getPositionX();
+		if ((enemyArmy.at(x)->getPositionX()) == 0)
+		{
+			p->setLife(40);
+			GameState();
+
+			CCLOG("CHECKING AUDIO");
+			Options EffectsMusic;
+			if (EffectsMusic.getEffectsMute() != 1) {
+				int V = EffectsMusic.EffectsVolume();
+				CCLOG("gameMusic.getmusicVolume() %d", V);
+				SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("WallAttack.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+			}
+
+			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
+			std::string StringLife = std::to_string(p->getLife());
+			CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+			ChangePlayerLife->setString(StringLife);
+			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
+			//			this->removeChild(enemyArmy.at(x)->getSprite());
+			enemyArmy.erase(enemyArmy.begin() + x);
+			x--;
+			hasAttacked = true;
+		}
+
+		if (!hasAttacked)
+		{
+			if (enemyArmy.at(x) != NULL)
+			{
+				if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 0)
+				{
+					if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
+					{
+						auto moveBy = MoveBy::create(1, Vec2(-75, 0));
+						enemyArmy.at(x)->getSprite()->runAction(moveBy);
+						//enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
+						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
+					}
+				}
+				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
+				{
+					//enemyArmy.at(x);
+					//call attack
+					//deal damage to enemy = to attack
+					for (int y = 0; y < army.size(); y++)
+					{
+						if (enemyArmy.size() > 0) {
+							if (x < 0)
+							{
+								x = 0;
+							}
+							CCLOG("X = %d", x);
+							CCLOG("army.at(y)->getPositionX() %d", army.at(y)->getPositionX());
+							CCLOG("enemyArmy.at(x)->getPositionX() - 1, %d", enemyArmy.at(x)->getPositionX() - 1);
+							CCLOG("army.at(y)->getPositionY(), %d", army.at(y)->getPositionY());
+							CCLOG("enemyArmy.at(x)->getPositionY(), %d", enemyArmy.at(x)->getPositionY());
+							if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
+								&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
+							{
+								CCLOG("CHECKING AUDIO");
+								Options EffectsMusic;
+								if (EffectsMusic.getEffectsMute() != 1) {
+									int V = EffectsMusic.EffectsVolume();
+									CCLOG("gameMusic.getmusicVolume() %d", V);
+									SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+								}
+								////////////////////////////////////////////////////////
+								//Creates a sprite in front of a player sprite which fades in and out 
+								/*
+								auto PlayerSwordSlash = Sprite::create("PlayerSwordAttack.png");
+								PlayerSwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+20, army.at(y)->getSprite()->getPositionY()));
+								PlayerSwordSlash->setOpacity(0);
+								this->addChild(PlayerSwordSlash, 1);
+
+								auto EnemySwordSlash = Sprite::create("EnemySoldierAttack.png");
+								EnemySwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+60, army.at(y)->getSprite()->getPositionY()));
+								EnemySwordSlash->setOpacity(0);
+								this->addChild(EnemySwordSlash, 1);
+
+								//running the animation actions
+								auto fadeIn = FadeIn::create(0.5f);
+								auto fadeOut = FadeOut::create(0.5f);
+
+								//DelayTime *delayAction = DelayTime::create(1.0);
+
+								//auto PlayerAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
+
+								//auto EnemyAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
+								//PlayerSwordSlash->runAction(PlayerAttackSeq);
+								//EnemySwordSlash->runAction(EnemyAttackSeq);
+								*/
+								//////////////////////////////////////////////////
+								army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
+								enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
+								if (army.at(y)->getHealth() <= 0)
+								{
+									moveForward.removeObject(army.at(y)->getPositionX(), army.at(y)->getPositionY());
+									army.at(y)->activateAbility(p);
+									CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+									std::string StringLife = std::to_string(p->getLife());
+									ChangeLife->setString(StringLife);
+									army.at(y)->getSprite()->removeFromParentAndCleanup(true);
+									army.erase(army.begin() + y);
+									y--;
+									EnemyResource += 50;
+								}
+								if (enemyArmy.at(x)->getHealth() <= 0)
+								{
+									moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
+									enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
+									enemyArmy.erase(enemyArmy.begin() + x);
+									x--;
+									p->setResource(50);
+								}
+							}
+						}
+					}
+				}
+				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
+				{
+					//Player in front
+				}
+			}
+		}
+		//x++;
+		hasAttacked = false;
+	}
+
 	//soldier movement above
 	//tower movement below
 	bool hasShot = false;
@@ -716,7 +852,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(0.3, Vec2(BulletX-40, BulletY+35));
+						auto moveTo = MoveTo::create(2.0, Vec2(BulletX-40, BulletY+35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						removeAction.push_back(runAction(BulletAttack));
@@ -772,7 +908,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(0.3, Vec2(BulletX - 40, BulletY - 35));
+						auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY - 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						removeAction.push_back(runAction(BulletAttack));
@@ -831,7 +967,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY + 35));
+						auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY + 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						removeAction.push_back(runAction(BulletAttack));
@@ -889,7 +1025,7 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(towers.at(q)->getPositionY());
 					    Bullet->setPosition(Vec2(BulletX, BulletY));
 					    this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY - 35));
+						auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY - 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						removeAction.push_back(runAction(BulletAttack));
@@ -914,139 +1050,6 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 			
 		}
 		hasShot = false;
-	}
-	for (int x = 0; (unsigned)x < enemyArmy.size(); x++)
-	{
-		if (x < 0)
-		{
-			x = 0;
-		}
-		int place = enemyArmy.at(x)->getPositionX();
-		if ((enemyArmy.at(x)->getPositionX()) == 0)
-		{
-			p->setLife(40);
-			GameState();
-
-			CCLOG("CHECKING AUDIO");
-			Options EffectsMusic;
-			if (EffectsMusic.getEffectsMute() != 1) {
-				int V = EffectsMusic.EffectsVolume();
-				CCLOG("gameMusic.getmusicVolume() %d", V);
-				SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("WallAttack.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
-			}
-
-			moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
-			std::string StringLife = std::to_string(p->getLife());
-			CCLabelBMFont* ChangePlayerLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
-			ChangePlayerLife->setString(StringLife);
-			enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
-			//			this->removeChild(enemyArmy.at(x)->getSprite());
-			enemyArmy.erase(enemyArmy.begin() + x);
-			x--;
-			hasAttacked = true;
-		}
-
-		if (!hasAttacked)
-		{
-			if (enemyArmy.at(x) != NULL)
-			{
-				if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 0)
-				{
-					if (enemyArmy.at(x)->getSprite()->getPositionX() - 75 > 75)
-					{
-						auto moveBy = MoveBy::create(1, Vec2(-75, 0));
-						enemyArmy.at(x)->getSprite()->runAction(moveBy);
-						//enemyArmy.at(x)->getSprite()->setPositionX(enemyArmy.at(x)->getSprite()->getPositionX() - 75);
-						enemyArmy.at(x)->setPositionX(enemyArmy.at(x)->getPositionX() - 1);
-					}
-				}
-				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
-				{
-					//enemyArmy.at(x);
-					//call attack
-					//deal damage to enemy = to attack
-					for (int y = 0; y < army.size(); y++)
-					{
-						if (enemyArmy.size() > 0) {
-							if (x < 0)
-							{
-								x = 0;
-							}
-							CCLOG("X = %d", x);
-							CCLOG("army.at(y)->getPositionX() %d", army.at(y)->getPositionX());
-							CCLOG("enemyArmy.at(x)->getPositionX() - 1, %d", enemyArmy.at(x)->getPositionX() - 1);
-							CCLOG("army.at(y)->getPositionY(), %d", army.at(y)->getPositionY());
-							CCLOG("enemyArmy.at(x)->getPositionY(), %d", enemyArmy.at(x)->getPositionY());
-							if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
-								&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
-							{
-								CCLOG("CHECKING AUDIO");
-								Options EffectsMusic;
-								if (EffectsMusic.getEffectsMute() != 1) {
-									int V = EffectsMusic.EffectsVolume();
-									CCLOG("gameMusic.getmusicVolume() %d", V);
-									SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
-								}
-								////////////////////////////////////////////////////////
-								//Creates a sprite in front of a player sprite which fades in and out 
-								/*
-								auto PlayerSwordSlash = Sprite::create("PlayerSwordAttack.png");
-								PlayerSwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+20, army.at(y)->getSprite()->getPositionY()));
-								PlayerSwordSlash->setOpacity(0);
-								this->addChild(PlayerSwordSlash, 1);
-
-								auto EnemySwordSlash = Sprite::create("EnemySoldierAttack.png");
-								EnemySwordSlash->setPosition(Vec2(army.at(y)->getSprite()->getPositionX()+60, army.at(y)->getSprite()->getPositionY()));
-								EnemySwordSlash->setOpacity(0);
-								this->addChild(EnemySwordSlash, 1);
-
-								//running the animation actions
-								auto fadeIn = FadeIn::create(0.5f);
-								auto fadeOut = FadeOut::create(0.5f);
-
-								//DelayTime *delayAction = DelayTime::create(1.0);
-
-								//auto PlayerAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
-
-								//auto EnemyAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
-								//PlayerSwordSlash->runAction(PlayerAttackSeq);
-								//EnemySwordSlash->runAction(EnemyAttackSeq);
-								*/
-								//////////////////////////////////////////////////
-								army.at(y)->setHealth(enemyArmy.at(x)->getAttack());
-								enemyArmy.at(x)->setHealth(army.at(y)->getAttack());
-								if (army.at(y)->getHealth() <= 0)
-								{
-									moveForward.removeObject(army.at(y)->getPositionX(), army.at(y)->getPositionY());
-									army.at(y)->activateAbility(p);
-									CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
-									std::string StringLife = std::to_string(p->getLife());
-									ChangeLife->setString(StringLife);
-									army.at(y)->getSprite()->removeFromParentAndCleanup(true);
-									army.erase(army.begin() + y);
-									y--;
-									EnemyResource += 50;
-								}
-								if (enemyArmy.at(x)->getHealth() <= 0)
-								{
-									moveForward.removeObject(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY());
-									enemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
-									enemyArmy.erase(enemyArmy.begin() + x);
-									x--;
-									p->setResource(50);
-								}
-							}
-						}
-					}
-				}
-				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 2)
-				{
-					//Player in front
-				}
-			}
-		}
-		//x++;
-		hasAttacked = false;
 	}
 
 	CCLOG("Test For End Turn");
@@ -1083,7 +1086,7 @@ void NewSinglePlayGame::enemyAI()
 			t1->setPositionY(std::get<4>(CreateEnemyObjects));
 			(RegEnemy.registerEnemyTower(std::get<3>(CreateEnemyObjects), std::get<4>(CreateEnemyObjects), 'T'));
 		    t1->getSprite()->setPosition(Vec2(std::get<1>(CreateEnemyObjects), std::get<2>(CreateEnemyObjects)));
-		    t1->getSprite()->setScale(2.0);
+		   // t1->getSprite()->setScale(2.0);
 		    this->addChild(t1->getSprite(), 1);
 		   
 		    enemyTowers.push_back(t1);
@@ -1099,7 +1102,7 @@ void NewSinglePlayGame::enemyAI()
 			    s1->setPositionX(std::get<3>(CreateEnemyObjects));
 			    s1->setPositionY(std::get<4>(CreateEnemyObjects));
 			    s1->getSprite()->setPosition(Vec2(std::get<1>(CreateEnemyObjects), std::get<2>(CreateEnemyObjects)));
-			    s1->getSprite()->setScale(2.0);
+			   // s1->getSprite()->setScale(2.0);
 			    this->addChild(s1->getSprite(), 1);
 			    enemyArmy.push_back(s1);
 			    EnemyResource = EnemyResource - 100;
