@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <tuple>
+#include "Database.h"
+#include <string>
 
 USING_NS_CC;
 
@@ -61,6 +63,52 @@ bool LeaderBoard::init()
 	L5 = std::get<9>(ScoreList);
 	*/
 
+	Database scores;
+	std::vector<Profile*> leaderboard = scores.read();
+	for (int x = 0; x < leaderboard.size(); x++) 
+	{
+		if (x==0) 
+		{
+			G1 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x==1)
+		{
+			G2 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x==2)
+		{
+			G3 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x==3)
+		{
+			G4 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x==4)
+		{
+			G5 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x == 5)
+		{
+			L1 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x == 6)
+		{
+			L2 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x == 7)
+		{
+			L3 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x == 8)
+		{
+			L4 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+		if (x == 9)
+		{
+			L5 = leaderboard.at(x)->name + "  " + std::to_string(leaderboard.at(x)->score);
+		}
+	}
+
 	auto label = Label::createWithTTF("Leaderboards", "fonts/Marker Felt.ttf", 24);
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
@@ -88,31 +136,31 @@ bool LeaderBoard::init()
 	GlobalLeaderBoard->setColor(ccc3(0, 0, 0));
 	this->addChild(GlobalLeaderBoard, 1);
 
-	auto G_LeaderBoard1 = Label::createWithTTF("1. "+G1, "fonts/Marker Felt.ttf", 24);
+	auto G_LeaderBoard1 = Label::createWithTTF("1.  "+G1, "fonts/Marker Felt.ttf", 24);
 	G_LeaderBoard1->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		(origin.y + visibleSize.height - G_LeaderBoard1->getContentSize().height) - 120));
 	G_LeaderBoard1->setColor(ccc3(0, 0, 0));
 	this->addChild(G_LeaderBoard1, 1);
 
-	auto G_LeaderBoard2 = Label::createWithTTF("2. "+G2, "fonts/Marker Felt.ttf", 24);
+	auto G_LeaderBoard2 = Label::createWithTTF("2.  "+G2, "fonts/Marker Felt.ttf", 24);
 	G_LeaderBoard2->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		(origin.y + visibleSize.height - G_LeaderBoard2->getContentSize().height) - 160));
 	G_LeaderBoard2->setColor(ccc3(0, 0, 0));
 	this->addChild(G_LeaderBoard2, 1);
 
-	auto G_LeaderBoard3 = Label::createWithTTF("3. " + G3, "fonts/Marker Felt.ttf", 24);
+	auto G_LeaderBoard3 = Label::createWithTTF("3.  " + G3, "fonts/Marker Felt.ttf", 24);
 	G_LeaderBoard3->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		(origin.y + visibleSize.height - G_LeaderBoard3->getContentSize().height) - 200));
 	G_LeaderBoard3->setColor(ccc3(0, 0, 0));
 	this->addChild(G_LeaderBoard3, 1);
 
-	auto G_LeaderBoard4 = Label::createWithTTF("4. " + G4, "fonts/Marker Felt.ttf", 24);
+	auto G_LeaderBoard4 = Label::createWithTTF("4.  " + G4, "fonts/Marker Felt.ttf", 24);
 	G_LeaderBoard4->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		(origin.y + visibleSize.height - G_LeaderBoard4->getContentSize().height) - 240));
 	G_LeaderBoard4->setColor(ccc3(0, 0, 0));
 	this->addChild(G_LeaderBoard4, 1);
 
-	auto G_LeaderBoard5 = Label::createWithTTF("5. " + G5, "fonts/Marker Felt.ttf", 24);
+	auto G_LeaderBoard5 = Label::createWithTTF("5.  " + G5, "fonts/Marker Felt.ttf", 24);
 	G_LeaderBoard5->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		(origin.y + visibleSize.height - G_LeaderBoard5->getContentSize().height) - 280));
 	G_LeaderBoard5->setColor(ccc3(0, 0, 0));
@@ -124,31 +172,31 @@ bool LeaderBoard::init()
 	LocalLeaderBoard->setColor(ccc3(0, 0, 0));
 	this->addChild(LocalLeaderBoard, 1);
 
-	auto L_LeaderBoard1 = Label::createWithTTF("1. "+L1, "fonts/Marker Felt.ttf", 24);
+	auto L_LeaderBoard1 = Label::createWithTTF("1.  "+L1, "fonts/Marker Felt.ttf", 24);
 	L_LeaderBoard1->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		((origin.y + visibleSize.height / 2) - L_LeaderBoard1->getContentSize().height)-60));
 	L_LeaderBoard1->setColor(ccc3(0, 0, 0));
 	this->addChild(L_LeaderBoard1, 1);
 
-	auto L_LeaderBoard2 = Label::createWithTTF("2. " + L2, "fonts/Marker Felt.ttf", 24);
+	auto L_LeaderBoard2 = Label::createWithTTF("2.  " + L2, "fonts/Marker Felt.ttf", 24);
 	L_LeaderBoard2->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		((origin.y + visibleSize.height / 2) - L_LeaderBoard2->getContentSize().height)-100));
 	L_LeaderBoard2->setColor(ccc3(0, 0, 0));
 	this->addChild(L_LeaderBoard2, 1);
 
-	auto L_LeaderBoard3 = Label::createWithTTF("3. " + L3, "fonts/Marker Felt.ttf", 24);
+	auto L_LeaderBoard3 = Label::createWithTTF("3.  " + L3, "fonts/Marker Felt.ttf", 24);
 	L_LeaderBoard3->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		((origin.y + visibleSize.height / 2) - L_LeaderBoard3->getContentSize().height)-140));
 	L_LeaderBoard3->setColor(ccc3(0, 0, 0));
 	this->addChild(L_LeaderBoard3, 1);
 
-	auto L_LeaderBoard4 = Label::createWithTTF("4. " + L4, "fonts/Marker Felt.ttf", 24);
+	auto L_LeaderBoard4 = Label::createWithTTF("4.  " + L4, "fonts/Marker Felt.ttf", 24);
 	L_LeaderBoard4->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		((origin.y + visibleSize.height / 2) - L_LeaderBoard4->getContentSize().height)-180));
 	L_LeaderBoard4->setColor(ccc3(0, 0, 0));
 	this->addChild(L_LeaderBoard4, 1);
 
-	auto L_LeaderBoard5 = Label::createWithTTF("5. " + L5, "fonts/Marker Felt.ttf", 24);
+	auto L_LeaderBoard5 = Label::createWithTTF("5.  " + L5, "fonts/Marker Felt.ttf", 24);
 	L_LeaderBoard5->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		((origin.y + visibleSize.height / 2) - L_LeaderBoard5->getContentSize().height)-220));
 	L_LeaderBoard5->setColor(ccc3(0, 0, 0));

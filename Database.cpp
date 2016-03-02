@@ -51,22 +51,43 @@ void Database::write(std::string name, int s)
 	}
 }
 
+
 std::vector<Profile*> Database::read()
 {
+	std::vector<Profile*> leaderboard;
 	try
 	{
-		res = stmt->executeQuery("select username, score from profile order by score desc;");
-		// 
-		std::string data;
-		std::vector<Profile*> leaderboard;
-
-		for (int x = 0; res->next() && x < 5; x++)
+		try
 		{
-			std::string user = res->getString("username").c_str();
-			int userScore = res->getInt("score");
+			//for (int j = 0; j < 5; j++)
+			//{
+			//	leaderboard.push_back(new Profile("test", 100));
+			//}
 
-			leaderboard.push_back(new Profile(user, userScore));
+			driver = get_driver_instance();
+			con = driver->connect("localhost", "root", "password");
+			con->setSchema("gamesfleadh2016");
+
+			stmt = con->createStatement();
+
+			res = stmt->executeQuery("select username, score from profile order by score desc;");
+			// 
+			std::string data;
+
+
+			for (int x = 0; res->next() && x < 5; x++)
+			{
+				std::string user = res->getString("username").c_str();
+				int userScore = res->getInt("score");
+
+				leaderboard.push_back(new Profile(user, userScore));
+			}
 		}
+		catch (sql::SQLException &e)
+		{
+
+		}
+		//leaderboard.push_back(new Profile("test", 60));
 	}
 
 	catch (sql::SQLException &e)
@@ -78,9 +99,7 @@ std::vector<Profile*> Database::read()
 		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 	}
 
-	std::vector<Profile*> p;
-	return p;
-	//return leaderboard;
+	return leaderboard;
 }
 
 void Database::del()

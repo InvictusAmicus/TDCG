@@ -85,7 +85,7 @@ bool MainMenu::init()
 	menuNewGame->setPosition(Vec2::ZERO);
 	this->addChild(menuNewGame, 1);
 
-	auto spriteContinue = MenuItemImage::create("Multiplayer.png", "MultiplayerClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
+	auto spriteContinue = MenuItemImage::create("Leaderboards.png", "LeaderboardsClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
 	
 	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 7));
