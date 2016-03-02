@@ -21,8 +21,11 @@ public:
 
 	sql::Driver *driver;
 	sql::Connection *con;
+	sql::Driver *online_driver;
+	sql::Connection *online_con;
 	sql::Statement *stmt;
 	sql::ResultSet *res;
+	sql::PreparedStatement *prep;
 
 	Database()
 	{

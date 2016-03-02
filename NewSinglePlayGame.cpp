@@ -28,6 +28,8 @@ std::vector<Soldier*> enemyArmy;
 std::vector<Tower*> towers;
 std::vector<Tower*> enemyTowers;
 std::vector<Sprite*> spriteAnimation;
+std::vector<Action*> removeAction;
+std::vector<Sprite*> attackSprite;
 
 //need to set soldier to sprite
 
@@ -270,6 +272,9 @@ bool NewSinglePlayGame::init()
 	TowerArea33->setOpacity(0);
 	this->addChild(TowerArea33, 1, Tower33);
 
+	this->schedule(schedule_selector(NewSinglePlayGame::SpriteRemove), 1.0f);
+	this->scheduleUpdate();
+
 	displayHand(p);
 	displayHand(p);
 	return true;
@@ -322,6 +327,8 @@ void NewSinglePlayGame::WonGame()
 	score = p->getLife() * (p->getResource()/100);
 	p->reset();
 //	delete baseGrid;
+	spriteAnimation.clear();
+	removeAction.clear();
 	
 	cocos2d::experimental::AudioEngine::stopAll();
 
@@ -333,7 +340,9 @@ void NewSinglePlayGame::LostGame()
 {
 	p->reset();
 //	delete baseGrid;
-	
+	spriteAnimation.clear();
+	removeAction.clear();
+
 	cocos2d::experimental::AudioEngine::stopAll();
 
 	auto GameOverScene = GameOverScreen::createScene();
@@ -451,6 +460,20 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					//auto Bullet = Sprite::create("TowerBullet.png");
 					//Bullet->setPosition(Vec2(100, 500));
 					//this->addChild(Bullet, 1);
+					/*
+					auto Bullet = Sprite::create("TowerBullet.png");
+					spriteAnimation.push_back(Bullet);
+					int BulletX = moveForward.playerTowerBulletX(enemyTowers.at(o)->getPositionX());
+					int BulletY = moveForward.TowerBulletY(enemyTowers.at(o)->getPositionY());
+					Bullet->setPosition(Vec2(BulletX, BulletY));
+					this->addChild(Bullet, 1);
+					auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY - 35));
+					auto fade = FadeOut::create(0.1f);
+					auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+					removeAction.push_back(runAction(BulletAttack));
+					//Bullet->runAction(moveTo);
+					Bullet->runAction(removeAction.back());
+					*/
 
 					//CCLOG("1 if");
 					hasShot = true;
@@ -656,7 +679,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
 						auto moveTo = MoveTo::create(0.3, Vec2(BulletX-40, BulletY+35));
-						Bullet->runAction(moveTo);
+						auto fade = FadeOut::create(0.1f);
+						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+						removeAction.push_back(runAction(BulletAttack));
+						//Bullet->runAction(moveTo);
+						Bullet->runAction(removeAction.back());
 					}
 					
 
@@ -708,7 +735,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
 						auto moveTo = MoveTo::create(0.3, Vec2(BulletX - 40, BulletY - 35));
-						Bullet->runAction(moveTo);
+						auto fade = FadeOut::create(0.1f);
+						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+						removeAction.push_back(runAction(BulletAttack));
+						//Bullet->runAction(moveTo);
+						Bullet->runAction(removeAction.back());
 					}
 					
 
@@ -763,7 +794,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
 						auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY + 35));
-						Bullet->runAction(moveTo);
+						auto fade = FadeOut::create(0.1f);
+						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+						removeAction.push_back(runAction(BulletAttack));
+						//Bullet->runAction(moveTo);
+						Bullet->runAction(removeAction.back());
 					}
 					
 					enemyArmy.at(r)->setHealth(towers.at(q)->getDamage());
@@ -817,7 +852,11 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 					    Bullet->setPosition(Vec2(BulletX, BulletY));
 					    this->addChild(Bullet, 1);
 						auto moveTo = MoveTo::create(0.3, Vec2(BulletX + 35, BulletY - 35));
-						Bullet->runAction(moveTo);
+						auto fade = FadeOut::create(0.1f);
+						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
+						removeAction.push_back(runAction(BulletAttack));
+						//Bullet->runAction(moveTo);
+						Bullet->runAction(removeAction.back());
 					}
 					
 
@@ -1192,6 +1231,17 @@ void NewSinglePlayGame::enemyAI()
 
 void NewSinglePlayGame::startTurn()
 {
+	/*
+	for (int q = 0; q < removeAction.size(); q++) 
+	{
+		if (removeAction.at(q)->isDone())
+		{
+			spriteAnimation.at(q)->removeFromParentAndCleanup(true);
+			spriteAnimation.erase(spriteAnimation.begin()+q);
+			removeAction.erase(removeAction.begin() + q);
+		}
+	}
+	*/
 	EnemyAI t;
 	//t.test();
 	t.checkVariables(p->getResource(), EnemyResource);
@@ -2639,4 +2689,20 @@ int NewSinglePlayGame::getScore()
 {
 	CCLOG("Score: getScore: %d", score);
 	return score;
+}
+
+void NewSinglePlayGame::SpriteRemove(float ct)
+{
+	if (removeAction.size()!=0)
+	{
+	    for (int q = 0; q < removeAction.size(); q++)
+	    {
+		    if (removeAction.at(q)->isDone())
+		    {
+			    spriteAnimation.at(q)->removeFromParentAndCleanup(true);
+			    spriteAnimation.erase(spriteAnimation.begin() + q);
+			    removeAction.erase(removeAction.begin() + q);
+		    }
+	    }
+    }
 }

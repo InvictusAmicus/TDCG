@@ -56,6 +56,8 @@ public:
 	*/
 	void displayHand(Player*);
 
+	void SpriteRemove(float ct);
+
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);

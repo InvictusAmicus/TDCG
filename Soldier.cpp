@@ -107,7 +107,7 @@ Soldier::Soldier(std::string n)
 	else if (n == "testEnemy.png")
 	{
 		type = 's';
-		health = 1;
+		health = 3;
 		attack = 1;
 		ability = 0;
 	}
