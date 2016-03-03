@@ -61,6 +61,16 @@ bool HowToPlay::init()
 	exampleGrid->setScale(0.5);
 	this->addChild(exampleGrid,1);
 
+	auto resourceExplanation = Label::createWithTTF("Players can see their health and resources in\n"
+		"the upper leftmost corner of the screen.\n"
+		"Resources are gained at the start of every\n"
+		"turn and when an enemy soldier dies.\n"
+		, "fonts/Marker Felt.ttf", 20);
+	resourceExplanation->setPosition(Vec2(visibleSize.width * (0.75), visibleSize.height * (0.5)));
+	resourceExplanation->setColor(cocos2d::Color3B::BLACK);
+	this->addChild(resourceExplanation, 1);
+
+
 	auto gridExplanation = Label::createWithTTF("Soldiers can be placed on the squares of the grid.\n"
 		"Towers can be placed on the circles of the grid.\n"
 		"The player can place soldiers and towers on the\nleft hand side of the screen.\n"
