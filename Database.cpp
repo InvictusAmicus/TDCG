@@ -58,7 +58,7 @@ std::vector<Profile*> Database::read()
 	{
 		try 
 		{
-		    /*
+		    
 			online_driver = get_driver_instance();
 			online_con = online_driver->connect("eu-cdbr-azure-north-d.cloudapp.net", "bc2a6cfa292f50", "1004b8f2");
 			online_con->setSchema("gamesfleadh2016");
@@ -67,13 +67,15 @@ std::vector<Profile*> Database::read()
 
 			res = stmt->executeQuery("select username, score from profile order by score desc;");
 
+			CCLOG("CONNECTED");
+
 			for (int x = 0; res->next() && x < 5; x++)
 			{
 				std::string user = res->getString("username").c_str();
 				int userScore = res->getInt("score");
 				leaderboard.push_back(new Profile(user, userScore));
 			}
-			*/
+			
 			CCLOG("Leaderboard size %d", leaderboard.size());
 			
 			if (leaderboard.size()!=4) 

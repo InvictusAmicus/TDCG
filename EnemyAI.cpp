@@ -294,85 +294,85 @@ std::pair <int, int> EnemyAI::EnemyTowerPlacements(int x, int y)
 	if (x == 0 && y == 0) 
 	{
 		xCoordinate = 557;
-		yCoordinate = 470;
+		yCoordinate = 478;
 	}
 	else if (x == 0 && y == 1) 
 	{
 		xCoordinate = 557;
-		yCoordinate = 395;
+		yCoordinate = 402;
 	}
 	else if (x == 0 && y == 2) 
 	{
 		xCoordinate = 557;
-		yCoordinate = 323;
+		yCoordinate = 330;
 	}
 	else if (x == 0 && y == 3) 
 	{
 		xCoordinate = 557;
-		yCoordinate = 249;
+		yCoordinate = 258;
 	}
 	//1 Column
 	else if (x == 1 && y == 0) 
 	{
 		xCoordinate = 634;
-		yCoordinate = 470;
+		yCoordinate = 478;
 	}
 	else if (x == 1 && y == 1) 
 	{
 		xCoordinate = 634;
-		yCoordinate = 395;
+		yCoordinate = 402;
 	}
 	else if (x == 1 && y == 2) 
 	{
 		xCoordinate = 634;
-		yCoordinate = 323;
+		yCoordinate = 330;
 	}
 	else if (x == 1 && y == 3) 
 	{
 		xCoordinate = 634;
-		yCoordinate = 249;
+		yCoordinate = 258;
 	}
 	//2 Column
 	else if (x == 2 && y == 0) 
 	{
 		xCoordinate = 711;
-		yCoordinate = 470;
+		yCoordinate = 478;
 	}
 	else if (x == 2 && y == 1) 
 	{
 		xCoordinate = 711;
-		yCoordinate = 395;
+		yCoordinate = 402;
 	}
 	else if (x == 2 && y == 2) 
 	{
 		xCoordinate = 711;
-		yCoordinate = 323;
+		yCoordinate = 330;
 	}
 	else if (x == 2 && y == 3) 
 	{
 		xCoordinate = 711;
-		yCoordinate = 249;
+		yCoordinate = 258;
 	}
 	//3 Column
 	else if (x == 3 && y == 0) 
 	{
 		xCoordinate = 787;
-		yCoordinate = 470;
+		yCoordinate = 478;
 	}
 	else if (x == 3 && y == 1) 
 	{
 		xCoordinate = 787;
-		yCoordinate = 395;
+		yCoordinate = 402;
 	}
 	else if (x == 3 && y == 2) 
 	{
 		xCoordinate = 787;
-		yCoordinate = 323;
+		yCoordinate = 330;
 	}
 	else if (x == 3 && y == 3) 
 	{
 		xCoordinate = 787;
-		yCoordinate = 249;
+		yCoordinate = 258;
 	}
 	return std::make_pair(xCoordinate, yCoordinate);
 }

@@ -110,6 +110,13 @@ Soldier::Soldier(std::string n)
 		health = 3;
 		attack = 1;
 		ability = 0;
+	} 
+	else if (n == "testEnemy2.png")
+	{
+		type = 's';
+		health = 3;
+		attack = 1;
+		ability = 0;
 	}
 	else
 	{
