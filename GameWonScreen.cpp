@@ -98,6 +98,11 @@ bool GameWonScreen::init()
 	nameLabel->setPosition(Vec2(origin.x + visibleSize.width / 2, 200));
 	this->addChild(nameLabel, 1);
 
+	auto youWin = Label::createWithTTF("You won!\nSubmit your score below!", "fonts/Marker Felt.ttf", 70);
+	youWin->setPosition(Vec2(visibleSize.width / 2, visibleSize.height * (0.7)));
+	youWin->setColor(cocos2d::Color3B::BLACK);
+	this->addChild(youWin, 1);
+
 	return true;
 }
 

@@ -70,7 +70,6 @@ bool HowToPlay::init()
 	resourceExplanation->setColor(cocos2d::Color3B::BLACK);
 	this->addChild(resourceExplanation, 1);
 
-
 	auto gridExplanation = Label::createWithTTF("Soldiers can be placed on the squares of the grid.\n"
 		"Towers can be placed on the circles of the grid.\n"
 		"The player can place soldiers and towers on the\nleft hand side of the screen.\n"

@@ -52,10 +52,13 @@ bool GameOverScreen::init()
 	this->addChild(menu, 1);
 
 	auto sprite = Sprite::create("Background.png");
-
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
 	this->addChild(sprite, 0);
+
+	auto youLose = Label::createWithTTF("You lost!\nBetter luck next time!", "fonts/Marker Felt.ttf", 70);
+	youLose->setPosition(Vec2(visibleSize.width/2, visibleSize.height * (0.7)));
+	youLose->setColor(cocos2d::Color3B::BLACK);
+	this->addChild(youLose, 1);
 
 	return true;
 }
