@@ -43,6 +43,33 @@ bool HowToPlay::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
+	auto exampleCard = Sprite::create("Archfiend.png");
+	exampleCard->setPosition(Vec2(visibleSize.width * (0.3), visibleSize.height * (0.7)));
+	exampleCard->setScale(2.0);
+	this->addChild(exampleCard, 1);
+
+	auto cardExplanation = Label::createWithTTF("The card's cost is in the top left corner.\n"
+		"The unit's cost is the number multiplied by 100\n"
+		"The unit's attack and health are shown"
+		, "fonts/Marker Felt.ttf", 20);
+	cardExplanation->setColor(cocos2d::Color3B::BLACK);
+	cardExplanation->setPosition(Vec2(visibleSize.width * (0.75), visibleSize.height * (0.7)));
+	this->addChild(cardExplanation, 1);
+
+	auto exampleGrid = Sprite::create("GridTemplate2.png");
+	exampleGrid->setPosition(Vec2(visibleSize.width * (0.3), visibleSize.height * (0.3)));
+	exampleGrid->setScale(0.5);
+	this->addChild(exampleGrid,1);
+
+	auto gridExplanation = Label::createWithTTF("Soldiers can be placed on the squares of the grid.\n"
+		"Towers can be placed on the circles of the grid.\n"
+		"The player can place soldiers and towers on the\nleft hand side of the screen.\n"
+		"When playing multiplayer, the second player\nputs their cards on the right hand size."
+		, "fonts/Marker Felt.ttf", 20);
+
+	gridExplanation->setPosition(Vec2(visibleSize.width * (0.75), visibleSize.height * (0.3)));
+	gridExplanation->setColor(cocos2d::Color3B::BLACK);
+	this->addChild(gridExplanation, 1);
 	return true;
 }
 
