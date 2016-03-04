@@ -86,8 +86,7 @@ bool MainMenu::init()
 	menuNewGame->setPosition(Vec2::ZERO);
 	this->addChild(menuNewGame, 1);
 
-	auto spriteContinue = MenuItemImage::create("Leaderboards.png", "LeaderboardsClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
-	
+	auto spriteContinue = MenuItemImage::create("Leaderboards.png", "LeaderboardsClicked.png", CC_CALLBACK_1(MainMenu::menuLeaderboard, this));
 	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
 	auto menuContinue = Menu::create(spriteContinue, NULL);
@@ -144,8 +143,8 @@ void MainMenu::menuNewGame(Ref* pSender)
 void MainMenu::menuLeaderboard(Ref* pSender)
 {
 	cocos2d::experimental::AudioEngine::stopAll();
-	auto MultiPlayerScene = LeaderBoard::createScene();
-	Director::getInstance()->pushScene(MultiPlayerScene);
+	auto LeaderBoardScene = LeaderBoard::createScene();
+	Director::getInstance()->pushScene(LeaderBoardScene);
 }
 
 void MainMenu::menuCollection(Ref* pSender)
