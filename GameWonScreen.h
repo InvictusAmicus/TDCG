@@ -5,6 +5,9 @@
 
 class GameWonScreen : public cocos2d::Layer
 {
+private:
+	std::string StringLength;
+
 public:
 	/*!
 	*Creates the scene for the GameWonScreen

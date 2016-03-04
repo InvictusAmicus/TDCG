@@ -5,6 +5,7 @@
 #include <iostream>
 #include "NewSinglePlayGame.h"
 #include "Database.h"
+#include <string>
 
 int playerScore;
 int GameWonTrack;
@@ -110,6 +111,11 @@ void GameWonScreen::returnToTitleScreen(cocos2d::Ref* pSender)
 {
 	//add database insert
 	Database d;
+	StringLength = e->getText();
+	if (StringLength.length() == 0) 
+	{
+		e->setText("AAA");
+	}
 	d.write(e->getText(), playerScore);
 
 	cocos2d::experimental::AudioEngine::stopAll();

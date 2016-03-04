@@ -122,8 +122,8 @@ bool NewSinglePlayGame::init()
 
 	enemyTurn = 0;
 	Enemylife = 100;
-	p->setResource(100);
-	EnemyResource = 100;
+	p->setResource(200);
+	EnemyResource = 200;
     //baseGrid = new CollisionDetection();
 	baseGrid.CreateGrids();
 	CCLOG("Creating Grid");

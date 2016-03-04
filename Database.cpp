@@ -33,6 +33,23 @@ void Database::createConnection()
 
 void Database::write(std::string name, int s)
 {
+/*
+	try
+	{
+		online_driver = get_driver_instance();
+		online_con = online_driver->connect("eu-cdbr-azure-north-d.cloudapp.net", "bc2a6cfa292f50", "1004b8f2");
+		online_con->setSchema("gamesfleadh2016");
+		stmt = online_con->createStatement();
+		std::string t = "insert into profile values ('" + name + "', " + to_string(s) + ");";
+		const char * x = t.c_str();
+		stmt->executeUpdate(x);
+	}
+	catch (sql::SQLException &e)
+	{
+		printf("CANNOT CONNECT TO ONLINE DATABASE");
+		CCLOG("CANNOT CONNECT TO ONLINE DATABASE");
+	}
+*/
 	try
 	{
 		driver = get_driver_instance();
@@ -58,13 +75,11 @@ std::vector<Profile*> Database::read()
 	{
 		try 
 		{
-		    
+		   /* 
 			online_driver = get_driver_instance();
 			online_con = online_driver->connect("eu-cdbr-azure-north-d.cloudapp.net", "bc2a6cfa292f50", "1004b8f2");
 			online_con->setSchema("gamesfleadh2016");
-
 			stmt = online_con->createStatement();
-
 			res = stmt->executeQuery("select username, score from profile order by score desc;");
 
 			CCLOG("CONNECTED");
@@ -75,7 +90,7 @@ std::vector<Profile*> Database::read()
 				int userScore = res->getInt("score");
 				leaderboard.push_back(new Profile(user, userScore));
 			}
-			
+			*/
 			CCLOG("Leaderboard size %d", leaderboard.size());
 			
 			if (leaderboard.size()!=4) 

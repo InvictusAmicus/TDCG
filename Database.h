@@ -44,12 +44,12 @@ public:
 	void createConnection();
 
 	/*!
-	* Insert Data to the database
+	* Insert Data to the online database and the local database
 	*/
 	void write(std::string, int);
 
 	/*!
-	*Read data from database
+	*Read data from the online database and the local database
 	*/
 	std::vector<Profile*> read();
 	

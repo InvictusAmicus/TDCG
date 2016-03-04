@@ -429,8 +429,8 @@ std::tuple <int, int, int, int, int> EnemyAI::checkVariables(int PlayerResource,
 	
 	//hardcoded test data
 	int EnemyNumber = 1;
-	int EnemyPostionX = 635;
-	int EnemyPostionY = 478;
+	int EnemyPostionX;
+	int EnemyPostionY;
 	int last = PlayerAtSecondLastRow();
 	int attack = PlayerAttackSecondRow();
 	int testX = 0;
@@ -481,6 +481,8 @@ std::tuple <int, int, int, int, int> EnemyAI::checkVariables(int PlayerResource,
 		EnemyNumber = NoMove;
 		EnemyPostionX = NoMove;
 		EnemyPostionY = NoMove;
+		CCLOG("EnemyPostionX : %d", EnemyPostionX);
+		CCLOG("EnemyPostionY : %d", EnemyPostionY);
 	}
 	//int EnemyPostionX = 635;
 	//int EnemyPostionY = 478;
@@ -489,11 +491,11 @@ std::tuple <int, int, int, int, int> EnemyAI::checkVariables(int PlayerResource,
 	//if (PlayerResource >= 200) { EnemyPostionY = 286; }
 	//EnemyNumber = NoMove;
 
-	CCLOG("1- %d", EnemyNumber);
-	CCLOG("2- %d", EnemyPostionX);
-	CCLOG("3- %d", EnemyPostionY);
-	CCLOG("4- %d", testX);
-	CCLOG("5- %d", last);
+	//CCLOG("1- %d", EnemyNumber);
+	//CCLOG("2- %d", EnemyPostionX);
+	//CCLOG("3- %d", EnemyPostionY);
+	//CCLOG("4- %d", testX);
+	//CCLOG("5- %d", last);
 
 	return std::make_tuple(EnemyNumber, EnemyPostionX, EnemyPostionY, testX, testY);
 	
