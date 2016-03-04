@@ -33,6 +33,11 @@ public:
 	void menuMultiPlayer(cocos2d::Ref* pSender);
 
 	/*!
+	*Got to the LeaderboardScreen when called
+	*/
+	void MainMenu::menuLeaderboard(Ref* pSender);
+
+	/*!
 	*Go to the Collection screen when called
 	*/
 	void menuCollection(cocos2d::Ref* pSender);

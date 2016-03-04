@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include "AudioEngine.h"
+#include "MultiPlayer.h"
 
 USING_NS_CC;
 using namespace std;
@@ -56,14 +57,14 @@ bool MainMenu::init()
 
 	auto Quit = MenuItemImage::create("Quit.png", "QuitClicked.png", CC_CALLBACK_1(MainMenu::menuCloseCallback, this));
 	Quit->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - Quit->getContentSize().height * 11));
+		origin.y + visibleSize.height - Quit->getContentSize().height * 12));
 	auto menu = Menu::create(Quit, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
 	auto Cards = MenuItemImage::create("Collection.png", "CollectionClicked.png", CC_CALLBACK_1(MainMenu::menuCollection, this));
 	Cards->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - Cards->getContentSize().height * 9));
+		origin.y + visibleSize.height - Cards->getContentSize().height * 10));
 	auto menuCards = Menu::create(Cards, NULL);
 	menuCards->setPosition(Vec2::ZERO);
 	this->addChild(menuCards, 1);
@@ -88,22 +89,28 @@ bool MainMenu::init()
 	auto spriteContinue = MenuItemImage::create("Leaderboards.png", "LeaderboardsClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
 	
 	spriteContinue->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 7));
+		origin.y + visibleSize.height - spriteContinue->getContentSize().height * 8));
 	auto menuContinue = Menu::create(spriteContinue, NULL);
 	menuContinue->setPosition(Vec2::ZERO);
 	this->addChild(menuContinue, 1);
 	
 	auto spriteOptions = MenuItemImage::create("Options.png", "OptionsClicked.png", CC_CALLBACK_1(MainMenu::menuOptions, this));
 	spriteOptions->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 10));
+		origin.y + visibleSize.height - spriteOptions->getContentSize().height * 11));
 	auto menuOptions = Menu::create(spriteOptions, NULL);
 	menuOptions->setPosition(Vec2::ZERO);
 	this->addChild(menuOptions, 1);
 	
+	auto multiplayerMenu = MenuItemImage::create("Multiplayer.png","MultiplayerClicked.png", CC_CALLBACK_1(MainMenu::menuMultiPlayer, this));
+	multiplayerMenu->setPosition(Vec2(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height - multiplayerMenu->getContentSize().height * 7));
+	auto menuMulti= Menu::create(multiplayerMenu, NULL);
+	menuMulti->setPosition(Vec2::ZERO);
+	this->addChild(menuMulti, 1);
 
 	auto spriteHowToPlay = MenuItemImage::create("HowToPlay.png", "HowToPlayClicked.png", CC_CALLBACK_1(MainMenu::menuHowToPlay, this));
 	spriteHowToPlay->setPosition(Vec2(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 8));
+		origin.y + visibleSize.height - spriteHowToPlay->getContentSize().height * 9));
 
 	auto menuHowToPlay = Menu::create(spriteHowToPlay, NULL);
 	menuHowToPlay->setPosition(Vec2::ZERO);
@@ -134,7 +141,7 @@ void MainMenu::menuNewGame(Ref* pSender)
 	Director::getInstance()->pushScene(NewGameScene);
 }
 
-void MainMenu::menuMultiPlayer(Ref* pSender)
+void MainMenu::menuLeaderboard(Ref* pSender)
 {
 	cocos2d::experimental::AudioEngine::stopAll();
 	auto MultiPlayerScene = LeaderBoard::createScene();
@@ -160,6 +167,13 @@ void MainMenu::menuHowToPlay(Ref* pSender)
 	cocos2d::experimental::AudioEngine::stop(StartTrack);
 	auto HowToPlayScene = HowToPlay::createScene();
 	Director::getInstance()->pushScene(HowToPlayScene);
+}
+
+void MainMenu::menuMultiPlayer(Ref* pSender)
+{
+	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	auto MultiplayerScene = MultiPlayer::createScene();
+	Director::getInstance()->pushScene(MultiplayerScene);
 }
 
 void MainMenu::SystemFile() 
