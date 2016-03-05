@@ -66,6 +66,8 @@ public:
 	*/
 	int CheckTower(int x, int y);
 
+	int CheckEnemyTower(int, int);
+
 	int registerEnemyTower(int x, int y, char c);
 	
 	int countPlayerTowers();

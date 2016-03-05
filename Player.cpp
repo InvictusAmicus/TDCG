@@ -157,4 +157,28 @@ void Player::removeFromHand(int x)
 	{
 		hand.erase(hand.begin() + 5);
 	}
+	if (x == 20000)
+	{
+		hand.erase(hand.begin());
+	}
+	else if (x == 20001)
+	{
+		hand.erase(hand.begin() + 1);
+	}
+	else if (x == 20002)
+	{
+		hand.erase(hand.begin() + 2);
+	}
+	else if (x == 20003)
+	{
+		hand.erase(hand.begin() + 3);
+	}
+	else if (x == 20004)
+	{
+		hand.erase(hand.begin() + 4);
+	}
+	else if (x == 20005)
+	{
+		hand.erase(hand.begin() + 5);
+	}
 }

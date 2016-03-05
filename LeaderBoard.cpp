@@ -1,5 +1,4 @@
 #include "LeaderBoard.h"
-#include "MultiPlayer.h"
 #include <string>
 #include <iostream>
 #include <tuple>
@@ -208,9 +207,4 @@ bool LeaderBoard::init()
 void LeaderBoard::returnToTitle(cocos2d::Ref* pSender)
 {
 	Director::getInstance()->popScene();
-}
-void LeaderBoard::Next(cocos2d::Ref* pSender)
-{
-	auto NextScene = MultiPlayer::createScene();
-	Director::getInstance()->pushScene(NextScene);
 }
