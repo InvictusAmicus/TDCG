@@ -13,6 +13,8 @@ private:
 	int health;
 	int positionX;
 	int positionY;
+	bool moving;
+	bool attacking;
 
 public:
 	Soldier();
@@ -20,6 +22,10 @@ public:
 
 	~Soldier();
 	virtual bool init() { return true; }
+	virtual bool getMoving();
+	virtual bool getAttacking();
+	virtual void isAttacking(bool attack) { attacking = attack; }
+	virtual void isMoving(bool move) { moving = move; }
 	virtual void activateAbility(Player*);
 	virtual void attackPlayer(Player*) {}
 	virtual void move();

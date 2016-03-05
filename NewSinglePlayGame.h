@@ -8,6 +8,7 @@ class NewSinglePlayGame : public cocos2d::Layer
 {
 private:
 	Player* p;
+	MenuItemImage *EndTurn;
 
 public:
 	/*!
@@ -57,6 +58,8 @@ public:
 	void displayHand(Player*);
 
 	void SpriteRemove(float ct);
+
+	void MenuDisable(float ct);
 
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);

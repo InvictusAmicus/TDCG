@@ -9,6 +9,8 @@ Soldier::Soldier()
 	health = 4;
 	attack = 1;
 	ability = 1;
+	moving = false;
+	attacking = false;
 }
 
 Soldier::Soldier(std::string n)
@@ -22,6 +24,8 @@ Soldier::Soldier(std::string n)
 		health = 5;
 		attack = 5;
 		ability = 0;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -31,6 +35,8 @@ Soldier::Soldier(std::string n)
 		health = 7;
 		attack = 3;
 		ability = 1;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -40,6 +46,8 @@ Soldier::Soldier(std::string n)
 		health = 11;
 		attack = 1;
 		ability = 1;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -49,6 +57,8 @@ Soldier::Soldier(std::string n)
 		health = 5;
 		attack = 10;
 		ability = 2;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -58,6 +68,8 @@ Soldier::Soldier(std::string n)
 		health = 10;
 		attack = 7;
 		ability = 1;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -67,6 +79,8 @@ Soldier::Soldier(std::string n)
 		health = 7;
 		attack = 5;
 		ability = 1;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -76,6 +90,8 @@ Soldier::Soldier(std::string n)
 		health = 7;
 		attack = 10;
 		ability = 1;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -85,6 +101,8 @@ Soldier::Soldier(std::string n)
 		health = 5;
 		attack = 5;
 		ability = 1;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -94,6 +112,8 @@ Soldier::Soldier(std::string n)
 		health = 12;
 		attack = 2;
 		ability = 2;
+		moving = false;
+		attacking = false;
 	}
 
 	//Card Name to be changed later
@@ -103,6 +123,8 @@ Soldier::Soldier(std::string n)
 		health = 6;
 		attack = 3;
 		ability = 2;
+		moving = false;
+		attacking = false;
 	}
 	else if (n == "testEnemy.png")
 	{
@@ -110,19 +132,25 @@ Soldier::Soldier(std::string n)
 		health = 3;
 		attack = 1;
 		ability = 0;
+		moving = false;
+		attacking = false;
 	} 
 	else if (n == "testEnemy2.png")
 	{
 		type = 's';
-		health = 4;
+		health = 1;
 		attack = 2;
 		ability = 0;
+		moving = false;
+		attacking = false;
 	}
 	else
 	{
 		health = 4;
 		attack = 1;
 		ability = 0;
+		moving = false;
+		attacking = false;
 	}
 }
 
@@ -173,4 +201,14 @@ void Soldier::activateAbility(Player* p)
 		int x = rand()%p->getHandSize();
 		p->removeFromHand(x);
 	}
+}
+
+bool Soldier::getMoving() 
+{
+	return moving;
+}
+
+bool Soldier::getAttacking() 
+{
+	return attacking;
 }
