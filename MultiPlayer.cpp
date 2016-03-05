@@ -447,6 +447,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 			if ((marmy.at(i)->getPositionX()) == 9)
 			{
 				player2->setLife(40);
+				std::string StringLife2 = std::to_string(player2->getLife());
+				CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+				ChangePlayer2Life->setString(StringLife2);
 				GameState();
 
 				CCLOG("CHECKING AUDIO");
@@ -618,10 +621,19 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 										marmy.erase(marmy.begin() + y);
 										y--;
 										player2->setResource(50);
+										std::string StringLife2 = std::to_string(player2->getResource());
+										CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+										ChangePlayer2Life->setString(StringLife);
+
 									}
 									if (menemyArmy.at(x)->getHealth() <= 0)
 									{
 										moveForward.removeObject(menemyArmy.at(x)->getPositionX(), menemyArmy.at(x)->getPositionY());
+										menemyArmy.at(x)->activateAbility(player2);
+										CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+										std::string StringLife = std::to_string(player2->getLife());
+										ChangeLife->setString(StringLife);
+
 										menemyArmy.at(x)->getSprite()->removeFromParentAndCleanup(true);
 										menemyArmy.erase(menemyArmy.begin() + x);
 										x--;
@@ -711,6 +723,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							marmy.at(z)->getSprite()->removeFromParentAndCleanup(true);
 							marmy.erase(marmy.begin() + z);
 							player2->setResource(50);
+							std::string StringLife2 = std::to_string(player2->getResource());
+							CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+							ChangePlayer2Life->setString(StringLife2);
 							z--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -779,6 +794,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							marmy.at(z)->getSprite()->removeFromParentAndCleanup(true);
 							marmy.erase(marmy.begin() + z);
 							player2->setResource(50);
+							std::string StringLife2 = std::to_string(player2->getResource());
+							CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+							ChangePlayer2Life->setString(StringLife2);
 							z--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -838,6 +856,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							marmy.at(z)->getSprite()->removeFromParentAndCleanup(true);
 							marmy.erase(marmy.begin() + z);
 							player2->setResource(50);
+							std::string StringLife2 = std::to_string(player2->getResource());
+							CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+							ChangePlayer2Life->setString(StringLife2);
 							z--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -888,6 +909,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							marmy.at(z)->getSprite()->removeFromParentAndCleanup(true);
 							marmy.erase(marmy.begin() + z);
 							player2->setResource(50);
+							std::string StringLife2 = std::to_string(player2->getResource());
+							CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+							ChangePlayer2Life->setString(StringLife2);
 							z--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -954,6 +978,11 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						{
 							//CCLOG("2 if");
 							moveForward.removeObject(menemyArmy.at(r)->getPositionX(), menemyArmy.at(r)->getPositionY());
+							menemyArmy.at(r)->activateAbility(player2);
+							CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+							std::string StringLife = std::to_string(player2->getLife());
+							ChangeLife->setString(StringLife);
+
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
@@ -1010,6 +1039,10 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						{
 							//CCLOG("2 if");
 							moveForward.removeObject(menemyArmy.at(r)->getPositionX(), menemyArmy.at(r)->getPositionY());
+							menemyArmy.at(r)->activateAbility(player2);
+							CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+							std::string StringLife = std::to_string(player2->getLife());
+							ChangeLife->setString(StringLife);
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
@@ -1067,6 +1100,11 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						{
 							//CCLOG("2 if");
 							moveForward.removeObject(menemyArmy.at(r)->getPositionX(), menemyArmy.at(r)->getPositionY());
+							menemyArmy.at(r)->activateAbility(player2);
+							CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+							std::string StringLife = std::to_string(player2->getLife());
+							ChangeLife->setString(StringLife);
+
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
@@ -1125,6 +1163,11 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						{
 							//CCLOG("2 if");
 							moveForward.removeObject(menemyArmy.at(r)->getPositionX(), menemyArmy.at(r)->getPositionY());
+							menemyArmy.at(r)->activateAbility(player2);
+							CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+							std::string StringLife = std::to_string(player2->getLife());
+							ChangeLife->setString(StringLife);
+
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
@@ -3181,21 +3224,21 @@ void MultiPlayer::displayHand(Player* p)
 						//Col - 0  Grid postion 0-0
 						if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 472 && target->getPosition().y < 545)
 						{
-							if (RegObjects.registerObject(0, 0, 'P') == 0)
+							if (RegObjects.registerObject(5, 0, 'E') == 0)
 							{
-								target->setPosition(137, 504);
+								target->setPosition(518, 504);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(0);
-								marmy.at(marmy.size() - 1)->setPositionY(0);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(137, 504));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(518, 504));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3207,23 +3250,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 0  Grid postion 0-1
-						else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+						else if (target->getPosition().x > 468 && target->getPosition().x < 548 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 						{
-							if (RegObjects.registerObject(0, 1, 'P') == 0)
+							if (RegObjects.registerObject(5, 1, 'E') == 0)
 							{
-								target->setPosition(137, 431);
+								target->setPosition(508, 431);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(0);
-								marmy.at(marmy.size() - 1)->setPositionY(1);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(137, 431));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 431));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3235,23 +3278,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 0  Grid postion 0-2
-						else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+						else if (target->getPosition().x > 468 && target->getPosition().x < 548 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 						{
-							if (RegObjects.registerObject(0, 2, 'P') == 0)
+							if (RegObjects.registerObject(5, 2, 'E') == 0)
 							{
-								target->setPosition(137, 358);
+								target->setPosition(508, 358);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(0);
-								marmy.at(marmy.size() - 1)->setPositionY(2);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(137, 358));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 358));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 
 							}
 							else
@@ -3264,23 +3307,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 0  Grid postion 0-3
-						else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+						else if (target->getPosition().x > 468 && target->getPosition().x < 548 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 						{
-							if (RegObjects.registerObject(0, 3, 'P') == 0)
+							if (RegObjects.registerObject(5, 3, 'E') == 0)
 							{
-								target->setPosition(137, 285);
+								target->setPosition(508, 285);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(0);
-								marmy.at(marmy.size() - 1)->setPositionY(3);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(137, 285));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 285));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 
 							}
 							else
@@ -3293,23 +3336,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 0  Grid postion 0-4
-						else if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+						else if (target->getPosition().x > 468 && target->getPosition().x < 548 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 						{
-							if (RegObjects.registerObject(0, 4, 'P') == 0)
+							if (RegObjects.registerObject(5, 4, 'E') == 0)
 							{
-								target->setPosition(137, 211);
+								target->setPosition(508, 211);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(0);
-								marmy.at(marmy.size() - 1)->setPositionY(4);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(137, 211));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 211));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 
 							}
 							else
@@ -3322,23 +3365,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 1  Grid postion 1-0
-						else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 472 && target->getPosition().y < 545)
+						else if (target->getPosition().x >= 557 && target->getPosition().x < 637 && target->getPosition().y > 472 && target->getPosition().y < 545)
 						{
-							if (RegObjects.registerObject(1, 0, 'P') == 0)
+							if (RegObjects.registerObject(6, 0, 'E') == 0)
 							{
-								target->setPosition(214, 504);
+								target->setPosition(597, 504);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(1);
-								marmy.at(marmy.size() - 1)->setPositionY(0);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(214, 504));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(214, 504));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 
 							}
 							else
@@ -3351,23 +3394,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 1  Grid postion 1-1
-						else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+						else if (target->getPosition().x >= 557 && target->getPosition().x < 637 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 						{
-							if (RegObjects.registerObject(1, 1, 'P') == 0)
+							if (RegObjects.registerObject(6, 1, 'E') == 0)
 							{
-								target->setPosition(214, 431);
+								target->setPosition(597, 431);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(1);
-								marmy.at(marmy.size() - 1)->setPositionY(1);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(214, 431));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(214, 431));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3379,23 +3422,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 1  Grid postion 1-2
-						else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+						else if (target->getPosition().x >= 557 && target->getPosition().x < 637 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 						{
-							if (RegObjects.registerObject(1, 2, 'P') == 0)
+							if (RegObjects.registerObject(6, 2, 'E') == 0)
 							{
-								target->setPosition(214, 358);
+								target->setPosition(597, 358);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(1);
-								marmy.at(marmy.size() - 1)->setPositionY(2);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(214, 358));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 358));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3407,23 +3450,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 1  Grid postion 1-3
-						else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+						else if (target->getPosition().x >= 557 && target->getPosition().x < 637 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 						{
-							if (RegObjects.registerObject(1, 3, 'P') == 0)
+							if (RegObjects.registerObject(6, 3, 'E') == 0)
 							{
-								target->setPosition(214, 285);
+								target->setPosition(597, 285);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(1);
-								marmy.at(marmy.size() - 1)->setPositionY(3);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(214, 285));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 285));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3435,23 +3478,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 1  Grid postion 1-4
-						else if (target->getPosition().x >= 174 && target->getPosition().x < 250 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+						else if (target->getPosition().x >= 557 && target->getPosition().x < 637 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 						{
-							if (RegObjects.registerObject(1, 4, 'P') == 0)
+							if (RegObjects.registerObject(6, 4, 'E') == 0)
 							{
-								target->setPosition(214, 211);
+								target->setPosition(597, 211);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(1);
-								marmy.at(marmy.size() - 1)->setPositionY(4);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(214, 211));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 211));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3463,23 +3506,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 2  Grid postion 2-0
-						else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 472 && target->getPosition().y < 545)
+						else if (target->getPosition().x >= 634 && target->getPosition().x < 714 && target->getPosition().y > 472 && target->getPosition().y < 545)
 						{
-							if (RegObjects.registerObject(2, 0, 'P') == 0)
+							if (RegObjects.registerObject(7, 0, 'E') == 0)
 							{
-								target->setPosition(288, 504);
+								target->setPosition(674, 504);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(2);
-								marmy.at(marmy.size() - 1)->setPositionY(0);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(288, 504));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 504));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3491,23 +3534,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 2  Grid postion 2-1
-						else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+						else if (target->getPosition().x >= 634 && target->getPosition().x < 714 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 						{
-							if (RegObjects.registerObject(2, 1, 'P') == 0)
+							if (RegObjects.registerObject(7, 1, 'E') == 0)
 							{
-								target->setPosition(288, 431);
+								target->setPosition(674, 431);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(2);
-								marmy.at(marmy.size() - 1)->setPositionY(1);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(288, 431));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 431));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3519,23 +3562,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 2  Grid postion 2-2
-						else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+						else if (target->getPosition().x >= 634 && target->getPosition().x < 714 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 						{
-							if (RegObjects.registerObject(2, 2, 'P') == 0)
+							if (RegObjects.registerObject(7, 2, 'E') == 0)
 							{
-								target->setPosition(288, 358);
+								target->setPosition(674, 358);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(2);
-								marmy.at(marmy.size() - 1)->setPositionY(2);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(288, 358));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 358));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3547,23 +3590,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 2  Grid postion 2-3
-						else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+						else if (target->getPosition().x >= 634 && target->getPosition().x < 714 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 						{
-							if (RegObjects.registerObject(2, 3, 'P') == 0)
+							if (RegObjects.registerObject(7, 3, 'E') == 0)
 							{
-								target->setPosition(288, 285);
+								target->setPosition(674, 285);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(2);
-								marmy.at(marmy.size() - 1)->setPositionY(3);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(288, 285));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 285));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3575,23 +3618,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 2  Grid postion 2-4
-						else if (target->getPosition().x >= 250 && target->getPosition().x < 325 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+						else if (target->getPosition().x >= 634 && target->getPosition().x < 714 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 						{
-							if (RegObjects.registerObject(2, 4, 'P') == 0)
+							if (RegObjects.registerObject(7, 4, 'E') == 0)
 							{
-								target->setPosition(288, 211);
+								target->setPosition(674, 211);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(2);
-								marmy.at(marmy.size() - 1)->setPositionY(4);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(288, 211));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 211));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3603,23 +3646,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 3  Grid postion 3-0
-						else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 472 && target->getPosition().y < 545)
+						else if (target->getPosition().x >= 707 && target->getPosition().x < 787 && target->getPosition().y > 472 && target->getPosition().y < 545)
 						{
-							if (RegObjects.registerObject(3, 0, 'P') == 0)
+							if (RegObjects.registerObject(8, 0, 'E') == 0)
 							{
-								target->setPosition(364, 504);
+								target->setPosition(747, 504);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(3);
-								marmy.at(marmy.size() - 1)->setPositionY(0);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(364, 504));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 504));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3631,23 +3674,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 3  Grid postion 3-1
-						else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+						else if (target->getPosition().x >= 707 && target->getPosition().x < 787 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 						{
-							if (RegObjects.registerObject(3, 1, 'P') == 0)
+							if (RegObjects.registerObject(8, 1, 'E') == 0)
 							{
-								target->setPosition(364, 431);
+								target->setPosition(747, 431);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(3);
-								marmy.at(marmy.size() - 1)->setPositionY(1);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(364, 431));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 431));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3659,23 +3702,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 3  Grid postion 3-2
-						else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+						else if (target->getPosition().x >= 707 && target->getPosition().x < 787 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 						{
-							if (RegObjects.registerObject(3, 2, 'P') == 0)
+							if (RegObjects.registerObject(8, 2, 'E') == 0)
 							{
-								target->setPosition(364, 358);
+								target->setPosition(747, 358);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(3);
-								marmy.at(marmy.size() - 1)->setPositionY(2);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(364, 358));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 358));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3687,23 +3730,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 3  Grid postion 3-3
-						else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+						else if (target->getPosition().x >= 707	&& target->getPosition().x < 787 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 						{
-							if (RegObjects.registerObject(3, 3, 'P') == 0)
+							if (RegObjects.registerObject(8, 3, 'E') == 0)
 							{
-								target->setPosition(364, 285);
+								target->setPosition(747, 285);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(3);
-								marmy.at(marmy.size() - 1)->setPositionY(3);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(364, 285));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 285));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3715,23 +3758,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 3  Grid postion 3-4
-						else if (target->getPosition().x >= 325 && target->getPosition().x < 401 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+						else if (target->getPosition().x >= 707 && target->getPosition().x < 787 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 						{
-							if (RegObjects.registerObject(3, 4, 'P') == 0)
+							if (RegObjects.registerObject(8, 4, 'E') == 0)
 							{
-								target->setPosition(364, 211);
+								target->setPosition(747, 211);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(3);
-								marmy.at(marmy.size() - 1)->setPositionY(4);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(364, 211));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 211));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3743,23 +3786,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 4  Grid postion 4-0
-						else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 472 && target->getPosition().y < 545)
+						else if (target->getPosition().x >= 788 && target->getPosition().x < 868 && target->getPosition().y > 472 && target->getPosition().y < 545)
 						{
-							if (RegObjects.registerObject(4, 0, 'P') == 0)
+							if (RegObjects.registerObject(9, 0, 'E') == 0)
 							{
-								target->setPosition(441, 504);
+								target->setPosition(828, 504);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(4);
-								marmy.at(marmy.size() - 1)->setPositionY(0);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(441, 504));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 504));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3771,23 +3814,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 4  Grid postion 4-1
-						else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 395 && target->getPosition().y <= 472)
+						else if (target->getPosition().x >= 788 && target->getPosition().x < 868 && target->getPosition().y > 395 && target->getPosition().y <= 472)
 						{
-							if (RegObjects.registerObject(4, 1, 'P') == 0)
+							if (RegObjects.registerObject(9, 1, 'E') == 0)
 							{
-								target->setPosition(441, 431);
+								target->setPosition(828, 431);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(4);
-								marmy.at(marmy.size() - 1)->setPositionY(1);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(441, 431));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 431));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3799,23 +3842,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 4  Grid postion 4-2
-						else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 324 && target->getPosition().y <= 395)
+						else if (target->getPosition().x >= 788 && target->getPosition().x < 868 && target->getPosition().y > 324 && target->getPosition().y <= 395)
 						{
-							if (RegObjects.registerObject(4, 2, 'P') == 0)
+							if (RegObjects.registerObject(9, 2, 'E') == 0)
 							{
-								target->setPosition(441, 358);
+								target->setPosition(828, 358);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(4);
-								marmy.at(marmy.size() - 1)->setPositionY(2);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(441, 358));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 358));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3827,23 +3870,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 4  Grid postion 4-3
-						else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 250 && target->getPosition().y <= 324)
+						else if (target->getPosition().x >= 788 && target->getPosition().x < 868 && target->getPosition().y > 250 && target->getPosition().y <= 324)
 						{
-							if (RegObjects.registerObject(4, 3, 'P') == 0)
+							if (RegObjects.registerObject(9, 3, 'E') == 0)
 							{
-								target->setPosition(441, 285);
+								target->setPosition(828, 285);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(4);
-								marmy.at(marmy.size() - 1)->setPositionY(3);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(441, 285));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 285));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
@@ -3855,23 +3898,23 @@ void MultiPlayer::displayHand(Player* p)
 							}
 						}
 						//Col - 4  Grid postion 4-4
-						else if (target->getPosition().x >= 401 && target->getPosition().x < 478 && target->getPosition().y > 178 && target->getPosition().y <= 250)
+						else if (target->getPosition().x >= 788 && target->getPosition().x < 868 && target->getPosition().y > 178 && target->getPosition().y <= 250)
 						{
-							if (RegObjects.registerObject(4, 4, 'P') == 0)
+							if (RegObjects.registerObject(9, 4, 'E') == 0)
 							{
-								target->setPosition(441, 211);
+								target->setPosition(828, 211);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
-								marmy.push_back(new Soldier(spriteName));
-								marmy.at(marmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
-								marmy.at(marmy.size() - 1)->setPositionX(4);
-								marmy.at(marmy.size() - 1)->setPositionY(4);
-								marmy.at(marmy.size() - 1)->getSprite()->setPosition(Vec2(441, 211));
-								marmy.at(marmy.size() - 1)->getSprite()->setScale(2.0);
+								menemyArmy.push_back(new Soldier(spriteName));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
+								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 211));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
 								displayHand(p);
-								this->addChild((marmy.at(marmy.size() - 1))->getSprite());
+								this->addChild((menemyArmy.at(menemyArmy.size() - 1))->getSprite());
 							}
 							else
 							{
