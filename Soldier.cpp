@@ -173,4 +173,8 @@ void Soldier::activateAbility(Player* p)
 		int x = rand()%p->getHandSize();
 		p->removeFromHand(x);
 	}
+	else if (ability == 4)
+	{
+		p->setResource(50);
+	}
 }

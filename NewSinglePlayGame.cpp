@@ -15,6 +15,11 @@
 
 USING_NS_CC;
 
+enum
+{
+	MoveSprite = 1,
+};
+
 int Enemylife;
 int EnemyResource;
 int TowerGridLoop;
@@ -64,18 +69,6 @@ CollisionDetection baseGrid;
 #define handSprite4 2003
 #define handSprite5 2004
 #define handSprite6 2005
-
-
-#define T 1238
-#define C 1239
-
-#define T 1238
-#define C 1239
-
-enum
-{
-	MoveSprite = 1,
-};
 
 Scene* NewSinglePlayGame::createScene()
 {
@@ -280,36 +273,6 @@ bool NewSinglePlayGame::init()
 	displayHand(p);
 	displayHand(p);
 	return true;
-}
-
-bool NewSinglePlayGame::onTouchBegan(Touch* touch, Event  *event)
-{
-	return true;
-}
-
-void NewSinglePlayGame::onTouchEnded(Touch* touch, Event  *event)
-{
-	auto location = touch->getLocation();
-
-	auto s = getChildByTag(MoveSprite);
-	s->stopAllActions();
-	s->runAction(MoveTo::create(1, Vec2(location.x, location.y)));
-	float o = location.x - s->getPosition().x;
-	float a = location.y - s->getPosition().y;
-	//auto LifeTag = getChildByTag(LabelTagLife);
-	CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
-	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
-	p->setLife(10);
-	if (p->getLife() <= 0)
-	{
-		LostGame();
-	}
-
-	p->setResource(-20);
-	std::string StringLife = std::to_string(p->getLife());
-	std::string StringResource = std::to_string(p->getResource());
-	ChangeLife->setString(StringLife);
-	ChangeResource->setString(StringResource);
 }
 
 void NewSinglePlayGame::GameState()
