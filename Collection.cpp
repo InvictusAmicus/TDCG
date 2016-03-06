@@ -45,29 +45,29 @@ bool Collection::init()
 	std::string test = "test";
 	DisplayNumber = 0;
 	PgNum = 0;
-	auto FixedLoreLabel = Label::createWithTTF("","fonts/Marker Felt.ttf", 24);
-	FixedLoreLabel->setPosition(120, 130);
+	auto FixedLoreLabel = Label::createWithTTF("Click card to see Information about the card","fonts/Marker Felt.ttf", 24);
+	FixedLoreLabel->setPosition(120, 180);
 	FixedLoreLabel->setColor(ccc3(0, 0, 0));
 	FixedLoreLabel->setAnchorPoint(ccp(0, 0.5f));
 	FixedLoreLabel->setWidth(650);
 	this->addChild(FixedLoreLabel, true, LabelTagLore);
 
 	auto FixedHealthLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
-	FixedHealthLabel->setPosition(120, 210);
+	FixedHealthLabel->setPosition(120, 300);
 	FixedHealthLabel->setColor(ccc3(0, 0, 0));
 	FixedHealthLabel->setAnchorPoint(ccp(0, 0.5f));
 	//FixedHealthLabel->setDimensions(100, 0);
 	FixedHealthLabel->setWidth(100);
 	this->addChild(FixedHealthLabel, true, LabelTagHealth);
 
-	auto FixedAttackLabel = Label::createWithTTF("Click card to see Information about the card", "fonts/Marker Felt.ttf", 24);
-	FixedAttackLabel->setPosition(120, 180);
+	auto FixedAttackLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
+	FixedAttackLabel->setPosition(120, 450);
 	FixedAttackLabel->setColor(ccc3(0, 0, 0));
 	FixedAttackLabel->setAnchorPoint(ccp(0, 0.5f));
 	this->addChild(FixedAttackLabel, true, LabelTagAttack);
 
 	auto FixedNameLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
-	FixedNameLabel->setPosition(120, 240);
+	FixedNameLabel->setPosition(120, 600);
 	FixedNameLabel->setColor(ccc3(0, 0, 0));
 	FixedNameLabel->setAnchorPoint(ccp(0, 0.5f));
 	this->addChild(FixedNameLabel, true, LabelTagName);
@@ -333,11 +333,11 @@ void Collection::displayCards(int x)
 				PgNum++;
 				CCLOG("PgNum %d", PgNum);
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("");
+				ChangeLore->setString("Click card to see Information about the card");
 				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
 				ChangeHealth->setString("");
 				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
-				ChangeAttack->setString("Click card to see Information about the card");
+				ChangeAttack->setString("");
 				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
 				ChangeName->setString("");
 				displayCards(PgNum);
@@ -345,11 +345,11 @@ void Collection::displayCards(int x)
 			else 
 			{
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("");
+				ChangeLore->setString("Click card to see Information about the card");
 				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
 				ChangeHealth->setString("");
 				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
-				ChangeAttack->setString("Click card to see Information about the card");
+				ChangeAttack->setString("");
 				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
 				ChangeName->setString("");
 				PgNum = 0;
@@ -365,11 +365,11 @@ void Collection::displayCards(int x)
 				PgNum--;
 				CCLOG("PgNum %d", PgNum);
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("");
+				ChangeLore->setString("Click card to see Information about the card");
 				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
 				ChangeHealth->setString("");
 				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
-				ChangeAttack->setString("Click card to see Information about the card");
+				ChangeAttack->setString("");
 				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
 				ChangeName->setString("");
 				displayCards(PgNum);
@@ -377,11 +377,11 @@ void Collection::displayCards(int x)
 			else 
 			{
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("");
+				ChangeLore->setString("Click card to see Information about the card");
 				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
 				ChangeHealth->setString("");
 				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
-				ChangeAttack->setString("Click card to see Information about the card");
+				ChangeAttack->setString("");
 				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
 				ChangeName->setString("");
 				PgNum = (listOfCards.size() - 1);
