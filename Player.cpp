@@ -12,6 +12,7 @@ Player::Player()
 	life = 100;
 	resource = 0;
 	
+	/*
 	for (int i = 0; i < 10; i++)
 	{
 		deck.push_back(new Card("SampleCard.png"));
@@ -19,6 +20,35 @@ Player::Player()
 		deck.push_back(new Card("A.I.P.png"));
 		deck.push_back(new Card("Archfiend.png"));
 	}
+	*/
+
+	deck.push_back(new Card("Cain.png"));
+	deck.push_back(new Card("Cain.png"));
+	deck.push_back(new Card("BringerOfRest.png"));
+	deck.push_back(new Card("BringerOfRest.png"));
+	deck.push_back(new Card("EternalDestruction.png"));
+	deck.push_back(new Card("EternalDestruction.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("Tower.png"));
+	deck.push_back(new Card("HauntedHero.png"));
+	deck.push_back(new Card("HauntedHero.png"));
+	deck.push_back(new Card("HauntedHero.png"));
+	deck.push_back(new Card("HauntedHero.png"));
+	deck.push_back(new Card("HellDemon.png"));
+	deck.push_back(new Card("HolyCrusader.png"));
+	deck.push_back(new Card("Invidia.png"));
+	deck.push_back(new Card("VampiricBeast.png"));
+	deck.push_back(new Card("VoidWarrior.png"));
+	//deck.push_back(new Card("HauntedHero"));
+	//deck.push_back(new Card("HauntedHero"));
 
 	std::random_shuffle(deck.begin(), deck.end());
 
