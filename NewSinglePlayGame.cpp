@@ -451,32 +451,17 @@ void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 				}
 				else if (moveForward.enemyCollisionDetect(enemyArmy.at(x)->getPositionX(), enemyArmy.at(x)->getPositionY(), 'E') == 1)
 				{
-					//enemyArmy.at(x);
-					//call attack
-					//deal damage to enemy = to attack
 					for (int y = 0; y < army.size(); y++)
 					{
-						if (enemyArmy.size() > 0) {
+						if (enemyArmy.size() > 0)
+						{
 							if (x < 0)
 							{
 								x = 0;
 							}
-							CCLOG("X = %d", x);
-							CCLOG("army.at(y)->getPositionX() %d", army.at(y)->getPositionX());
-							CCLOG("enemyArmy.at(x)->getPositionX() - 1, %d", enemyArmy.at(x)->getPositionX() - 1);
-							CCLOG("army.at(y)->getPositionY(), %d", army.at(y)->getPositionY());
-							CCLOG("enemyArmy.at(x)->getPositionY(), %d", enemyArmy.at(x)->getPositionY());
 							if (army.at(y)->getPositionX() == enemyArmy.at(x)->getPositionX() - 1
-								&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
+							&& army.at(y)->getPositionY() == enemyArmy.at(x)->getPositionY()) // x = -1
 							{
-							//	CCLOG("CHECKING AUDIO");
-							//	Options EffectsMusic;
-							//	if (EffectsMusic.getEffectsMute() != 1) {
-							//		int V = EffectsMusic.EffectsVolume();
-							//		CCLOG("gameMusic.getmusicVolume() %d", V);
-							//		SinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
-							//	}
-
 								army.at(y)->isAttacking(true);
 								enemyArmy.at(x)->isAttacking(true);
 								army.at(y)->setHealth(enemyArmy.at(x)->getAttack());

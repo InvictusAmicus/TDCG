@@ -11,6 +11,7 @@ private:
 	Player* player2;
 //	Player* p;
 	bool isPlayer1;
+	MenuItemImage* EndTurn;
 public:
 	/*!
 	*Creates the scene for the Single player game
@@ -31,12 +32,7 @@ public:
 	*Adds resources to the player and the enemy and changes to label for the player resources, calls the display hand method
 	*/
 	void startTurn();
-
-	/*!
-	*Calls the EnemyAI class and places a sprite or tower on the map
-	*/
-	void enemyAI();
-
+	
 	/*!
 	*Checks to see if the Player or enemy life is less than zero. Calls the WonGame or LostGame method
 	*if the conditions are meet
@@ -60,8 +56,8 @@ public:
 
 	void SpriteRemove(float ct);
 
-
-
+	void MenuDisable(float ct);
+	
 	int TowerGridLoop;
 
 	// implement the "static create()" method manually
