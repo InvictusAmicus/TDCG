@@ -352,6 +352,8 @@ void Collection::displayCards(int x)
 				ChangeAttack->setString("Click card to see Information about the card");
 				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
 				ChangeName->setString("");
+				PgNum = 0;
+				displayCards(PgNum);
 			}
 		}
 		
@@ -382,6 +384,8 @@ void Collection::displayCards(int x)
 				ChangeAttack->setString("Click card to see Information about the card");
 				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
 				ChangeName->setString("");
+				PgNum = (listOfCards.size() - 1);
+				displayCards(PgNum);
 			}
 		}
 

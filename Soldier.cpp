@@ -28,6 +28,16 @@ Soldier::Soldier(std::string n)
 		attacking = false;
 	}
 
+	else if (n == "BringerOfRest.png")
+	{
+		type = 's';
+		health = 8;
+		attack = 2;
+		ability = 0;
+		moving = false;
+		attacking = false;
+	}
+
 	//Card Name to be changed later
 	else if (n == "Archfiend.png")
 	{
@@ -65,8 +75,18 @@ Soldier::Soldier(std::string n)
 	else if (n == "Cain.png")
 	{
 		type = 's';
-		health = 10;
-		attack = 7;
+		health = 9;
+		attack = 5;
+		ability = 1;
+		moving = false;
+		attacking = false;
+	}
+
+	else if (n == "Eltanin.png")
+	{
+		type = 's';
+		health = 7;
+		attack = 5;
 		ability = 1;
 		moving = false;
 		attacking = false;

@@ -2738,7 +2738,7 @@ void MultiPlayer::displayHand(Player* p)
 								target->setPosition(557, 478);
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(0);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(0);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(557, 478));
@@ -2762,7 +2762,7 @@ void MultiPlayer::displayHand(Player* p)
 							if (RegObjects.registerEnemyTower(0, 1, 'T') == 0)
 							{
 								target->setPosition(557, 402);
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(0);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(1);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(557, 402));
@@ -2791,7 +2791,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(0);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(2);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(557, 330));
@@ -2817,7 +2817,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(0);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(3);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(557, 256));
@@ -2843,7 +2843,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(1);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(0);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(634, 478));
@@ -2868,7 +2868,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(1);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(1);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(634, 402));
@@ -2894,7 +2894,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(1);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(2);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(634, 330));
@@ -2920,7 +2920,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(1);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(3);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(634, 258));
@@ -2946,7 +2946,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(2);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(0);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(711, 478));
@@ -2972,7 +2972,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(2);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(1);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(711, 402));
@@ -2998,7 +2998,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(2);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(2);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(711, 330));
@@ -3024,7 +3024,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(2);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(3);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(711, 258));
@@ -3050,7 +3050,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(3);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(0);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(787, 478));
@@ -3076,7 +3076,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(3);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(1);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(787, 402));
@@ -3102,7 +3102,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(3);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(2);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(787, 330));
@@ -3128,7 +3128,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Tower Placed");
 								p->removeFromHand(target->getTag());
-								menemyTowers.push_back(new Tower("SampleTower.png"));
+								menemyTowers.push_back(new Tower("SampleTower2.png"));
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionX(3);
 								menemyTowers.at(menemyTowers.size() - 1)->setPositionY(3);
 								menemyTowers.at(menemyTowers.size() - 1)->getSprite()->setPosition(Vec2(787, 258));
@@ -3177,7 +3177,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(518, 504));
@@ -3205,7 +3205,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 431));
@@ -3233,7 +3233,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 358));
@@ -3262,7 +3262,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 285));
@@ -3290,7 +3290,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 211));
@@ -3319,7 +3319,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 504));
@@ -3348,7 +3348,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 431));
@@ -3376,7 +3376,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 358));
@@ -3404,7 +3404,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 285));
@@ -3432,7 +3432,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(6);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(597, 211));
@@ -3460,7 +3460,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 504));
@@ -3488,7 +3488,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 431));
@@ -3516,7 +3516,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 358));
@@ -3544,7 +3544,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 285));
@@ -3572,7 +3572,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(7);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(674, 211));
@@ -3600,7 +3600,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 504));
@@ -3628,7 +3628,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 431));
@@ -3656,7 +3656,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 358));
@@ -3684,7 +3684,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 285));
@@ -3712,7 +3712,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(8);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(747, 211));
@@ -3740,7 +3740,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 504));
@@ -3768,7 +3768,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(1);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 431));
@@ -3796,7 +3796,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(2);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 358));
@@ -3824,7 +3824,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(3);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 285));
@@ -3852,7 +3852,7 @@ void MultiPlayer::displayHand(Player* p)
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy.png");
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(9);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(4);
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(828, 211));

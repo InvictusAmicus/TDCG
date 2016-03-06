@@ -3,6 +3,7 @@
 #include <iostream>
 
 int x = 0;
+int CostMultiplier = 50;
 
 Card::Card()
 {
@@ -27,6 +28,125 @@ Card::Card(std::string s)
 	*/
 	cost = 100;
 
+	if (name == "BringerOfRest.png")
+	{
+		cost = (CostMultiplier * 4);
+	}
+
+	else if (name == "Cain.png")
+	{
+		cost = (CostMultiplier * 6);
+	}
+
+	else if (name == "Eltanin.png")
+	{
+		cost = (CostMultiplier * 5);
+	}
+
+	else if (name == "EternalDestruction.png")
+	{
+		cost = (CostMultiplier * 9);
+	}
+
+	else if (name == "HauntedHero.png")
+	{
+		cost = (CostMultiplier * 3);
+	}
+
+	else if (name == "HellDemon.png")
+	{
+		cost = (CostMultiplier * 6);
+	}
+
+	else if (name == "HiddenInTheDark.png")
+	{
+		cost = (CostMultiplier * 3);
+	}
+
+	else if (name == "HolyCrusader.png")
+	{
+		cost = (CostMultiplier * 5);
+	}
+
+	else if (name == "IceDemon.png")
+	{
+		cost = (CostMultiplier * 6);
+	}
+
+	else if (name == "Indicted.png")
+	{
+		cost = (CostMultiplier * 2);
+	}
+
+	else if (name == "Invidia.png")
+	{
+		cost = (CostMultiplier * 3);
+	}
+
+	else if (name == "MagmaSpawn.png")
+	{
+		cost = (CostMultiplier * 3);
+	}
+
+	else if (name == "RemnantofDragons.png")
+	{
+		cost = (CostMultiplier * 7);
+	}
+
+	else if (name == "SpiritOfTheFallen.png")
+	{
+		cost = (CostMultiplier * 1);
+	}
+
+	else if (name == "Tariq.png")
+	{
+		cost = (CostMultiplier * 2);
+	}
+
+	else if (name == "TheConverter.png")
+	{
+		cost = (CostMultiplier * 4);
+	}
+
+	else if (name == "ThrallOfMagma.png")
+	{
+		cost = (CostMultiplier * 2);
+	}
+
+	else if (name == "Tower.png")
+	{
+		cost = (CostMultiplier * 2);
+	}
+
+	else if (name == "VampiricBeast.png")
+	{
+		cost = (CostMultiplier * 5);
+	}
+
+	else if (name == "VoidAbomination.png")
+	{
+		cost = (CostMultiplier * 4);
+	}
+
+	else if (name == "VoidWarrior.png")
+	{
+		cost = (CostMultiplier * 5);
+	}
+
+	else if (name == "Xenomorph.png")
+	{
+		cost = (CostMultiplier * 3);
+	}
+
+	else if (name == "YoungSquire.png")
+	{
+		cost = (CostMultiplier * 2);
+	}
+
+
+	//
+	//Collection Display info
+	//
 	if (name == "D_BringerOfRest.png")
 	{
 		lore = "Sample Lore";
