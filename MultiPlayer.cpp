@@ -651,7 +651,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(menemyTowers.at(o)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY + 35));
+						auto moveTo = MoveTo::create(2.5, Vec2(BulletX - 40, BulletY + 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						mremoveAction.push_back(runAction(BulletAttack));
@@ -720,7 +720,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(menemyTowers.at(o)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY - 35));
+						auto moveTo = MoveTo::create(2.5, Vec2(BulletX - 40, BulletY - 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						mremoveAction.push_back(runAction(BulletAttack));
@@ -787,7 +787,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(menemyTowers.at(o)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY + 35));
+						auto moveTo = MoveTo::create(2.5, Vec2(BulletX + 35, BulletY + 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						mremoveAction.push_back(runAction(BulletAttack));
@@ -845,7 +845,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						int BulletY = moveForward.TowerBulletY(menemyTowers.at(o)->getPositionY());
 						Bullet->setPosition(Vec2(BulletX, BulletY));
 						this->addChild(Bullet, 1);
-						auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY - 35));
+						auto moveTo = MoveTo::create(2.5, Vec2(BulletX + 35, BulletY - 35));
 						auto fade = FadeOut::create(0.1f);
 						auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 						mremoveAction.push_back(runAction(BulletAttack));
@@ -915,7 +915,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							int BulletY = moveForward.TowerBulletY(mtowers.at(q)->getPositionY());
 							Bullet->setPosition(Vec2(BulletX, BulletY));
 							this->addChild(Bullet, 1);
-							auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY + 35));
+							auto moveTo = MoveTo::create(2.5, Vec2(BulletX - 40, BulletY + 35));
 							auto fade = FadeOut::create(0.1f);
 							auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 							mremoveAction.push_back(runAction(BulletAttack));
@@ -979,7 +979,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							int BulletY = moveForward.TowerBulletY(mtowers.at(q)->getPositionY());
 							Bullet->setPosition(Vec2(BulletX, BulletY));
 							this->addChild(Bullet, 1);
-							auto moveTo = MoveTo::create(2.0, Vec2(BulletX - 40, BulletY - 35));
+							auto moveTo = MoveTo::create(2.5, Vec2(BulletX - 40, BulletY - 35));
 							auto fade = FadeOut::create(0.1f);
 							auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 							mremoveAction.push_back(runAction(BulletAttack));
@@ -1044,7 +1044,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							int BulletY = moveForward.TowerBulletY(mtowers.at(q)->getPositionY());
 							Bullet->setPosition(Vec2(BulletX, BulletY));
 							this->addChild(Bullet, 1);
-							auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY + 35));
+							auto moveTo = MoveTo::create(2.5, Vec2(BulletX + 35, BulletY + 35));
 							auto fade = FadeOut::create(0.1f);
 							auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 							mremoveAction.push_back(runAction(BulletAttack));
@@ -1110,7 +1110,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							int BulletY = moveForward.TowerBulletY(mtowers.at(q)->getPositionY());
 							Bullet->setPosition(Vec2(BulletX, BulletY));
 							this->addChild(Bullet, 1);
-							auto moveTo = MoveTo::create(2.0, Vec2(BulletX + 35, BulletY - 35));
+							auto moveTo = MoveTo::create(2.5, Vec2(BulletX + 35, BulletY - 35));
 							auto fade = FadeOut::create(0.1f);
 							auto BulletAttack = Sequence::create(moveTo, fade, nullptr);
 							mremoveAction.push_back(runAction(BulletAttack));
