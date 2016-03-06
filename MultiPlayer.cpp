@@ -3893,9 +3893,9 @@ void MultiPlayer::displayHand(Player* p)
 			}
 		}//end of Player 2
 
-		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
-		std::string StringResource = std::to_string(p->getResource());
-		ChangeResource->setString(StringResource);
+	//	CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+	//	std::string StringResource = std::to_string(p->getResource());
+	//	ChangeResource->setString(StringResource);
 		if (isPlayer1)
 		{
 			Sprite* towerG_00 = (Sprite*)getChildByTag(p1Tower00);
@@ -3975,6 +3975,16 @@ void MultiPlayer::displayHand(Player* p)
 	{
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1->clone(), this->getChildByTag(mhandSprite1 + j));
 	}
+	
+		CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+		std::string StringLife = std::to_string(player1->getResource());
+		ChangeLife->setString(StringLife);
+	
+		CCLabelBMFont* ChangeLife2 = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+		std::string StringLife2 = std::to_string(player2->getResource());
+		ChangeLife2->setString(StringLife2);
+	
+
 }
 
 void MultiPlayer::SpriteRemove(float ct)
