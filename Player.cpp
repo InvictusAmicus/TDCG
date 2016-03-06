@@ -21,7 +21,6 @@ Player::Player()
 		deck.push_back(new Card("Archfiend.png"));
 	}
 	*/
-
 	deck.push_back(new Card("Cain.png"));
 	deck.push_back(new Card("Cain.png"));
 	deck.push_back(new Card("BringerOfRest.png"));
@@ -43,9 +42,24 @@ Player::Player()
 	deck.push_back(new Card("HauntedHero.png"));
 	deck.push_back(new Card("HauntedHero.png"));
 	deck.push_back(new Card("HellDemon.png"));
+	deck.push_back(new Card("HellDemon.png"));
+	deck.push_back(new Card("HellDemon.png"));
+	deck.push_back(new Card("HellDemon.png"));
+	deck.push_back(new Card("HolyCrusader.png"));
+	deck.push_back(new Card("HolyCrusader.png"));
+	deck.push_back(new Card("HolyCrusader.png"));
 	deck.push_back(new Card("HolyCrusader.png"));
 	deck.push_back(new Card("Invidia.png"));
+	deck.push_back(new Card("Invidia.png"));
+	deck.push_back(new Card("Invidia.png"));
+	deck.push_back(new Card("Invidia.png"));
 	deck.push_back(new Card("VampiricBeast.png"));
+	deck.push_back(new Card("VampiricBeast.png"));
+	deck.push_back(new Card("VampiricBeast.png"));
+	deck.push_back(new Card("VampiricBeast.png"));
+	deck.push_back(new Card("VoidWarrior.png"));
+	deck.push_back(new Card("VoidWarrior.png"));
+	deck.push_back(new Card("VoidWarrior.png"));
 	deck.push_back(new Card("VoidWarrior.png"));
 	//deck.push_back(new Card("HauntedHero"));
 	//deck.push_back(new Card("HauntedHero"));
