@@ -484,16 +484,96 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 						}
 					}
 					else if (moveForward.playerCollisionDetect(marmy.at(i)->getPositionX(),
-						marmy.at(i)->getPositionY(), 'P') == 1)
+						marmy.at(i)->getPositionY(), 'E') == 2)
 					{
-						CCLOG("CAN'T MOVE FORWARD Enemy");
-						CCLOG("Current i %d :else if 1:", i);
+						//enemyArmy.at(x);
 						//call attack
 						//deal damage to enemy = to attack
+						for (int y = 0; y < menemyArmy.size(); y++)
+						{
+							if (menemyArmy.size() > 0) {
+								if (y < 0)
+								{
+									y = 0;
+								}
+								CCLOG("X = %d", i);
+								CCLOG("army.at(y)->getPositionX() %d", marmy.at(i)->getPositionX());
+								CCLOG("enemyArmy.at(x)->getPositionX() - 1, %d", menemyArmy.at(y)->getPositionX() - 1);
+								CCLOG("army.at(y)->getPositionY(), %d", marmy.at(i)->getPositionY());
+								CCLOG("enemyArmy.at(x)->getPositionY(), %d", menemyArmy.at(y)->getPositionY());
+								if (marmy.at(i)->getPositionX() == menemyArmy.at(y)->getPositionX() - 1
+									&& marmy.at(i)->getPositionY() == menemyArmy.at(y)->getPositionY()) // x = -1
+								{
+									CCLOG("CHECKING AUDIO");
+									Options EffectsMusic;
+									if (EffectsMusic.getEffectsMute() != 1) {
+										int V = EffectsMusic.EffectsVolume();
+										CCLOG("gameMusic.getmusicVolume() %d", V);
+										mSinglePlayGameMusic = cocos2d::experimental::AudioEngine::play2d("SwordClash.mp3", false, EffectsMusic.getMusicFloatVolume(V), nullptr);
+									}
+									////////////////////////////////////////////////////////
+									//Creates a sprite in front of a player sprite which fades in and out 
+									/*
+									auto PlayerSwordSlash = Sprite::create("PlayerSwordAttack.png");
+									PlayerSwordSlash->setPosition(Vec2(marmy.at(y)->getSprite()->getPositionX()+20, army.at(y)->getSprite()->getPositionY()));
+									PlayerSwordSlash->setOpacity(0);
+									this->addChild(PlayerSwordSlash, 1);
 
+									auto EnemySwordSlash = Sprite::create("EnemySoldierAttack.png");
+									EnemySwordSlash->setPosition(Vec2(marmy.at(y)->getSprite()->getPositionX()+60, army.at(y)->getSprite()->getPositionY()));
+									EnemySwordSlash->setOpacity(0);
+									this->addChild(EnemySwordSlash, 1);
+
+									//running the animation actions
+									auto fadeIn = FadeIn::create(0.5f);
+									auto fadeOut = FadeOut::create(0.5f);
+
+									//DelayTime *delayAction = DelayTime::create(1.0);
+
+									//auto PlayerAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
+
+									//auto EnemyAttackSeq = Sequence::create(delayAction, fadeIn, fadeOut, nullptr);
+									//PlayerSwordSlash->runAction(PlayerAttackSeq);
+									//EnemySwordSlash->runAction(EnemyAttackSeq);
+									*/
+									//////////////////////////////////////////////////
+									marmy.at(i)->setHealth(menemyArmy.at(y)->getAttack());
+									menemyArmy.at(y)->setHealth(marmy.at(i)->getAttack());
+									if (marmy.at(i)->getHealth() <= 0)
+									{
+										moveForward.removeObject(marmy.at(i)->getPositionX(), marmy.at(i)->getPositionY());
+										marmy.at(i)->activateAbility(player1);
+										CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelTagLife);
+										std::string StringLife = std::to_string(player1->getLife());
+										ChangeLife->setString(StringLife);
+										marmy.at(i)->getSprite()->removeFromParentAndCleanup(true);
+										marmy.erase(marmy.begin() + i);
+										i--;
+										player2->setResource(50);
+										std::string StringLife2 = std::to_string(player2->getResource());
+										CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
+										ChangePlayer2Life->setString(StringLife2);
+
+									}
+									if (menemyArmy.at(y)->getHealth() <= 0)
+									{
+										moveForward.removeObject(menemyArmy.at(y)->getPositionX(), menemyArmy.at(y)->getPositionY());
+										menemyArmy.at(y)->activateAbility(player2);
+										CCLabelBMFont* ChangeLife = (CCLabelBMFont*)getChildByTag(LabelEnemyLife);
+										std::string StringLife = std::to_string(player2->getLife());
+										ChangeLife->setString(StringLife);
+
+										menemyArmy.at(y)->getSprite()->removeFromParentAndCleanup(true);
+										menemyArmy.erase(menemyArmy.begin() + y);
+										y--;
+										player1->setResource(50);
+									}
+								}
+							}
+						}
 					}
 					else if (moveForward.playerCollisionDetect(marmy.at(i)->getPositionX(),
-						marmy.at(i)->getPositionY(), 'P') == 2)
+						marmy.at(i)->getPositionY(), 'P') == 1)
 					{
 						CCLOG("CAN'T MOVE FORWARD Player");
 						CCLOG("Current i %d :else if 2:", i);
@@ -623,7 +703,7 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 										player2->setResource(50);
 										std::string StringLife2 = std::to_string(player2->getResource());
 										CCLabelBMFont* ChangePlayer2Life = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
-										ChangePlayer2Life->setString(StringLife);
+										ChangePlayer2Life->setString(StringLife2);
 
 									}
 									if (menemyArmy.at(x)->getHealth() <= 0)
@@ -986,6 +1066,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
+							CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+							std::string StringResource = std::to_string(player1->getResource());
+							ChangeResource->setString(StringResource);
 							r--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -1046,6 +1129,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
+							CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+							std::string StringResource = std::to_string(player1->getResource());
+							ChangeResource->setString(StringResource);
 							r--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -1108,6 +1194,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
+							CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+							std::string StringResource = std::to_string(player1->getResource());
+							ChangeResource->setString(StringResource);
 							r--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -1171,6 +1260,9 @@ void MultiPlayer::EndRoundTurn(cocos2d::Ref* pSender)
 							menemyArmy.at(r)->getSprite()->removeFromParentAndCleanup(true);
 							menemyArmy.erase(menemyArmy.begin() + r);
 							player1->setResource(50);
+							CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+							std::string StringResource = std::to_string(player1->getResource());
+							ChangeResource->setString(StringResource);
 							r--;
 							CCLOG("PLAYER SHOT");
 						}
@@ -3947,7 +4039,7 @@ void MultiPlayer::displayHand(Player* p)
 			}
 		}//end of Player 2
 
-		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagResource);
+		CCLabelBMFont* ChangeResource = (CCLabelBMFont*)getChildByTag(LabelTagEnemyResource);
 		std::string StringResource = std::to_string(p->getResource());
 		ChangeResource->setString(StringResource);
 		if (isPlayer1)

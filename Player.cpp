@@ -15,7 +15,7 @@ Player::Player()
 	for (int i = 0; i < 10; i++)
 	{
 		deck.push_back(new Card("SampleCard.png"));
-		deck.push_back(new Card("SampleCard2.png"));
+		deck.push_back(new Card("Cain.png"));
 		deck.push_back(new Card("A.I.P.png"));
 		deck.push_back(new Card("Archfiend.png"));
 	}
