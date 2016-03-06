@@ -12,6 +12,9 @@ Card::Card()
 			"against himself, a few against the enemies of his kingdom,\n"
 			"and one against the denizen plaguing his king's mind.";
 	cost = 50;
+	Health = "4";
+	Attack = "1";
+	DisplayName = "Default";
 }
 
 Card::Card(std::string s)
@@ -23,83 +26,192 @@ Card::Card(std::string s)
 	Remove the comments relating to the cards when they have the appropriate name and lore assigned
 	*/
 	cost = 100;
-	//Card Name to be changed later
-	if (name == "SampleCard.png")
+
+	if (name == "D_BringerOfRest.png")
 	{
-		//Remove when proper lore is added
-		lore = "SampleCard.png";
-		cost = 200;
+		lore = "Sample Lore";
+		Health = "8";
+		Attack = "2";
+		DisplayName = "Bringer Of Rest";
 	}
 
-	//Card Name to be changed later
-	else if (name == "SampleCard2.png")
+	else if (name == "D_Cain.png")
 	{
-		//Remove when proper lore is added
-		lore = "SampleCard2.png";
+		lore = "Sample Lore";
+		Health = "9";
+		Attack = "5";
+		DisplayName = "Cain";
 	}
 
-	//Card Name to be changed later
-	else if (name == "Archfiend.png")
+	else if (name == "D_Eltanin.png")
 	{
-		//Remove when proper lore is added
-		lore = "Archfiend.png";
+		lore = "Sample Lore";
+		Health = "7";
+		Attack = "5";
+		DisplayName = "Eltanin";
 	}
 
-	//Card Name to be changed later
-	else if (name == "A.I.P.png")
+	else if (name == "D_EternalDestruction.png")
 	{
-		//Remove when proper lore is added
-		lore = "A.I.P.png";
+		lore = "Sample Lore";
+		Health = "8";
+		Attack = "12";
+		DisplayName = "Eternal Destruction";
 	}
 
-	//Card Name to be changed later
-	else if (name == "Aviater.png")
+	else if (name == "D_HauntedHero.png")
 	{
-		//Remove when proper lore is added
-		lore = "Aviater.png";
+		lore = "Sample Lore";
+		Health = "7";
+		Attack = "1";
+		DisplayName = "Haunted Hero";
 	}
 
-	//Card Name to be changed later
-	else if (name == "Cain.png")
+	else if (name == "D_HellDemon.png")
 	{
-		//Remove when proper lore is added
-		lore = "Cain.png";
+		lore = "Sample Lore";
+		Health = "6";
+		Attack = "8";
+		DisplayName = "Hell Demon";
 	}
 
-	//Card Name to be changed later
-	else if (name == "Indicted.png")
+	else if (name == "D_HiddenInTheDark.png")
 	{
-		//Remove when proper lore is added
-		lore = "Indicted.png";
+		lore = "Sample Lore";
+		Health = "3";
+		Attack = "5";
+		DisplayName = "Hidden In The Dark";
 	}
 
-	//Card Name to be changed later
-	else if (name == "MoltonCore.png")
+	else if (name == "D_HolyCrusader.png")
 	{
-		//Remove when proper lore is added
-		lore = "MoltonCore.png";
+		lore = "Sample Lore";
+		Health = "6";
+		Attack = "5";
+		DisplayName = "Holy Crusader";
 	}
 
-	//Card Name to be changed later
-	else if (name == "IceDemon.png")
+	else if (name == "D_IceDemon.png")
 	{
-		//Remove when proper lore is added
-		lore = "IceDemon.png";
+		lore = "Sample Lore";
+		Health = "8";
+		Attack = "6";
+		DisplayName = "Ice Demon";
 	}
 
-	//Card Name to be changed later
-	else if (name == "Tariq.png")
+	else if (name == "D_Indicted.png")
 	{
-		//Remove when proper lore is added
-		lore = "Tariq.png";
+		lore = "Sample Lore";
+		Health = "3";
+		Attack = "3";
+		DisplayName = "Indicted";
 	}
 
-	//Card Name to be changed later
-	else if (name == "Wisp.png")
+	else if (name == "D_Invidia.png")
 	{
-		//Remove when proper lore is added
-		lore = "Wisp.png";
+		lore = "Sample Lore";
+		Health = "6";
+		Attack = "2";
+		DisplayName = "Invidia";
 	}
+
+	else if (name == "D_MagmaSpawn.png")
+	{
+		lore = "lore";
+		Health = "3";
+		Attack = "4";
+		DisplayName = "Magma Spawn";
+	}
+
+	else if (name == "D_RemnantofDragons.png")
+	{
+		lore = "lore";
+		Health = "12";
+		Attack = "4";
+		DisplayName = "Remnant of Dragons";
+	}
+
+	else if (name == "D_SpiritOfTheFallen.png")
+	{
+		lore = "lore";
+		Health = "2";
+		Attack = "2";
+		DisplayName = "Spirit Of The Fallen";
+	}
+
+	else if (name == "D_Tariq.png")
+	{
+		lore = "lore";
+		Health = "5";
+		Attack = "1";
+		DisplayName = "Tariq";
+	}
+
+	else if (name == "D_TheConverter.png")
+	{
+		lore = "lore";
+		Health = "9";
+		Attack = "1";
+		DisplayName = "The Converter";
+	}
+
+	else if (name == "D_ThrallOfMagma.png")
+	{
+		lore = "lore";
+		Health = "2";
+		Attack = "4";
+		DisplayName = "Thrall Of Magma";
+	}
+
+	else if (name == "D_Tower.png")
+	{
+		lore = "lore";
+		Health = "--";
+		Attack = "1";
+		DisplayName = "Tower";
+	}
+
+	else if (name == "D_VampiricBeast.png")
+	{
+		lore = "lore";
+		Health = "5";
+		Attack = "7";
+		DisplayName = "Vampiric Beast";
+	}
+
+	else if (name == "D_VoidAbomination.png")
+	{
+		lore = "lore";
+		Health = "7";
+		Attack = "3";
+		DisplayName = "Void Abomination";
+	}
+
+	else if (name == "D_VoidWarrior.png")
+	{
+		lore = "This is the lore for the Void Warrior";
+		Health = "11";
+		Attack = "2";
+		DisplayName = "Void Warrior";
+	}
+
+    else if (name == "D_Xenomorph.png")
+	{
+		lore = "This is the lore for Xenomorph";
+		Health = "4";
+		Attack = "4";
+		DisplayName = "Xenomorph";
+	}
+	
+	else if (name == "D_YoungSquire.png")
+	{
+		lore = "YoungSquire lore";
+		Health = "7";
+		Attack = "0";
+		DisplayName = "YoungSquire";
+	}
+	
+	
 }
 
 Card::~Card()

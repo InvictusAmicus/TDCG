@@ -41,6 +41,21 @@ public:
 	void displayLore(Card*);
 
 	/*!
+	*Displays the Health of the card on the screen using a label
+	*/
+	void displayHealth(Card*);
+
+	/*!
+	*Displays the Attack of the card on the screen using a label
+	*/
+	void displayAttack(Card*);
+
+	/*!
+	*Displays the Name of the card on the screen using a label
+	*/
+	void displayName(Card*);
+
+	/*!
 	*Returns the user to the Main Menu
 	*/
 	void returnToTitle(cocos2d::Ref* pSender);

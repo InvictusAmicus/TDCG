@@ -13,6 +13,9 @@ private:
 	cocos2d::Sprite* cardSprite;
 	std::string name;
 	std::string lore;
+	std::string Health;
+	std::string Attack;
+	std::string DisplayName;
 	
 public:
 	Card();
@@ -40,6 +43,21 @@ public:
 	* Get the lore of the card
 	*/
 	std::string getLore() { return lore; }
+
+	/*!
+	* Get the Health of the card
+	*/
+	std::string getHealth() { return Health; }
+
+	/*!
+	* Get the lore of the card
+	*/
+	std::string getAttack() { return Attack; }
+
+	/*!
+	* Get the DisplayName of the card
+	*/
+	std::string getDisplayName() { return DisplayName; }
 
 	/*!
 	* Return the cost of the card

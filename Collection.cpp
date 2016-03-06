@@ -5,6 +5,9 @@
 USING_NS_CC;
 
 #define LabelTagLore 1236
+#define LabelTagHealth 1237
+#define LabelTagAttack 1238
+#define LabelTagName 1239
 #define ChangeSprites 2998
 #define ChangeSpritesBack 2999
 #define DisplaySprite0 3000
@@ -39,57 +42,63 @@ bool Collection::init()
 		return false;
 	}
 
+	std::string test = "test";
 	DisplayNumber = 0;
 	PgNum = 0;
-	auto loreLabel = Label::createWithTTF("Click a card to see its lore.", "fonts/Marker Felt.ttf", 24);
+	auto FixedLoreLabel = Label::createWithTTF("","fonts/Marker Felt.ttf", 24);
+	FixedLoreLabel->setPosition(120, 130);
+	FixedLoreLabel->setColor(ccc3(0, 0, 0));
+	FixedLoreLabel->setAnchorPoint(ccp(0, 0.5f));
+	FixedLoreLabel->setWidth(650);
+	this->addChild(FixedLoreLabel, true, LabelTagLore);
 
-	loreLabel->setPosition(400, 150);
-	loreLabel->setColor(ccc3(0, 0, 0));
-	this->addChild(loreLabel, true, LabelTagLore);
-    
-	//Cards Pg 1, Card 1-8
-	listOfCards.push_back(new Card("SampleCard.png"));
-    listOfCards.push_back(new Card("SampleCard2.png"));
-	listOfCards.push_back(new Card("Archfiend.png"));
-	listOfCards.push_back(new Card("A.I.P.png"));
-	listOfCards.push_back(new Card("Aviater.png"));
-	listOfCards.push_back(new Card("Cain.png"));
-	listOfCards.push_back(new Card("Indicted.png"));
-	listOfCards.push_back(new Card("MoltonCore.png"));
+	auto FixedHealthLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
+	FixedHealthLabel->setPosition(120, 210);
+	FixedHealthLabel->setColor(ccc3(0, 0, 0));
+	FixedHealthLabel->setAnchorPoint(ccp(0, 0.5f));
+	//FixedHealthLabel->setDimensions(100, 0);
+	FixedHealthLabel->setWidth(100);
+	this->addChild(FixedHealthLabel, true, LabelTagHealth);
 
-	//Cards Pg 2, Card 9-16
-	listOfCards.push_back(new Card("IceDemon.png"));
-	listOfCards.push_back(new Card("Tariq.png"));
-	listOfCards.push_back(new Card("Wisp.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard2.png"));
-	listOfCards.push_back(new Card("Archfiend.png"));
-	listOfCards.push_back(new Card("A.I.P.png"));
-	listOfCards.push_back(new Card("Aviater.png"));
+	auto FixedAttackLabel = Label::createWithTTF("Click card to see Information about the card", "fonts/Marker Felt.ttf", 24);
+	FixedAttackLabel->setPosition(120, 180);
+	FixedAttackLabel->setColor(ccc3(0, 0, 0));
+	FixedAttackLabel->setAnchorPoint(ccp(0, 0.5f));
+	this->addChild(FixedAttackLabel, true, LabelTagAttack);
 
-	//Cards Pg 3, Card 17-24
-	listOfCards.push_back(new Card("SampleCard.png"));
-	listOfCards.push_back(new Card("SampleCard2.png"));
-	listOfCards.push_back(new Card("Archfiend.png"));
-	listOfCards.push_back(new Card("A.I.P.png"));
-	listOfCards.push_back(new Card("IceDemon.png"));
-	listOfCards.push_back(new Card("Tariq.png"));
-	listOfCards.push_back(new Card("Wisp.png"));
-	listOfCards.push_back(new Card("SampleCard.png"));
+	auto FixedNameLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
+	FixedNameLabel->setPosition(120, 240);
+	FixedNameLabel->setColor(ccc3(0, 0, 0));
+	FixedNameLabel->setAnchorPoint(ccp(0, 0.5f));
+	this->addChild(FixedNameLabel, true, LabelTagName);
+
 	
-	//Cards Pg 4, Card 25-32
-	listOfCards.push_back(new Card("SampleCard2.png"));
-	listOfCards.push_back(new Card("Archfiend.png"));
-	listOfCards.push_back(new Card("A.I.P.png"));
-	listOfCards.push_back(new Card("Aviater.png"));
-	listOfCards.push_back(new Card("Aviater.png"));
-	listOfCards.push_back(new Card("Cain.png"));
-	listOfCards.push_back(new Card("Indicted.png"));
-	listOfCards.push_back(new Card("MoltonCore.png"));
-	
+	listOfCards.push_back(new Card("D_BringerOfRest.png"));
+	listOfCards.push_back(new Card("D_Cain.png"));
+	listOfCards.push_back(new Card("D_Eltanin.png"));
+	listOfCards.push_back(new Card("D_EternalDestruction.png"));
+	listOfCards.push_back(new Card("D_HauntedHero.png"));
+	listOfCards.push_back(new Card("D_HellDemon.png"));
+	listOfCards.push_back(new Card("D_HiddenInTheDark.png"));
+	listOfCards.push_back(new Card("D_HolyCrusader.png"));
+	listOfCards.push_back(new Card("D_IceDemon.png"));
+	listOfCards.push_back(new Card("D_Indicted.png"));
+	listOfCards.push_back(new Card("D_Invidia.png"));
+	listOfCards.push_back(new Card("D_MagmaSpawn.png"));
+	listOfCards.push_back(new Card("D_RemnantofDragons.png"));
+	listOfCards.push_back(new Card("D_SpiritOfTheFallen.png"));
+	listOfCards.push_back(new Card("D_Tariq.png"));
+	listOfCards.push_back(new Card("D_TheConverter.png"));
+	listOfCards.push_back(new Card("D_ThrallOfMagma.png"));
+	listOfCards.push_back(new Card("D_Tower.png"));
+	listOfCards.push_back(new Card("D_VampiricBeast.png"));
+	listOfCards.push_back(new Card("D_VoidAbomination.png"));
+	listOfCards.push_back(new Card("D_VoidWarrior.png"));
+	listOfCards.push_back(new Card("D_Xenomorph.png"));
+	listOfCards.push_back(new Card("D_YoungSquire.png"));
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 
 	auto Back = MenuItemImage::create("Back.png", "BackClicked.png", CC_CALLBACK_1(Collection::returnToTitle, this));
 	Back->setPosition(Vec2(origin.x + visibleSize.width - Back->getContentSize().width, 70));
@@ -111,11 +120,9 @@ bool Collection::init()
 	this->getChildByTag(ChangeSpritesBack)->setPosition(Vec2(origin.x + visibleSize.width - (NextSprites->getContentSize().width * 2), 360));
 
 	auto sprite = Sprite::create("Background.png");
-
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
 	this->addChild(sprite, 0);
-	
+
 	displayCards(PgNum);
 	
 	return true;
@@ -124,7 +131,29 @@ bool Collection::init()
 
 void Collection::displayCards(int x)
 {
+	CCLOG("X: %d", x);
+	if (getChildByTag(DisplaySprite0) != NULL)
+	{
+		CCLOG("RUNNING CLEANUP");
+		auto fadeOut = FadeOut::create(1.0f);
+		this->getChildByTag(DisplaySprite0)->runAction(fadeOut);
+		getChildByTag(DisplaySprite0)->removeFromParentAndCleanup(true);
+	}
 
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	auto sprite = cocos2d::Sprite::create(listOfCards[x]->getSpriteName());
+	sprite->setPosition(Vec2(origin.x + visibleSize.width / 2,
+				(origin.y + visibleSize.height / 2) + 100));
+	sprite->setOpacity(0);
+	sprite->setCascadeOpacityEnabled(true);
+	auto fadeIn = FadeIn::create(1.0f);
+	sprite->runAction(fadeIn);
+	this->addChild(sprite, 1, DisplaySprite0);
+	EventNum++;
+
+	/*
 	for (int i = 0; i < 8; i++)
 	{
 		CCLOG("Card No: %d", i);
@@ -263,13 +292,14 @@ void Collection::displayCards(int x)
 			EventNum++;
 		}
 	}
-	
+	*/
 	auto listener = cocos2d::EventListenerTouchOneByOne::create();
 	listener->setSwallowTouches(true);
 
 	CCLOG("Test Touch before Began");
 	listener->onTouchBegan = [](Touch* touch, Event* event)
 	{
+		
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 
 		CCLOG("Test Touch Began");
@@ -284,51 +314,86 @@ void Collection::displayCards(int x)
 			CCLOG("Test Touch Began if");
 			return true;
 		}
+		
 		return false;
 	};
 	
 	
 	listener->onTouchEnded = [=](cocos2d::Touch* touch, cocos2d::Event* event)
 	{
+		
 		auto target = static_cast<Sprite*>(event->getCurrentTarget());
 		target->setOpacity(255);
 		int tag = target->getTag();
 		if (tag == 2998)
 		{
-			if (PgNum != 3) 
+			CCLOG("TAG 2998");
+			if (PgNum != (listOfCards.size() -1))
 			{
 				PgNum++;
+				CCLOG("PgNum %d", PgNum);
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("Click a card to see its lore.");
+				ChangeLore->setString("");
+				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
+				ChangeHealth->setString("");
+				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
+				ChangeAttack->setString("Click card to see Information about the card");
+				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
+				ChangeName->setString("");
 				displayCards(PgNum);
 			}
 			else 
 			{
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("Click a card to see its lore.");
+				ChangeLore->setString("");
+				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
+				ChangeHealth->setString("");
+				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
+				ChangeAttack->setString("Click card to see Information about the card");
+				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
+				ChangeName->setString("");
 			}
 		}
 		
 		else if (tag == 2999)
 		{
+			CCLOG("TAG 2999");
 			if (PgNum != 0) 
 			{
 				PgNum--;
+				CCLOG("PgNum %d", PgNum);
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("Click a card to see its lore.");
+				ChangeLore->setString("");
+				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
+				ChangeHealth->setString("");
+				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
+				ChangeAttack->setString("Click card to see Information about the card");
+				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
+				ChangeName->setString("");
 				displayCards(PgNum);
 			}
 			else 
 			{
 				CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-				ChangeLore->setString("Click a card to see its lore.");
+				ChangeLore->setString("");
+				CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
+				ChangeHealth->setString("");
+				CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
+				ChangeAttack->setString("Click card to see Information about the card");
+				CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
+				ChangeName->setString("");
 			}
 		}
 
 		else if (tag == 3000)
 		{
-			displayLore(listOfCards[0+ DisplayNumber]);
+			CCLOG("TAG 3000");
+			displayLore(listOfCards.at(x));
+			displayName(listOfCards[x]);
+			displayHealth(listOfCards[x]);
+			displayAttack(listOfCards[x]);
 		}
+		/*
 		else if (tag == 3001)
 		{
 			displayLore(listOfCards[1 + DisplayNumber]);
@@ -356,7 +421,7 @@ void Collection::displayCards(int x)
 		else if (tag == 3007)
 		{
 			displayLore(listOfCards[7 + DisplayNumber]);
-		}
+		}*/
 		
 	};
 	
@@ -368,14 +433,37 @@ void Collection::displayCards(int x)
 	}
 	for (int j = 0; j < EventNum; j++)
 	{
-		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener->clone(), this->getChildByTag(DisplaySprite0 + j));
+		//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener->clone(), this->getChildByTag(DisplaySprite0 + j));
 	}
+	
 }
 
 void Collection::displayLore(Card* c)
 {
 	CCLabelBMFont* ChangeLore = (CCLabelBMFont*)getChildByTag(LabelTagLore);
-	ChangeLore->setString(c->getLore());
+	std::string displayText = "Lore: " + c->getLore();
+	ChangeLore->setString(displayText);
+}
+
+void Collection::displayHealth(Card* c)
+{
+	CCLabelBMFont* ChangeHealth = (CCLabelBMFont*)getChildByTag(LabelTagHealth);
+	std::string displayText = "Health: " + c->getHealth();
+	ChangeHealth->setString(displayText);
+}
+
+void Collection::displayAttack(Card* c)
+{
+	CCLabelBMFont* ChangeAttack = (CCLabelBMFont*)getChildByTag(LabelTagAttack);
+	std::string displayText = "Attack: " + c->getAttack();
+	ChangeAttack->setString(displayText);
+}
+
+void Collection::displayName(Card* c)
+{
+	CCLabelBMFont* ChangeName = (CCLabelBMFont*)getChildByTag(LabelTagName);
+	std::string displayText = "Name: " + c->getDisplayName();
+	ChangeName->setString(displayText);
 }
 
 void Collection::returnToTitle(cocos2d::Ref* pSender)
