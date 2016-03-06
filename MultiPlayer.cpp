@@ -4006,7 +4006,7 @@ void MultiPlayer::SpriteRemove(float ct)
 	{
 		if (marmy.at(c)->getMoving() == true)
 		{
-			auto moveBy = MoveBy::create(1, Vec2(75, 0));
+			auto moveBy = MoveBy::create(0.7, Vec2(75, 0));
 			//army.at(c)->getSprite()->runAction(moveBy);
 			mSoldierMovement.push_back(runAction(moveBy));
 			marmy.at(c)->getSprite()->runAction(mSoldierMovement.back());
@@ -4019,7 +4019,7 @@ void MultiPlayer::SpriteRemove(float ct)
 	{
 		if (menemyArmy.at(b)->getMoving() == true)
 		{
-			auto moveBy = MoveBy::create(1, Vec2(-75, 0));
+			auto moveBy = MoveBy::create(0.7, Vec2(-75, 0));
 			mSoldierMovement.push_back(runAction(moveBy));
 			menemyArmy.at(b)->getSprite()->runAction(mSoldierMovement.back());
 			//enemyArmy.at(b)->getSprite()->runAction(moveBy);
