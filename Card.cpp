@@ -371,7 +371,7 @@ Card::~Card()
 
 char Card::getType() 
 {
-	if (name == "SampleCard.png")
+	if (name == "Tower.png")
 	{
 		return 't';
 	}

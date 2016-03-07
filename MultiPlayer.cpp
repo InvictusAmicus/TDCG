@@ -1,6 +1,6 @@
 #include "MultiPlayer.h"
-#include "GameOverScreen.h"
-#include "GameWonScreen.h"
+#include "MGameOverScreen.h"
+#include "MGameWonScreen.h"
 #include "SimpleAudioEngine.h"
 #include "Soldier.h"
 #include "Tower.h"
@@ -114,6 +114,9 @@ bool MultiPlayer::init()
 	menemyTowers.clear();
 	mspriteAnimation.clear();
 	mremoveAction.clear();
+	mattackSprite.clear();
+	mSoldierMovement.clear();
+
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -390,7 +393,7 @@ void MultiPlayer::returnToTitle(cocos2d::Ref* pSender)
 
 void MultiPlayer::LastPage(cocos2d::Ref* pSender)
 {
-	auto GameOverScene = GameOverScreen::createScene();
+	auto GameOverScene = MGameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
 
@@ -416,7 +419,7 @@ void MultiPlayer::WonGame()
 
 	cocos2d::experimental::AudioEngine::stopAll();
 
-	auto GameWonScene = GameWonScreen::createScene();
+	auto GameWonScene = MGameWonScreen::createScene();
 	Director::getInstance()->pushScene(GameWonScene);
 }
 
@@ -430,7 +433,7 @@ void MultiPlayer::LostGame()
 
 	cocos2d::experimental::AudioEngine::stopAll();
 
-	auto GameOverScene = GameOverScreen::createScene();
+	auto GameOverScene = MGameOverScreen::createScene();
 	Director::getInstance()->pushScene(GameOverScene);
 }
 

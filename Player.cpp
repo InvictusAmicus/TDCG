@@ -21,6 +21,7 @@ Player::Player()
 		deck.push_back(new Card("Archfiend.png"));
 	}
 	*/
+
 	deck.push_back(new Card("Cain.png"));
 	deck.push_back(new Card("Cain.png"));
 	deck.push_back(new Card("BringerOfRest.png"));

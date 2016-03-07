@@ -125,7 +125,7 @@ bool MainMenu::init()
 
 void MainMenu::menuCloseCallback(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
     Director::getInstance()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -149,28 +149,28 @@ void MainMenu::menuLeaderboard(Ref* pSender)
 
 void MainMenu::menuCollection(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
 	auto CollectionScene = Collection::createScene();
 	Director::getInstance()->pushScene(CollectionScene);
 }
 
 void MainMenu::menuOptions(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
 	auto OptionsScene = Options::createScene();
 	Director::getInstance()->pushScene(OptionsScene);
 }
 
 void MainMenu::menuHowToPlay(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
 	auto HowToPlayScene = HowToPlay::createScene();
 	Director::getInstance()->pushScene(HowToPlayScene);
 }
 
 void MainMenu::menuMultiPlayer(Ref* pSender)
 {
-	cocos2d::experimental::AudioEngine::stop(StartTrack);
+	cocos2d::experimental::AudioEngine::stopAll();
 	auto MultiplayerScene = MultiPlayer::createScene();
 	Director::getInstance()->pushScene(MultiplayerScene);
 }
