@@ -43,7 +43,7 @@ bool HowToPlay::init()
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	this->addChild(sprite, 0);
 
-	auto exampleCard = Sprite::create("Archfiend.png");
+	auto exampleCard = Sprite::create("HolyCrusader.png");
 	exampleCard->setPosition(Vec2(visibleSize.width * (0.3), visibleSize.height * (0.7)));
 	exampleCard->setScale(2.0);
 	this->addChild(exampleCard, 1);

@@ -9,7 +9,7 @@
 #include <fstream>
 #include "AudioEngine.h"
 #include "MultiPlayer.h"
-
+#include "Story.h"
 USING_NS_CC;
 using namespace std;
 
@@ -136,7 +136,7 @@ void MainMenu::menuCloseCallback(Ref* pSender)
 void MainMenu::menuNewGame(Ref* pSender)
 {
 	cocos2d::experimental::AudioEngine::stopAll();
-	auto NewGameScene = NewSinglePlayGame::createScene();
+	auto NewGameScene = Story::createScene();
 	Director::getInstance()->pushScene(NewGameScene);
 }
 
