@@ -330,7 +330,7 @@ void NewSinglePlayGame::LostGame()
 void NewSinglePlayGame::EndRoundTurn(cocos2d::Ref* pSender)
 {
 	EndTurn->setEnabled(false);
-	this->schedule(schedule_selector(NewSinglePlayGame::MenuDisable), 1.5);
+	this->schedule(schedule_selector(NewSinglePlayGame::MenuDisable), 2.0);
 	//std::string StringFeedBack = "Wait";
 	//CCLabelBMFont* ChangeFeedback = (CCLabelBMFont*)getChildByTag(ErrorFeedback);
 	//ChangeFeedback->setString(StringFeedBack);
