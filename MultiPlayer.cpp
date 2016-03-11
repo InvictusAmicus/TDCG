@@ -3172,18 +3172,18 @@ void MultiPlayer::displayHand(Player* p)
 					if (p->getResource() >= cost)
 					{
 						//Col - 0  Grid postion 0-0
-						if (target->getPosition().x > 98 && target->getPosition().x < 174 && target->getPosition().y > 472 && target->getPosition().y < 545)
+						if (target->getPosition().x > 468 && target->getPosition().x < 548 && target->getPosition().y > 472 && target->getPosition().y < 545)
 						{
 							if (RegObjects.registerObject(5, 0, 'E') == 0)
 							{
-								target->setPosition(518, 504);
+								target->setPosition(508, 504);
 								p->setResource(-cost);
 								ChangeText->setString("Soldier Placed");
 								menemyArmy.push_back(new Soldier(spriteName));
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setTexture("testEnemy2.png");
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionX(5);
 								menemyArmy.at(menemyArmy.size() - 1)->setPositionY(0);
-								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(518, 504));
+								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setPosition(Vec2(508, 504));
 								menemyArmy.at(menemyArmy.size() - 1)->getSprite()->setScale(2.0);
 								p->removeFromHand(target->getTag());
 								target->removeFromParentAndCleanup(true);
