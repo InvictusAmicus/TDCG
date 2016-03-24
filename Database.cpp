@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
 #include "Database.h"
 #include <vector>
 #include "cocos2d.h"
@@ -33,22 +35,23 @@ void Database::createConnection()
 
 void Database::write(std::string name, int s)
 {
+	/*
 	try
 	{
-		online_driver = get_driver_instance();
-		online_con = online_driver->connect("eu-cdbr-azure-north-d.cloudapp.net", "bc2a6cfa292f50", "1004b8f2");
-		online_con->setSchema("gamesfleadh2016");
-		stmt = online_con->createStatement();
-		std::string t = "insert into playerprofile values ('" + name + "', " + to_string(s) + ");";
-		const char * x = t.c_str();
-		stmt->executeUpdate(x);
+	//	online_driver = get_driver_instance();
+	//	online_con = online_driver->connect("eu-cdbr-azure-north-d.cloudapp.net", "bc2a6cfa292f50", "1004b8f2");
+	//	online_con->setSchema("gamesfleadh2016");
+	//	stmt = online_con->createStatement();
+	//	std::string t = "insert into playerprofile values ('" + name + "', " + to_string(s) + ");";
+	//	const char * x = t.c_str();
+	//	stmt->executeUpdate(x);
 	}
 	catch (sql::SQLException &e)
 	{
 		printf("CANNOT CONNECT TO ONLINE DATABASE");
 		CCLOG("CANNOT CONNECT TO ONLINE DATABASE");
 	}
-
+	*/
 	try
 	{
 		driver = get_driver_instance();
@@ -72,7 +75,7 @@ std::vector<Profile*> Database::read()
 	std::vector<Profile*> leaderboard;
 	try
 	{
-		try 
+	/*	try 
 		{
 		    
 			online_driver = get_driver_instance();
@@ -165,7 +168,7 @@ std::vector<Profile*> Database::read()
 				}
 			}
 		}
-
+		*/
 		try
 		{
 			//for (int j = 0; j < 5; j++)

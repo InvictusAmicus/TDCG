@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 

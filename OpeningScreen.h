@@ -1,3 +1,4 @@
+//Worked on by Ciaran Clerkin K00191500
 
 #ifndef __OPENINGSCREEN_H__
 #define __OPENINGSCREEN_H__

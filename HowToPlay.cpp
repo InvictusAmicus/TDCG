@@ -1,4 +1,6 @@
-#include"HowToPlay.h"
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
+#include "HowToPlay.h"
 
 USING_NS_CC;
 

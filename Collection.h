@@ -1,4 +1,5 @@
-#pragma once
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
 #ifndef __COLLECTION_H__
 #define __COLLECTION_H__
 

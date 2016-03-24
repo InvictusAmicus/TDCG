@@ -1,3 +1,5 @@
+//Worked on by Declan Cordial K00184439
+
 #ifndef __STORY_H__
 #define __STORY_H__
 

@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
 #include "Collection.h"
 #include "CollectionP2.h"
 #include "MainMenu.h"

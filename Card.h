@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
 #ifndef _CARD_H_
 #define _CARD_H_
 

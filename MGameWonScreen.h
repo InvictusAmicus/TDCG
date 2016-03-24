@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500
+
 #ifndef __MGAMEWONSCREEN_H__
 #define __MGAMEWONSCREEN_H__
 

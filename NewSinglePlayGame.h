@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500 and Declan Cordial K00184439
+
 #ifndef __SINGLEPLAYGAME_H__
 #define __SINGLEPLAYGAME_H__
 

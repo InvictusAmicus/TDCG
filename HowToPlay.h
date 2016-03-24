@@ -1,3 +1,5 @@
+//Worked on by Ciaran Clerkin K00191500
+
 #ifndef __HOWTOPLAY_H__
 #define __HOWTOPLAY_H__
 
